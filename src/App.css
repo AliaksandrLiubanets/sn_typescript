@@ -10,23 +10,8 @@
           'n c';
 }
 
-.header {
-  grid-area: h;
-  background-color: antiquewhite;
-}
-
-img {
-  width: 40px;
-  border-radius: 50%;
-
-}
-
-.navbar {
-  grid-area: n;
-  background-color: aquamarine;
-}
-
 .content {
   grid-area: c;
   background-color: cadetblue;
 }
+
