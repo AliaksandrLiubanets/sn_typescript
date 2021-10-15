@@ -1,9 +1,10 @@
 import React from "react";
+import samurai from '../../../../assets/samurai_ava.jpg'
 
 function Posts() {
     return <div>
         <div>
-            <img />
+            <img src={samurai}/>
         </div>
     </div>
 }
