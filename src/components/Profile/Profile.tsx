@@ -7,7 +7,6 @@ function Profile() {
     return <div className={s.content} >
         <img src={samurai_background} alt="picture"/>
         <AddPost />
-        Add post
     </div>
 }
 
