@@ -1,13 +1,14 @@
 import React from 'react';
 import empty_avatar from './assets/empty_avatar.jpg'
 import './App.css';
+import Header from "./components/Header/Header";
 
 function App() {
   return (
     <div className="App">
-      <div className={'header'}>
-          <img src={empty_avatar}/>
-      </div>
+        <Header />
+
+
       <div className={'navbar'}>
           <div>Profile
           </div>
