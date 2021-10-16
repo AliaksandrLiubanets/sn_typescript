@@ -8,7 +8,7 @@ type PostsPropsType = {
 
 function Posts(props: PostsPropsType) {
     return <div className={s.post}>
-            <img src={samurai} alt={'samurai'}/>
+        <img src={samurai} alt={'samurai'}/>
         <span>{props.post}</span>
     </div>
 }
