@@ -6,7 +6,9 @@ function AddPost() {
     return <div className={s.addPost}>
         <div>Add post:</div>
         <textarea>Add text</textarea>
-        <Posts />
+        <Posts post={'hello!'}/>
+        <Posts post={'Hi!'}/>
+        <Posts post={'How is it going?'}/>
     </div>
 }
 
