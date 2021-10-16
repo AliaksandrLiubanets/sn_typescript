@@ -4,12 +4,17 @@ import s from './Posts.module.css'
 
 type PostsPropsType = {
     post: string
+    likes: number
 }
 
 function Posts(props: PostsPropsType) {
     return <div className={s.post}>
         <img src={samurai} alt={'samurai'}/>
-        <span>{props.post}</span>
+        <span className={s.postSpan}>{props.post}</span>
+        <div>
+            <span>likes </span><span>{props.likes}</span>
+        </div>
+
     </div>
 }
 
