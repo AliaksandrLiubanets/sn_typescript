@@ -1,1 +1,1 @@
-# sn_typescript
+https://aliaksandrliubanets.github.io/sn_typescript/
