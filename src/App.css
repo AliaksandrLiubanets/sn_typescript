@@ -10,5 +10,9 @@
           'n c';
 }
 
-
+.content {
+  grid-area: c;
+  background-color: cadetblue;
+  padding: 10px;
+}
 
