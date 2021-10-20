@@ -4,7 +4,7 @@
   display: grid;
   margin: 0 auto;
   grid-template-columns: 1fr 6fr;
-  grid-template-rows: 2fr 10fr;
+  grid-template-rows: 1fr 10fr;
   grid-template-areas:
           'h h'
           'n c';
