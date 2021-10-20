@@ -3,3 +3,11 @@
     background-color: aquamarine;
     padding: 10px;
 }
+
+.navbar div a {
+    text-decoration: none;
+}
+
+.navbar div a.active {
+    color: #d7d508;
+}
