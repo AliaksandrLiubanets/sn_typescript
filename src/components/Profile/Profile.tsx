@@ -1,11 +1,11 @@
 import React from "react";
-import samurai_background from '../../assets/samurai_background.jpg'
 import s from './Profile.module.css'
 import AddPost from "./AddPost/AddPost";
+import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 function Profile() {
     return <div className={s.content} >
-        <img src={samurai_background} alt="picture"/>
+        <ProfileInfo />
         <AddPost />
     </div>
 }
