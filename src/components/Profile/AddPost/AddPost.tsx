@@ -5,7 +5,7 @@ import s from './AddPost.module.css'
 function AddPost() {
     return <div className={s.addPost}>
         <div>My posts:</div>
-        <textarea></textarea>
+        <textarea></textarea>        
         <button>Add post</button>
         <Posts post={'hello!'} likes={3}/>
         <Posts post={'Hi!'} likes={5}/>
