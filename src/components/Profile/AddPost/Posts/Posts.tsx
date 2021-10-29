@@ -11,10 +11,10 @@ type PostsPropsType = {
 
 function Posts(props: PostsPropsType) {
 
-    let [like, setLike] = useState(props.likes)
+    let [like, setLike] = useState<number>(props.likes)
 
     const setLikesCount = () => {
-        setLike(() => like++)
+        setLike(() => ++like)
     }
 
     return <div className={s.post}>
