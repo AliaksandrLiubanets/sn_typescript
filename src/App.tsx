@@ -26,9 +26,7 @@ function App(props: AppProps) {
                     <Route path='/news' component={News} />
                     <Route path='/music' component={Music} />
                     <Route path='/settings' component={Settings} />
-
                 </div>
-                {/*<Profile />*/}
             </div>
         </BrowserRouter>
     )
