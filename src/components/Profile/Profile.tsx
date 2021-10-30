@@ -2,16 +2,20 @@ import React from "react";
 import s from './Profile.module.css'
 import AddPost from './AddPost/AddPost'
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {PostType} from '../../index'
+import {PostType} from '../Redux/state'
+
+type profileStateType = {
+    messagesData: Array<PostType>
+}
 
 type ProfilePropsType = {
-    messagesData: Array<PostType>
+    profileState: profileStateType
 }
 
 function Profile(props: ProfilePropsType) {
     return <div className={s.content} >
         <ProfileInfo />
-        <AddPost massagesData={props.messagesData}/>
+        <AddPost massagesData={props.profileState.messagesData}/>
     </div>
 }
 

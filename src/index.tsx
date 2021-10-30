@@ -3,48 +3,11 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {v1} from 'uuid'
-
-export type dialogType = {
-    id: string
-    name: string
-}
-
-export type messageType = {
-    id: string
-    message: string
-}
-
-const messages: messageType[] = [
-    {id: v1(), message: "Hello!"},
-    {id: v1(), message: "How is your profile on LinkedIn?"},
-    {id: v1(), message: "One more request!"},
-]
-
-const dialogs:Array<dialogType> = [
-    {id: v1(), name: "Dimych"},
-    {id: v1(), name: "Andrew"},
-    {id: v1(), name: "Lenin"},
-    {id: v1(), name: "Pushkin"},
-    {id: v1(), name: "Dragunsky"},
-    {id: v1(), name: "Ostrovskiy"},
-]
-
-export type PostType = {
-    id: string
-    message: string
-    likes: number
-}
-
-const messagesData:Array<PostType> = [
-    {id: v1(), message: 'hello!', likes: 3},
-    {id: v1(), message: 'Hi!', likes: 5},
-    {id: v1(), message: 'How is it going?!', likes: 8}
-]
+import state from './components/Redux/state'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App messages={messages} dialogs={dialogs} messagesData={messagesData}/>
+    <App state={state}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

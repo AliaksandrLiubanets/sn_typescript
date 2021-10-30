@@ -1,8 +1,7 @@
 import React from "react";
 import Posts from "./Posts/Posts";
 import s from './AddPost.module.css'
-import {PostType} from '../../../index'
-
+import {PostType} from '../../Redux/state'
 
 type AddPostPropsType = {
     massagesData: Array<PostType>
