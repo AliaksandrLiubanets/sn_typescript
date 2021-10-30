@@ -1,6 +1,6 @@
 import s from '../Dialogs.module.css'
 import {DialogsStateType} from '../Dialogs'
-import Message from '../Message'
+import Message from '../Messages/Message'
 
 type DialogWithUserType = {
     dialogsState: DialogsStateType

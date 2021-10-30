@@ -1,4 +1,4 @@
-import s from '../Dialogs/Dialogs.module.css'
+import s from '../Dialogs.module.css'
 type MessagePropsType = {
     message: string
     name: string
