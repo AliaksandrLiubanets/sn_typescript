@@ -1,7 +1,8 @@
 import React from "react";
 import Posts from "./Posts/Posts";
 import s from './AddPost.module.css'
-import {PostType} from '../Profile'
+import {PostType} from '../../../index'
+
 
 type AddPostPropsType = {
     massagesData: Array<PostType>
