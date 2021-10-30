@@ -31,6 +31,13 @@ h4 {
     border-radius: 50%;
 }
 
+message_ava img {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
 .dialog_user div {
     display: inline-block;
     margin: 10px 0 10px 15px;
