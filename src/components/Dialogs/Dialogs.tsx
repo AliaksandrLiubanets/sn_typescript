@@ -13,22 +13,22 @@ export type messageType = {
     message: string
 }
 
+const messages: messageType[] = [
+    {id: v1(), message: "Hello!"},
+    {id: v1(), message: "How is your profile on LinkedIn?"},
+    {id: v1(), message: "One more request!"},
+]
+
+const dialogs:Array<dialogType> = [
+    {id: v1(), name: "Dimych"},
+    {id: v1(), name: "Andrew"},
+    {id: v1(), name: "Lenin"},
+    {id: v1(), name: "Pushkin"},
+    {id: v1(), name: "Dragunsky"},
+    {id: v1(), name: "Ostrovskiy"},
+]
+
 function Dialogs() {
-
-    const dialogs:Array<dialogType> = [
-        {id: v1(), name: "Dimych"},
-        {id: v1(), name: "Andrew"},
-        {id: v1(), name: "Lenin"},
-        {id: v1(), name: "Pushkin"},
-        {id: v1(), name: "Dragunsky"},
-        {id: v1(), name: "Ostrovskiy"},
-    ]
-
-    const messages: messageType[] = [
-        {id: v1(), message: "Hello!"},
-        {id: v1(), message: "How is your profile on LinkedIn?"},
-        {id: v1(), message: "One more request!"},
-    ]
 
     return <div className={s.dialogs}>
         <div className={s.dialogsItem}>
