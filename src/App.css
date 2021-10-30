@@ -12,7 +12,11 @@
 
 .content {
   grid-area: c;
-  background-color: cadetblue;
+  background-color: #98bcbd;
   padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-areas:
+      'd u';
 }
 

@@ -1,4 +1,41 @@
+/*.dialogs {*/
+/*    display: grid;*/
+/*    grid-template-columns: 2fr 10fr;*/
+/*}*/
+
 .dialogs {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
+    grid-area: d;
+    background-color: rgba(201, 252, 211, 0.8);
+    padding: 10px;
+}
+
+h4 {
+    margin: 0 0 20px 0;
+    font-weight: 500;
+}
+
+.ava_message {
+    grid-area: u;
+    background-color: rgba(227, 226, 226, 0.87);
+    padding: 10px;
+}
+
+.dialog_user {
+    margin-bottom: 20px;
+}
+
+.dialog_user img {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.dialog_user div {
+    display: inline-block;
+    margin: 10px 0 10px 15px;
+}
+
+.dialog_user a {
+    text-decoration: none;
 }
