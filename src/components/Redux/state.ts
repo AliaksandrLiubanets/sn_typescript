@@ -16,6 +16,8 @@ export type dialogType = {
 export type messageType = {
     id: string
     message: string
+    name: string
+    ava: string
 }
 
 export type PostType = {
@@ -34,9 +36,9 @@ const state = {
     },
     dialogsPage: {
         messages: [
-            {id: v1(), message: 'Hello!'},
-            {id: v1(), message: 'How is your profile on LinkedIn?'},
-            {id: v1(), message: 'One more request!'}
+            {id: v1(), message: 'Hello!', name: 'Dimych', ava: ava_dimych},
+            {id: v1(), message: 'How is your profile on LinkedIn?', name: 'Me', ava: ava_andrew },
+            {id: v1(), message: 'One more request!', name: 'Dimych', ava: ava_dimych}
         ] as Array<messageType>,
         dialogs: [
             {id: v1(), name: 'Dimych', ava: ava_dimych},

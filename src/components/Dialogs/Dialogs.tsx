@@ -2,13 +2,13 @@ import s from './Dialogs.module.css'
 import {DialogsItem} from './DialogsItem'
 import {dialogType, messageType} from '../Redux/state'
 
-type dialogsStateType = {
+export type DialogsStateType = {
     messages: Array<messageType>
     dialogs: Array<dialogType>
 }
 
 type  DialogsPropsType = {
-    dialogsState: dialogsStateType
+    dialogsState: DialogsStateType
 }
 
 function Dialogs(props: DialogsPropsType) {
