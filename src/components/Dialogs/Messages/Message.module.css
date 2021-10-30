@@ -4,3 +4,17 @@
     height: 40px;
     border-radius: 50%;
 }
+
+.message_block {
+    display: grid;
+    grid-template-areas:
+        'a m';
+}
+
+.ava_name_message {
+    grid-area: a;
+}
+
+.message_message {
+    grid-area: m;
+}
