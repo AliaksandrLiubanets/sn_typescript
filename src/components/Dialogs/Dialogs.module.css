@@ -24,7 +24,7 @@ h4 {
     margin-bottom: 20px;
 }
 
-.dialog_user img, .message_ava img {
+.dialog_user img {
     display: inline-block;
     width: 40px;
     height: 40px;
