@@ -1,7 +1,8 @@
 .dialogs {
     grid-area: d;
-    background-color: rgba(201, 252, 211, 0.8);
+    /*background-color: rgba(201, 252, 211, 0.8);*/
     padding: 10px;
+    border-right: 1px solid rgba(231, 230, 230, 0.93);
 }
 
 h4 {
@@ -11,7 +12,6 @@ h4 {
 
 .ava_message {
     grid-area: u;
-    background-color: rgba(227, 226, 226, 0.87);
     padding: 10px;
 }
 
@@ -24,6 +24,7 @@ h4 {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    box-shadow: 0 0 3px #fd9191;
 }
 
 .dialog_user div {
@@ -33,4 +34,7 @@ h4 {
 
 .dialog_user a {
     text-decoration: none;
+}
+
+.dialog_user a div {
 }

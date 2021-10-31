@@ -6,6 +6,7 @@ const ava_lenin = 'https://media.istockphoto.com/vectors/samurai-emblem-vector-i
 const ava_pushkin = 'https://chto-eto-takoe.ru/uryaimg/samurai.JPG'
 const ava_dragunsky = 'https://e7.pngegg.com/pngimages/941/299/png-clipart-samurai-anime-drawing-samurai-black-hair-chibi.png'
 const ava_ostrovsky = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXFDqtEj-fqlEk4YI8fWneqfa2nPyvgl15Yg&usqp=CAU'
+const ava_me = 'https://avatars.githubusercontent.com/u/69769817?v=4'
 
 export type dialogType = {
     id: string
@@ -37,7 +38,7 @@ const state = {
     dialogsPage: {
         messages: [
             {id: v1(), message: 'Hello!', name: 'Dimych', ava: ava_dimych},
-            {id: v1(), message: 'How is your profile on LinkedIn?', name: 'Me', ava: ava_andrew },
+            {id: v1(), message: 'How is your profile on LinkedIn?', name: 'Me', ava: ava_me },
             {id: v1(), message: 'One more request!', name: 'Dimych', ava: ava_dimych}
         ] as Array<messageType>,
         dialogs: [

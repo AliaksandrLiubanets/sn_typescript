@@ -1,7 +1,8 @@
 .navbar {
     grid-area: n;
-    background-color: aquamarine;
+    background-color: rgba(218, 248, 253, 0.98);
     padding: 10px;
+    border-right: 1px solid rgba(231, 230, 230, 0.93);
 }
 
 .navbar div a {
