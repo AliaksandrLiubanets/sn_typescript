@@ -7,7 +7,7 @@
 
 .message_block {
     display: grid;
-    grid-template-columns: 2fr 9fr;
+    grid-template-columns: 1fr 7fr;
     grid-template-areas:
         'a m';
     padding: 10px;
@@ -15,8 +15,19 @@
 
 .ava_name_message {
     grid-area: a;
+    font-size: 10px;
+    background-color: #d7d508;
+    text-align: center;
 }
 
-.message_message {
+.message_name {
+
+}
+
+.message_massage {
     grid-area: m;
+    width: 300px;
+    background-color: #fffec6;
+    border-radius: 8px;
+    padding: 10px;
 }
