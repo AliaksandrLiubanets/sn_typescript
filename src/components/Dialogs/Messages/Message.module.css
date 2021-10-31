@@ -19,6 +19,7 @@
     width: 15px;
     height: 15px;
     background: radial-gradient(circle at 0 0, rgba(0,0,0,0) 15px, #fffec6 0);
+    margin-bottom: 10px;
 
 }
 
@@ -38,4 +39,5 @@
     background-color: #fffec6;
     border-radius: 8px 8px 8px 0;
     padding: 10px;
+    margin-bottom: 10px;
 }
