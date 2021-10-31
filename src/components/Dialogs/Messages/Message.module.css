@@ -7,10 +7,19 @@
 
 .message_block {
     display: grid;
-    grid-template-columns: 1fr 7fr;
+    align-items: end;
+    grid-template-columns: 1fr 15px 8fr;
     grid-template-areas:
-        'a m';
+        'a angle m';
     padding: 10px;
+}
+
+.angle {
+    grid-area: angle;
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle at 0 0, rgba(0,0,0,0) 15px, rgba(21, 62, 4, 0.96) 0);
+
 }
 
 .ava_name_message {
