@@ -21,10 +21,10 @@
     text-align: center;
 }
 
-h4 {
+.friends_block h4 {
     font-size: 28px;
     font-weight: 400;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 .friends {
@@ -44,5 +44,6 @@ h4 {
 
 .name {
     font-size: 10px;
+    margin-top: -8px;
 
 }
