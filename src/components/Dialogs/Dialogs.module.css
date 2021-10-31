@@ -36,5 +36,6 @@ h4 {
     text-decoration: none;
 }
 
-.dialog_user a div {
+.dialog_user a.active div {
+    color: #d7d508;
 }

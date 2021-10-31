@@ -12,7 +12,7 @@ export function DialogsItem(props: DialogsItemType) {
     let path = `/dialogs/user-dialog`
 
     return <div className={s.dialog_user}>
-        <NavLink to={path}>
+        <NavLink to={path} activeClassName={s.active}>
             <img src={props.ava} alt={'ava'}/>
             <div>{props.name}</div>
         </NavLink>
