@@ -8,6 +8,7 @@
           'h h'
           'n c';
   border: 1px solid rgba(231, 230, 230, 0.93);
+  box-shadow: 0 0 5px gray;
 }
 
 .content {
