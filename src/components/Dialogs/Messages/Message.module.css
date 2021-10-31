@@ -18,14 +18,13 @@
     grid-area: angle;
     width: 15px;
     height: 15px;
-    background: radial-gradient(circle at 0 0, rgba(0,0,0,0) 15px, rgba(21, 62, 4, 0.96) 0);
+    background: radial-gradient(circle at 0 0, rgba(0,0,0,0) 15px, #fffec6 0);
 
 }
 
 .ava_name_message {
     grid-area: a;
     font-size: 10px;
-    background-color: #d7d508;
     text-align: center;
 }
 
@@ -37,6 +36,6 @@
     grid-area: m;
     width: 300px;
     background-color: #fffec6;
-    border-radius: 8px;
+    border-radius: 8px 8px 8px 0;
     padding: 10px;
 }
