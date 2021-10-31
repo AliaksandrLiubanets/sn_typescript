@@ -1,6 +1,6 @@
 .App {
   width: 1200px;
-  padding: 10px;
+  margin: 10px;
   display: grid;
   margin: 0 auto;
   grid-template-columns: 1fr 5fr;
@@ -8,6 +8,7 @@
   grid-template-areas:
           'h h'
           'n c';
+  border: 1px solid rgba(231, 230, 230, 0.93);
 }
 
 .content {
