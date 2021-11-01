@@ -16,7 +16,7 @@ h4 {
 }
 
 .dialog_user {
-    margin-bottom: 20px;
+    margin-bottom: 20px;    
 }
 
 .dialog_user img {
@@ -33,7 +33,9 @@ h4 {
 }
 
 .dialog_user a {
-    text-decoration: none;    
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
 .dialog_user a.active div {
