@@ -1,7 +1,6 @@
 .dialogs {
     grid-area: d;
-    /*background-color: rgba(201, 252, 211, 0.8);*/
-    padding: 10px;
+    padding: 20px;
     border-right: 1px solid rgba(231, 230, 230, 0.93);
 }
 
@@ -12,11 +11,11 @@ h4 {
 
 .ava_message {
     grid-area: u;
-    padding: 10px;
+    padding: 20px;
 }
 
 .dialog_user {
-    margin-bottom: 20px;    
+    margin-bottom: 20px;
 }
 
 .dialog_user img {
