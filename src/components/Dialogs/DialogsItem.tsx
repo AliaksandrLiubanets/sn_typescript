@@ -1,5 +1,6 @@
 import {NavLink} from 'react-router-dom'
 import s from './Dialogs.module.css'
+import React from 'react'
 
 type DialogsItemType = {
     id: string
@@ -8,7 +9,9 @@ type DialogsItemType = {
 }
 
 export function DialogsItem(props: DialogsItemType) {
-    let path = `/dialogs/${props.id}`
+    let path = `/dialogs/${props.name}`
+
+    // const setDialogName = (e: MouseEvent<HTMLDivElement>) => props.setDialogName(e.currentTarget.innerText)
 
     return <div className={s.dialog_user}>
         <NavLink to={path} activeClassName={s.active}>

@@ -1,14 +1,14 @@
 import s from '../Dialogs.module.css'
-import {DialogsStateType} from '../Dialogs'
 import Message from '../Messages/Message'
+import {DialogsPageMessagesType} from '../../Redux/state'
 
-type DialogWithUserType = {
-    dialogsState: DialogsStateType
+type DialogWithUserPropsType = {
+    dialogsState: DialogsPageMessagesType
 }
 
-function DialogWithUser(props: DialogWithUserType) {
+function DialogWithUser(props: DialogWithUserPropsType) {
 
-    const avaNameMessage = props.dialogsState.messages.map(m => <Message key={m.id} message={m.message} name={m.name} ava={m.ava}/>)
+    const avaNameMessage = props.dialogsState.ostrovskiy.map(m => <Message key={m.id} message={m.message} name={m.name} ava={m.ava}/>)
 
 
     return <div className={s.ava_message}>

@@ -39,7 +39,7 @@ export type MessageType = {
     ava: string
 }
 
-type DialogsPageMessagesType = {
+export type DialogsPageMessagesType = {
     dimych: Array<MessageType>
     andrew: Array<MessageType>
     lenin: Array<MessageType>
