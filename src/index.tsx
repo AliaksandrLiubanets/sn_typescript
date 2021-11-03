@@ -6,16 +6,17 @@ import reportWebVitals from './reportWebVitals'
 import state from './components/Redux/state'
 import {BrowserRouter} from 'react-router-dom'
 
-ReactDOM.render(
-    <React.StrictMode>
-        <BrowserRouter>
-            <App state={state}/>
-        </BrowserRouter>
-    </React.StrictMode>,
-    document.getElementById('root')
-)
+const rerenderEntiretree = () => {
+    ReactDOM.render(
+        <React.StrictMode>
+            <BrowserRouter>
+                <App state={state}/>
+            </BrowserRouter>
+        </React.StrictMode>,
+        document.getElementById('root')
+    )
+}
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+rerenderEntiretree()
+
 reportWebVitals()
