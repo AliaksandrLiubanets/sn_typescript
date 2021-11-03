@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {ChangeEvent, useState} from 'react'
 import Posts from './Posts/Posts'
 import s from './AddPost.module.css'
 import {PostType} from '../../Redux/state'
@@ -13,6 +13,8 @@ function AddPost(props: AddPostPropsType) {
     const [text, setText] = useState<string>('')
     const [stateMessages, setStateMessages] = useState<Array<PostType>>(props.massagesData)
 
+    const onChangeText = (e: ChangeEvent<HTMLTextAreaElement>) => setText(e.currentTarget.value)
+
     const setTextToState = (text: string) => {
         let newPost: PostType
         newPost = {
@@ -26,7 +28,7 @@ function AddPost(props: AddPostPropsType) {
 
     return <div className={s.addPost}>
         <div>My posts:</div>
-        <textarea onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setText(e.currentTarget.value)} value={text}></textarea>
+        <textarea onChange={onChangeText} value={text}></textarea>
         <button onClick={ () => setTextToState(text)}>Add post</button>
         {stateMessages.map((el: PostType) => <Posts key={el.id} post={el.message} likes={el.likes}/>)}
     </div>

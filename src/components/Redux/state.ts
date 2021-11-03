@@ -40,12 +40,7 @@ export type MessageType = {
 }
 
 export type DialogsPageMessagesType = {
-    dimych: Array<MessageType>
-    andrew: Array<MessageType>
-    lenin: Array<MessageType>
-    pushkin: Array<MessageType>
-    dragunsky: Array<MessageType>
-    ostrovskiy: Array<MessageType>
+    [key: string]: Array<MessageType>
 }
 
 export type PostType = {
@@ -116,7 +111,7 @@ const state = {
     },
     sidebar: {
         friends: [
-            {id: v1(), name: 'Artem', ava: ava_artem},
+            {id: v1(), name: 'Lenin', ava: ava_artem},
             {id: v1(), name: 'Olga', ava: ava_olga},
             {id: v1(), name: 'Karina', ava: ava_karina}
         ] as Array<FriendsType>
