@@ -54,6 +54,16 @@ export type PostType = {
     likes: number
 }
 
+export const addPosttext = (text:string) => {
+    let newPost: PostType
+    newPost = {
+        id: v1(),
+        message: text,
+        likes: 7
+    }
+    return {...state, profilePage: {...state.profilePage, messagesData: [...state.profilePage.messagesData, newPost]}}
+}
+
 const state = {
     profilePage: {
         messagesData: [

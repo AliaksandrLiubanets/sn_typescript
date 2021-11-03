@@ -11,7 +11,6 @@ function TextareaField() {
         <div>
             <button>Add message</button>
         </div>
-
     </>
 }
 

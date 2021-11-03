@@ -9,7 +9,7 @@ import News from './components/News'
 import Music from './components/Music'
 import Settings from './components/Settings'
 import {StateType} from './components/Redux/state'
-import DialogWithUser from './components/Dialogs/DialogWithUser/DialogWithUser'
+import DialogContainer from './components/Dialogs/DialogContainer'
 
 type AppProps = {
     state: StateType
@@ -24,7 +24,7 @@ function App(props: AppProps) {
                 <Route path="/dialogs" render={() => <Dialogs dialogsState={props.state.dialogsPage}/>}/>
                 <Route path="/profile" render={() => <Profile profileState={props.state.profilePage}/>}/>
                 <Route path="/dialogs/:name"
-                       render={() => <DialogWithUser dialogsState={props.state.dialogsPage.messages}/>}/>
+                       render={() => <DialogContainer dialogsState={props.state.dialogsPage.messages}/>}/>
                 <Route path="/news" component={News}/>
                 <Route path="/music" component={Music}/>
                 <Route path="/settings" component={Settings}/>
