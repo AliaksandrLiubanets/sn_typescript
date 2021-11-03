@@ -5,13 +5,16 @@ import TextareaField from '../TextareaField'
 import {useParams} from 'react-router-dom'
 
 type DialogPropsType = {
-    dialogsState: DialogsPageMessagesType
+    messages: DialogsPageMessagesType
 }
 
 function Dialog(props: DialogPropsType) {
 
     const {name} = useParams<{name: string}>()
-    const avaNameMessage = props.dialogsState[name.toLowerCase()].map(m => <Message key={m.id} message={m.message} name={m.name} ava={m.ava}/>)
+    const avaNameMessage = props.messages[name.toLowerCase()].map(m => <Message key={m.id} message={m.message} name={m.name} ava={m.ava}/>)
+// const {name} = useParams<{name: string}>()
+//     const [dialog, setDialog] = useState<Array<MessageType>>(props.messages[name.toLowerCase()])
+//     const avaNameMessage = props.messages.dialog.map(m => <Message key={m.id} message={m.message} name={m.name} ava={m.ava}/>)
 
     return <div className={s.ava_message}>
         <div>{avaNameMessage}</div>
