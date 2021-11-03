@@ -1,10 +1,10 @@
-import s from '../Messages/Message.module.css'
-type MessagePropsType = {
+import s from './Dialog.module.css'
+type DialogPropsType = {
     message: string
     name: string
     ava: string
 }
-function Message(props: MessagePropsType) {
+function Dialog(props: DialogPropsType) {
     return <div className={s.message_block}>
         <div className={s.ava_name_message}>
             <div className={s.message_ava}><img src={props.ava} alt={'ava'}/></div>
@@ -15,4 +15,4 @@ function Message(props: MessagePropsType) {
     </div>
 }
 
-export default Message
+export default Dialog

@@ -1,6 +1,7 @@
 import s from '../Dialogs.module.css'
-import Message from '../Messages/Message'
+import Dialog from '../Dialog/Dialog'
 import {DialogsPageMessagesType} from '../../Redux/state'
+import TextareaField from '../TextareaField'
 
 type DialogWithUserPropsType = {
     dialogsState: DialogsPageMessagesType
@@ -8,11 +9,12 @@ type DialogWithUserPropsType = {
 
 function DialogWithUser(props: DialogWithUserPropsType) {
 
-    const avaNameMessage = props.dialogsState.ostrovskiy.map(m => <Message key={m.id} message={m.message} name={m.name} ava={m.ava}/>)
+    const avaNameMessage = props.dialogsState.ostrovskiy.map(m => <Dialog key={m.id} message={m.message} name={m.name} ava={m.ava}/>)
 
 
     return <div className={s.ava_message}>
         <div>{avaNameMessage}</div>
+        <TextareaField/>
     </div>
 }
 

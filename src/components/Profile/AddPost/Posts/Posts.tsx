@@ -21,9 +21,9 @@ function Posts(props: PostsPropsType) {
         <img className={s.samuraiImage} src={samurai} alt={'samurai'}/>
         <span className={s.postSpan}>{props.post}</span>
         <div className={s.likesBlock}>
-            <span><img onClick={setLikesCount} className={s.likeImage} src={likeImage} alt={'like'}/></span><span className={s.likesCount}>{like}</span>
+            <span><img onClick={setLikesCount} className={s.likeImage} src={likeImage} alt={'like'}/></span>
+            <span className={s.likesCount}>{like}</span>
         </div>
-
     </div>
 }
 
