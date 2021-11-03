@@ -10,15 +10,8 @@ import ava_dragunsky from '../../assets/ava_dragunsky.jpg'
 import ava_ostrovsky from '../../assets/ava_ostrovskiy.jpg'
 import ava_me from '../../assets/ava_me.jpg'
 import ava_dimych from '../../assets/ava_dimych.jpg'
+import rerenderEntireTree from '../../index'
 
-
-// const ava_dimych = 'https://st.depositphotos.com/3335611/4577/i/950/depositphotos_45773129-stock-photo-samurai.jpg'
-// const ava_andrew = 'https://disgustingmen.com/wp-content/uploads/2017/06/yasuke-vladimir-samoilov-art.jpg'
-// const ava_lenin = 'https://media.istockphoto.com/vectors/samurai-emblem-vector-id531859980'
-// const ava_pushkin = 'https://chto-eto-takoe.ru/uryaimg/samurai.JPG'
-// const ava_dragunsky = 'https://e7.pngegg.com/pngimages/941/299/png-clipart-samurai-anime-drawing-samurai-black-hair-chibi.png'
-// const ava_ostrovsky = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXFDqtEj-fqlEk4YI8fWneqfa2nPyvgl15Yg&usqp=CAU'
-// const ava_me = 'https://avatars.githubusercontent.com/u/69769817?v=4'
 
 export type DialogType = {
     id: string
@@ -49,17 +42,8 @@ export type PostType = {
     likes: number
 }
 
-export const addPosttext = (text:string) => {
-    let newPost: PostType
-    newPost = {
-        id: v1(),
-        message: text,
-        likes: 7
-    }
-    return {...state, profilePage: {...state.profilePage, messagesData: [...state.profilePage.messagesData, newPost]}}
-}
-
 const state = {
+    textareaCurrentValue: '',
     profilePage: {
         messagesData: [
             {id: v1(), message: 'hello!', likes: 3},
@@ -117,6 +101,24 @@ const state = {
         ] as Array<FriendsType>
     }
 }
+
+export const addPostText = (text:string) => {
+    let newPost: PostType
+    newPost = {
+        id: v1(),
+        message: text,
+        likes: 7
+    }
+    return state.profilePage.messagesData.push(newPost)
+    // return {...state, profilePage: {...state.profilePage, messagesData: [...state.profilePage.messagesData, newPost]}}
+}
+
+export const setCurrentTextValue = (text: string) => {
+    state.textareaCurrentValue = text
+    return state
+}
+
+// rerenderEntireTree()
 
 export type StateType = typeof state
 

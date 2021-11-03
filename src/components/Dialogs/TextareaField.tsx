@@ -1,15 +1,20 @@
-import {ChangeEvent, useState} from 'react'
+import {ChangeEvent} from 'react'
+import {StateType} from '../Redux/state'
 
+type TextareaPropsType = {
+    textareaCurrentValue: string
+    // addPostText: (text:string) => StateType
+    setCurrentTextValue: (text:string) => StateType
+}
 
-function TextareaField() {
-    const [text, setText] = useState('')
+function TextareaField(props: TextareaPropsType) {
 
     return <>
         <div>
-            <textarea onChange={(e: ChangeEvent<HTMLTextAreaElement>) => setText(e.currentTarget.value)} value={text}></textarea>
+            <textarea onChange={(e: ChangeEvent<HTMLTextAreaElement>) => props.setCurrentTextValue(e.currentTarget.value)} value={props.textareaCurrentValue}></textarea>
         </div>
         <div>
-            <button>Add message</button>
+            <button >Add message</button>
         </div>
     </>
 }
