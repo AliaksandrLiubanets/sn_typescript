@@ -114,6 +114,7 @@ export const addPostText = (text:string) => {
 }
 
 export const setCurrentTextValue = (text: string) => {
+    debugger
     state.textareaCurrentValue = text
     return state
 }

@@ -8,7 +8,7 @@ type TextareaPropsType = {
 }
 
 function TextareaField(props: TextareaPropsType) {
-
+    debugger
     return <>
         <div>
             <textarea onChange={(e: ChangeEvent<HTMLTextAreaElement>) => props.setCurrentTextValue(e.currentTarget.value)} value={props.textareaCurrentValue}></textarea>
