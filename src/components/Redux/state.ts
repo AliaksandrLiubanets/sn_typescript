@@ -111,6 +111,7 @@ export const addPostText = () => {
         likes: 7
     }
     state.profilePage.messagesData.push(newPost)
+    state.textareaCurrentValue = ''
     rerenderEntireTree()
     // return {...state, profilePage: {...state.profilePage, messagesData: [...state.profilePage.messagesData, newPost]}}
 }
