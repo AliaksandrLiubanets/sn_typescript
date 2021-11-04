@@ -114,7 +114,6 @@ export const addPostText = () => {
     state.profilePage.messagesData.push(newPost)
     state.textareaCurrentValue = ''
     rerenderEntireTree()
-    // return {...state, profilePage: {...state.profilePage, messagesData: [...state.profilePage.messagesData, newPost]}}
 }
 
 export const addPostTextDialog = (name: string) => {
@@ -128,7 +127,6 @@ export const addPostTextDialog = (name: string) => {
     state.dialogsPage.messages[name.toLowerCase()].push(newPost)
     state.dialogsPage.textareaCurrentValue = ''
     rerenderEntireTree()
-    // return {...state, profilePage: {...state.profilePage, messagesData: [...state.profilePage.messagesData, newPost]}}
 }
 
 export const setCurrentTextValue = (text: string) => {
@@ -140,8 +138,6 @@ export const setCurrentTextValueInDialog = (text: string) => {
     state.dialogsPage.textareaCurrentValue = text
     rerenderEntireTree()
 }
-
-
 
 export type StateType = typeof state
 

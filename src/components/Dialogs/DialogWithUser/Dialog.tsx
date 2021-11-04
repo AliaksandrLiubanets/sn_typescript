@@ -1,6 +1,6 @@
 import s from '../Dialogs.module.css'
 import Message from '../Message/Message'
-import {addPostTextDialog, DialogsPageMessagesType, setCurrentTextValueInDialog, StateType} from '../../Redux/state'
+import {DialogsPageMessagesType} from '../../Redux/state'
 import TextareaField from '../TextareaField'
 import {useParams} from 'react-router-dom'
 

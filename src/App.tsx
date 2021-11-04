@@ -8,7 +8,7 @@ import {Route} from 'react-router-dom'
 import News from './components/News'
 import Music from './components/Music'
 import Settings from './components/Settings'
-import {addPostTextDialog, StateType} from './components/Redux/state'
+import {StateType} from './components/Redux/state'
 import Dialog from './components/Dialogs/DialogWithUser/Dialog'
 
 type AppProps = {

@@ -1,5 +1,4 @@
 import {ChangeEvent} from 'react'
-import {addPostTextDialog} from '../Redux/state'
 
 type TextareaPropsType = {
     textareaCurrentValue: string
