@@ -12,12 +12,13 @@ type AddPostPropsType = {
 function AddPost(props: AddPostPropsType) {
 
     const setCurrentTextValueToState = (e: React.ChangeEvent<HTMLTextAreaElement>) => props.setCurrentTextValue(e.currentTarget.value)
+    const posts = props.state.profilePage.messagesData.map((el: PostType) => <Posts key={el.id} post={el.message} likes={el.likes}/>)
 
     return <div className={s.addPost}>
         <div>My posts:</div>
         <textarea onChange={setCurrentTextValueToState} value={props.state.textareaCurrentValue}></textarea>
         <button onClick={props.addPostText}>Add post</button>
-        {props.state.profilePage.messagesData.map((el: PostType) => <Posts key={el.id} post={el.message} likes={el.likes}/>)}
+        {posts}
     </div>
 }
 
