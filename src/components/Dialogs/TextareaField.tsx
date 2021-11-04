@@ -3,8 +3,7 @@ import {ChangeEvent} from 'react'
 type TextareaPropsType = {
     textareaCurrentValue: string
     setCurrentTextValueInDialog: (text:string) => void
-    name: string
-    addPostTextDialog: (name: string) => void
+    AddPostDialog: () => void
 }
 
 function TextareaField(props: TextareaPropsType) {
@@ -17,7 +16,7 @@ function TextareaField(props: TextareaPropsType) {
             <textarea onChange={setCurrentValueToState} value={props.textareaCurrentValue}></textarea>
         </div>
         <div>
-            <button onClick={() => {props.addPostTextDialog(props.name)}}>Add message</button>
+            <button onClick={props.AddPostDialog}>Add message</button>
         </div>
     </>
 }

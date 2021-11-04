@@ -15,11 +15,15 @@ function Dialog(props: DialogPropsType) {
 
     const {name} = useParams<{name: string}>()
     const avaNameMessage = props.messages[name.toLowerCase()].map(m => <Message key={m.id} message={m.message} name={m.name} ava={m.ava}/>)
+    const AddPostDialog = () => {
+        props.addPostTextDialog(name)
+    }
 
     return <div className={s.ava_message}>
         <div>{avaNameMessage}</div>
-        <TextareaField name={name} textareaCurrentValue={props.textareaCurrentValue}
-                       setCurrentTextValueInDialog={props.setCurrentTextValueInDialog} addPostTextDialog={props.addPostTextDialog}/>
+        <TextareaField textareaCurrentValue={props.textareaCurrentValue}
+                       setCurrentTextValueInDialog={props.setCurrentTextValueInDialog}
+                       AddPostDialog={AddPostDialog}/>
     </div>
 }
 
