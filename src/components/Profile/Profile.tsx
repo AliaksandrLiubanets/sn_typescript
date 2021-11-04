@@ -1,14 +1,8 @@
-import React from "react";
+import React from 'react'
 import s from './Profile.module.css'
 import AddPost from './AddPost/AddPost'
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {PostType, StateType} from '../Redux/state'
-
-type profileStateType = {
-    messagesData: Array<PostType>
-    addPostText: () => void
-    setCurrentTextValue: (text:string) => void
-}
+import ProfileInfo from './ProfileInfo/ProfileInfo'
+import {StateType} from '../Redux/state'
 
 type ProfilePropsType = {
     state: StateType
