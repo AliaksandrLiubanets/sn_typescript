@@ -1,10 +1,10 @@
 import {v1} from 'uuid'
 
 import ava_artem from '../../assets/ava_lenin.png'
+import ava_lenin from '../../assets/ava_lenin.png'
 import ava_olga from '../../assets/ava_olga.jpg'
 import ava_karina from '../../assets/ava_karina.jpg'
 import ava_andrew from '../../assets/ava_andrew.jpg'
-import ava_lenin from '../../assets/ava_lenin.png'
 import ava_pushkin from '../../assets/ava_pushkin.jpg'
 import ava_dragunsky from '../../assets/ava_dragunsky.jpg'
 import ava_ostrovsky from '../../assets/ava_ostrovskiy.jpg'
