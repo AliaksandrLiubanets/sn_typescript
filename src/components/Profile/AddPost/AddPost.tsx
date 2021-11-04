@@ -1,19 +1,21 @@
 import React from 'react'
 import Posts from './Posts/Posts'
 import s from './AddPost.module.css'
-import {PostType} from '../../Redux/state'
+import {PostType, StateType} from '../../Redux/state'
 
 type AddPostPropsType = {
-    massagesData: Array<PostType>
+    state: StateType
+    addPostText: () => void
+    setCurrentTextValue: (text: string) => void
 }
 
 function AddPost(props: AddPostPropsType) {
 
     return <div className={s.addPost}>
         <div>My posts:</div>
-        <textarea></textarea>
+        <textarea onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => props.setCurrentTextValue(e.currentTarget.value)} value={props.state.textareaCurrentValue}></textarea>
         <button >Add post</button>
-        {props.massagesData.map((el: PostType) => <Posts key={el.id} post={el.message} likes={el.likes}/>)}
+        {props.state.profilePage.messagesData.map((el: PostType) => <Posts key={el.id} post={el.message} likes={el.likes}/>)}
     </div>
 }
 

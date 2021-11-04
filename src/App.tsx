@@ -8,13 +8,14 @@ import {Route} from 'react-router-dom'
 import News from './components/News'
 import Music from './components/Music'
 import Settings from './components/Settings'
-import {setCurrentTextValueInDialog, StateType} from './components/Redux/state'
+import {addPostText, setCurrentTextValue, setCurrentTextValueInDialog, StateType} from './components/Redux/state'
 import Dialog from './components/Dialogs/DialogWithUser/Dialog'
 
 type AppProps = {
     state: StateType
     addPostText: () => void
     setCurrentTextValueInDialog: (text:string) => void
+    setCurrentTextValue: (text:string) => void
 }
 
 function App(props: AppProps) {
@@ -24,11 +25,12 @@ function App(props: AppProps) {
             <Navbar friends={props.state.sidebar.friends}/>
             <div className="content">
                 <Route path="/dialogs" render={() => <Dialogs dialogsState={props.state.dialogsPage}/>}/>
-                <Route path="/profile" render={() => <Profile profileState={props.state.profilePage}/>}/>
+                <Route path="/profile" render={() => <Profile state={props.state}
+                                                              addPostText={props.addPostText}
+                                                              setCurrentTextValue={props.setCurrentTextValue}/>}/>
                 <Route path="/dialogs/:name"
                        render={() => <Dialog messages={props.state.dialogsPage.messages}
                                              textareaCurrentValue={props.state.dialogsPage.textareaCurrentValue}
-                                             addPostText={props.addPostText }
                                              setCurrentTextValueInDialog={props.setCurrentTextValueInDialog}/>}/>
                 <Route path="/news" component={News}/>
                 <Route path="/music" component={Music}/>

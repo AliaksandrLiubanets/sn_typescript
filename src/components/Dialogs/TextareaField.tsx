@@ -3,7 +3,6 @@ import {setCurrentTextValueInDialog, StateType} from '../Redux/state'
 
 type TextareaPropsType = {
     textareaCurrentValue: string
-    addPostText: () => void
     setCurrentTextValueInDialog: (text:string) => void
 }
 

@@ -43,7 +43,7 @@ export type PostType = {
 }
 
 const state = {
-    textareaCurrentValue: '',
+    textareaCurrentValue: 'bu',
     profilePage: {
         messagesData: [
             {id: v1(), message: 'hello!', likes: 3},
@@ -113,6 +113,11 @@ export const addPostText = () => {
     state.profilePage.messagesData.push(newPost)
     rerenderEntireTree()
     // return {...state, profilePage: {...state.profilePage, messagesData: [...state.profilePage.messagesData, newPost]}}
+}
+
+export const setCurrentTextValue = (text: string) => {
+    state.textareaCurrentValue = text
+    rerenderEntireTree()
 }
 
 export const setCurrentTextValueInDialog = (text: string) => {
