@@ -14,7 +14,7 @@ function AddPost(props: AddPostPropsType) {
     return <div className={s.addPost}>
         <div>My posts:</div>
         <textarea onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => props.setCurrentTextValue(e.currentTarget.value)} value={props.state.textareaCurrentValue}></textarea>
-        <button >Add post</button>
+        <button onClick={props.addPostText}>Add post</button>
         {props.state.profilePage.messagesData.map((el: PostType) => <Posts key={el.id} post={el.message} likes={el.likes}/>)}
     </div>
 }
