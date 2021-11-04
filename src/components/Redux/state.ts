@@ -122,8 +122,8 @@ export const addPostTextDialog = (name: string) => {
     newPost = {
         id: v1(),
         message: state.dialogsPage.textareaCurrentValue,
-        name: name,
-        ava: ava_ostrovsky
+        name: 'Me',
+        ava: ava_me
     }
     state.dialogsPage.messages[name.toLowerCase()].push(newPost)
     state.dialogsPage.textareaCurrentValue = ''
