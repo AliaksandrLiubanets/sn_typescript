@@ -52,6 +52,7 @@ const state = {
         ] as Array<PostType>
     },
     dialogsPage: {
+        textareaCurrentValue: '',
         messages: {
             dimych: [
                 {id: v1(), message: 'Hello!', name: 'Dimych', ava: ava_dimych},
@@ -114,8 +115,8 @@ export const addPostText = () => {
     // return {...state, profilePage: {...state.profilePage, messagesData: [...state.profilePage.messagesData, newPost]}}
 }
 
-export const setCurrentTextValue = (text: string) => {
-    state.textareaCurrentValue = text
+export const setCurrentTextValueInDialog = (text: string) => {
+    state.dialogsPage.textareaCurrentValue = text
     rerenderEntireTree()
 }
 

@@ -8,13 +8,13 @@ import {Route} from 'react-router-dom'
 import News from './components/News'
 import Music from './components/Music'
 import Settings from './components/Settings'
-import {StateType} from './components/Redux/state'
+import {setCurrentTextValueInDialog, StateType} from './components/Redux/state'
 import Dialog from './components/Dialogs/DialogWithUser/Dialog'
 
 type AppProps = {
     state: StateType
     addPostText: () => void
-    setCurrentTextValue: (text:string) => void
+    setCurrentTextValueInDialog: (text:string) => void
 }
 
 function App(props: AppProps) {
@@ -27,9 +27,9 @@ function App(props: AppProps) {
                 <Route path="/profile" render={() => <Profile profileState={props.state.profilePage}/>}/>
                 <Route path="/dialogs/:name"
                        render={() => <Dialog messages={props.state.dialogsPage.messages}
-                                             textareaCurrentValue={props.state.textareaCurrentValue}
+                                             textareaCurrentValue={props.state.dialogsPage.textareaCurrentValue}
                                              addPostText={props.addPostText }
-                                             setCurrentTextValue={props.setCurrentTextValue}/>}/>
+                                             setCurrentTextValueInDialog={props.setCurrentTextValueInDialog}/>}/>
                 <Route path="/news" component={News}/>
                 <Route path="/music" component={Music}/>
                 <Route path="/settings" component={Settings}/>
