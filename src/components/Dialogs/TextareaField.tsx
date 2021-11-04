@@ -6,9 +6,12 @@ type TextareaPropsType = {
 }
 
 function TextareaField(props: TextareaPropsType) {
+
+    const setCurrentValueToState = (e: ChangeEvent<HTMLTextAreaElement>) => props.setCurrentTextValueInDialog(e.currentTarget.value)
+
     return <>
         <div>
-            <textarea onChange={(e: ChangeEvent<HTMLTextAreaElement>) => props.setCurrentTextValueInDialog(e.currentTarget.value)} value={props.textareaCurrentValue}></textarea>
+            <textarea onChange={setCurrentValueToState} value={props.textareaCurrentValue}></textarea>
         </div>
         <div>
             <button>Add message</button>
