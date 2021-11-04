@@ -13,8 +13,8 @@ import Dialog from './components/Dialogs/DialogWithUser/Dialog'
 
 type AppProps = {
     state: StateType
-    // addPostText: (text:string) => StateType
-    setCurrentTextValue: (text:string) => StateType
+    addPostText: () => void
+    setCurrentTextValue: (text:string) => void
 }
 
 function App(props: AppProps) {
@@ -28,7 +28,7 @@ function App(props: AppProps) {
                 <Route path="/dialogs/:name"
                        render={() => <Dialog messages={props.state.dialogsPage.messages}
                                              textareaCurrentValue={props.state.textareaCurrentValue}
-                                             // addPostText={props.addPostText }
+                                             addPostText={props.addPostText }
                                              setCurrentTextValue={props.setCurrentTextValue}/>}/>
                 <Route path="/news" component={News}/>
                 <Route path="/music" component={Music}/>

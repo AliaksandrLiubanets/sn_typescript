@@ -102,24 +102,24 @@ const state = {
     }
 }
 
-export const addPostText = (text:string) => {
+export const addPostText = () => {
     let newPost: PostType
     newPost = {
         id: v1(),
-        message: text,
+        message: state.textareaCurrentValue,
         likes: 7
     }
-    return state.profilePage.messagesData.push(newPost)
+    state.profilePage.messagesData.push(newPost)
+    rerenderEntireTree()
     // return {...state, profilePage: {...state.profilePage, messagesData: [...state.profilePage.messagesData, newPost]}}
 }
 
 export const setCurrentTextValue = (text: string) => {
-    debugger
     state.textareaCurrentValue = text
-    return state
+    rerenderEntireTree()
 }
 
-// rerenderEntireTree()
+
 
 export type StateType = typeof state
 

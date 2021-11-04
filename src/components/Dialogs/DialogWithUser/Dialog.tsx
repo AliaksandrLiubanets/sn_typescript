@@ -7,8 +7,8 @@ import {useParams} from 'react-router-dom'
 type DialogPropsType = {
     messages: DialogsPageMessagesType
     textareaCurrentValue: string
-    // addPostText: (text:string) => StateType
-    setCurrentTextValue: (text:string) => StateType
+    addPostText: () => void
+    setCurrentTextValue: (text:string) => void
 }
 
 function Dialog(props: DialogPropsType) {
@@ -19,7 +19,7 @@ function Dialog(props: DialogPropsType) {
     return <div className={s.ava_message}>
         <div>{avaNameMessage}</div>
         <TextareaField textareaCurrentValue={props.textareaCurrentValue}
-                       // addPostText={props.addPostText}
+                       addPostText={props.addPostText}
                        setCurrentTextValue={props.setCurrentTextValue}/>
     </div>
 }
