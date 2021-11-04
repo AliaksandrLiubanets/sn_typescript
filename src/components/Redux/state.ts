@@ -101,6 +101,7 @@ const state = {
             {id: v1(), name: 'Karina', ava: ava_karina}
         ] as Array<FriendsType>
     }
+
 }
 
 export const addPostText = () => {
@@ -112,6 +113,20 @@ export const addPostText = () => {
     }
     state.profilePage.messagesData.push(newPost)
     state.textareaCurrentValue = ''
+    rerenderEntireTree()
+    // return {...state, profilePage: {...state.profilePage, messagesData: [...state.profilePage.messagesData, newPost]}}
+}
+
+export const addPostTextDialog = (name: string) => {
+    let newPost: MessageType
+    newPost = {
+        id: v1(),
+        message: state.dialogsPage.textareaCurrentValue,
+        name: name,
+        ava: ava_ostrovsky
+    }
+    state.dialogsPage.messages[name.toLowerCase()].push(newPost)
+    state.dialogsPage.textareaCurrentValue = ''
     rerenderEntireTree()
     // return {...state, profilePage: {...state.profilePage, messagesData: [...state.profilePage.messagesData, newPost]}}
 }

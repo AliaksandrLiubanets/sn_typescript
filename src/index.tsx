@@ -3,7 +3,12 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-import state, {addPostText, setCurrentTextValue, setCurrentTextValueInDialog} from './components/Redux/state'
+import state, {
+    addPostText,
+    addPostTextDialog,
+    setCurrentTextValue,
+    setCurrentTextValueInDialog
+} from './components/Redux/state'
 import {BrowserRouter} from 'react-router-dom'
 
 let rerenderEntireTree = () => {
@@ -12,7 +17,7 @@ let rerenderEntireTree = () => {
             <BrowserRouter>
                 <App state={state} addPostText={addPostText}
                      setCurrentTextValueInDialog={setCurrentTextValueInDialog}
-                     setCurrentTextValue={setCurrentTextValue}/>
+                     setCurrentTextValue={setCurrentTextValue} addPostTextDialog={addPostTextDialog}/>
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')

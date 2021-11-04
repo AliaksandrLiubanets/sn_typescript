@@ -1,11 +1,15 @@
 import {ChangeEvent} from 'react'
+import {addPostTextDialog} from '../Redux/state'
 
 type TextareaPropsType = {
     textareaCurrentValue: string
     setCurrentTextValueInDialog: (text:string) => void
+    name: string
+    addPostTextDialog: (name: string) => void
 }
 
 function TextareaField(props: TextareaPropsType) {
+
 
     const setCurrentValueToState = (e: ChangeEvent<HTMLTextAreaElement>) => props.setCurrentTextValueInDialog(e.currentTarget.value)
 
@@ -14,7 +18,7 @@ function TextareaField(props: TextareaPropsType) {
             <textarea onChange={setCurrentValueToState} value={props.textareaCurrentValue}></textarea>
         </div>
         <div>
-            <button>Add message</button>
+            <button onClick={() => {props.addPostTextDialog(props.name)}}>Add message</button>
         </div>
     </>
 }
