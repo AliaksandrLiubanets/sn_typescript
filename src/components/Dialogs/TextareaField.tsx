@@ -1,4 +1,5 @@
 import {ChangeEvent} from 'react'
+import s from './TextareaField.module.css'
 
 type TextareaPropsType = {
     textareaCurrentValue: string
@@ -13,7 +14,7 @@ function TextareaField(props: TextareaPropsType) {
 
     return <>
         <div>
-            <textarea onChange={setCurrentValueToState} value={props.textareaCurrentValue}></textarea>
+            <textarea className={s.textarea} onChange={setCurrentValueToState} value={props.textareaCurrentValue}></textarea>
         </div>
         <div>
             <button onClick={props.AddPostDialog}>Add message</button>
