@@ -147,5 +147,4 @@ export type StateType = typeof store.state
 
 export type StoreType = typeof store
 
-
 export default store
