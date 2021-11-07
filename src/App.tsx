@@ -8,31 +8,28 @@ import {Route} from 'react-router-dom'
 import News from './components/News'
 import Music from './components/Music'
 import Settings from './components/Settings'
-import {StateType} from './components/Redux/state'
 import Dialog from './components/Dialogs/DialogWithUser/Dialog'
+import {StoreType} from './components/Redux/store'
 
 type AppProps = {
-    state: StateType
-    addPostText: () => void
-    setCurrentTextValueInDialog: (text:string) => void
-    setCurrentTextValue: (text:string) => void
-    addPostTextDialog: (name: string) => void
+    store: StoreType
 }
 
 function App(props: AppProps) {
     return (
         <div className="App">
             <Header/>
-            <Navbar friends={props.state.sidebar.friends}/>
+            <Navbar friends={props.store.getState().sidebar.friends}/>
             <div className="content">
-                <Route path="/dialogs" render={() => <Dialogs dialogsState={props.state.dialogsPage}/>}/>
-                <Route path="/profile" render={() => <Profile state={props.state}
-                                                              addPostText={props.addPostText}
-                                                              setCurrentTextValue={props.setCurrentTextValue}/>}/>
+                <Route path="/dialogs" render={() => <Dialogs dialogsState={props.store.state.dialogsPage}/>}/>
+                <Route path="/profile" render={() => <Profile state={props.store.getState()}
+                                                              addPostText={props.store.addPostText}
+                                                              setCurrentTextValue={props.store.setCurrentTextValue}/>}/>
                 <Route path="/dialogs/:name"
-                       render={() => <Dialog messages={props.state.dialogsPage.messages}
-                                             textareaCurrentValue={props.state.dialogsPage.textareaCurrentValue}
-                                             setCurrentTextValueInDialog={props.setCurrentTextValueInDialog} addPostTextDialog={props.addPostTextDialog}/>}/>
+                       render={() => <Dialog messages={props.store.getState().dialogsPage.messages}
+                                             textareaCurrentValue={props.store.getState().dialogsPage.textareaCurrentValue}
+                                             setCurrentTextValueInDialog={props.store.setCurrentTextValueInDialog}
+                                             addPostTextDialog={props.store.addPostTextDialog}/>}/>
                 <Route path="/news" component={News}/>
                 <Route path="/music" component={Music}/>
                 <Route path="/settings" component={Settings}/>

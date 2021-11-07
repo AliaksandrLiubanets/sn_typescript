@@ -11,7 +11,6 @@ type DialogsItemType = {
 export function DialogsItem(props: DialogsItemType) {
     let path = `/dialogs/${props.name}`
 
-    // const setDialogName = (e: MouseEvent<HTMLDivElement>) => props.setDialogName(e.currentTarget.innerText)
 
     return <div className={s.dialog_user}>
         <NavLink to={path} activeClassName={s.active}>

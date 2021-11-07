@@ -2,27 +2,20 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
-import state, {
-    addPostText,
-    addPostTextDialog,
-    setCurrentTextValue,
-    setCurrentTextValueInDialog, StateType,
-} from './components/Redux/state'
 import {BrowserRouter} from 'react-router-dom'
+import store, {StoreType} from './components/Redux/store'
 
-let rerenderEntireTree = (state: StateType) => {
+let rerenderEntireTree = (store: StoreType) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <App state={state} addPostText={addPostText}
-                     setCurrentTextValueInDialog={setCurrentTextValueInDialog}
-                     setCurrentTextValue={setCurrentTextValue} addPostTextDialog={addPostTextDialog}/>
+                <App store={store} />
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')
     )
 }
 
-rerenderEntireTree(state)
+rerenderEntireTree(store)
 
 export default rerenderEntireTree

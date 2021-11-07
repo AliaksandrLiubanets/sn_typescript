@@ -116,7 +116,7 @@ const store = {
         }
         this.state.profilePage.messagesData.push(newPost)
         this.state.textareaCurrentValue = ''
-        rerenderEntireTree(this.state)
+        rerenderEntireTree(this)
     },
 
     addPostTextDialog(name: string) {
@@ -129,17 +129,17 @@ const store = {
         }
         this.state.dialogsPage.messages[name.toLowerCase()].push(newPost)
         this.state.dialogsPage.textareaCurrentValue = ''
-        rerenderEntireTree(this.state)
+        rerenderEntireTree(this)
     },
 
     setCurrentTextValue(text: string) {
         this.state.textareaCurrentValue = text
-        rerenderEntireTree(this.state)
+        rerenderEntireTree(this)
     },
 
     setCurrentTextValueInDialog(text: string) {
         this.state.dialogsPage.textareaCurrentValue = text
-        rerenderEntireTree(this.state)
+        rerenderEntireTree(this)
     }
 }
 

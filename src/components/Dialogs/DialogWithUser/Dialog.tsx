@@ -1,8 +1,8 @@
 import s from '../Dialogs.module.css'
 import Message from '../Message/Message'
-import {DialogsPageMessagesType} from '../../Redux/state'
 import TextareaField from '../TextareaField'
 import {useParams} from 'react-router-dom'
+import {DialogsPageMessagesType} from '../../Redux/store'
 
 type DialogPropsType = {
     messages: DialogsPageMessagesType

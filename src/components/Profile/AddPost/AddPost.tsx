@@ -1,7 +1,7 @@
 import React from 'react'
 import Posts from './Posts/Posts'
 import s from './AddPost.module.css'
-import {PostType, StateType} from '../../Redux/state'
+import {PostType, StateType} from '../../Redux/store'
 
 type AddPostPropsType = {
     state: StateType

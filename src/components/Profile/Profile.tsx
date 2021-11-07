@@ -2,7 +2,7 @@ import React from 'react'
 import s from './Profile.module.css'
 import AddPost from './AddPost/AddPost'
 import ProfileInfo from './ProfileInfo/ProfileInfo'
-import {StateType} from '../Redux/state'
+import {StateType} from '../Redux/store'
 
 type ProfilePropsType = {
     state: StateType
