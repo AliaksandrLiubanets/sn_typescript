@@ -42,7 +42,7 @@ export type PostType = {
 }
 
 const state = {
-    textareaCurrentValue: 'bu',
+    textareaCurrentValue: '',
     profilePage: {
         messagesData: [
             {id: v1(), message: 'hello!', likes: 3},
