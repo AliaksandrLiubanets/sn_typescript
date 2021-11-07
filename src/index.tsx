@@ -2,16 +2,15 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
-import reportWebVitals from './reportWebVitals'
 import state, {
     addPostText,
     addPostTextDialog,
     setCurrentTextValue,
-    setCurrentTextValueInDialog
+    setCurrentTextValueInDialog, StateType,
 } from './components/Redux/state'
 import {BrowserRouter} from 'react-router-dom'
 
-let rerenderEntireTree = () => {
+let rerenderEntireTree = (state: StateType) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
@@ -24,8 +23,6 @@ let rerenderEntireTree = () => {
     )
 }
 
-rerenderEntireTree()
-
-reportWebVitals()
+rerenderEntireTree(state)
 
 export default rerenderEntireTree

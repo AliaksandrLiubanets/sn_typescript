@@ -12,7 +12,6 @@ import ava_me from '../../assets/ava_me.jpg'
 import ava_dimych from '../../assets/ava_dimych.jpg'
 import rerenderEntireTree from '../../index'
 
-
 export type DialogType = {
     id: string
     name: string
@@ -113,7 +112,7 @@ export const addPostText = () => {
     }
     state.profilePage.messagesData.push(newPost)
     state.textareaCurrentValue = ''
-    rerenderEntireTree()
+    rerenderEntireTree(state)
 }
 
 export const addPostTextDialog = (name: string) => {
@@ -126,18 +125,19 @@ export const addPostTextDialog = (name: string) => {
     }
     state.dialogsPage.messages[name.toLowerCase()].push(newPost)
     state.dialogsPage.textareaCurrentValue = ''
-    rerenderEntireTree()
+    rerenderEntireTree(state)
 }
 
 export const setCurrentTextValue = (text: string) => {
     state.textareaCurrentValue = text
-    rerenderEntireTree()
+    rerenderEntireTree(state)
 }
 
 export const setCurrentTextValueInDialog = (text: string) => {
     state.dialogsPage.textareaCurrentValue = text
-    rerenderEntireTree()
+    rerenderEntireTree(state)
 }
+
 
 export type StateType = typeof state
 
