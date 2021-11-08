@@ -20,7 +20,7 @@ function TextareaField(props: TextareaPropsType) {
             <img src={ava_me} alt=""/>
         </div>
         <div>
-            <textarea rows={1} className={s.textarea__textarea} onChange={setCurrentValueToState}
+            <textarea className={s.textarea__textarea} onChange={setCurrentValueToState}
                       value={props.textareaCurrentValue}></textarea>
         </div>
         <div className={s.textarea__button}>
