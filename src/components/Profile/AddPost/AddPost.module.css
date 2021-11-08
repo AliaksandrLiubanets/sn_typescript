@@ -1,3 +1,6 @@
 button {
     display: block;
 }
+.addPost {
+    padding-bottom: 10px;
+}
