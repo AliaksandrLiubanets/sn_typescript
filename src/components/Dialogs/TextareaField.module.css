@@ -1,6 +1,29 @@
 .textarea {
-    border: 1px solid rgba(255, 254, 254, 0.96);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 390px;
+    padding-left: 30px;
+    height: 40px;
+}
+
+.textarea__textarea {
+    border: 1px solid rgba(255, 254, 254, 0);
     border-radius: 10px;
     background-color: rgba(255, 254, 254, 0.96);
-    width: 400px;
+    width: 200px;
+    padding: 5px 10px;
+    resize: none;
+    /*height: 20px;*/
+
+}
+
+.textarea__textarea:focus {
+    border: 5px solid rgba(128, 128, 128, 0);
+    /*height: 20px;*/
+}
+
+.textarea__ava img {
+    width: 30px;
+    border-radius: 50%;
 }

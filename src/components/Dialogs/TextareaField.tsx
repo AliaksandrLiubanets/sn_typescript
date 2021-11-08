@@ -1,9 +1,10 @@
 import {ChangeEvent} from 'react'
 import s from './TextareaField.module.css'
+import ava_me from '../../assets/ava_me.jpg'
 
 type TextareaPropsType = {
     textareaCurrentValue: string
-    setCurrentTextValueInDialog: (text:string) => void
+    setCurrentTextValueInDialog: (text: string) => void
     AddPostDialog: () => void
 }
 
@@ -14,14 +15,18 @@ function TextareaField(props: TextareaPropsType) {
         props.setCurrentTextValueInDialog(e.currentTarget.value)
     }
 
-    return <>
-        <div>
-            <textarea className={s.textarea} onChange={setCurrentValueToState} value={props.textareaCurrentValue}></textarea>
+    return <div className={s.textarea}>
+        <div className={s.textarea__ava}>
+            <img src={ava_me} alt=""/>
         </div>
         <div>
-            <button onClick={props.AddPostDialog}>Add message</button>
+            <textarea rows={1} className={s.textarea__textarea} onChange={setCurrentValueToState}
+                      value={props.textareaCurrentValue}></textarea>
         </div>
-    </>
+        <div className={s.textarea__button}>
+            <button onClick={props.AddPostDialog}>Send</button>
+        </div>
+    </div>
 }
 
 export default TextareaField
