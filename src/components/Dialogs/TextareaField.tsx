@@ -10,7 +10,9 @@ type TextareaPropsType = {
 function TextareaField(props: TextareaPropsType) {
 
 
-    const setCurrentValueToState = (e: ChangeEvent<HTMLTextAreaElement>) => props.setCurrentTextValueInDialog(e.currentTarget.value)
+    const setCurrentValueToState = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        props.setCurrentTextValueInDialog(e.currentTarget.value)
+    }
 
     return <>
         <div>

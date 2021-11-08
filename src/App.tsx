@@ -21,15 +21,15 @@ function App(props: AppProps) {
             <Header/>
             <Navbar friends={props.store.getState().sidebar.friends}/>
             <div className="content">
-                <Route path="/dialogs" render={() => <Dialogs dialogsState={props.store.state.dialogsPage}/>}/>
+                <Route path="/dialogs" render={() => <Dialogs dialogsState={props.store.getState().dialogsPage}/>}/>
                 <Route path="/profile" render={() => <Profile state={props.store.getState()}
-                                                              addPostText={props.store.addPostText}
-                                                              setCurrentTextValue={props.store.setCurrentTextValue}/>}/>
+                                                              addPostText={props.store.addPostText.bind(props.store)}
+                                                              setCurrentTextValue={props.store.setCurrentTextValue.bind(props.store)}/>}/>
                 <Route path="/dialogs/:name"
                        render={() => <Dialog messages={props.store.getState().dialogsPage.messages}
                                              textareaCurrentValue={props.store.getState().dialogsPage.textareaCurrentValue}
-                                             setCurrentTextValueInDialog={props.store.setCurrentTextValueInDialog}
-                                             addPostTextDialog={props.store.addPostTextDialog}/>}/>
+                                             setCurrentTextValueInDialog={props.store.setCurrentTextValueInDialog.bind(props.store)}
+                                             addPostTextDialog={props.store.addPostTextDialog.bind(props.store)}/>}/>
                 <Route path="/news" component={News}/>
                 <Route path="/music" component={Music}/>
                 <Route path="/settings" component={Settings}/>

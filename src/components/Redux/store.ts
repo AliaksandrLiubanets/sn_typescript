@@ -41,7 +41,29 @@ export type PostType = {
     likes: number
 }
 
-const store = {
+export type StateType = {
+    textareaCurrentValue: string,
+    profilePage: { messagesData: Array<PostType> },
+    dialogsPage: {
+        textareaCurrentValue: string,
+        messages: DialogsPageMessagesType,
+        dialogs: Array<DialogType>
+    },
+    sidebar: {
+        friends: Array<FriendsType>
+    },
+}
+
+export type StoreType = {
+    state: StateType
+    getState: () => StateType,
+    addPostText: () => void,
+    addPostTextDialog: (name: string)=> void
+    setCurrentTextValue: (text: string) => void
+    setCurrentTextValueInDialog: (text: string) => void
+}
+
+const store: StoreType = {
     state: {
         textareaCurrentValue: '',
         profilePage: {
@@ -49,7 +71,7 @@ const store = {
                 {id: v1(), message: 'hello!', likes: 3},
                 {id: v1(), message: 'Hi!', likes: 5},
                 {id: v1(), message: 'How is it going?!', likes: 8}
-            ] as Array<PostType>
+            ]
         },
         dialogsPage: {
             textareaCurrentValue: '',
@@ -58,33 +80,33 @@ const store = {
                     {id: v1(), message: 'Hello!', name: 'Dimych', ava: ava_dimych},
                     {id: v1(), message: 'How is your profile on LinkedIn?', name: 'Me', ava: ava_me},
                     {id: v1(), message: 'One more request!', name: 'Dimych', ava: ava_dimych}
-                ] as Array<MessageType>,
+                ],
                 andrew: [
                     {id: v1(), message: 'Hi, Andrew!', name: 'Me', ava: ava_me},
                     {id: v1(), message: 'Hi! Do you have a wife?', name: 'Andrew', ava: ava_andrew},
                     {id: v1(), message: 'Yes!', name: 'Me', ava: ava_me}
-                ] as Array<MessageType>,
+                ],
                 lenin: [
                     {id: v1(), message: 'Good morning, mr. Lenin!', name: 'Me', ava: ava_me},
                     {id: v1(), message: 'Hi proletariy?', name: 'Lenin', ava: ava_lenin},
                     {id: v1(), message: 'Do you glad that made october revolution?', name: 'Me', ava: ava_me}
-                ] as Array<MessageType>,
+                ],
                 pushkin: [
                     {id: v1(), message: 'Hello, my dear friend', name: 'Pushkin', ava: ava_pushkin},
                     {id: v1(), message: 'Good evening, Aleksandr Sergeevich!', name: 'Me', ava: ava_me},
                     {id: v1(), message: 'Old man and old woman lived for a long time on the shore of the blue sea... Do you remember this fairy tale? ', name: 'Pushkin', ava: ava_pushkin}
-                ] as Array<MessageType>,
+                ],
                 dragunsky: [
                     {id: v1(), message: 'Hi, Sasha!', name: 'Dragunsky', ava: ava_dragunsky},
                     {id: v1(), message: 'How is your profile on LinkedIn?', name: 'Me', ava: ava_me},
                     {id: v1(), message: 'What is the most funny story of "Deniskiny rasskazy"?', name: 'Dragunsky', ava: ava_dragunsky}
-                ] as Array<MessageType>,
+                ],
                 ostrovskiy: [
                     {id: v1(), message: 'What\'s your name!', name: 'Ostrovskiy', ava: ava_ostrovsky},
                     {id: v1(), message: 'Aleksander', name: 'Me', ava: ava_me},
                     {id: v1(), message: 'So, how do you think? How can steel be hardened?', name: 'Ostrovskiy', ava: ava_ostrovsky}
-                ] as Array<MessageType>
-            } as DialogsPageMessagesType,
+                ]
+            },
             dialogs: [
                 {id: v1(), name: 'Dimych', ava: ava_dimych},
                 {id: v1(), name: 'Andrew', ava: ava_andrew},
@@ -92,14 +114,14 @@ const store = {
                 {id: v1(), name: 'Pushkin', ava: ava_pushkin},
                 {id: v1(), name: 'Dragunsky', ava: ava_dragunsky},
                 {id: v1(), name: 'Ostrovskiy', ava: ava_ostrovsky}
-            ] as Array<DialogType>
+            ]
         },
         sidebar: {
             friends: [
                 {id: v1(), name: 'Lenin', ava: ava_artem},
                 {id: v1(), name: 'Olga', ava: ava_olga},
                 {id: v1(), name: 'Karina', ava: ava_karina}
-            ] as Array<FriendsType>
+            ]
         }
     },
 
@@ -133,6 +155,7 @@ const store = {
     },
 
     setCurrentTextValue(text: string) {
+
         this.state.textareaCurrentValue = text
         rerenderEntireTree(this)
     },
@@ -142,9 +165,7 @@ const store = {
         rerenderEntireTree(this)
     }
 }
-
-export type StateType = typeof store.state
-
-export type StoreType = typeof store
+// export type StateType = typeof store.state
+// export type StoreType = typeof store
 
 export default store

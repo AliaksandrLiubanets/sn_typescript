@@ -12,7 +12,6 @@ type DialogPropsType = {
 }
 
 function Dialog(props: DialogPropsType) {
-
     const {name} = useParams<{name: string}>()
     const avaNameMessage = props.messages[name.toLowerCase()].map(m => <Message key={m.id} message={m.message} name={m.name} ava={m.ava}/>)
     const AddPostDialog = () => {
