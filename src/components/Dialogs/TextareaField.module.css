@@ -15,10 +15,6 @@
     padding: 5px 10px;
 }
 
-.textarea__textarea:focus {
-    outline: none !important
-}
-
 .textarea__ava img {
     width: 30px;
     border-radius: 50%;

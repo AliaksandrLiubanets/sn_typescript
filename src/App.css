@@ -24,6 +24,10 @@ textarea {
   resize: none;
 }
 
+textarea:focus {
+  outline: none !important
+}
+
 button {
   border: 1px solid rgba(128, 128, 128, 0);
   border-radius: 5px;
