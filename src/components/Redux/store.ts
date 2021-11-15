@@ -64,17 +64,17 @@ export type AddPostActionType = {
 }
 
 export type AddPostDialogActionType = {
-    type: 'ADD-POST-DIALOG'
+    type: typeof ADD_POST_DIALOG
     name: string
 }
 
 export type AddCurrentValueType = {
-    type: 'ADD-CURRENT-VALUE'
+    type: typeof ADD_CURRENT_VALUE
     newText: string
 }
 
 export type AddCurrentValueDialogType = {
-    type: 'ADD-CURRENT-VALUE-DIALOG'
+    type: typeof ADD_CURRENT_VALUE_DIALOG
     newText: string
 }
 
