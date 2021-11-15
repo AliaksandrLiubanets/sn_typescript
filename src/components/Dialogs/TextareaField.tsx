@@ -1,7 +1,7 @@
 import {ChangeEvent} from 'react'
 import s from './TextareaField.module.css'
 import ava_me from '../../assets/ava_me.jpg'
-import {ActionsTypes} from '../Redux/store'
+import {ActionsTypes, addCurrentValueDialogAC, addPostDialogAC} from '../Redux/store'
 
 type TextareaPropsType = {
     textareaCurrentValue: string
@@ -12,10 +12,10 @@ type TextareaPropsType = {
 function TextareaField(props: TextareaPropsType) {
 
     const setCurrentValueToState = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch({type: 'ADD-CURRENT-VALUE-DIALOG', newText: e.currentTarget.value})
+        props.dispatch(addCurrentValueDialogAC(e.currentTarget.value))
     }
     const AddPostDialog = () => {
-        props.dispatch({type: 'ADD-POST-DIALOG', name: props.name})
+        props.dispatch(addPostDialogAC(props.name))
     }
 
     return <div className={s.textarea}>

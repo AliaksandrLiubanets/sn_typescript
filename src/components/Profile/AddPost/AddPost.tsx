@@ -1,7 +1,7 @@
 import React from 'react'
 import Posts from './Posts/Posts'
 import s from './AddPost.module.css'
-import {ActionsTypes, addPostAC, PostType, StateType} from '../../Redux/store'
+import {ActionsTypes, addCurrentValueAC, addPostAC, PostType, StateType} from '../../Redux/store'
 
 type AddPostPropsType = {
     state: StateType
@@ -11,7 +11,7 @@ type AddPostPropsType = {
 function AddPost(props: AddPostPropsType) {
 
     const setCurrentTextValueToState = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        return props.dispatch({type: 'ADD-CURRENT-VALUE', newText: e.currentTarget.value})
+        return props.dispatch(addCurrentValueAC(e.currentTarget.value))
     }
     const posts = props.state.profilePage.messagesData.map((el: PostType) => <Posts key={el.id} post={el.message}
                                                                                     likes={el.likes}/>)
