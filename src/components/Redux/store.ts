@@ -68,17 +68,17 @@ export type AddPostDialogActionType = {
     name: string
 }
 
-export type AddCurrentValueType = {
+export type AddCurrentValueActionType = {
     type: typeof ADD_CURRENT_VALUE
     newText: string
 }
 
-export type AddCurrentValueDialogType = {
+export type AddCurrentValueDialogActionType = {
     type: typeof ADD_CURRENT_VALUE_DIALOG
     newText: string
 }
 
-export type ActionsTypes = AddPostActionType | AddCurrentValueType | AddPostDialogActionType | AddCurrentValueDialogType
+export type ActionsTypes = AddPostActionType | AddCurrentValueActionType | AddPostDialogActionType | AddCurrentValueDialogActionType
 
 export type StoreType = {
     state: StateType
@@ -191,8 +191,8 @@ const store: StoreType = {
 }
 
 export const addPostAC = (): AddPostActionType => ({type: ADD_POST})
-export const addPostDialogAC = (name: string) => ({type: ADD_POST_DIALOG, name})
-export const addCurrentValueAC = (text: string) => ({type: ADD_CURRENT_VALUE, newText: text})
-export const addCurrentValueDialogAC = (text: string) => ({type: ADD_CURRENT_VALUE_DIALOG, newText: text})
+export const addPostDialogAC = (name: string): AddPostDialogActionType => ({type: ADD_POST_DIALOG, name})
+export const addCurrentValueAC = (text: string): AddCurrentValueActionType => ({type: ADD_CURRENT_VALUE, newText: text})
+export const addCurrentValueDialogAC = (text: string): AddCurrentValueDialogActionType => ({type: ADD_CURRENT_VALUE_DIALOG, newText: text})
 
 export default store
