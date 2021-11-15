@@ -23,8 +23,10 @@ function App(props: AppProps) {
             <div className="content">
                 <Route path="/dialogs" render={() => <Dialogs dialogsState={props.store.getState().dialogsPage}/>}/>
                 <Route path="/profile" render={() => <Profile state={props.store.getState()}
-                                                              addPostText={props.store.addPostText.bind(props.store)}
-                                                              setCurrentTextValue={props.store.setCurrentTextValue.bind(props.store)}/>}/>
+                                                              dispatch={props.store.dispatch.bind(props.store)}
+                                                              // addPostText={props.store.addPostText.bind(props.store)}
+                                                              // setCurrentTextValue={props.store.setCurrentTextValue.bind(props.store)}
+                />}/>
                 <Route path="/dialogs/:name"
                        render={() => <Dialog messages={props.store.getState().dialogsPage.messages}
                                              textareaCurrentValue={props.store.getState().dialogsPage.textareaCurrentValue}

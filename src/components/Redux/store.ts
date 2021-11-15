@@ -54,13 +54,25 @@ export type StateType = {
     },
 }
 
+export type AddPostActionType = {
+    type: 'ADD-POST'
+}
+
+export type AddCurrentValue = {
+    type: 'ADD-CURRENT-VALUE'
+    newText: string
+}
+
+export type ActionsTypes = AddPostActionType | AddCurrentValue
+
 export type StoreType = {
     state: StateType
     getState: () => StateType,
-    addPostText: () => void,
+    // addPostText: () => void,
     addPostTextDialog: (name: string)=> void
-    setCurrentTextValue: (text: string) => void
+    // setCurrentTextValue: (text: string) => void
     setCurrentTextValueInDialog: (text: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 const store: StoreType = {
@@ -129,40 +141,63 @@ const store: StoreType = {
         return this.state
     },
 
-    addPostText() {
-        let newPost: PostType
-        newPost = {
-            id: v1(),
-            message: this.state.textareaCurrentValue,
-            likes: 7
-        }
-        this.state.profilePage.messagesData.push(newPost)
-        this.state.textareaCurrentValue = ''
-        rerenderEntireTree(this)
-    },
+    // addPostText() {
+    //     let newPost: PostType
+    //     newPost = {
+    //         id: v1(),
+    //         message: this.state.textareaCurrentValue,
+    //         likes: 7
+    //     }
+    //     this.state.profilePage.messagesData.push(newPost)
+    //     this.state.textareaCurrentValue = ''
+    //     rerenderEntireTree(this)
+    // },
 
     addPostTextDialog(name: string) {
         let newPost: MessageType
         newPost = {
             id: v1(),
-            message: this.state.dialogsPage.textareaCurrentValue,
+            message: this.state.dialogsPage.textareaCurrentValue.trim(),
             name: 'Me',
             ava: ava_me
         }
-        this.state.dialogsPage.messages[name.toLowerCase()].push(newPost)
+        if(newPost.message) {
+            this.state.dialogsPage.messages[name.toLowerCase()].push(newPost)
+        }
+
         this.state.dialogsPage.textareaCurrentValue = ''
         rerenderEntireTree(this)
     },
 
-    setCurrentTextValue(text: string) {
-
-        this.state.textareaCurrentValue = text
-        rerenderEntireTree(this)
-    },
+    // setCurrentTextValue(text: string) {
+    //     this.state.textareaCurrentValue = text
+    //     rerenderEntireTree(this)
+    // },
 
     setCurrentTextValueInDialog(text: string) {
         this.state.dialogsPage.textareaCurrentValue = text
         rerenderEntireTree(this)
+    },
+
+    dispatch(action: ActionsTypes) {
+        if (action.type === 'ADD-POST') {
+            let newPost: PostType
+            newPost = {
+                id: v1(),
+                message: this.state.textareaCurrentValue.trim(),
+                likes: 7
+            }
+
+            if(newPost.message) {
+                this.state.profilePage.messagesData.push(newPost)
+            }
+
+            this.state.textareaCurrentValue = ''
+            rerenderEntireTree(this)
+        } else if (action.type === 'ADD-CURRENT-VALUE') {
+            this.state.textareaCurrentValue = action.newText
+            rerenderEntireTree(this)
+        }
     }
 }
 // export type StateType = typeof store.state
