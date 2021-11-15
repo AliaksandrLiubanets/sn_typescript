@@ -167,10 +167,10 @@ const store: StoreType = {
 
             this.state.textareaCurrentValue = ''
             rerenderEntireTree(this)
-        } else if (action.type === 'ADD-CURRENT-VALUE') {
+        } else if (action.type === ADD_CURRENT_VALUE) {
             this.state.textareaCurrentValue = action.newText
             rerenderEntireTree(this)
-        } else if (action.type === 'ADD-POST-DIALOG') {
+        } else if (action.type === ADD_POST_DIALOG) {
             let newPost: MessageType
             newPost = {
                 id: v1(),
@@ -183,7 +183,7 @@ const store: StoreType = {
             }
             this.state.dialogsPage.textareaCurrentValue = ''
             rerenderEntireTree(this)
-        } else if (action.type === 'ADD-CURRENT-VALUE-DIALOG') {
+        } else if (action.type === ADD_CURRENT_VALUE_DIALOG) {
             this.state.dialogsPage.textareaCurrentValue = action.newText
             rerenderEntireTree(this)
         }
