@@ -1,7 +1,7 @@
 import React from 'react'
 import Posts from './Posts/Posts'
 import s from './AddPost.module.css'
-import {ActionsTypes, PostType, StateType} from '../../Redux/store'
+import {ActionsTypes, addPostAC, PostType, StateType} from '../../Redux/store'
 
 type AddPostPropsType = {
     state: StateType
@@ -22,7 +22,7 @@ function AddPost(props: AddPostPropsType) {
             <div><textarea className={s.textarea__textarea} onChange={setCurrentTextValueToState}
                            value={props.state.textareaCurrentValue}></textarea></div>
             <div className={s.textarea__button}>
-                <button onClick={ () => props.dispatch({type: 'ADD-POST'})}>Add</button>
+                <button onClick={ () => props.dispatch(addPostAC())}>Add</button>
             </div>
         </div>
         {posts}

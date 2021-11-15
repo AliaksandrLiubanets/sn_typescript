@@ -12,6 +12,11 @@ import ava_me from '../../assets/ava_me.jpg'
 import ava_dimych from '../../assets/ava_dimych.jpg'
 import rerenderEntireTree from '../../index'
 
+const ADD_POST = 'sn-typescript/ProfilePage/ADD-POST'
+const ADD_POST_DIALOG = 'sn-typescript/DialogsPage/ADD-POST-DIALOG'
+const ADD_CURRENT_VALUE = 'sn-typescript/ProfilePage/ADD-CURRENT-VALUE'
+const ADD_CURRENT_VALUE_DIALOG = 'sn-typescript/DialogsPage/ADD-CURRENT-VALUE-DIALOG'
+
 export type DialogType = {
     id: string
     name: string
@@ -55,7 +60,7 @@ export type StateType = {
 }
 
 export type AddPostActionType = {
-    type: 'ADD-POST'
+    type: typeof ADD_POST
 }
 
 export type AddPostDialogActionType = {
@@ -148,7 +153,7 @@ const store: StoreType = {
     },
 
     dispatch(action: ActionsTypes) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             let newPost: PostType
             newPost = {
                 id: v1(),
@@ -184,5 +189,10 @@ const store: StoreType = {
         }
     }
 }
+
+export const addPostAC = (): AddPostActionType => ({type: ADD_POST})
+export const addPostDialogAC = (name: string) => ({type: ADD_POST_DIALOG, name})
+export const addCurrentValueAC = (text: string) => ({type: ADD_CURRENT_VALUE, newText: text})
+export const addCurrentValueDialogAC = (text: string) => ({type: ADD_CURRENT_VALUE_DIALOG, newText: text})
 
 export default store
