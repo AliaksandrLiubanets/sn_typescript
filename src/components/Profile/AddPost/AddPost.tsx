@@ -5,8 +5,6 @@ import {ActionsTypes, PostType, StateType} from '../../Redux/store'
 
 type AddPostPropsType = {
     state: StateType
-    // addPostText: () => void
-    // setCurrentTextValue: (text: string) => void
     dispatch: (action: ActionsTypes) => void
 }
 

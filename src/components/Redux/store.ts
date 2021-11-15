@@ -66,7 +66,6 @@ export type AddPostDialogActionType = {
 export type AddCurrentValueType = {
     type: 'ADD-CURRENT-VALUE'
     newText: string
-    // [key: string]: Array<MessageType>
 }
 
 export type AddCurrentValueDialogType = {
@@ -79,10 +78,6 @@ export type ActionsTypes = AddPostActionType | AddCurrentValueType | AddPostDial
 export type StoreType = {
     state: StateType
     getState: () => StateType,
-    // addPostText: () => void,
-    // addPostTextDialog: (name: string)=> void
-    // setCurrentTextValue: (text: string) => void
-    // setCurrentTextValueInDialog: (text: string) => void
     dispatch: (action: ActionsTypes) => void
 }
 
@@ -152,44 +147,6 @@ const store: StoreType = {
         return this.state
     },
 
-    // addPostText() {
-    //     let newPost: PostType
-    //     newPost = {
-    //         id: v1(),
-    //         message: this.state.textareaCurrentValue,
-    //         likes: 7
-    //     }
-    //     this.state.profilePage.messagesData.push(newPost)
-    //     this.state.textareaCurrentValue = ''
-    //     rerenderEntireTree(this)
-    // },
-
-    // addPostTextDialog(name: string) {
-    //     let newPost: MessageType
-    //     newPost = {
-    //         id: v1(),
-    //         message: this.state.dialogsPage.textareaCurrentValue.trim(),
-    //         name: 'Me',
-    //         ava: ava_me
-    //     }
-    //     if(newPost.message) {
-    //         this.state.dialogsPage.messages[name.toLowerCase()].push(newPost)
-    //     }
-    //
-    //     this.state.dialogsPage.textareaCurrentValue = ''
-    //     rerenderEntireTree(this)
-    // },
-
-    // setCurrentTextValue(text: string) {
-    //     this.state.textareaCurrentValue = text
-    //     rerenderEntireTree(this)
-    // },
-
-    // setCurrentTextValueInDialog(text: string) {
-    //     this.state.dialogsPage.textareaCurrentValue = text
-    //     rerenderEntireTree(this)
-    // },
-
     dispatch(action: ActionsTypes) {
         if (action.type === 'ADD-POST') {
             let newPost: PostType
@@ -227,7 +184,5 @@ const store: StoreType = {
         }
     }
 }
-// export type StateType = typeof store.state
-// export type StoreType = typeof store
 
 export default store

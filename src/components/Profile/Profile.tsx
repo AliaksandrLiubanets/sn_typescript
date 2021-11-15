@@ -6,10 +6,7 @@ import {ActionsTypes, StateType} from '../Redux/store'
 
 type ProfilePropsType = {
     state: StateType
-    // addPostText: () => void
-    // setCurrentTextValue: (text: string) => void
     dispatch: (action: ActionsTypes) => void
-
 }
 
 function Profile(props: ProfilePropsType) {

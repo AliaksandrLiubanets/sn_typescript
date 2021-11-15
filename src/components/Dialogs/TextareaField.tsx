@@ -5,8 +5,6 @@ import {ActionsTypes} from '../Redux/store'
 
 type TextareaPropsType = {
     textareaCurrentValue: string
-    // setCurrentTextValueInDialog: (text: string) => void
-    // AddPostDialog: () => void
     dispatch: (action: ActionsTypes) => void
     name: string
 }
