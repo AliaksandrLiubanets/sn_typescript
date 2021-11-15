@@ -30,8 +30,10 @@ function App(props: AppProps) {
                 <Route path="/dialogs/:name"
                        render={() => <Dialog messages={props.store.getState().dialogsPage.messages}
                                              textareaCurrentValue={props.store.getState().dialogsPage.textareaCurrentValue}
-                                             setCurrentTextValueInDialog={props.store.setCurrentTextValueInDialog.bind(props.store)}
-                                             addPostTextDialog={props.store.addPostTextDialog.bind(props.store)}/>}/>
+                                             dispatch={props.store.dispatch.bind(props.store)}
+                                             // setCurrentTextValueInDialog={props.store.setCurrentTextValueInDialog.bind(props.store)}
+                                             // addPostTextDialog={props.store.addPostTextDialog.bind(props.store)}
+                       />}/>
                 <Route path="/news" component={News}/>
                 <Route path="/music" component={Music}/>
                 <Route path="/settings" component={Settings}/>

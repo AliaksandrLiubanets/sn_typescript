@@ -58,20 +58,31 @@ export type AddPostActionType = {
     type: 'ADD-POST'
 }
 
-export type AddCurrentValue = {
+export type AddPostDialogActionType = {
+    type: 'ADD-POST-DIALOG'
+    name: string
+}
+
+export type AddCurrentValueType = {
     type: 'ADD-CURRENT-VALUE'
+    newText: string
+    // [key: string]: Array<MessageType>
+}
+
+export type AddCurrentValueDialogType = {
+    type: 'ADD-CURRENT-VALUE-DIALOG'
     newText: string
 }
 
-export type ActionsTypes = AddPostActionType | AddCurrentValue
+export type ActionsTypes = AddPostActionType | AddCurrentValueType | AddPostDialogActionType | AddCurrentValueDialogType
 
 export type StoreType = {
     state: StateType
     getState: () => StateType,
     // addPostText: () => void,
-    addPostTextDialog: (name: string)=> void
+    // addPostTextDialog: (name: string)=> void
     // setCurrentTextValue: (text: string) => void
-    setCurrentTextValueInDialog: (text: string) => void
+    // setCurrentTextValueInDialog: (text: string) => void
     dispatch: (action: ActionsTypes) => void
 }
 
@@ -153,31 +164,31 @@ const store: StoreType = {
     //     rerenderEntireTree(this)
     // },
 
-    addPostTextDialog(name: string) {
-        let newPost: MessageType
-        newPost = {
-            id: v1(),
-            message: this.state.dialogsPage.textareaCurrentValue.trim(),
-            name: 'Me',
-            ava: ava_me
-        }
-        if(newPost.message) {
-            this.state.dialogsPage.messages[name.toLowerCase()].push(newPost)
-        }
-
-        this.state.dialogsPage.textareaCurrentValue = ''
-        rerenderEntireTree(this)
-    },
+    // addPostTextDialog(name: string) {
+    //     let newPost: MessageType
+    //     newPost = {
+    //         id: v1(),
+    //         message: this.state.dialogsPage.textareaCurrentValue.trim(),
+    //         name: 'Me',
+    //         ava: ava_me
+    //     }
+    //     if(newPost.message) {
+    //         this.state.dialogsPage.messages[name.toLowerCase()].push(newPost)
+    //     }
+    //
+    //     this.state.dialogsPage.textareaCurrentValue = ''
+    //     rerenderEntireTree(this)
+    // },
 
     // setCurrentTextValue(text: string) {
     //     this.state.textareaCurrentValue = text
     //     rerenderEntireTree(this)
     // },
 
-    setCurrentTextValueInDialog(text: string) {
-        this.state.dialogsPage.textareaCurrentValue = text
-        rerenderEntireTree(this)
-    },
+    // setCurrentTextValueInDialog(text: string) {
+    //     this.state.dialogsPage.textareaCurrentValue = text
+    //     rerenderEntireTree(this)
+    // },
 
     dispatch(action: ActionsTypes) {
         if (action.type === 'ADD-POST') {
@@ -196,6 +207,22 @@ const store: StoreType = {
             rerenderEntireTree(this)
         } else if (action.type === 'ADD-CURRENT-VALUE') {
             this.state.textareaCurrentValue = action.newText
+            rerenderEntireTree(this)
+        } else if (action.type === 'ADD-POST-DIALOG') {
+            let newPost: MessageType
+            newPost = {
+                id: v1(),
+                message: this.state.dialogsPage.textareaCurrentValue.trim(),
+                name: 'Me',
+                ava: ava_me
+            }
+            if(newPost.message) {
+                this.state.dialogsPage.messages[action.name.toLowerCase()].push(newPost)
+            }
+            this.state.dialogsPage.textareaCurrentValue = ''
+            rerenderEntireTree(this)
+        } else if (action.type === 'ADD-CURRENT-VALUE-DIALOG') {
+            this.state.dialogsPage.textareaCurrentValue = action.newText
             rerenderEntireTree(this)
         }
     }
