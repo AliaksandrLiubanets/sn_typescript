@@ -54,12 +54,14 @@ export type DialogsPageType = {
     dialogs: Array<DialogType>
 }
 
+export type SidebarType = {
+    friends: Array<FriendsType>
+}
+
 export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    sidebar: {
-        friends: Array<FriendsType>
-    },
+    sidebar: SidebarType
 }
 
 export type ActionsTypes = AddPostActionType | AddCurrentValueActionType | AddPostDialogActionType | AddCurrentValueDialogActionType
