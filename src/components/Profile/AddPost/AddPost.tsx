@@ -20,7 +20,7 @@ function AddPost(props: AddPostPropsType) {
         <div>My posts:</div>
         <div className={s.textarea}>
             <div><textarea className={s.textarea__textarea} onChange={setCurrentTextValueToState}
-                           value={props.state.textareaCurrentValue}></textarea></div>
+                           value={props.state.profilePage.textareaCurrentValue}></textarea></div>
             <div className={s.textarea__button}>
                 <button onClick={ () => props.dispatch(addPostAC())}>Add</button>
             </div>

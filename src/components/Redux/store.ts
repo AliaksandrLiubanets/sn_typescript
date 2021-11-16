@@ -47,8 +47,9 @@ export type PostType = {
 }
 
 export type StateType = {
-    textareaCurrentValue: string,
-    profilePage: { messagesData: Array<PostType> },
+    profilePage: {
+        textareaCurrentValue: string,
+        messagesData: Array<PostType> },
     dialogsPage: {
         textareaCurrentValue: string,
         messages: DialogsPageMessagesType,
@@ -92,8 +93,8 @@ export type StoreType = {
 
 const store: StoreType = {
     state: {
-        textareaCurrentValue: '',
         profilePage: {
+            textareaCurrentValue: '',
             messagesData: [
                 {id: v1(), message: 'hello!', likes: 3},
                 {id: v1(), message: 'Hi!', likes: 5},
@@ -161,7 +162,7 @@ const store: StoreType = {
             let newPost: PostType
             newPost = {
                 id: v1(),
-                message: this.state.textareaCurrentValue.trim(),
+                message: this.state.profilePage.textareaCurrentValue.trim(),
                 likes: 7
             }
 
@@ -169,10 +170,10 @@ const store: StoreType = {
                 this.state.profilePage.messagesData.push(newPost)
             }
 
-            this.state.textareaCurrentValue = ''
+            this.state.profilePage.textareaCurrentValue = ''
             rerenderEntireTree(this)
         } else if (action.type === ADD_CURRENT_VALUE) {
-            this.state.textareaCurrentValue = action.newText
+            this.state.profilePage.textareaCurrentValue = action.newText
             rerenderEntireTree(this)
         } else if (action.type === ADD_POST_DIALOG) {
             let newPost: MessageType
