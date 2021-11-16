@@ -12,11 +12,7 @@ import ava_me from '../../assets/ava_me.jpg'
 import ava_dimych from '../../assets/ava_dimych.jpg'
 import rerenderEntireTree from '../../index'
 import profileReducer, {AddCurrentValueActionType, AddPostActionType} from './profile-reducer'
-
-
-const ADD_POST_DIALOG = 'sn-typescript/DialogsPage/ADD-POST-DIALOG'
-
-const ADD_CURRENT_VALUE_DIALOG = 'sn-typescript/DialogsPage/ADD-CURRENT-VALUE-DIALOG'
+import dialogsReducer, {AddCurrentValueDialogActionType, AddPostDialogActionType} from './dialogs-reducer'
 
 export type DialogType = {
     id: string
@@ -52,39 +48,18 @@ export type ProfilePageType = {
     messagesData: Array<PostType>
 }
 
+export type DialogsPageType = {
+    textareaCurrentValue: string
+    messages: DialogsPageMessagesType
+    dialogs: Array<DialogType>
+}
+
 export type StateType = {
     profilePage: ProfilePageType
-    dialogsPage: {
-        textareaCurrentValue: string
-        messages: DialogsPageMessagesType
-        dialogs: Array<DialogType>
-    },
+    dialogsPage: DialogsPageType
     sidebar: {
         friends: Array<FriendsType>
     },
-}
-
-// export type AddPostActionType = {
-//     type: typeof ADD_POST
-// }
-
-
-
-export type AddPostDialogActionType = {
-    type: typeof ADD_POST_DIALOG
-    name: string
-}
-
-// export type AddCurrentValueActionType = {
-//     type: typeof ADD_CURRENT_VALUE
-//     newText: string
-// }
-
-
-
-export type AddCurrentValueDialogActionType = {
-    type: typeof ADD_CURRENT_VALUE_DIALOG
-    newText: string
 }
 
 export type ActionsTypes = AddPostActionType | AddCurrentValueActionType | AddPostDialogActionType | AddCurrentValueDialogActionType
@@ -94,6 +69,7 @@ export type StoreType = {
     getState: () => StateType,
     dispatch: (action: ActionsTypes) => void
 }
+
 
 const store: StoreType = {
     state: {
@@ -163,31 +139,11 @@ const store: StoreType = {
 
     dispatch(action: ActionsTypes) {
 
-        this.state.profilePage = profileReducer(this.state.profilePage, action)
-        if (action.type === ADD_POST_DIALOG) {
-            let newPost: MessageType
-            newPost = {
-                id: v1(),
-                message: this.state.dialogsPage.textareaCurrentValue.trim(),
-                name: 'Me',
-                ava: ava_me
-            }
-            if(newPost.message) {
-                this.state.dialogsPage.messages[action.name.toLowerCase()].push(newPost)
-            }
-            this.state.dialogsPage.textareaCurrentValue = ''
-            rerenderEntireTree(this)
-        } else if (action.type === ADD_CURRENT_VALUE_DIALOG) {
-            this.state.dialogsPage.textareaCurrentValue = action.newText
-            rerenderEntireTree(this)
-        }
+        this.state.profilePage = profileReducer(this.getState().profilePage, action)
+        this.state.dialogsPage = dialogsReducer(this.getState().dialogsPage, action)
+
         rerenderEntireTree(this)
     }
 }
-
-
-export const addPostDialogAC = (name: string): AddPostDialogActionType => ({type: ADD_POST_DIALOG, name})
-
-export const addCurrentValueDialogAC = (text: string): AddCurrentValueDialogActionType => ({type: ADD_CURRENT_VALUE_DIALOG, newText: text})
 
 export default store
