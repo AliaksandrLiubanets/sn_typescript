@@ -4,7 +4,7 @@ import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
 import Profile from './components/Profile/Profile'
 import Dialogs from './components/Dialogs/Dialogs'
-import {Route} from 'react-router-dom'
+import {Route, Routes} from 'react-router-dom'
 import News from './components/News'
 import Music from './components/Music'
 import Settings from './components/Settings'
@@ -21,18 +21,20 @@ function App(props: AppProps) {
             <Header/>
             <Navbar friends={props.store.getState().sidebar.friends}/>
             <div className="content">
-                <Route path="/dialogs" render={() => <Dialogs dialogsState={props.store.getState().dialogsPage}/>}/>
-                <Route path="/profile" render={() => <Profile state={props.store.getState()}
-                                                              dispatch={props.store.dispatch.bind(props.store)}
-                />}/>
-                <Route path="/dialogs/:name"
-                       render={() => <Dialog messages={props.store.getState().dialogsPage.messages}
-                                             textareaCurrentValue={props.store.getState().dialogsPage.textareaCurrentValue}
-                                             dispatch={props.store.dispatch.bind(props.store)}
-                       />}/>
-                <Route path="/news" component={News}/>
-                <Route path="/music" component={Music}/>
-                <Route path="/settings" component={Settings}/>
+                <Routes>
+                    <Route path="/dialogs" element={<Dialogs dialogsState={props.store.getState().dialogsPage}/>}/>
+                    <Route path="/profile" element={<Profile state={props.store.getState()}
+                                                                  dispatch={props.store.dispatch.bind(props.store)}
+                    />}/>
+                    <Route path="/dialogs/:name"
+                           element={<Dialog messages={props.store.getState().dialogsPage.messages}
+                                                 textareaCurrentValue={props.store.getState().dialogsPage.textareaCurrentValue}
+                                                 dispatch={props.store.dispatch.bind(props.store)}
+                           />}/>
+                    <Route path="/news" element={<News/>}/>
+                    <Route path="/music" element={<Music/>}/>
+                    <Route path="/settings" element={<Settings/>}/>
+                </Routes>
             </div>
         </div>
     )

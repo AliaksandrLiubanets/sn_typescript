@@ -11,11 +11,11 @@ type NavbarPropsType = {
 function Navbar(props: NavbarPropsType) {
 
     return <div className={s.navbar}>
-        <div><NavLink to="/profile" activeClassName={s.active}>Profile</NavLink></div>
-        <div><NavLink to="/dialogs" activeClassName={s.active}>Dialogs</NavLink></div>
-        <div><NavLink to="/news" activeClassName={s.active}>News</NavLink></div>
-        <div><NavLink to="/music" activeClassName={s.active}>Music</NavLink></div>
-        <div><NavLink to="/settings" activeClassName={s.active}>Settings</NavLink></div>
+        <div><NavLink to="/profile" className={({ isActive }) => (isActive ? s.active : "")}>Profile</NavLink></div>
+        <div><NavLink to="/dialogs" className={({ isActive }) => (isActive ? s.active : "")}>Dialogs</NavLink></div>
+        <div><NavLink to="/news" className={({ isActive }) => (isActive ? s.active : "")}>News</NavLink></div>
+        <div><NavLink to="/music" className={({ isActive }) => (isActive ? s.active : "")}>Music</NavLink></div>
+        <div><NavLink to="/settings" className={({ isActive }) => (isActive ? s.active : "")}>Settings</NavLink></div>
         <Friends friends={props.friends}/>
     </div>
 
