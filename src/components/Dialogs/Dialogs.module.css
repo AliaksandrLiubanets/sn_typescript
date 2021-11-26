@@ -1,5 +1,10 @@
-.dialogs {
+.dialogs__block {
+    display: grid;
+    grid-template-columns: 250px 3fr;
     grid-area: d;
+}
+
+.dialogs {
     padding: 20px;
     border-right: 1px solid rgba(231, 230, 230, 0.93);
 }

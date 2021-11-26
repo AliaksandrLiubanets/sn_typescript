@@ -10,13 +10,13 @@ type DialogPropsType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-function Dialog(props: DialogPropsType) {
+function Dialog({messages, textareaCurrentValue, dispatch}: DialogPropsType) {
     const {name} = useParams<string>()
-    const avaNameMessage = name && props.messages[name.toLowerCase()].map(m => <Message key={m.id} message={m.message} name={m.name} ava={m.ava}/>)
+    const avaNameMessage = name && messages[name.toLowerCase()].map(m => <Message key={m.id} message={m.message} name={m.name} ava={m.ava}/>)
 
     return <div className={s.ava_message}>
         <div>{avaNameMessage}</div>
-        <TextareaField textareaCurrentValue={props.textareaCurrentValue} name={name} dispatch={props.dispatch}
+        <TextareaField textareaCurrentValue={textareaCurrentValue} name={name} dispatch={dispatch}
         />
     </div>
 }
