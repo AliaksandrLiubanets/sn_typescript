@@ -1,29 +1,30 @@
 import React from 'react'
 import Posts from './Posts/Posts'
 import s from './AddPost.module.css'
-import {ActionsTypes, PostType, StateType} from '../../Redux/store'
-import {addCurrentValueAC, addPostAC} from '../../Redux/profile-reducer'
+import {PostType} from '../../Redux/store'
 
 type AddPostPropsType = {
-    state: StateType
-    dispatch: (action: ActionsTypes) => void
+    setCurrentText: (text: string) => void
+    messagesData: Array<PostType>
+    addPost: () => void
+    value: string
 }
 
 function AddPost(props: AddPostPropsType) {
 
-    const setCurrentTextValueToState = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        return props.dispatch(addCurrentValueAC(e.currentTarget.value))
+    const setCurrentTextToState = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        return props.setCurrentText(e.currentTarget.value)
     }
-    const posts = props.state.profilePage.messagesData.map((el: PostType) => <Posts key={el.id} post={el.message}
-                                                                                    likes={el.likes}/>)
-    const addPost = () => props.dispatch(addPostAC())
+    const posts = props.messagesData.map((el: PostType) => <Posts key={el.id} post={el.message}
+                                                                  likes={el.likes}/>)
+    const addPost = () => props.addPost()
 
     return <div className={s.addPost}>
         <div>My posts:</div>
         <div className={s.textarea}>
             <div>
-                <textarea className={s.textarea__textarea} onChange={setCurrentTextValueToState}
-                           value={props.state.profilePage.textareaCurrentValue}>
+                <textarea className={s.textarea__textarea} onChange={setCurrentTextToState}
+                          value={props.value}>
                 </textarea></div>
             <div className={s.textarea__button}>
                 <button onClick={addPost}>Add</button>

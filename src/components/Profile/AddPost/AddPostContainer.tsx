@@ -1,6 +1,5 @@
 import React from 'react'
-import Posts from './Posts/Posts'
-import {ActionsTypes, PostType, StateType} from '../../Redux/store'
+import {ActionsTypes, StateType} from '../../Redux/store'
 import {addCurrentValueAC, addPostAC} from '../../Redux/profile-reducer'
 import AddPost from './AddPost'
 
@@ -11,14 +10,17 @@ type AddPostPropsType = {
 
 function AddPostContainer(props: AddPostPropsType) {
 
-    const setCurrentTextValueToState = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        return props.dispatch(addCurrentValueAC(e.currentTarget.value))
+    const setCurrentTextValueToState = (text: string) => {
+        return props.dispatch(addCurrentValueAC(text))
     }
-    const posts = props.state.profilePage.messagesData.map((el: PostType) => <Posts key={el.id} post={el.message}
-                                                                                    likes={el.likes}/>)
+
     const addPost = () => props.dispatch(addPostAC())
 
-    return <AddPost />
+    return <AddPost setCurrentText={setCurrentTextValueToState}
+                    messagesData={props.state.profilePage.messagesData}
+                    addPost={addPost}
+                    value={props.state.profilePage.textareaCurrentValue}
+    />
 }
 
 export default AddPostContainer
