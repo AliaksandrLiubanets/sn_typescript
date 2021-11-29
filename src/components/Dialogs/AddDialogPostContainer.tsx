@@ -1,6 +1,6 @@
 import {ActionsTypes} from '../Redux/store'
 import {addCurrentValueDialogAC, addPostDialogAC} from '../Redux/dialogs-reducer'
-import TextareaField from './TextareaField'
+import AddDialogPost from './AddDialogPost'
 
 type PropsType = {
     textareaCurrentValue: string
@@ -8,19 +8,19 @@ type PropsType = {
     name: string | undefined
 }
 
-function TextareaFieldContainer(props: PropsType) {
+function AddDialogPostContainer(props: PropsType) {
 
     const setCurrentValueToState = (text: string) => {
         props.dispatch(addCurrentValueDialogAC(text))
     }
-    const AddDialogPost = () => {
+    const addDialogPost = () => {
         props.name && props.dispatch(addPostDialogAC(props.name))
     }
 
-    return <TextareaField addDialogPost={AddDialogPost}
+    return <AddDialogPost addDialogPost={addDialogPost}
                           setCurrentValue={setCurrentValueToState}
                           textareaCurrentValue={props.textareaCurrentValue}
     />
 }
 
-export default TextareaFieldContainer
+export default AddDialogPostContainer
