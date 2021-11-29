@@ -3,6 +3,7 @@ import Message from '../Message/Message'
 import TextareaField from '../TextareaField'
 import {useParams} from 'react-router-dom'
 import {ActionsTypes, DialogsPageMessagesType} from '../../Redux/store'
+import TextareaFieldContainer from '../TextareaFieldContainer'
 
 type DialogPropsType = {
     messages: DialogsPageMessagesType
@@ -16,7 +17,9 @@ function Dialog({messages, textareaCurrentValue, dispatch}: DialogPropsType) {
 
     return <div className={s.ava_message}>
         <div>{avaNameMessage}</div>
-        <TextareaField textareaCurrentValue={textareaCurrentValue} name={name} dispatch={dispatch}
+        <TextareaFieldContainer textareaCurrentValue={textareaCurrentValue}
+                       name={name}
+                       dispatch={dispatch}
         />
     </div>
 }

@@ -6,17 +6,17 @@ import {addCurrentValueDialogAC, addPostDialogAC} from '../Redux/dialogs-reducer
 
 type TextareaPropsType = {
     textareaCurrentValue: string
-    dispatch: (action: ActionsTypes) => void
-    name: string | undefined
+    setCurrentValue: (text: string) => void
+    addDialogPost: () => void
 }
 
 function TextareaField(props: TextareaPropsType) {
 
     const setCurrentValueToState = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatch(addCurrentValueDialogAC(e.currentTarget.value))
+        props.setCurrentValue(e.currentTarget.value)
     }
     const AddPostDialog = () => {
-        props.name && props.dispatch(addPostDialogAC(props.name))
+        props.addDialogPost()
     }
 
     return <div className={s.textarea}>
