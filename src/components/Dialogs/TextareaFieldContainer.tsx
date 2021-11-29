@@ -1,6 +1,3 @@
-import {ChangeEvent} from 'react'
-import s from './TextareaField.module.css'
-import ava_me from '../../assets/ava_me.jpg'
 import {ActionsTypes} from '../Redux/store'
 import {addCurrentValueDialogAC, addPostDialogAC} from '../Redux/dialogs-reducer'
 import TextareaField from './TextareaField'

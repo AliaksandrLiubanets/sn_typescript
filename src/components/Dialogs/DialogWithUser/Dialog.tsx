@@ -1,6 +1,5 @@
 import s from '../Dialogs.module.css'
 import Message from '../Message/Message'
-import TextareaField from '../TextareaField'
 import {useParams} from 'react-router-dom'
 import {ActionsTypes, DialogsPageMessagesType} from '../../Redux/store'
 import TextareaFieldContainer from '../TextareaFieldContainer'
