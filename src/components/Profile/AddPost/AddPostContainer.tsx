@@ -2,24 +2,24 @@ import React from 'react'
 import {ActionsTypes, StateType} from '../../Redux/store'
 import {addCurrentValueAC, addPostAC} from '../../Redux/profile-reducer'
 import AddPost from './AddPost'
+import {Store} from 'redux'
 
 type AddPostPropsType = {
-    state: StateType
-    dispatch: (action: ActionsTypes) => void
+    store: Store
 }
 
 function AddPostContainer(props: AddPostPropsType) {
 
     const setCurrentTextValueToState = (text: string) => {
-        return props.dispatch(addCurrentValueAC(text))
+        return props.store.dispatch.bind(props.store)(addCurrentValueAC(text))
     }
 
-    const addPost = () => props.dispatch(addPostAC())
+    const addPost = () => props.store.dispatch.bind(props.store)(addPostAC())
 
     return <AddPost setCurrentText={setCurrentTextValueToState}
-                    messagesData={props.state.profilePage.messagesData}
+                    messagesData={props.store.getState().profilePage.messagesData}
                     addPost={addPost}
-                    value={props.state.profilePage.textareaCurrentValue}
+                    value={props.store.getState().profilePage.textareaCurrentValue}
     />
 }
 

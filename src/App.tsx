@@ -30,9 +30,7 @@ function App(props: AppProps) {
 
                                />}/>
                     </Route>
-                    <Route path="/profile" element={<Profile state={props.store.getState()}
-                                                             dispatch={props.store.dispatch.bind(props.store)}
-                    />}/>
+                    <Route path="/profile" element={<Profile store={props.store} />} />
                     <Route path="/news" element={<News/>}/>
                     <Route path="/music" element={<Music/>}/>
                     <Route path="/settings" element={<Settings/>}/>
