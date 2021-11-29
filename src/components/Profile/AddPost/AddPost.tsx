@@ -16,7 +16,6 @@ function AddPost(props: AddPostPropsType) {
     }
     const posts = props.state.profilePage.messagesData.map((el: PostType) => <Posts key={el.id} post={el.message}
                                                                                     likes={el.likes}/>)
-
     const addPost = () => props.dispatch(addPostAC())
 
     return <div className={s.addPost}>
