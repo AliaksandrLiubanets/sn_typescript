@@ -17,6 +17,8 @@ function AddPost(props: AddPostPropsType) {
     const posts = props.state.profilePage.messagesData.map((el: PostType) => <Posts key={el.id} post={el.message}
                                                                                     likes={el.likes}/>)
 
+    const addPost = () => props.dispatch(addPostAC())
+
     return <div className={s.addPost}>
         <div>My posts:</div>
         <div className={s.textarea}>
@@ -25,7 +27,7 @@ function AddPost(props: AddPostPropsType) {
                            value={props.state.profilePage.textareaCurrentValue}>
                 </textarea></div>
             <div className={s.textarea__button}>
-                <button onClick={ () => props.dispatch(addPostAC())}>Add</button>
+                <button onClick={addPost}>Add</button>
             </div>
         </div>
         {posts}
