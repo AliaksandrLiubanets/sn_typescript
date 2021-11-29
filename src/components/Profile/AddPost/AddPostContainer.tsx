@@ -1,5 +1,4 @@
 import React from 'react'
-import {ActionsTypes, StateType} from '../../Redux/store'
 import {addCurrentValueAC, addPostAC} from '../../Redux/profile-reducer'
 import AddPost from './AddPost'
 import {Store} from 'redux'

@@ -7,7 +7,6 @@ import {Store} from 'redux'
 
 type ProfilePropsType = {
     store: Store
-    // dispatch: (action: ActionsTypes) => void
 }
 
 function Profile(props: ProfilePropsType) {
