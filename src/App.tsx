@@ -9,10 +9,10 @@ import News from './components/News'
 import Music from './components/Music'
 import Settings from './components/Settings'
 import Dialog from './components/Dialogs/DialogWithUser/Dialog'
-import {StoreType} from './components/Redux/store'
+import {Store} from 'redux'
 
 type AppProps = {
-    store: StoreType
+    store: Store
 }
 
 function App(props: AppProps) {
@@ -26,6 +26,7 @@ function App(props: AppProps) {
                         <Route path="/dialogs/:name" element={<Dialog messages={props.store.getState().dialogsPage.messages}
                                                                       textareaCurrentValue={props.store.getState().dialogsPage.textareaCurrentValue}
                                                                       dispatch={props.store.dispatch.bind(props.store)}
+
                         />}/>
                     </Route>
                     <Route path="/profile" element={<Profile state={props.store.getState()}

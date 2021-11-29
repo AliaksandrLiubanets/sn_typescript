@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom'
 import './index.css'
 import App from './App'
 import {BrowserRouter} from 'react-router-dom'
-import store, {StoreType} from './components/Redux/store'
+import store, {rootStateType} from './components/Redux/redux-store'
 
-let rerenderEntireTree = (store: StoreType) => {
+let rerenderEntireTree = (state: rootStateType) => {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
@@ -16,6 +16,11 @@ let rerenderEntireTree = (store: StoreType) => {
     )
 }
 
-rerenderEntireTree(store)
+rerenderEntireTree(store.getState())
+
+store.subscribe(() => {
+    let state = store.getState()
+    rerenderEntireTree(state)
+})
 
 export default rerenderEntireTree

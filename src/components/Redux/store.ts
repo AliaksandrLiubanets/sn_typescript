@@ -11,9 +11,13 @@ import ava_ostrovsky from '../../assets/ava_ostrovskiy.jpg'
 import ava_me from '../../assets/ava_me.jpg'
 import ava_dimych from '../../assets/ava_dimych.jpg'
 import rerenderEntireTree from '../../index'
-import profileReducer, {AddCurrentValueActionType, AddPostActionType} from './profile-reducer'
+import profileReducer, {
+    AddCurrentValueActionType,
+    AddPostActionType
+} from './profile-reducer'
 import dialogsReducer, {AddCurrentValueDialogActionType, AddPostDialogActionType} from './dialogs-reducer'
 import sidebarReducer from './sidebar-reducer'
+
 
 export type DialogType = {
     id: string
@@ -142,10 +146,10 @@ const store: StoreType = {
 
     dispatch(action: ActionsTypes) {
 
-        this.state.profilePage = profileReducer(this.getState().profilePage, action)
-        this.state.dialogsPage = dialogsReducer(this.getState().dialogsPage, action)
+        //this.state.profilePage = profileReducer(this.getState().profilePage, action)
+        //this.state.dialogsPage = dialogsReducer(this.getState().dialogsPage, action)
         this.state.sidebar = sidebarReducer(this.getState().sidebar, action)
-
+    // @ts-ignore
         rerenderEntireTree(this)
     }
 }

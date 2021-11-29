@@ -1,5 +1,4 @@
 import {v1} from 'uuid'
-import {ActionsTypes, PostType, ProfilePageType} from './store'
 
 export const ADD_POST = 'sn-typescript/ProfilePage/ADD-POST'
 export const ADD_CURRENT_VALUE = 'sn-typescript/ProfilePage/ADD-CURRENT-VALUE'
@@ -7,7 +6,29 @@ export const ADD_CURRENT_VALUE = 'sn-typescript/ProfilePage/ADD-CURRENT-VALUE'
 export type AddPostActionType = ReturnType<typeof addPostAC>
 export type AddCurrentValueActionType = ReturnType<typeof addCurrentValueAC>
 
-const profileReducer = (state: ProfilePageType, action: ActionsTypes): ProfilePageType => {
+export type ProfilePageActionsType = AddPostActionType | AddCurrentValueActionType
+
+export type PostType = {
+    id: string
+    message: string
+    likes: number
+}
+
+export type ProfilePageType = {
+    textareaCurrentValue: string
+    messagesData: Array<PostType>
+}
+
+const initialState: ProfilePageType = {
+    textareaCurrentValue: '',
+    messagesData: [
+        {id: v1(), message: 'hello!', likes: 3},
+        {id: v1(), message: 'Hi!', likes: 5},
+        {id: v1(), message: 'How is it going?!', likes: 8}
+    ]
+}
+
+const profileReducer = (state = initialState, action: ProfilePageActionsType): ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
             let newPost: PostType
