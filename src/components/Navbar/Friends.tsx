@@ -1,16 +1,12 @@
 import s from './Navbar.module.css'
 import React from 'react'
 import Friend from './Friend'
-import {FriendsType} from '../Redux/store'
-import {Store} from 'redux'
 import {StoreContext} from '../../StoreContext/StoreContext'
 
 type FriendsPropsType = {
-    // store: Store
 }
 
 function Friends(props: FriendsPropsType) {
-
 
     return <StoreContext.Consumer>
         {(store) => {
