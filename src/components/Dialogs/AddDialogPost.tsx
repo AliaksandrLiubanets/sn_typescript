@@ -3,7 +3,7 @@ import s from './TextareaField.module.css'
 import ava_me from '../../assets/ava_me.jpg'
 
 type PropsType = {
-    textareaCurrentValue: string
+    textareaCurrentValue: string | undefined
     setCurrentValue: (text: string) => void
     addDialogPost: () => void
 }
