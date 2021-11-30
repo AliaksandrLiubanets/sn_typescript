@@ -152,6 +152,7 @@ const store: StoreType = {
     // @ts-ignore
         rerenderEntireTree(this)
     }
+
 }
 
 export default store

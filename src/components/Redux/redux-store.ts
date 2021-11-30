@@ -13,6 +13,8 @@ const store = createStore(rootReducer)
 
 export type rootStateType = ReturnType<typeof rootReducer>
 
+export type AppStoreType = typeof store
+
 export type AppDispatch = typeof store.dispatch
 
 export default store
