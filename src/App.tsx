@@ -9,9 +9,10 @@ import News from './components/News'
 import Music from './components/Music'
 import Settings from './components/Settings'
 import Dialog from './components/Dialogs/DialogWithUser/Dialog'
+import {AppStoreType} from './components/Redux/redux-store'
 
 type AppProps = {
-    // store: Store
+    store: AppStoreType
 }
 
 function App(props: AppProps) {
@@ -30,7 +31,7 @@ function App(props: AppProps) {
                             //                  dispatch={props.store.dispatch.bind(props.store)}
                                element={<Dialog/>}/>
                     </Route>
-                    {/*<Route path="/profile" element={<Profile store={props.store} />} />*/}
+                    <Route path="/profile" element={<Profile store={props.store} />} />
                     {/*<Route path="/profile" element={<Profile/>}/>*/}
                     <Route path="/news" element={<News/>}/>
                     <Route path="/music" element={<Music/>}/>
