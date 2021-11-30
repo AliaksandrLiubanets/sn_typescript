@@ -9,6 +9,7 @@ type ProfilePropsType = {
 }
 
 function Profile(props: ProfilePropsType) {
+
     return <div className={s.content} >
         <ProfileInfo />
         <AddPostContainer store={props.store}/>
