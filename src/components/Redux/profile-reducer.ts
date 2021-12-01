@@ -39,14 +39,16 @@ const profileReducer = (state = initialState, action: ProfilePageActionsType): P
             }
 
             if (newPost.message) {
-                state.messagesData.push(newPost)
+                return {
+                    ...state,
+                    textareaCurrentValue: '',
+                    messagesData: [...state.messagesData, newPost]
+                }
             }
 
-            state.textareaCurrentValue = ''
             return state
         case ADD_CURRENT_VALUE:
-            state.textareaCurrentValue = action.newText
-            return state
+            return {...state, textareaCurrentValue: action.newText}
         default:
             return state
     }
