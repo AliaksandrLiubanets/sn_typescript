@@ -15,7 +15,7 @@ function Dialog(props: MapStatePropsType) {
 
     return  <div className={s.ava_message}>
                 <div>{avaNameMessage}</div>
-                <AddDialogPostContainer name={name}/>
+                <AddDialogPostContainer name={name || ''}/>
             </div>
 }
 
