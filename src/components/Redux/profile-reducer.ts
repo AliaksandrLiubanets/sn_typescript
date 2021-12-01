@@ -16,7 +16,7 @@ export type PostType = {
 
 export type ProfilePageType = {
     textareaCurrentValue: string
-    messagesData: Array<PostType>
+        messagesData: Array<PostType>
 }
 
 const initialState: ProfilePageType = {

@@ -5,14 +5,14 @@ import AddPostContainer from './AddPost/AddPostContainer'
 import {Store} from 'redux'
 
 type ProfilePropsType = {
-    store: Store
+
 }
 
 function Profile(props: ProfilePropsType) {
 
     return <div className={s.content} >
         <ProfileInfo />
-        <AddPostContainer store={props.store}/>
+        <AddPostContainer />
     </div>
 }
 

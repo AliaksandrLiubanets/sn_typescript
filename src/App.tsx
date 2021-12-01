@@ -26,7 +26,7 @@ function App() {
                             //                  dispatch={props.store.dispatch.bind(props.store)}
                                element={<DialogContainer/>}/>
                     </Route>
-                    <Route path="/profile" element={<Profile store={props.store} />} />
+                    <Route path="/profile" element={<Profile />} />
                     {/*<Route path="/profile" element={<Profile/>}/>*/}
                     <Route path="/news" element={<News/>}/>
                     <Route path="/music" element={<Music/>}/>

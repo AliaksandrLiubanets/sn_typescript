@@ -2,9 +2,11 @@ import React from 'react'
 import {addCurrentValueAC, addPostAC} from '../../Redux/profile-reducer'
 import AddPost from './AddPost'
 import {Store} from 'redux'
+import {connect} from 'react-redux'
+import {RootStateType} from '../../Redux/redux-store'
 
 type AddPostPropsType = {
-    store: Store
+
 }
 
 function AddPostContainer(props: AddPostPropsType) {
@@ -22,4 +24,15 @@ function AddPostContainer(props: AddPostPropsType) {
     />
 }
 
-export default AddPostContainer
+type MapStatePropsType = {
+    value: string
+    messagesData:
+}
+
+const mapStatToProps = (state: RootStateType): MapStatePropsType => {
+    return {
+        value
+    }
+}
+
+export default connect(mapStatToProps, mapDispatchToProps)(AddPostContainer)
