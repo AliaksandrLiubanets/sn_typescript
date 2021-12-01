@@ -1,4 +1,3 @@
-import {AddCurrentValueDialogActionType, AddPostDialogActionType, DialogsPageActionsType} from './dialogs-reducer'
 import {v1} from 'uuid'
 import ava_olga from '../../assets/ava_olga.jpg'
 import ava_karina from '../../assets/ava_karina.jpg'
