@@ -5,7 +5,8 @@ import ava_me from '../../assets/ava_me.jpg'
 type PropsType = {
     textareaCurrentValue: string | undefined
     setCurrentValue: (text: string) => void
-    addDialogPost: () => void
+    addDialogPost: (name: string) => void
+    name: string
 }
 
 function AddDialogPost(props: PropsType) {
@@ -14,7 +15,7 @@ function AddDialogPost(props: PropsType) {
         props.setCurrentValue(e.currentTarget.value)
     }
     const addPostDialog = () => {
-        props.addDialogPost()
+        props.addDialogPost(props.name)
     }
 
     return <div className={s.textarea}>
