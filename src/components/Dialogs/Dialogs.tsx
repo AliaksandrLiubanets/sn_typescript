@@ -1,25 +1,18 @@
 import s from './Dialogs.module.css'
 import {DialogsItem} from './DialogsItem'
-import {DialogsPageMessagesType, DialogType} from '../Redux/store'
+import {DialogType} from '../Redux/store'
 import {Outlet} from 'react-router-dom'
-import {StoreContext} from '../../StoreContext/StoreContext'
+import {connect} from 'react-redux'
+import {RootStateType} from '../Redux/redux-store'
 
-export type DialogsStateType = {
-    // messages: DialogsPageMessagesType
-    // dialogs: Array<DialogType>
-}
+function Dialogs(props: MapStatePropsType) {
 
-type  DialogsPropsType = {
-    // dialogsState: DialogsStateType
-}
+    const dialogsItems = props.dialogs.map((d: DialogType) => <DialogsItem key={d.id}
+                                                                           name={d.name}
+                                                                           id={d.id}
+                                                                           ava={d.ava}/>)
 
-function Dialogs(props: DialogsPropsType) {
-
-    return <StoreContext.Consumer>
-        { store => {
-            const dialogsItems = store?.getState().dialogsPage.dialogs.map((d: DialogType) => <DialogsItem key={d.id} name={d.name}
-                                                                                                           id={d.id} ava={d.ava}/>)
-            return <div className={s.dialogs__block}>
+    return  <div className={s.dialogs__block}>
                 <div className={s.dialogs}>
                     <h4>DIALOGS</h4>
                     {dialogsItems}
@@ -28,10 +21,16 @@ function Dialogs(props: DialogsPropsType) {
                     <Outlet/>
                 </div>
             </div>
-        }
-
-        }
-    </StoreContext.Consumer>
 }
 
-export default Dialogs
+type MapStatePropsType = {
+    dialogs: Array<DialogType>
+}
+
+const mapStateToProps = (state: RootStateType): MapStatePropsType => {
+    return {
+        dialogs: state.dialogsPage.dialogs
+    }
+}
+
+export const DialogsContainer = connect(mapStateToProps)(Dialogs)
