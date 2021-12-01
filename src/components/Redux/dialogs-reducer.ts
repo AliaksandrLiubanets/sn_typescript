@@ -89,8 +89,6 @@ const initialState: DialogsPageType = {
     ]
 }
 
-// export type DialogsPageType = typeof initialState
-
 const dialogsReducer = (state = initialState, action: DialogsPageActionsType): DialogsPageType => {
     switch (action.type) {
         case ADD_POST_DIALOG:
@@ -102,14 +100,16 @@ const dialogsReducer = (state = initialState, action: DialogsPageActionsType): D
                     ava: ava_me
                 }
                 if(newPost.message) {
-                    state.messages[action.name.toLowerCase()].push(newPost)
+                    return {
+                        ...state,
+                        textareaCurrentValue: '',
+                        messages: {...state.messages, [action.name.toLowerCase()]: [...state.messages[action.name.toLowerCase()], newPost]}
+                    }
                 }
-                state.textareaCurrentValue = ''
             return state
 
         case ADD_CURRENT_VALUE_DIALOG:
-            state.textareaCurrentValue = action.newText
-            return state
+            return {...state, textareaCurrentValue: action.newText}
         default:
             return state
     }
