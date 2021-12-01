@@ -4,14 +4,14 @@ import ava_artem from '../../assets/ava_lenin.png'
 import ava_olga from '../../assets/ava_olga.jpg'
 import ava_karina from '../../assets/ava_karina.jpg'
 
-export type FriendsType = {
+export type FriendType = {
     id: string
     name: string
     ava: string
 }
 
 export type SidebarType = {
-    friends: Array<FriendsType>
+    friends: Array<FriendType>
 }
 
 const initialState: SidebarType = {

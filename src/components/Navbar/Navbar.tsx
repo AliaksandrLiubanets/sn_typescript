@@ -1,8 +1,7 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import s from './Navbar.module.css'
-import Friends from './Friends'
-import {FriendsType} from '../Redux/store'
+import {FriendsContainer} from './Friends'
 
 type NavbarPropsType = {
     // friends: Array<FriendsType>
@@ -16,8 +15,7 @@ function Navbar(props: NavbarPropsType) {
         <div><NavLink to="/news" className={({ isActive }) => (isActive ? s.active : "")}>News</NavLink></div>
         <div><NavLink to="/music" className={({ isActive }) => (isActive ? s.active : "")}>Music</NavLink></div>
         <div><NavLink to="/settings" className={({ isActive }) => (isActive ? s.active : "")}>Settings</NavLink></div>
-        {/*<Friends friends={props.friends}/>*/}
-        <Friends />
+        <FriendsContainer />
     </div>
 
 }
