@@ -1,7 +1,7 @@
 import React from 'react'
 import Posts from './Posts/Posts'
 import s from './AddPost.module.css'
-import {PostType} from '../../Redux/store'
+import {PostType} from '../../Redux/profile-reducer'
 
 type AddPostPropsType = {
     setCurrentText: (text: string) => void

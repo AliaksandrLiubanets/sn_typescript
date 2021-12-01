@@ -1,4 +1,3 @@
-import {ActionsTypes} from './store'
 import {v1} from 'uuid'
 import ava_artem from '../../assets/ava_lenin.png'
 import ava_olga from '../../assets/ava_olga.jpg'
@@ -14,6 +13,10 @@ export type SidebarType = {
     friends: Array<FriendType>
 }
 
+type SideBarActionsType = {
+    
+}
+
 const initialState: SidebarType = {
     friends: [
         {id: v1(), name: 'Lenin', ava: ava_artem},
@@ -22,7 +25,7 @@ const initialState: SidebarType = {
     ]
 }
 
-const sidebarReducer = (state = initialState, action: ActionsTypes): SidebarType => {
+const sidebarReducer = (state = initialState, action: SideBarActionsType): SidebarType => {
 
             return state
 }

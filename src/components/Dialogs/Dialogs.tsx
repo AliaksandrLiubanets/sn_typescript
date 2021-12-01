@@ -1,9 +1,9 @@
 import s from './Dialogs.module.css'
 import {DialogsItem} from './DialogsItem'
-import {DialogType} from '../Redux/store'
 import {Outlet} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
+import {DialogType} from '../Redux/dialogs-reducer'
 
 function Dialogs(props: MapStatePropsType) {
 
