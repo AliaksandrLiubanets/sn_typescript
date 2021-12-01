@@ -1,37 +1,42 @@
 import React from 'react'
-import {addCurrentValueAC, addPostAC} from '../../Redux/profile-reducer'
+import {addCurrentValueAC, addPostAC, PostType} from '../../Redux/profile-reducer'
 import AddPost from './AddPost'
-import {Store} from 'redux'
+import {Dispatch} from 'redux'
 import {connect} from 'react-redux'
 import {RootStateType} from '../../Redux/redux-store'
 
-type AddPostPropsType = {
+type PropsType = MapDispatchPropsType & MapStatePropsType
 
-}
+function AddPostContainer(props: PropsType) {
 
-function AddPostContainer(props: AddPostPropsType) {
-
-    const setCurrentTextValueToState = (text: string) => {
-        return props.store.dispatch.bind(props.store)(addCurrentValueAC(text))
-    }
-
-    const addPost = () => props.store.dispatch.bind(props.store)(addPostAC())
-
-    return <AddPost setCurrentText={setCurrentTextValueToState}
-                    messagesData={props.store.getState().profilePage.messagesData}
-                    addPost={addPost}
-                    value={props.store.getState().profilePage.textareaCurrentValue}
+    return <AddPost setCurrentText={props.setCurrentText}
+                    messagesData={props.messagesData}
+                    addPost={props.addPost}
+                    value={props.textareaCurrentValue}
     />
 }
 
 type MapStatePropsType = {
-    value: string
-    messagesData:
+    textareaCurrentValue: string
+    messagesData: Array<PostType>
+}
+
+type MapDispatchPropsType = {
+    setCurrentText: (text: string) => void
+    addPost: () => void
 }
 
 const mapStatToProps = (state: RootStateType): MapStatePropsType => {
     return {
-        value
+        textareaCurrentValue: state.profilePage.textareaCurrentValue,
+        messagesData: state.profilePage.messagesData
+    }
+}
+
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
+    return {
+        addPost: () => dispatch(addPostAC()),
+        setCurrentText: text => dispatch(addCurrentValueAC(text))
     }
 }
 
