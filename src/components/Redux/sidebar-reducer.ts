@@ -14,12 +14,12 @@ export type SidebarType = {
 }
 
 type SideBarActionsType = {
-    
+
 }
 
 const initialState: SidebarType = {
     friends: [
-        {id: v1(), name: 'Lenin', ava: ava_artem},
+        {id: v1(), name: 'Artem', ava: ava_artem},
         {id: v1(), name: 'Olga', ava: ava_olga},
         {id: v1(), name: 'Karina', ava: ava_karina}
     ]
