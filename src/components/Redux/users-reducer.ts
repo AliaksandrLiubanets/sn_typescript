@@ -17,7 +17,7 @@ export type UserType = {
         small: string | null
         large: string | null
     }
-    location: {
+    location?: {
         city: string
         country: string
     }

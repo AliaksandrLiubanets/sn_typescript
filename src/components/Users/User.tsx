@@ -1,9 +1,24 @@
 import s from './Users.module.css'
+import emptyAva from '../../assets/empty_avatar.jpg'
 
-function User(props) {
+type PropsType = {
+    name: string
+    status: string
+    folllowed: boolean
+    location?: {
+        counntry: string
+        city: string
+    }
+    photo: string
+    follow: (id: string) => void
+    unfollow: (id: string) => void
+
+}
+
+function User(props: PropsType) {
     return <div className={s.user__block}>
             <div className={s.user__avaFollowed}>
-                <div className={s.user__ava}></div>
+                <div className={s.user__ava}><img src={} alt=""/></div>
                 <div className={s.user__followed}></div>
             </div>
             <div className={s.user__dataFrame}>
@@ -18,3 +33,5 @@ function User(props) {
             </div>
     </div>
 }
+
+export default User
