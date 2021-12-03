@@ -10,6 +10,7 @@ button {
 .textarea {
     display: flex;
     align-items: center;
+    /*justify-content: space-between;*/
 }
 
 .textarea__textarea {

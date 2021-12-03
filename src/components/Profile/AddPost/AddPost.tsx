@@ -23,9 +23,11 @@ function AddPost(props: AddPostPropsType) {
         <div>My posts:</div>
         <div className={s.textarea}>
             <div>
-                <textarea className={s.textarea__textarea} onChange={setCurrentTextToState}
+                <textarea className={s.textarea__textarea}
+                          onChange={setCurrentTextToState}
                           value={props.value}>
-                </textarea></div>
+                </textarea>
+            </div>
             <div className={s.textarea__button}>
                 <button onClick={addPost}>Add</button>
             </div>
