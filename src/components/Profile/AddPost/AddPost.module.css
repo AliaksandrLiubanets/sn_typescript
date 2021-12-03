@@ -1,5 +1,6 @@
 button {
     display: block;
+    margin-left: 15px;
 }
 .addPost {
     padding-bottom: 10px;
@@ -9,7 +10,6 @@ button {
 .textarea {
     display: flex;
     align-items: center;
-    justify-content: space-between;
 }
 
 .textarea__textarea {
