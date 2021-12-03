@@ -1,5 +1,5 @@
 .users__content {
-    padding: 20px 40px;
+    padding: 20px 80px;
 }
 
 .user__block {
@@ -39,7 +39,7 @@
     margin-left: 20px;
     padding: 10px;
     height: 110px;
-    width: 60%;
+    width: 100%;
     font-size: 20px;
 }
 
