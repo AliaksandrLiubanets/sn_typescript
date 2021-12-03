@@ -4,6 +4,7 @@ import {followAC, setUsersAC, unfollowAC, UserType} from '../Redux/users-reducer
 import {Dispatch} from 'redux'
 import User from './User'
 import emptyAva from '../../assets/empty_avatar.jpg'
+import s from './Users.module.css'
 
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
@@ -19,7 +20,7 @@ function Users(props: PropsType) {
                                              unfollow={props.unfollow}
 
     />)
-    return <>{users}</>
+    return <div className={s.users__content}>{users}</div>
 }
 
 type MapStatePropsType = {

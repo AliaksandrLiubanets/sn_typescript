@@ -1,26 +1,34 @@
+.users__content {
+    padding: 20px 40px;
+}
+
 .user__block {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 40px;
-    background-color: #af7f3f;
+    padding: 5px;
     height: 130px;
 }
 
 .user__ava img {
-    width: 80px;
-    height: 100px;
-    background-color: aquamarine;
+    width: 75px;
+    height: 90px;
     border-radius: 5px;
+    box-shadow: 0 0 3px #fca7a7;
+}
+
+.user__avaFollowed, .user__dataFrame {
+    border: 1px solid gray;
+    border-radius: 10px;
+    background-color: rgba(172, 252, 225, 0.2);
 }
 
 .user__avaFollowed {
     padding: 5px;
-    background-color: #d7d508;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+
 }
 .user__ava {}
 .user__followed {}
@@ -28,13 +36,11 @@
 .user__dataFrame {
     display: flex;
     justify-content: space-between;
-    border: 1px solid gray;
-    border-radius: 10px;
-    background-color: aquamarine;
     margin-left: 20px;
     padding: 10px;
     height: 110px;
-    width: 50%;
+    width: 60%;
+    font-size: 20px;
 }
 
 .user__dataFrame__nameStatus {}
