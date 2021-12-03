@@ -1,0 +1,18 @@
+.user__block {
+    display: grid;
+}
+
+.user__avaFollowed {}
+.user__ava {}
+.user__followed {}
+
+.user__dataFrame {}
+
+.user__dataFrame__nameStatus {}
+.user__name {}
+.user__status {}
+
+.user__dataFrame__location {}
+.user__country {}
+.user__city {}
+
