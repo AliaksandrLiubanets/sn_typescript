@@ -1,14 +1,41 @@
 .user__block {
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-column-gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #af7f3f;
+    height: 130px;
 }
 
-.user__avaFollowed {}
+.user__ava img {
+    width: 80px;
+    height: 100px;
+    background-color: aquamarine;
+    border-radius: 5px;
+}
+
+.user__avaFollowed {
+    padding: 5px;
+    background-color: #d7d508;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
 .user__ava {}
 .user__followed {}
 
-.user__dataFrame {}
+.user__dataFrame {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid gray;
+    border-radius: 10px;
+    background-color: aquamarine;
+    margin-left: 20px;
+    padding: 10px;
+    height: 110px;
+    width: 50%;
+}
 
 .user__dataFrame__nameStatus {}
 .user__name {}

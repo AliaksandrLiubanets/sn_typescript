@@ -18,7 +18,6 @@ function Navbar(props: NavbarPropsType) {
         <div><NavLink to="/settings" className={({ isActive }) => (isActive ? s.active : "")}>Settings</NavLink></div>
         <FriendsContainer />
     </div>
-
 }
 
 export default Navbar
