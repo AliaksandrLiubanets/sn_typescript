@@ -45,12 +45,7 @@ type SetUsersAT = {
 type UsersAT = FollowAT | UnFollowAT | SetUsersAT
 
 const initialState: UsersStateType  = {
-    users: [
-        {id: v1(), followed: true, status: 'Life is good!', name: 'Dimych', photos: {small: ava_dimych, large: ''}, location: {city: 'Minsk', country: 'Belarus'}},
-        {id: v1(), followed: false, status: 'Life is good!', name: 'Olga', photos: {small: ava_olga, large: ''}, location: {city: 'Minsk', country: 'Belarus'}},
-        {id: v1(), followed: true, status: 'Life is good!', name: 'Karina', photos: {small: ava_karina, large: ''}, location: {city: 'Minsk', country: 'Belarus'}},
-        {id: v1(), followed: false, status: 'Life is good!', name: 'Artem', photos: {small: ava_artem, large: ''}, location: {city: 'Minsk', country: 'Belarus'}},
-    ]
+    users: []
 }
 
 const usersReducer = (state = initialState, action: UsersAT): UsersStateType => {
@@ -59,10 +54,11 @@ const usersReducer = (state = initialState, action: UsersAT): UsersStateType => 
             return {
                 ...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: true} : u)
             }
-        case 'UNFOLLOW-USER':
+        case 'UNFOLLOW-USER': {
             return {
                 ...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: false} : u)
             }
+        }
         case 'SET-USER':
             return {
                 ...state, users: [...state.users, ...action.users]
