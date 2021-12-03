@@ -9,6 +9,7 @@ import News from './components/News'
 import Music from './components/Music'
 import Settings from './components/Settings'
 import {DialogContainer} from './components/Dialogs/DialogWithUser/Dialog'
+import {UsersContainer} from './components/Users/UsersContainer'
 
 
 function App() {

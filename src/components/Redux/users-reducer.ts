@@ -14,8 +14,8 @@ export type UserType = {
     status: string
     name: string
     photos: {
-        small: string | null
-        large: string | null
+        small: string | undefined
+        large: string | undefined
     }
     location?: {
         city: string
@@ -46,10 +46,10 @@ type UsersAT = FollowAT | UnFollowAT | SetUsersAT
 
 const initialState: UsersStateType  = {
     users: [
-        {id: v1(), followed: true, status: 'Life is good!', name: 'Dimych', photos: {small: ava_dimych, large: null}, location: {city: 'Minsk', country: 'Belarus'}},
-        {id: v1(), followed: false, status: 'Life is good!', name: 'Olga', photos: {small: ava_olga, large: null}, location: {city: 'Minsk', country: 'Belarus'}},
-        {id: v1(), followed: true, status: 'Life is good!', name: 'Karina', photos: {small: ava_karina, large: null}, location: {city: 'Minsk', country: 'Belarus'}},
-        {id: v1(), followed: false, status: 'Life is good!', name: 'Artem', photos: {small: ava_artem, large: null}, location: {city: 'Minsk', country: 'Belarus'}},
+        {id: v1(), followed: true, status: 'Life is good!', name: 'Dimych', photos: {small: ava_dimych, large: ''}, location: {city: 'Minsk', country: 'Belarus'}},
+        {id: v1(), followed: false, status: 'Life is good!', name: 'Olga', photos: {small: ava_olga, large: ''}, location: {city: 'Minsk', country: 'Belarus'}},
+        {id: v1(), followed: true, status: 'Life is good!', name: 'Karina', photos: {small: ava_karina, large: ''}, location: {city: 'Minsk', country: 'Belarus'}},
+        {id: v1(), followed: false, status: 'Life is good!', name: 'Artem', photos: {small: ava_artem, large: ''}, location: {city: 'Minsk', country: 'Belarus'}},
     ]
 }
 

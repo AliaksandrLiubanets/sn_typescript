@@ -8,16 +8,18 @@ import emptyAva from '../../assets/empty_avatar.jpg'
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
 function Users(props: PropsType) {
-    return props.users.map(u => <User key={u.id}
-                                      name={u.name}
-                                      status={u.status}
-                                      folllowed={u.followed}
-                                      location={u.location ? u.location : null}
-                                      photo={u.photos.small || u.photos.large ? u.photos.small || u.photos.large : emptyAva}
-                                      follow={props.follow}
-                                      unfollow={props.unfollow}
+    const users = props.users.map(u => <User key={u.id}
+                                             id={u.id}
+                                             name={u.name}
+                                             status={u.status}
+                                             followed={u.followed}
+                                             location={u.location ? u.location : undefined}
+                                             photo={u.photos.small || u.photos.large ? u.photos.small || u.photos.large : emptyAva}
+                                             follow={props.follow}
+                                             unfollow={props.unfollow}
 
     />)
+    return <>{users}</>
 }
 
 type MapStatePropsType = {
