@@ -57,3 +57,10 @@
 .user__country {}
 .user__city {}
 
+.pages, .current {
+    margin-right: 3px;
+}
+.current {
+    font-weight: 700;
+}
+

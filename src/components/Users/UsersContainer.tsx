@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
-import {followAC, setUsersAC, unfollowAC, UserType} from '../Redux/users-reducer'
+import {followAC, setCurrentPageAC, setUsersAC, unfollowAC, UserType} from '../Redux/users-reducer'
 import {Dispatch} from 'redux'
 import User from './User'
 import emptyAva from '../../assets/empty_avatar.jpg'
@@ -15,7 +15,7 @@ class Users extends Component<PropsType> {
     componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/users')
             .then(response => {
-                this.props.setUsers(response.data.items)
+                this.props.setUsers(response.data.items, response.data.totalCount)
             })
     }
 
@@ -31,23 +31,43 @@ class Users extends Component<PropsType> {
                                                       unfollow={this.props.unfollow}
 
         />)
-        return <div className={s.users__content}>{users}</div>
+        const pagesCount = this.props.totalCount / this.props.pageSize
+        const pages = []
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i)
+        }
+
+        return <div>
+            <div className={s.pagination}>
+                {pages.map(p => <span key={p}
+                                      className={this.props.currentPage === p ? s.current: s.pages}>
+                    {p}</span>)}
+            </div>
+            <div className={s.users__content}>{users}</div>
+        </div>
     }
 }
 
 type MapStatePropsType = {
     users: Array<UserType>
+    totalCount: number
+    pageSize: number
+    currentPage: number
 }
 
 type MapDispatchPropsType = {
     follow: (userId: string) => void
     unfollow: (userId: string) => void
-    setUsers: (users: Array<UserType>) => void
+    setUsers: (users: Array<UserType>, totalCount: number) => void
+    setCurrentPage: (setCurrentPage: number) => void
 }
 
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
-        users: state.usersPage.users
+        users: state.usersPage.users,
+        totalCount: state.usersPage.totalCount,
+        pageSize: state.usersPage.pageSize,
+        currentPage: state.usersPage.currentPage
     }
 }
 
@@ -55,7 +75,8 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         follow: userId => dispatch(followAC(userId)),
         unfollow: userId => dispatch(unfollowAC(userId)),
-        setUsers: users => dispatch(setUsersAC(users))
+        setUsers: (users, totalCount) => dispatch(setUsersAC(users, totalCount)),
+        setCurrentPage: currentPage => dispatch(setCurrentPageAC(currentPage))
     }
 }
 
