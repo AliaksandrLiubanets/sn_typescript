@@ -52,7 +52,7 @@ const initialState: UsersStateType  = {
     users: [],
     totalCount: 0,
     pageSize: 5,
-    currentPage: 1
+    currentPage: 2
 }
 
 const usersReducer = (state = initialState, action: UsersAT): UsersStateType => {
@@ -69,7 +69,7 @@ const usersReducer = (state = initialState, action: UsersAT): UsersStateType => 
         case SET_USERS:
             return {
                 ...state,
-                users: [...state.users, ...action.users],
+                users: [...action.users],
                 totalCount: action.count
             }
         case SET_CURRENT_PAGE:

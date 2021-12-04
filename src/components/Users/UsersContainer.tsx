@@ -13,7 +13,15 @@ type PropsType = MapStatePropsType & MapDispatchPropsType
 class Users extends Component<PropsType> {
 
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items, response.data.totalCount)
+            })
+    }
+
+    setCurrentPage(currentPage: number) {
+        this.props.setCurrentPage(currentPage)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.setUsers(response.data.items, response.data.totalCount)
             })
@@ -31,17 +39,17 @@ class Users extends Component<PropsType> {
                                                       unfollow={this.props.unfollow}
 
         />)
-        const pagesCount = this.props.totalCount / this.props.pageSize
+        const pagesCount = Math.ceil(this.props.totalCount / this.props.pageSize)
         const pages = []
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i)
         }
-        const setCurrentPage = (currentPage: number) => this.props.setCurrentPage(currentPage)
+        // const setCurrentPage = (currentPage: number) => this.props.setCurrentPage(currentPage)
 
         return <div>
             <div className={s.pagination}>
                 {pages.map(p => <span key={p}
-                                      onClick={() => setCurrentPage(p)}
+                                      onClick={() => this.setCurrentPage(p)}
                                       className={this.props.currentPage === p ? s.current: s.pages}>
                     {p}</span>)}
             </div>
