@@ -59,6 +59,7 @@
 
 .pages, .current {
     margin-right: 3px;
+    cursor: pointer;
 }
 .current {
     font-weight: 700;

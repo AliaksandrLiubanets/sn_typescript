@@ -36,10 +36,12 @@ class Users extends Component<PropsType> {
         for (let i = 1; i <= pagesCount; i++) {
             pages.push(i)
         }
+        const setCurrentPage = (currentPage: number) => this.props.setCurrentPage(currentPage)
 
         return <div>
             <div className={s.pagination}>
                 {pages.map(p => <span key={p}
+                                      onClick={() => setCurrentPage(p)}
                                       className={this.props.currentPage === p ? s.current: s.pages}>
                     {p}</span>)}
             </div>
