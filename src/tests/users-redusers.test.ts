@@ -1,4 +1,10 @@
-import usersReducer, {followAC, unfollowAC, UsersStateType} from '../components/Redux/users-reducer'
+import usersReducer, {
+    followAC,
+    setCurrentPageAC,
+    setUsersAC,
+    unfollowAC,
+    UsersStateType
+} from '../components/Redux/users-reducer'
 import ava_dimych from '../assets/ava_dimych.jpg'
 import ava_olga from '../assets/ava_olga.jpg'
 import ava_karina from '../assets/ava_karina.jpg'
@@ -55,5 +61,34 @@ test('should unsubscribe from user', () => {
     expect(changedState.users[1].followed).toBe(false)
     expect(changedState.users[2].followed).toBe(false)
     expect(Object.keys(changedState.users[1]).length).toBe(6)
+
+})
+
+test("should set users and user's count", () => {
+
+    const newUsersArray = [
+        {id: '100', followed: false, status: 'Life is good!', name: 'Pyatro',
+            photos: {small: '', large: ''}},
+        {id: '101', followed: false, status: 'Life is good!', name: 'Rigor',
+            photos: {small: '', large: ''}}
+    ]
+
+    const action = setUsersAC(newUsersArray, 1000)
+    const changedState = usersReducer(state, action)
+
+    expect(changedState.users.length).toBe(2)
+    expect(changedState.totalCount).toBe(1000)
+    expect(changedState.users[0].name).toBe("Pyatro")
+    expect(changedState.users[0].location).toBeUndefined()
+
+})
+
+test("should set current page", () => {
+
+
+    const action = setCurrentPageAC(25)
+    const changedState = usersReducer(state, action)
+
+    expect(changedState.currentPage).toBe(25)
 
 })
