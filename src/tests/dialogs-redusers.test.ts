@@ -1,9 +1,3 @@
-import profileReducer, {
-    addCurrentValueAC,
-    addPostAC,
-    PostType,
-    ProfilePageType
-} from '../components/Redux/profile-reducer'
 import {v1} from 'uuid'
 import ava_dimych from '../assets/ava_dimych.jpg'
 import ava_me from '../assets/ava_me.jpg'
@@ -12,7 +6,11 @@ import ava_lenin from '../assets/ava_lenin.png'
 import ava_pushkin from '../assets/ava_pushkin.jpg'
 import ava_dragunsky from '../assets/ava_dragunsky.jpg'
 import ava_ostrovsky from '../assets/ava_ostrovskiy.jpg'
-import dialogsReducer, {addPostDialogAC, DialogsPageType} from '../components/Redux/dialogs-reducer'
+import dialogsReducer, {
+    addCurrentValueDialogAC,
+    addPostDialogAC,
+    DialogsPageType
+} from '../components/Redux/dialogs-reducer'
 
 let state: DialogsPageType
 
@@ -117,6 +115,17 @@ test("should add dialog's post", () => {
     expect(changedState2.messages[name].length).toBe(4)
     expect(changedState2.messages[name][3].message).toBe('New post text')
     expect(changedState.messages[name][3].message).toBe('New post text')
+
+})
+test("should add dialog's current value to state", () => {
+
+    const action = addCurrentValueDialogAC('Text-value')
+    const action2 = addCurrentValueDialogAC('')
+    const changedState = dialogsReducer(state, action)
+    const changedState2 = dialogsReducer(state, action2)
+
+    expect(changedState.textareaCurrentValue).toBe('Text-value')
+    expect(changedState2.textareaCurrentValue).toBe('')
 
 })
 
