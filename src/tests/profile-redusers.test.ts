@@ -20,7 +20,7 @@ beforeEach(() => {
 
 test('should add post', () => {
 
-    state = {
+    const state2: ProfilePageType = {
         textareaCurrentValue: 'Hello friend!',
         messagesData: [
             {id: '1', message: 'hello!', likes: 3},
@@ -30,11 +30,14 @@ test('should add post', () => {
     }
 
     const action = addPostAC()
+    const changedState2 = profileReducer(state2, action)
     const changedState = profileReducer(state, action)
 
-    expect(changedState.messagesData[3]).toBeDefined()
-    expect(changedState.textareaCurrentValue).toBe('')
-    expect(changedState.messagesData[3].message).toBe('Hello friend!')
+    expect(changedState2.messagesData[3]).toBeDefined()
+    expect(changedState2.messagesData.length).toBe(4)
+    expect(changedState2.textareaCurrentValue).toBe('')
+    expect(changedState.messagesData.length).toBe(3)
+    expect(changedState.messagesData[3]).toBeUndefined()
 })
 test('should add current value to state', () => {
 
