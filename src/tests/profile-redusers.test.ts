@@ -36,5 +36,11 @@ test('should add post', () => {
     expect(changedState.textareaCurrentValue).toBe('')
     expect(changedState.messagesData[3].message).toBe('Hello friend!')
 })
+test('should add current value to state', () => {
 
+    const action = addCurrentValueAC('Text-value')
+    const changedState = profileReducer(state, action)
+
+    expect(changedState.textareaCurrentValue).toBe('Text-value')
+})
 
