@@ -10,20 +10,6 @@ import ava_olga from '../assets/ava_olga.jpg'
 import ava_karina from '../assets/ava_karina.jpg'
 
 let state: UsersStateType
-type UserType = {
-    id: string
-    followed: boolean
-    status: string
-    name: string
-    photos: {
-        small: string | undefined
-        large: string | undefined
-    }
-    location?: {
-        city: string
-        country: string
-    }
-}
 
 beforeEach(() => {
     state = {

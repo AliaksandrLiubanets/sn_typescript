@@ -1,9 +1,4 @@
-import profileReducer, {
-    addCurrentValueAC,
-    addPostAC,
-    PostType,
-    ProfilePageType
-} from '../components/Redux/profile-reducer'
+import profileReducer, {addCurrentValueAC, addPostAC, ProfilePageType} from '../components/Redux/profile-reducer'
 
 let state: ProfilePageType
 
