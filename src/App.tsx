@@ -9,7 +9,7 @@ import News from './components/News'
 import Music from './components/Music'
 import Settings from './components/Settings'
 import {DialogContainer} from './components/Dialogs/DialogWithUser/Dialog'
-import {UsersContainer} from './components/Users/UsersContainer'
+import Users from './components/Users/UsersContainer'
 
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
                     <Route path="/profile" element={<Profile />} />
                     <Route path="/news" element={<News/>}/>
                     <Route path="/music" element={<Music/>}/>
-                    <Route path="/users" element={<UsersContainer/>}/>
+                    <Route path="/users" element={<Users/>}/>
                     <Route path="/settings" element={<Settings/>}/>
                 </Routes>
             </div>
