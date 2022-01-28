@@ -1,7 +1,8 @@
-const FOLLOW_USER = "FOLLOW-USER"
-const UNFOLLOW_USER = "UNFOLLOW-USER"
-const SET_USERS = "SET-USERS"
-const SET_CURRENT_PAGE = "SET-CURRENT-PAGE"
+const FOLLOW_USER = 'FOLLOW-USER'
+const UNFOLLOW_USER = 'UNFOLLOW-USER'
+const SET_USERS = 'SET-USERS'
+const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
+const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 
 export type UserType = {
     id: string
@@ -23,6 +24,7 @@ export type UsersStateType = {
     totalCount: number
     pageSize: number
     currentPage: number
+    isFetching: boolean
 }
 
 type FollowAT = {
@@ -46,13 +48,19 @@ type SetCurrentPageAT = {
     currentPage: number
 }
 
-type UsersAT = FollowAT | UnFollowAT | SetUsersAT | SetCurrentPageAT
+type ToggleIsFetchingAT = {
+    type: typeof TOGGLE_IS_FETCHING
+    isFetching: boolean
+}
 
-const initialState: UsersStateType  = {
+type UsersAT = FollowAT | UnFollowAT | SetUsersAT | SetCurrentPageAT | ToggleIsFetchingAT
+
+const initialState: UsersStateType = {
     users: [],
     totalCount: 0,
     pageSize: 5,
-    currentPage: 2
+    currentPage: 2,
+    isFetching: false
 }
 
 const usersReducer = (state = initialState, action: UsersAT): UsersStateType => {
@@ -76,6 +84,10 @@ const usersReducer = (state = initialState, action: UsersAT): UsersStateType => 
             return {
                 ...state, currentPage: action.currentPage
             }
+        case TOGGLE_IS_FETCHING:
+            return {
+                ...state, isFetching: action.isFetching
+            }
         default:
             return state
     }
@@ -85,5 +97,6 @@ export const followAC = (userId: string): FollowAT => ({type: FOLLOW_USER, userI
 export const unfollowAC = (userId: string): UnFollowAT => ({type: UNFOLLOW_USER, userId})
 export const setUsersAC = (users: Array<UserType>, count: number): SetUsersAT => ({type: SET_USERS, users, count})
 export const setCurrentPageAC = (currentPage: number): SetCurrentPageAT => ({type: SET_CURRENT_PAGE, currentPage})
+export const toggleIsFetchingAC = (isFetching: boolean): ToggleIsFetchingAT => ({type: TOGGLE_IS_FETCHING, isFetching})
 
 export default usersReducer

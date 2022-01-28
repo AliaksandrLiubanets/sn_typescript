@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
-import {followAC, setCurrentPageAC, setUsersAC, unfollowAC, UserType} from '../Redux/users-reducer'
+import {followAC, setCurrentPageAC, setUsersAC, toggleIsFetchingAC, unfollowAC, UserType} from '../Redux/users-reducer'
 import {Dispatch} from 'redux'
 import User from './User'
 import emptyAva from '../../assets/empty_avatar.jpg'
@@ -14,17 +14,21 @@ type PropsType = MapStatePropsType & MapDispatchPropsType
 class Users extends Component<PropsType> {
 
     componentDidMount() {
+        this.props.toggleIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.setUsers(response.data.items, response.data.totalCount)
+                this.props.toggleIsFetching(false)
             })
     }
 
     setCurrentPage(currentPage: number) {
+        this.props.toggleIsFetching(true)
         this.props.setCurrentPage(currentPage)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`)
             .then(response => {
                 this.props.setUsers(response.data.items, response.data.totalCount)
+                this.props.toggleIsFetching(false)
             })
     }
 
@@ -48,11 +52,14 @@ class Users extends Component<PropsType> {
 
         return <div>
             <div className={s.pagination}>
-                <Preloader />
-                {pages.map(p => <span key={p}
-                                      onClick={() => this.setCurrentPage(p)}
-                                      className={this.props.currentPage === p ? s.current: s.pages}>
-                    {p}</span>)}
+                {
+                    this.props.isFetching
+                        ? <Preloader/>
+                        : pages.map(p => <span key={p}
+                                               onClick={() => this.setCurrentPage(p)}
+                                               className={this.props.currentPage === p ? s.current : s.pages}>
+                    {p}</span>)
+                }
             </div>
             <div className={s.users__content}>{users}</div>
         </div>
@@ -64,6 +71,7 @@ type MapStatePropsType = {
     totalCount: number
     pageSize: number
     currentPage: number
+    isFetching: boolean
 }
 
 type MapDispatchPropsType = {
@@ -71,6 +79,7 @@ type MapDispatchPropsType = {
     unfollow: (userId: string) => void
     setUsers: (users: Array<UserType>, totalCount: number) => void
     setCurrentPage: (setCurrentPage: number) => void
+    toggleIsFetching: (isFetching: boolean) => void
 }
 
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
@@ -78,7 +87,8 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
         users: state.usersPage.users,
         totalCount: state.usersPage.totalCount,
         pageSize: state.usersPage.pageSize,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching
     }
 }
 
@@ -87,7 +97,8 @@ const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
         follow: userId => dispatch(followAC(userId)),
         unfollow: userId => dispatch(unfollowAC(userId)),
         setUsers: (users, totalCount) => dispatch(setUsersAC(users, totalCount)),
-        setCurrentPage: currentPage => dispatch(setCurrentPageAC(currentPage))
+        setCurrentPage: currentPage => dispatch(setCurrentPageAC(currentPage)),
+        toggleIsFetching: (isFetching) => dispatch(toggleIsFetchingAC(isFetching))
     }
 }
 
