@@ -1,5 +1,5 @@
 import React from 'react'
-import {addCurrentValueAC, addPostAC, PostType} from '../../Redux/profile-reducer'
+import {addCurrentValue, addPost, PostType} from '../../Redux/profile-reducer'
 import AddPost from './AddPost'
 import {Dispatch} from 'redux'
 import {connect} from 'react-redux'
@@ -35,8 +35,8 @@ const mapStatToProps = (state: RootStateType): MapStatePropsType => {
 
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
-        addPost: () => dispatch(addPostAC()),
-        setCurrentText: text => dispatch(addCurrentValueAC(text))
+        addPost: () => dispatch(addPost()),
+        setCurrentText: text => dispatch(addCurrentValue(text))
     }
 }
 
