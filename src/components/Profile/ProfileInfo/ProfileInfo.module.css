@@ -1,0 +1,11 @@
+.profileInfo {
+    padding: 10px 0;
+}
+
+.profileInfo img {
+    border-radius: 2px;
+    box-shadow: 0 0 2px #e81f3e;
+}
+
+.profileInfo_ava {}
+.profileInfo_name {}

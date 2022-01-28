@@ -1,5 +1,5 @@
 import samurai_background from '../../../assets/samurai_background.jpg'
-import s from '../Profile.module.css'
+import s from './ProfileInfo.module.css'
 import {ProfileType} from '../../Redux/profile-reducer'
 
 type ProfileInfoProps = {
@@ -8,7 +8,7 @@ type ProfileInfoProps = {
 
 export function ProfileInfo ({profile}: ProfileInfoProps) {
     return <div className={s.profileInfo}>
-        <img src={samurai_background} alt="picture"/>
+        <img src={samurai_background} alt="background"/>
         <div className={s.profileInfo_ava}>
             <img src={!profile ? '' : profile.photos.small } alt="ava"/>
         </div>
