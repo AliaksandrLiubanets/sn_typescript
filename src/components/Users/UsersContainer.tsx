@@ -7,6 +7,7 @@ import emptyAva from '../../assets/empty_avatar.jpg'
 import s from './Users.module.css'
 import {Component} from 'react'
 import axios from 'axios'
+import {Preloader} from '../common/Preloader/Preloader'
 
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
@@ -47,6 +48,7 @@ class Users extends Component<PropsType> {
 
         return <div>
             <div className={s.pagination}>
+                <Preloader />
                 {pages.map(p => <span key={p}
                                       onClick={() => this.setCurrentPage(p)}
                                       className={this.props.currentPage === p ? s.current: s.pages}>
