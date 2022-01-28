@@ -9,7 +9,8 @@ beforeEach(() => {
             {id: '1', message: 'hello!', likes: 3},
             {id: '2', message: 'Hi!', likes: 5},
             {id: '3', message: 'How is it going?!', likes: 8}
-        ]
+        ],
+        profile: null,
     }
 })
 
@@ -21,7 +22,8 @@ test('should add post', () => {
             {id: '1', message: 'hello!', likes: 3},
             {id: '2', message: 'Hi!', likes: 5},
             {id: '3', message: 'How is it going?!', likes: 8}
-        ]
+        ],
+        profile: null,
     }
 
     const action = addPost()

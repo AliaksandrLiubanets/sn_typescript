@@ -1,19 +1,19 @@
-import React from 'react'
+import React, {FC} from 'react'
 import s from './Profile.module.css'
-import ProfileInfo from './ProfileInfo/ProfileInfo'
 import AddPostContainer from './AddPost/AddPostContainer'
-import {Store} from 'redux'
+import {ProfileType} from '../Redux/profile-reducer'
+import {ProfileInfo} from './ProfileInfo/ProfileInfo'
 
-type ProfilePropsType = {
-
+type ProfileProps = {
+    profile: ProfileType | null
 }
 
-function Profile(props: ProfilePropsType) {
-
-    return <div className={s.content} >
-        <ProfileInfo />
-        <AddPostContainer />
+export const Profile: FC<ProfileProps> =(props) => {
+    return <div className={s.content}>
+        <ProfileInfo {...props}/>
+        <AddPostContainer/>
     </div>
 }
 
-export default Profile
+
+
