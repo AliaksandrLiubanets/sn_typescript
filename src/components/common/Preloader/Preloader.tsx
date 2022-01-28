@@ -4,9 +4,7 @@ import preloader from './Bars-1s-200px.gif'
 import {FC} from 'react'
 import s from './Preloader.module.css'
 
-type PreloaderProps = {
-
-}
+type PreloaderProps = {}
 
 export const Preloader:FC<PreloaderProps> = (props) => {
     return <div className={s.preloader}>
