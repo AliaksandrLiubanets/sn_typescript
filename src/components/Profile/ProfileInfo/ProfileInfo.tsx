@@ -16,10 +16,10 @@ export function ProfileInfo ({profile}: ProfileInfoProps) {
     return <div className={s.profileInfo}>
         <img src={samurai_background} alt="background"/>
         <div className={s.profileInfo_ava}>
-            <img src={ profile.photos.small } alt="ava"/>
+            <img src={profile.photos.small } alt="ava"/>
         </div>
         <div className={s.profileInfo_name}>
-            <span>{profile && profile.fullName}</span>
+            <span>{profile.fullName}</span>
         </div>
     </div>
 }
