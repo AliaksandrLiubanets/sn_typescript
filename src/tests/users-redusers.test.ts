@@ -1,8 +1,8 @@
 import usersReducer, {
-    followAC,
-    setCurrentPageAC,
-    setUsersAC,
-    unfollowAC,
+    follow,
+    setCurrentPage,
+    setUsers,
+    unfollow,
     UsersStateType
 } from '../components/Redux/users-reducer'
 import ava_dimych from '../assets/ava_dimych.jpg'
@@ -30,7 +30,7 @@ beforeEach(() => {
 
 test('should subscribe to user', () => {
 
-    const action = followAC('2')
+    const action = follow('2')
     const changedState = usersReducer(state, action)
 
     expect(changedState.users[1].followed).toBe(true)
@@ -41,7 +41,7 @@ test('should subscribe to user', () => {
 
 test('should unsubscribe from user', () => {
 
-    const action = unfollowAC('3')
+    const action = unfollow('3')
     const changedState = usersReducer(state, action)
 
     expect(changedState.users[0].followed).toBe(true)
@@ -60,7 +60,7 @@ test("should set users and user's count", () => {
             photos: {small: '', large: ''}}
     ]
 
-    const action = setUsersAC(newUsersArray, 1000)
+    const action = setUsers(newUsersArray, 1000)
     const changedState = usersReducer(state, action)
 
     expect(changedState.users.length).toBe(2)
@@ -73,7 +73,7 @@ test("should set users and user's count", () => {
 test("should set current page", () => {
 
 
-    const action = setCurrentPageAC(25)
+    const action = setCurrentPage(25)
     const changedState = usersReducer(state, action)
 
     expect(changedState.currentPage).toBe(25)

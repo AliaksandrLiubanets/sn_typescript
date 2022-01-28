@@ -1,7 +1,6 @@
 import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
-import {followAC, setCurrentPageAC, setUsersAC, toggleIsFetchingAC, unfollowAC, UserType} from '../Redux/users-reducer'
-import {Dispatch} from 'redux'
+import {follow, setCurrentPage, setUsers, toggleIsFetching, unfollow, UserType} from '../Redux/users-reducer'
 import User from './User'
 import emptyAva from '../../assets/empty_avatar.jpg'
 import s from './Users.module.css'
@@ -92,14 +91,8 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
-    return {
-        follow: userId => dispatch(followAC(userId)),
-        unfollow: userId => dispatch(unfollowAC(userId)),
-        setUsers: (users, totalCount) => dispatch(setUsersAC(users, totalCount)),
-        setCurrentPage: currentPage => dispatch(setCurrentPageAC(currentPage)),
-        toggleIsFetching: (isFetching) => dispatch(toggleIsFetchingAC(isFetching))
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Users)
+export default connect(mapStateToProps, {follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    toggleIsFetching})(Users)
