@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import axios from 'axios'
 import {RootStateType} from '../Redux/redux-store'
 import {connect} from 'react-redux'
@@ -10,22 +10,21 @@ import {Dispatch} from 'redux'
 type PropsType = {
     setUserProfile: (profile: ProfileType) => void
     profile: ProfileType | null
+    userId: {userId: string}
 }
 
-class ProfileContainer extends React.Component<PropsType> {
+function ProContainer (props:PropsType) {
 
-    componentDidMount() {
-        // const userId = this.props.userId
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+    useEffect(() => {
+        const userId = props.userId.userId
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
-                debugger
-                this.props.setUserProfile(response.data)
+                props.setUserProfile(response.data)
             })
-    }
+    }, [])
 
-    render() {
-        return <Profile {...this.props}/>
-    }
+    return <Profile {...props}/>
+
 }
 
 type TDispatchProps = {
@@ -49,10 +48,4 @@ const mapDispatchToProps = (dispatch: Dispatch): TDispatchProps => {
     }
 }
 
-// export default connect<TStateProps = {}, TDispatchProps = {}, TOwnProps = {}, State = DefaultState>(mapStateToProps, {setUserProfile})(ProfileContainer)
-//
-// export default connect<TStateProps, TDispatchProps, TOwnProps, RootStateType>
-//     // @ts-ignore
-// (mapStateToProps, {setUserProfile})(ProfileContainer)
-
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ProContainer)

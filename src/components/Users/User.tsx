@@ -1,4 +1,5 @@
 import s from './Users.module.css'
+import {NavLink} from 'react-router-dom'
 
 type PropsType = {
     id: string
@@ -17,9 +18,12 @@ type PropsType = {
 function User({name, id, status, followed, photo, location, unfollow, follow}: PropsType) {
     return <div className={s.user__block}>
         <div className={s.user__avaFollowed}>
-            <div className={s.user__ava}>
-                <img src={photo} alt="ava"/>
-            </div>
+            <NavLink to={`/profile/${id}`}>
+            {/*<NavLink to='/profile' >*/}
+                <div className={s.user__ava}>
+                    <img src={photo} alt="ava"/>
+                </div>
+            </NavLink>
             <div className={s.user__followed}>
                 {
                     followed
