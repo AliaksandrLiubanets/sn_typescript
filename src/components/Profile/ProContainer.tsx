@@ -10,13 +10,13 @@ import {Dispatch} from 'redux'
 type PropsType = {
     setUserProfile: (profile: ProfileType) => void
     profile: ProfileType | null
-    userId: {userId: string}
+    match: {userId: string}
 }
 
 function ProContainer (props:PropsType) {
 
     useEffect(() => {
-        const userId = props.userId.userId
+        const userId = props.match.userId
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
                 props.setUserProfile(response.data)
@@ -32,13 +32,13 @@ type TDispatchProps = {
 }
 
 type TOwnProps = {
-    userId: any
+    match: any
 }
 
 const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {
     return {
         profile: state.profilePage.profile,
-        userId: ownProps.userId,
+        userId: ownProps.match,
     }
 }
 
