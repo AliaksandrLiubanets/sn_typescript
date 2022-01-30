@@ -1,5 +1,5 @@
 import {useParams} from 'react-router-dom'
-import ProContainer from './ProContainer'
+import ProfileContainer from './ProfileContainer'
 
 type PropsType = {}
 
@@ -7,7 +7,7 @@ export function ProfileWithParam(props: PropsType) {
     debugger
     const match = useParams<string>()
 
-    return <ProContainer match={match} />
+    return <ProfileContainer match={match} />
 }
 
 
