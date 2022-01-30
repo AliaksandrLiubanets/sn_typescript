@@ -15,6 +15,8 @@ type PropsType = {
 
 function ProContainer (props:PropsType) {
 
+    debugger
+
     useEffect(() => {
         const userId = props.match.userId
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
@@ -38,7 +40,7 @@ type TOwnProps = {
 const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {
     return {
         profile: state.profilePage.profile,
-        userId: ownProps.match,
+        match: ownProps.match,
     }
 }
 

@@ -4,8 +4,10 @@ import ProContainer from './ProContainer'
 type PropsType = {}
 
 export function ProfileWithParam(props: PropsType) {
+    debugger
     const match = useParams<string>()
-    return <ProContainer userId={match} />
+
+    return <ProContainer match={match} />
 }
 
 
