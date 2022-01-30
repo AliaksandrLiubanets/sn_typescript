@@ -9,7 +9,7 @@ import Music from './components/Music'
 import Settings from './components/Settings'
 import {DialogContainer} from './components/Dialogs/DialogWithUser/Dialog'
 import Users from './components/Users/UsersContainer'
-import {ProfileWithRouter} from './components/Profile/ProfileWithRouter'
+import {ProfileWithRouter} from './components/Profile/ProfileWithParam'
 
 
 function App() {
