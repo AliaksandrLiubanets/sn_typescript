@@ -10,13 +10,14 @@ import {Dispatch} from 'redux'
 type PropsType = {
     setUserProfile: (profile: ProfileType) => void
     profile: ProfileType | null
-    match: {userId: string}
+    match?: {userId: string}
 }
 
 class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount() {
-        const userId = this.props.match.userId
+        let userId = this.props.match && this.props.match.userId
+        if (!userId) {userId = '2'}
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
                 this.props.setUserProfile(response.data)
@@ -33,7 +34,7 @@ type TDispatchProps = {
 }
 
 type TOwnProps = {
-    match: { userId: string }
+    match?: any
 }
 
 const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {
