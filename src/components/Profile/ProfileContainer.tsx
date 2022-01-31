@@ -33,7 +33,7 @@ type TDispatchProps = {
 }
 
 type TOwnProps = {
-    match: any
+    match: { userId: string }
 }
 
 const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {

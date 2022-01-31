@@ -5,7 +5,7 @@ type PropsType = {}
 
 export function ProfileWithParam(props: PropsType) {
     debugger
-    const match = useParams<string>()
+    const {match} = useParams()
 
     return <ProfileContainer match={match} />
 }
