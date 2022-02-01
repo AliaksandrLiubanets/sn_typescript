@@ -1,6 +1,5 @@
 import React from 'react'
 import './App.css'
-import Header from './components/Header/Header'
 import Navbar from './components/Navbar/Navbar'
 import {DialogsContainer} from './components/Dialogs/Dialogs'
 import {Route, Routes} from 'react-router-dom'
@@ -11,12 +10,13 @@ import {DialogContainer} from './components/Dialogs/DialogWithUser/Dialog'
 import Users from './components/Users/UsersContainer'
 import {ProfileWithParam} from './components/Profile/ProfileWithParam'
 import ProfileContainer from './components/Profile/ProfileContainer'
+import HeaderContainer from './components/Header/HeaderContainer'
 
 
 function App() {
     return (
         <div className="App">
-            <Header/>
+            <HeaderContainer/>
             <Navbar/>
             <div className="content">
                 <Routes>

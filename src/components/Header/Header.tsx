@@ -3,8 +3,8 @@ import s from './Header.module.css'
 import React from "react";
 
 type HeaderProps = {
-    login: string
-    avatar: string
+    login: string | null
+    avatar?: string | null
     isAuth: boolean
 }
 
@@ -19,7 +19,7 @@ export function Header({login, avatar, isAuth}: HeaderProps) {
             </div>
             :
             <div>
-                <img src={empty_avatar}/>
+                <img src={empty_avatar} alt={'ava'}/>
                 <span>{"Login"}</span>
             </div>
         }
