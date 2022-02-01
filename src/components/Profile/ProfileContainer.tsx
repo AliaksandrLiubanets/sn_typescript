@@ -54,6 +54,7 @@ const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {
     return {
         profile: state.profilePage.profile,
         match: ownProps.match,
+        isAuth: state.auth.isAuth,
     }
 }
 
