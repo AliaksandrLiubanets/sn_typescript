@@ -18,14 +18,13 @@ const initialState: AuthStateType = {
         email: null,
         login: null,
     },
-    isAuth: true,
+    isAuth: false,
 }
 
 const authReducer = (state: AuthStateType = initialState, action: AuthActionsType): AuthStateType => {
     switch (action.type) {
         case SET_AUTH_DATA:
             return {...state, data: action.data, isAuth: true}
-
         default:
             return state
     }

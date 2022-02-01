@@ -3,6 +3,7 @@ import {Header} from './Header'
 import {AuthDataType, setAuthData} from '../Redux/auth-reducer'
 import {connect} from 'react-redux'
 import {AppDispatch, RootStateType} from '../Redux/redux-store'
+import axios from 'axios'
 
 type PropsType = {
     login: string | null
@@ -13,7 +14,15 @@ type PropsType = {
 
 class HeaderContainer extends React.Component<PropsType> {
 
-
+    componentDidMount() {
+        axios.get('https://social-network.samuraijs.com/api/1.0/auth/me', {withCredentials: true})
+            .then(response => {
+                debugger
+                if(response.data.resultCode === 0) {
+                    this.props.setAuthData(response.data.data)
+                }
+            })
+    }
 
     render () {
         return <Header isAuth={this.props.isAuth} login={this.props.login} />
