@@ -17,7 +17,9 @@ class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount() {
         let userId = this.props.match && this.props.match.userId
-        if (!userId) {userId = '2'}
+        if (!userId) {
+            userId = '2'
+        }
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             .then(response => {
                 this.props.setUserProfile(response.data)
@@ -34,7 +36,7 @@ type TDispatchProps = {
 }
 
 type TOwnProps = {
-    match?: any
+    match: any
 }
 
 const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {

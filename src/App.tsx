@@ -10,7 +10,6 @@ import Settings from './components/Settings'
 import {DialogContainer} from './components/Dialogs/DialogWithUser/Dialog'
 import Users from './components/Users/UsersContainer'
 import {ProfileWithParam} from './components/Profile/ProfileWithParam'
-import ProfileContainer from './components/Profile/ProfileContainer'
 
 
 function App() {
@@ -24,8 +23,7 @@ function App() {
                         <Route path="/dialogs/:name"
                                element={<DialogContainer/>}/>
                     </Route>
-                    <Route path="/profile" element={<ProfileContainer />} />
-                    <Route path="/profile/:userId" element={<ProfileWithParam />} />
+                    <Route path="/profile/:userId?" element={<ProfileWithParam />} />
                     <Route path="/news" element={<News/>}/>
                     <Route path="/music" element={<Music/>}/>
                     <Route path="/users" element={<Users/>}/>
