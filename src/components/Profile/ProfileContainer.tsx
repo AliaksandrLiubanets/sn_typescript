@@ -5,17 +5,19 @@ import {connect} from 'react-redux'
 import {ProfileType, setUserProfile} from '../Redux/profile-reducer'
 import {Profile} from './Profile'
 import {Dispatch} from 'redux'
+import {AuthDataType, setAuthData} from '../Redux/auth-reducer'
 
 
 type PropsType = {
     setUserProfile: (profile: ProfileType) => void
     profile: ProfileType | null
-    match?: {userId: string}
+    match: {userId: string}
 }
 
 class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount() {
+
         let userId = this.props.match && this.props.match.userId
         if (!userId) {
             userId = '2'
@@ -33,6 +35,7 @@ class ProfileContainer extends React.Component<PropsType> {
 
 type TDispatchProps = {
     setUserProfile: (profile: ProfileType) => void
+    setAuthData: (data: AuthDataType) => void
 }
 
 type TOwnProps = {
@@ -48,7 +51,8 @@ const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {
 
 const mapDispatchToProps = (dispatch: Dispatch): TDispatchProps => {
     return {
-        setUserProfile: (profile) => dispatch(setUserProfile(profile))
+        setUserProfile: (profile) => dispatch(setUserProfile(profile)),
+        setAuthData: (data) => dispatch(setAuthData(data)),
     }
 }
 
