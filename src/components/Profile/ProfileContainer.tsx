@@ -12,7 +12,8 @@ type PropsType = {
     setUserProfile: (profile: ProfileType) => void
     setAuthData: (data: AuthDataType) => void
     profile: ProfileType | null
-    match: {userId: string}
+    match?: { userId: string }
+    isAuth: boolean
 }
 
 class ProfileContainer extends React.Component<PropsType> {
@@ -21,6 +22,7 @@ class ProfileContainer extends React.Component<PropsType> {
 
         axios.get('https://social-network.samuraijs.com/api/1.0/auth/me')
             .then(response => {
+                debugger
                 if(response.data.resultCode === 0) {
                     this.props.setAuthData(response.data.data)
                 }
@@ -30,10 +32,13 @@ class ProfileContainer extends React.Component<PropsType> {
         if (!userId) {
             userId = '2'
         }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-            .then(response => {
-                this.props.setUserProfile(response.data)
-            })
+        if (this.props.isAuth) {
+            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+                .then(response => {
+                    this.props.setUserProfile(response.data)
+                })
+        }
+
     }
 
     render() {
@@ -47,21 +52,21 @@ type TDispatchProps = {
 }
 
 type TOwnProps = {
-    match: any
+    match?: any
 }
 
 const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {
     return {
         profile: state.profilePage.profile,
         match: ownProps.match,
-        isAuth: state.auth.isAuth,
+        isAuth: state.auth.isAuth
     }
 }
 
 const mapDispatchToProps = (dispatch: Dispatch): TDispatchProps => {
     return {
         setUserProfile: (profile) => dispatch(setUserProfile(profile)),
-        setAuthData: (data) => dispatch(setAuthData(data)),
+        setAuthData: (data) => dispatch(setAuthData(data))
     }
 }
 
