@@ -2,11 +2,28 @@ import empty_avatar from "../../assets/empty_avatar.jpg";
 import s from './Header.module.css'
 import React from "react";
 
-function Header() {
-    return <div className={s.header}>
-        <img src={empty_avatar}/>
-    </div>
+type HeaderProps = {
+    login: string
+    avatar: string
+    isAuth: boolean
 }
 
-export default Header
+export function Header({login, avatar, isAuth}: HeaderProps) {
+
+    return <div className={s.header}>
+        {isAuth
+            ?
+            <div>
+                <img src={''} alt={'ava'}/>
+                <span>{login}</span>
+            </div>
+            :
+            <div>
+                <img src={empty_avatar}/>
+                <span>{"Login"}</span>
+            </div>
+        }
+
+    </div>
+}
 
