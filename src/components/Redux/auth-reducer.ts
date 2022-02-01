@@ -1,5 +1,5 @@
 
-export const IS_AUTH = 'sn-typescript/Authorize/IS-AUTH'
+export const SET_AUTH_DATA = 'sn-typescript/Authorize/SET-AUTH-DATA'
 
 export type AuthDataType = {
     id: string | null
@@ -23,7 +23,7 @@ const initialState: AuthStateType = {
 
 const authReducer = (state: AuthStateType = initialState, action: AuthActionsType): AuthStateType => {
     switch (action.type) {
-        case IS_AUTH:
+        case SET_AUTH_DATA:
             return {...state, data: action.data, isAuth: true}
 
         default:
@@ -35,6 +35,6 @@ export type AuthType = ReturnType<typeof setAuthData>
 
 export type AuthActionsType = AuthType
 
-export const setAuthData = (data: AuthDataType) => ({type: IS_AUTH, data} as const)
+export const setAuthData = (data: AuthDataType) => ({type: SET_AUTH_DATA, data} as const)
 
 export default authReducer
