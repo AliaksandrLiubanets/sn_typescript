@@ -20,13 +20,13 @@ class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount() {
 
-        axios.get('https://social-network.samuraijs.com/api/1.0/auth/me')
-            .then(response => {
-                debugger
-                if(response.data.resultCode === 0) {
-                    this.props.setAuthData(response.data.data)
-                }
-            })
+        // axios.get('https://social-network.samuraijs.com/api/1.0/auth/me')
+        //     .then(response => {
+        //         debugger
+        //         if(response.data.resultCode === 0) {
+        //             this.props.setAuthData(response.data.data)
+        //         }
+        //     })
 
         let userId = this.props.match && this.props.match.userId
         if (!userId) {
