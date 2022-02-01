@@ -1,6 +1,7 @@
 import empty_avatar from "../../assets/empty_avatar.jpg";
 import s from './Header.module.css'
 import React from "react";
+import sancho_ava from '../../assets/ECGP3801_1.jpg'
 
 type HeaderProps = {
     login: string | null
@@ -15,7 +16,7 @@ export function Header({login, avatar, isAuth}: HeaderProps) {
             ?
             <div className={s.header_block}>
                 <div>
-                    <img src={''} alt={'ava'}/>
+                    <img src={!avatar ? sancho_ava : avatar} alt={'ava'}/>
                 </div>
                 <span>{login}</span>
             </div>

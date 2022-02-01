@@ -5,8 +5,18 @@
     border-bottom: 1px solid rgba(231, 230, 230, 0.93);;
 }
 
+.header_block {
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .header_block span {
     display: block;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 7px;
 }
 .header_block div {
     height: 40px;
