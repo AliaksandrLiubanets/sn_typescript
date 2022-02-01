@@ -5,6 +5,13 @@
     border-bottom: 1px solid rgba(231, 230, 230, 0.93);;
 }
 
+.header_block span {
+    display: block;
+}
+.header_block div {
+    height: 40px;
+}
+
 .header img {
     width: 40px;
     border-radius: 50%;
