@@ -5,7 +5,6 @@ import User from './User'
 import emptyAva from '../../assets/empty_avatar.jpg'
 import s from './Users.module.css'
 import {Component} from 'react'
-import axios from 'axios'
 import {Preloader} from '../common/Preloader/Preloader'
 import {usersAPI} from '../../api/api'
 
@@ -26,7 +25,8 @@ class Users extends Component<PropsType> {
     setCurrentPage(currentPage: number) {
         this.props.toggleIsFetching(true)
         this.props.setCurrentPage(currentPage)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
+            usersAPI.getUsers(currentPage, this.props.pageSize)
             .then(response => {
                 this.props.setUsers(response.data.items, response.data.totalCount)
                 this.props.toggleIsFetching(false)
