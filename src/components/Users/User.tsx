@@ -35,7 +35,7 @@ function User({name, id, status, followed, photo, location, unfollow, follow}: P
                             //         withCredentials: true,
                             //         headers: {"API-KEY": "ec259ea8-b888-43af-83e9-f75c638bfe8f"},
                             //     })
-                            usersAPI.followUser(id)
+                            usersAPI.unfollowUser(id)
                                 .then(response => {
                                     if (response.data.resultCode === 0) {
                                         unfollow(id)
