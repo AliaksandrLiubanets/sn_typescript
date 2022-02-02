@@ -7,6 +7,7 @@ import s from './Users.module.css'
 import {Component} from 'react'
 import axios from 'axios'
 import {Preloader} from '../common/Preloader/Preloader'
+import {usersAPI} from '../../api/api'
 
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
@@ -14,7 +15,8 @@ class Users extends Component<PropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
+        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
             .then(response => {
                 this.props.setUsers(response.data.items, response.data.totalCount)
                 this.props.toggleIsFetching(false)
