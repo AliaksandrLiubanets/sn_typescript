@@ -1,5 +1,6 @@
 import s from './Users.module.css'
 import {NavLink} from 'react-router-dom'
+import axios from 'axios'
 
 type PropsType = {
     id: string
@@ -27,8 +28,30 @@ function User({name, id, status, followed, photo, location, unfollow, follow}: P
             <div className={s.user__followed}>
                 {
                     followed
-                        ? <button onClick={() => unfollow(id)}>unfollow</button>
-                        : <button onClick={() => follow(id)}>follow</button>
+                        ? <button onClick={() => {
+                            axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,
+                                {
+                                    withCredentials: true,
+                                    headers: {"API-KEY": "ec259ea8-b888-43af-83e9-f75c638bfe8f"},
+                                })
+                                .then(response => {
+                                    if(response.data.resultCode === 0) {
+                                        unfollow(id)
+                                    }
+                                })
+                        }}>unfollow</button>
+                        : <button onClick={() => {
+                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {},
+                                {
+                                    withCredentials: true,
+                                    headers: {"API-KEY": "ec259ea8-b888-43af-83e9-f75c638bfe8f"},
+                                })
+                                .then(response => {
+                                    if(response.data.resultCode === 0) {
+                                        follow(id)
+                                    }
+                                })
+                        }}>follow</button>
                 }
             </div>
         </div>

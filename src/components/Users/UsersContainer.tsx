@@ -14,7 +14,7 @@ class Users extends Component<PropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
             .then(response => {
                 this.props.setUsers(response.data.items, response.data.totalCount)
                 this.props.toggleIsFetching(false)
@@ -24,7 +24,7 @@ class Users extends Component<PropsType> {
     setCurrentPage(currentPage: number) {
         this.props.toggleIsFetching(true)
         this.props.setCurrentPage(currentPage)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
             .then(response => {
                 this.props.setUsers(response.data.items, response.data.totalCount)
                 this.props.toggleIsFetching(false)
@@ -91,8 +91,10 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     }
 }
 
-export default connect(mapStateToProps, {follow,
+export default connect(mapStateToProps, {
+    follow,
     unfollow,
     setUsers,
     setCurrentPage,
-    toggleIsFetching})(Users)
+    toggleIsFetching
+})(Users)
