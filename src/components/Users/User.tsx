@@ -20,7 +20,6 @@ function User({name, id, status, followed, photo, location, unfollow, follow}: P
     return <div className={s.user__block}>
         <div className={s.user__avaFollowed}>
             <NavLink to={`/profile/${id}`}>
-                {/*<NavLink to='/profile' >*/}
                 <div className={s.user__ava}>
                     <img src={photo} alt="ava"/>
                 </div>
@@ -29,11 +28,6 @@ function User({name, id, status, followed, photo, location, unfollow, follow}: P
                 {
                     followed
                         ? <button onClick={() => {
-                            // axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`,
-                            //     {
-                            //         withCredentials: true,
-                            //         headers: {"API-KEY": "ec259ea8-b888-43af-83e9-f75c638bfe8f"},
-                            //     })
                             usersAPI.unfollowUser(id)
                                 .then(response => {
                                     if (response.data.resultCode === 0) {
@@ -42,11 +36,6 @@ function User({name, id, status, followed, photo, location, unfollow, follow}: P
                                 })
                         }}>unfollow</button>
                         : <button onClick={() => {
-                            // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {},
-                            //     {
-                            //         withCredentials: true,
-                            //         headers: {'API-KEY': 'ec259ea8-b888-43af-83e9-f75c638bfe8f'}
-                            //     })
                             usersAPI.followUser(id)
                                 .then(response => {
                                     if (response.data.resultCode === 0) {

@@ -14,7 +14,7 @@ class Users extends Component<PropsType> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
+
         usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
             .then(response => {
                 this.props.setUsers(response.data.items, response.data.totalCount)
@@ -25,7 +25,7 @@ class Users extends Component<PropsType> {
     setCurrentPage(currentPage: number) {
         this.props.toggleIsFetching(true)
         this.props.setCurrentPage(currentPage)
-        // axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
+
             usersAPI.getUsers(currentPage, this.props.pageSize)
             .then(response => {
                 this.props.setUsers(response.data.items, response.data.totalCount)
