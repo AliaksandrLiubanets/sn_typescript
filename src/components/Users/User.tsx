@@ -1,6 +1,5 @@
 import s from './Users.module.css'
 import {NavLink} from 'react-router-dom'
-import axios from 'axios'
 import {usersAPI} from '../../api/api'
 
 type PropsType = {
@@ -43,11 +42,12 @@ function User({name, id, status, followed, photo, location, unfollow, follow}: P
                                 })
                         }}>unfollow</button>
                         : <button onClick={() => {
-                            axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {},
-                                {
-                                    withCredentials: true,
-                                    headers: {'API-KEY': 'ec259ea8-b888-43af-83e9-f75c638bfe8f'}
-                                })
+                            // axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {},
+                            //     {
+                            //         withCredentials: true,
+                            //         headers: {'API-KEY': 'ec259ea8-b888-43af-83e9-f75c638bfe8f'}
+                            //     })
+                            usersAPI.followUser(id)
                                 .then(response => {
                                     if (response.data.resultCode === 0) {
                                         follow(id)
