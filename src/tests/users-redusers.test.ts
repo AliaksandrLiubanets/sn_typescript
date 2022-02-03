@@ -14,11 +14,11 @@ let state: UsersStateType
 beforeEach(() => {
     state = {
         users: [
-            {id: '1', followed: true, status: 'Life is good!', name: 'Dimych',
+            {id: 1, followed: true, status: 'Life is good!', name: 'Dimych',
                 photos: {small: ava_dimych, large: ''}, location: {city: 'Minsk', country: 'Belarus'}},
-            {id: '2', followed: false, status: 'Life is good!', name: 'Olga',
+            {id: 2, followed: false, status: 'Life is good!', name: 'Olga',
                 photos: {small: ava_olga, large: ''}, location: {city: 'Minsk', country: 'Belarus'}},
-            {id: '3', followed: true, status: 'Life is good!', name: 'Karina',
+            {id: 3, followed: true, status: 'Life is good!', name: 'Karina',
                 photos: {small: ava_karina, large: ''}, location: {city: 'Minsk', country: 'Belarus'}}
         ],
         totalCount: 0,
@@ -30,7 +30,7 @@ beforeEach(() => {
 
 test('should subscribe to user', () => {
 
-    const action = follow('2')
+    const action = follow(2)
     const changedState = usersReducer(state, action)
 
     expect(changedState.users[1].followed).toBe(true)
@@ -41,7 +41,7 @@ test('should subscribe to user', () => {
 
 test('should unsubscribe from user', () => {
 
-    const action = unfollow('3')
+    const action = unfollow(3)
     const changedState = usersReducer(state, action)
 
     expect(changedState.users[0].followed).toBe(true)
@@ -54,9 +54,9 @@ test('should unsubscribe from user', () => {
 test("should set users and user's count", () => {
 
     const newUsersArray = [
-        {id: '100', followed: false, status: 'Life is good!', name: 'Pyatro',
+        {id: 100, followed: false, status: 'Life is good!', name: 'Pyatro',
             photos: {small: '', large: ''}},
-        {id: '101', followed: false, status: 'Life is good!', name: 'Rigor',
+        {id: 101, followed: false, status: 'Life is good!', name: 'Rigor',
             photos: {small: '', large: ''}}
     ]
 
