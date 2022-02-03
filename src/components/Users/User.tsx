@@ -2,6 +2,7 @@ import s from './Users.module.css'
 import {NavLink} from 'react-router-dom'
 import {usersAPI} from '../../api/api'
 import {UserType} from '../Redux/users-reducer'
+import emptyAva from '../../assets/empty_avatar.jpg'
 
 type UserPropsType = {
     follow: (id: string) => void
@@ -15,7 +16,7 @@ function User({name, id, status, followed, photos, location, unfollow, follow}: 
         <div className={s.user__avaFollowed}>
             <NavLink to={`/profile/${id}`}>
                 <div className={s.user__ava}>
-                    <img src={photos.small} alt="ava"/>
+                    <img src={photos.small ? photos.small : emptyAva} alt="ava"/>
                 </div>
             </NavLink>
             <div className={s.user__followed}>
