@@ -3,31 +3,23 @@ import axios from "axios";
 type ItemUserType =  {
     name: string
     id: number
-    uniqueUrlName: null | string
+    // uniqueUrlName: null | string
     photos: {
         small: null | string
         large: null | string
     },
     status: null | string
     followed: false
+    // location?: {
+    //     city: string
+    //     country: string
+    // }
 }
 
 type GetRequestUsers = {
-    "items": [
-        {
-            "name": "lbadtripl",
-            "id": 22240,
-            "uniqueUrlName": null,
-            "photos": {
-                "small": null,
-                "large": null
-            },
-            "status": null,
-            "followed": false
-        }
-    ],
-    "totalCount": 17248,
-    "error": null
+    items: Array<ItemUserType>
+    totalCount: number
+    error: null | string
 }
 
 const instance = axios.create({
@@ -43,11 +35,11 @@ export const usersAPI = {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
     },
 
-    followUser(userId) {
+    followUser(userId: number) {
         return instance.post(`follow/${userId}`, {})
     },
 
-    unfollowUser(userId) {
+    unfollowUser(userId: number) {
         return instance.delete(`follow/${userId}`)
     },
 }

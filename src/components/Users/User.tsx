@@ -5,8 +5,8 @@ import {UserType} from '../Redux/users-reducer'
 import emptyAva from '../../assets/empty_avatar.jpg'
 
 type UserPropsType = {
-    follow: (id: string) => void
-    unfollow: (id: string) => void
+    follow: (id: number) => void
+    unfollow: (id: number) => void
 }
 
 type PropsType = UserPropsType & UserType

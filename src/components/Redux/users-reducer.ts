@@ -5,7 +5,7 @@ const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
 const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 
 export type UserType = {
-    id: string
+    id: number
     followed: boolean
     status: string
     name: string
@@ -13,6 +13,7 @@ export type UserType = {
         small: string | undefined
         large: string | undefined
     }
+    // uniqueUrlName?: null | string
     location?: {
         city: string
         country: string
@@ -29,12 +30,12 @@ export type UsersStateType = {
 
 type FollowAT = {
     type: typeof FOLLOW_USER
-    userId: string
+    userId: number
 }
 
 type UnFollowAT = {
     type: typeof UNFOLLOW_USER
-    userId: string
+    userId: number
 }
 
 type SetUsersAT = {
@@ -93,8 +94,8 @@ const usersReducer = (state = initialState, action: UsersAT): UsersStateType => 
     }
 }
 
-export const follow = (userId: string): FollowAT => ({type: FOLLOW_USER, userId})
-export const unfollow = (userId: string): UnFollowAT => ({type: UNFOLLOW_USER, userId})
+export const follow = (userId: number): FollowAT => ({type: FOLLOW_USER, userId})
+export const unfollow = (userId: number): UnFollowAT => ({type: UNFOLLOW_USER, userId})
 export const setUsers = (users: Array<UserType>, count: number): SetUsersAT => ({type: SET_USERS, users, count})
 export const setCurrentPage = (currentPage: number): SetCurrentPageAT => ({type: SET_CURRENT_PAGE, currentPage})
 export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingAT => ({type: TOGGLE_IS_FETCHING, isFetching})
