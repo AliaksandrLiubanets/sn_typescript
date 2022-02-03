@@ -1,23 +1,24 @@
 import axios from "axios";
+import {UserType} from '../components/Redux/users-reducer'
 
 type ItemUserType =  {
     name: string
     id: number
-    // uniqueUrlName: null | string
+    uniqueUrlName: null
     photos: {
         small: null | string
         large: null | string
     },
     status: null | string
-    followed: false
-    // location?: {
-    //     city: string
-    //     country: string
-    // }
+    followed: boolean
+    location?: {
+        city: string
+        country: string
+    }
 }
 
 type GetRequestUsers = {
-    items: Array<ItemUserType>
+    items: Array<UserType>
     totalCount: number
     error: null | string
 }
@@ -32,7 +33,7 @@ const instance = axios.create({
 
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+        return instance.get<GetRequestUsers>(`users?page=${currentPage}&count=${pageSize}`)
     },
 
     followUser(userId: number) {

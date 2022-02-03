@@ -7,13 +7,13 @@ const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
 export type UserType = {
     id: number
     followed: boolean
-    status: string
+    status: string | null
     name: string
     photos: {
-        small: string | undefined
-        large: string | undefined
+        small: string | null
+        large: string | null
     }
-    // uniqueUrlName?: null | string
+    uniqueUrlName?: null | string
     location?: {
         city: string
         country: string
