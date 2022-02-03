@@ -2,7 +2,6 @@ import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
 import {follow, setCurrentPage, setUsers, toggleIsFetching, unfollow, UserType} from '../Redux/users-reducer'
 import User from './User'
-import emptyAva from '../../assets/empty_avatar.jpg'
 import s from './Users.module.css'
 import {Component} from 'react'
 import {Preloader} from '../common/Preloader/Preloader'
@@ -40,7 +39,8 @@ class Users extends Component<PropsType> {
                                                       status={u.status}
                                                       followed={u.followed}
                                                       location={u.location ? u.location : undefined}
-                                                      photo={u.photos.small || u.photos.large ? u.photos.small || u.photos.large : emptyAva}
+                                                      // photo={u.photos.small || u.photos.large ? u.photos.small || u.photos.large : emptyAva}
+                                                      photos={u.photos}
                                                       follow={this.props.follow}
                                                       unfollow={this.props.unfollow}
 

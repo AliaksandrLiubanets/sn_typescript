@@ -1,27 +1,21 @@
 import s from './Users.module.css'
 import {NavLink} from 'react-router-dom'
 import {usersAPI} from '../../api/api'
+import {UserType} from '../Redux/users-reducer'
 
-type PropsType = {
-    id: string
-    name: string
-    status: string
-    followed: boolean
-    location?: {
-        city: string
-        country: string
-    }
-    photo: string | undefined
+type UserPropsType = {
     follow: (id: string) => void
     unfollow: (id: string) => void
 }
 
-function User({name, id, status, followed, photo, location, unfollow, follow}: PropsType) {
+type PropsType = UserPropsType & UserType
+
+function User({name, id, status, followed, photos, location, unfollow, follow}: PropsType) {
     return <div className={s.user__block}>
         <div className={s.user__avaFollowed}>
             <NavLink to={`/profile/${id}`}>
                 <div className={s.user__ava}>
-                    <img src={photo} alt="ava"/>
+                    <img src={photos.small} alt="ava"/>
                 </div>
             </NavLink>
             <div className={s.user__followed}>
