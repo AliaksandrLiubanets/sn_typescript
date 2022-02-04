@@ -25,7 +25,7 @@ class Users extends Component<PropsType> {
         this.props.toggleIsFetching(true)
         this.props.setCurrentPage(currentPage)
 
-            usersAPI.getUsers(currentPage, this.props.pageSize)
+        usersAPI.getUsers(currentPage, this.props.pageSize)
             .then(response => {
                 this.props.setUsers(response.data.items, response.data.totalCount)
                 this.props.toggleIsFetching(false)
@@ -39,7 +39,7 @@ class Users extends Component<PropsType> {
                                                       status={u.status}
                                                       followed={u.followed}
                                                       location={u.location ? u.location : undefined}
-                                                      // photo={u.photos.small || u.photos.large ? u.photos.small || u.photos.large : emptyAva}
+            // photo={u.photos.small || u.photos.large ? u.photos.small || u.photos.large : emptyAva}
                                                       photos={u.photos}
                                                       follow={this.props.follow}
                                                       unfollow={this.props.unfollow}
@@ -55,11 +55,12 @@ class Users extends Component<PropsType> {
             <div className={s.pagination}>
                 {
                     this.props.isFetching
-                        ? <Preloader/>
-                        : pages.map(p => <span key={p}
+                        ? <div className={s.pagination__pages}><Preloader/></div>
+                        : <div className={s.pagination__pages}> {pages.map(p => <span key={p}
                                                onClick={() => this.setCurrentPage(p)}
                                                className={this.props.currentPage === p ? s.current : s.pages}>
-                    {p}</span>)
+                    {p}</span>)}
+                    </div>
                 }
             </div>
             <div className={s.users__content}>{users}</div>
