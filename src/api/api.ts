@@ -17,10 +17,16 @@ type ItemUserType =  {
     }
 }
 
-type GetRequestUsers = {
+type ResponseGetUsers = {
     items: Array<UserType>
     totalCount: number
     error: null | string
+}
+
+type ResponseFollowUnfollowUser = {
+    resultCode: number
+    messages: null | Array<string>
+    data: Date
 }
 
 const instance = axios.create({
@@ -33,14 +39,14 @@ const instance = axios.create({
 
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
-        return instance.get<GetRequestUsers>(`users?page=${currentPage}&count=${pageSize}`)
+        return instance.get<ResponseGetUsers>(`users?page=${currentPage}&count=${pageSize}`)
     },
 
     followUser(userId: number) {
-        return instance.post(`follow/${userId}`, {})
+        return instance.post<ResponseFollowUnfollowUser>(`follow/${userId}`, {})
     },
 
     unfollowUser(userId: number) {
-        return instance.delete(`follow/${userId}`)
+        return instance.delete<ResponseFollowUnfollowUser>(`follow/${userId}`)
     },
 }
