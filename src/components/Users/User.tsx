@@ -3,6 +3,7 @@ import {NavLink} from 'react-router-dom'
 import {usersAPI} from '../../api/api'
 import {UserType} from '../Redux/users-reducer'
 import emptyAva from '../../assets/empty_avatar.jpg'
+import {Preloader} from '../common/Preloader/Preloader'
 
 type UserPropsType = {
     follow: (id: number) => void
@@ -14,6 +15,7 @@ type PropsType = UserPropsType & UserType
 function User({name, id, status, followed, photos, location, unfollow, follow}: PropsType) {
     return <div className={s.user__block}>
         <div className={s.user__avaFollowed}>
+            <div className={s.user_preloader}><Preloader/></div>
             <NavLink to={`/profile/${id}`}>
                 <div className={s.user__ava}>
                     <img src={photos.small ? photos.small : emptyAva} alt="ava"/>
