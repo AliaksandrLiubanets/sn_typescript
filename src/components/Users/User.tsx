@@ -9,6 +9,8 @@ import {useState} from 'react'
 type UserPropsType = {
     follow: (id: number) => void
     unfollow: (id: number) => void
+    followingInProgress: Array<number>
+    setFollowingInProgress: (isFetching: boolean, userId: number) => void
 }
 
 type PropsType = UserPropsType & UserType

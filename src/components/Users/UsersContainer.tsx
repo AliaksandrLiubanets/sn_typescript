@@ -47,11 +47,11 @@ class Users extends Component<PropsType> {
                                                       status={u.status}
                                                       followed={u.followed}
                                                       location={u.location ? u.location : undefined}
-            // photo={u.photos.small || u.photos.large ? u.photos.small || u.photos.large : emptyAva}
                                                       photos={u.photos}
                                                       follow={this.props.follow}
                                                       unfollow={this.props.unfollow}
-
+                                                      followingInProgress={this.props.followingInProgress}
+                                                      setFollowingInProgress={this.props.setFollowingInProgress}
         />)
         const pagesCount = Math.ceil(this.props.totalCount / this.props.pageSize)
         const pages = []
