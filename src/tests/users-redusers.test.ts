@@ -25,6 +25,7 @@ beforeEach(() => {
         pageSize: 5,
         currentPage: 2,
         isFetching: true,
+        followingInProgress: [],
     }
 })
 
@@ -71,7 +72,6 @@ test("should set users and user's count", () => {
 })
 
 test("should set current page", () => {
-
 
     const action = setCurrentPage(25)
     const changedState = usersReducer(state, action)
