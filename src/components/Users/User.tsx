@@ -37,8 +37,8 @@ function User({name, id, status, followed, photos, location, unfollow, follow}: 
                                 .then(response => {
                                     if (response.data.resultCode === 0) {
                                         unfollow(id)
-                                        setIsFetching(false)
                                     }
+                                    setIsFetching(false)
                                 })
                         }}>unfollow</button>
                         : <button disabled={isFetching} onClick={() => {
@@ -47,8 +47,8 @@ function User({name, id, status, followed, photos, location, unfollow, follow}: 
                                 .then(response => {
                                     if (response.data.resultCode === 0) {
                                         follow(id)
-                                        setIsFetching(false)
                                     }
+                                    setIsFetching(false)
                                 })
                         }}>follow</button>
                 }
