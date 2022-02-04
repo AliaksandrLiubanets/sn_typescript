@@ -1,6 +1,13 @@
 import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
-import {follow, setCurrentPage, setUsers, toggleIsFetching, unfollow, UserType} from '../Redux/users-reducer'
+import {
+    follow,
+    setCurrentPage,
+    setUsers,
+    toggleIsFetching,
+    unfollow,
+    UserType
+} from '../Redux/users-reducer'
 import User from './User'
 import s from './Users.module.css'
 import {Component} from 'react'
@@ -90,7 +97,7 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
         totalCount: state.usersPage.totalCount,
         pageSize: state.usersPage.pageSize,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
     }
 }
 
@@ -99,5 +106,5 @@ export default connect(mapStateToProps, {
     unfollow,
     setUsers,
     setCurrentPage,
-    toggleIsFetching
+    toggleIsFetching,
 })(Users)
