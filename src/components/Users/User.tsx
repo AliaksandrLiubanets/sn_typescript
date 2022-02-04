@@ -4,7 +4,6 @@ import {usersAPI} from '../../api/api'
 import {UserType} from '../Redux/users-reducer'
 import emptyAva from '../../assets/empty_avatar.jpg'
 import {Preloader} from '../common/Preloader/Preloader'
-import {useState} from 'react'
 
 type UserPropsType = {
     follow: (id: number) => void
@@ -15,14 +14,14 @@ type UserPropsType = {
 
 type PropsType = UserPropsType & UserType
 
-function User({name, id, status, followed, photos, location, unfollow, follow}: PropsType) {
+function User({name, id, status, followed, photos, location, unfollow, follow, followingInProgress, setFollowingInProgress}: PropsType) {
 
-    const [isFetching, setIsFetching] = useState(false)
+    // const [isFetching, setIsFetching] = useState(false)
 
     return <div className={s.user__block}>
         <div className={s.user__avaFollowed}>
             {
-                isFetching && <div className={s.user_preloader}><Preloader/></div>
+                followingInProgress.some((num) => num === id) && <div className={s.user_preloader}><Preloader/></div>
             }
 
             <NavLink to={`/profile/${id}`}>
@@ -33,24 +32,24 @@ function User({name, id, status, followed, photos, location, unfollow, follow}: 
             <div className={s.user__followed}>
                 {
                     followed
-                        ? <button disabled={isFetching} onClick={() => {
-                            setIsFetching(true)
+                        ? <button disabled={followingInProgress.some(num => num === id)} onClick={() => {
+                            setFollowingInProgress(true, id)
                             usersAPI.unfollowUser(id)
                                 .then(response => {
                                     if (response.data.resultCode === 0) {
                                         unfollow(id)
                                     }
-                                    setIsFetching(false)
+                                    setFollowingInProgress(false, id)
                                 })
                         }}>unfollow</button>
-                        : <button disabled={isFetching} onClick={() => {
-                            setIsFetching(true)
+                        : <button disabled={followingInProgress.some(num => num === id)} onClick={() => {
+                            setFollowingInProgress(true, id)
                             usersAPI.followUser(id)
                                 .then(response => {
                                     if (response.data.resultCode === 0) {
                                         follow(id)
                                     }
-                                    setIsFetching(false)
+                                    setFollowingInProgress(false, id)
                                 })
                         }}>follow</button>
                 }
