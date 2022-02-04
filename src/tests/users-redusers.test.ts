@@ -1,6 +1,6 @@
 import usersReducer, {
     follow,
-    setCurrentPage,
+    setCurrentPage, setFollowingInProgress,
     setUsers, toggleIsFetching,
     unfollow,
     UsersStateType
@@ -81,8 +81,16 @@ test("should set current page", () => {
 
 test("isFetching should toggle", () => {
 
-    const action = toggleIsFetching(false)
+    const action = toggleIsFetching(true)
     const changedState = usersReducer(state, action)
 
-    expect(changedState.isFetching).toBe(false)
+    expect(changedState.isFetching).toBe(true)
+})
+
+test("followingInProgress has element", () => {
+
+    const action = setFollowingInProgress(true, 1)
+    const changedState = usersReducer(state, action)
+
+    expect(changedState.followingInProgress).toStrictEqual([1])
 })
