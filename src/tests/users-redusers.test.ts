@@ -1,7 +1,7 @@
 import usersReducer, {
     follow,
     setCurrentPage,
-    setUsers,
+    setUsers, toggleIsFetching,
     unfollow,
     UsersStateType
 } from '../components/Redux/users-reducer'
@@ -24,7 +24,7 @@ beforeEach(() => {
         totalCount: 0,
         pageSize: 5,
         currentPage: 2,
-        isFetching: true,
+        isFetching: false,
         followingInProgress: [],
     }
 })
@@ -77,5 +77,12 @@ test("should set current page", () => {
     const changedState = usersReducer(state, action)
 
     expect(changedState.currentPage).toBe(25)
+})
 
+test("isFetching should toggle", () => {
+
+    const action = toggleIsFetching(false)
+    const changedState = usersReducer(state, action)
+
+    expect(changedState.isFetching).toBe(false)
 })
