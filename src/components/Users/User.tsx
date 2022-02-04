@@ -4,6 +4,7 @@ import {usersAPI} from '../../api/api'
 import {UserType} from '../Redux/users-reducer'
 import emptyAva from '../../assets/empty_avatar.jpg'
 import {Preloader} from '../common/Preloader/Preloader'
+import {useState} from 'react'
 
 type UserPropsType = {
     follow: (id: number) => void
@@ -13,9 +14,15 @@ type UserPropsType = {
 type PropsType = UserPropsType & UserType
 
 function User({name, id, status, followed, photos, location, unfollow, follow}: PropsType) {
+
+    const [isFetching, setIsFetching] = useState(false)
+
     return <div className={s.user__block}>
         <div className={s.user__avaFollowed}>
-            <div className={s.user_preloader}><Preloader/></div>
+            {
+                isFetching && <div className={s.user_preloader}><Preloader/></div>
+            }
+
             <NavLink to={`/profile/${id}`}>
                 <div className={s.user__ava}>
                     <img src={photos.small ? photos.small : emptyAva} alt="ava"/>
@@ -24,19 +31,23 @@ function User({name, id, status, followed, photos, location, unfollow, follow}: 
             <div className={s.user__followed}>
                 {
                     followed
-                        ? <button onClick={() => {
+                        ? <button disabled={isFetching} onClick={() => {
+                            setIsFetching(true)
                             usersAPI.unfollowUser(id)
                                 .then(response => {
                                     if (response.data.resultCode === 0) {
                                         unfollow(id)
+                                        setIsFetching(false)
                                     }
                                 })
                         }}>unfollow</button>
-                        : <button onClick={() => {
+                        : <button disabled={isFetching} onClick={() => {
+                            setIsFetching(true)
                             usersAPI.followUser(id)
                                 .then(response => {
                                     if (response.data.resultCode === 0) {
                                         follow(id)
+                                        setIsFetching(false)
                                     }
                                 })
                         }}>follow</button>
