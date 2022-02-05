@@ -1,11 +1,11 @@
 import React from 'react'
-import axios from 'axios'
 import {RootStateType} from '../Redux/redux-store'
 import {connect} from 'react-redux'
 import {ProfileType, setUserProfile} from '../Redux/profile-reducer'
 import {Profile} from './Profile'
 import {Dispatch} from 'redux'
 import {AuthDataType, setAuthData} from '../Redux/auth-reducer'
+import {profileAPI} from '../../api/api'
 
 
 type PropsType = {
@@ -25,7 +25,8 @@ class ProfileContainer extends React.Component<PropsType> {
             userId = '2'
         }
         if (this.props.isAuth) {
-            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+            // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+            profileAPI.getUserProfile(userId)
                 .then(response => {
                     this.props.setUserProfile(response.data)
                 })

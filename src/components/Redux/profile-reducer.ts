@@ -10,12 +10,7 @@ export type PostType = {
     likes: number
 }
 
-export type ProfileType = {
-    userId: string
-    lookingForAJob: string
-    lookingForAJobDescription: string
-    fullName: string
-    contacts: string
+type ContactsType = {
     github: string
     vk: string
     facebook: string
@@ -24,6 +19,14 @@ export type ProfileType = {
     website: string
     youtube: string
     mainLink: string
+}
+
+export type ProfileType = {
+    userId: number
+    lookingForAJob: string
+    lookingForAJobDescription: string
+    fullName: string
+    contacts: ContactsType
     photos: {
         small: string
         large: string

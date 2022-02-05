@@ -1,6 +1,7 @@
 import axios from "axios";
 import {UserType} from '../components/Redux/users-reducer'
 import {AuthDataType} from '../components/Redux/auth-reducer'
+import {ProfileType} from '../components/Redux/profile-reducer'
 
 type ResponseGetUsers = {
     items: Array<UserType>
@@ -19,6 +20,8 @@ type ResponseAuth = {
     messages: string[]
     data: AuthDataType
 }
+
+type ResponseUserProfile = ProfileType
 
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -45,5 +48,11 @@ export const usersAPI = {
 export const authAPI = {
     auth() {
         return instance.get<ResponseAuth>('https://social-network.samuraijs.com/api/1.0/auth/me')
+    }
+}
+
+export const profileAPI = {
+    getUserProfile(userId: number) {
+        return instance.get<ResponseUserProfile>(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
     }
 }
