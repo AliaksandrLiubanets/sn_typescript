@@ -1,21 +1,6 @@
 import axios from "axios";
 import {UserType} from '../components/Redux/users-reducer'
-
-type ItemUserType =  {
-    name: string
-    id: number
-    uniqueUrlName: null
-    photos: {
-        small: null | string
-        large: null | string
-    },
-    status: null | string
-    followed: boolean
-    location?: {
-        city: string
-        country: string
-    }
-}
+import {AuthDataType} from '../components/Redux/auth-reducer'
 
 type ResponseGetUsers = {
     items: Array<UserType>
@@ -27,6 +12,12 @@ type ResponseFollowUnfollowUser = {
     resultCode: number
     messages: null | Array<string>
     data: Date
+}
+
+type ResponseAuth = {
+    resultCode: number
+    messages: string[]
+    data: AuthDataType
 }
 
 const instance = axios.create({
@@ -49,4 +40,10 @@ export const usersAPI = {
     unfollowUser(userId: number) {
         return instance.delete<ResponseFollowUnfollowUser>(`follow/${userId}`)
     },
+}
+
+export const authAPI = {
+    auth() {
+        return instance.get<ResponseAuth>('https://social-network.samuraijs.com/api/1.0/auth/me')
+    }
 }
