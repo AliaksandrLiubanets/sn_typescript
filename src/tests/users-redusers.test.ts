@@ -1,8 +1,8 @@
 import usersReducer, {
-    follow,
+    followAC,
     setCurrentPage, setFollowingInProgress,
     setUsers, toggleIsFetching,
-    unfollow,
+    unfollowAC,
     UsersStateType
 } from '../components/Redux/users-reducer'
 import ava_dimych from '../assets/ava_dimych.jpg'
@@ -31,7 +31,7 @@ beforeEach(() => {
 
 test('should subscribe to user', () => {
 
-    const action = follow(2)
+    const action = followAC(2)
     const changedState = usersReducer(state, action)
 
     expect(changedState.users[1].followed).toBe(true)
@@ -42,7 +42,7 @@ test('should subscribe to user', () => {
 
 test('should unsubscribe from user', () => {
 
-    const action = unfollow(3)
+    const action = unfollowAC(3)
     const changedState = usersReducer(state, action)
 
     expect(changedState.users[0].followed).toBe(true)

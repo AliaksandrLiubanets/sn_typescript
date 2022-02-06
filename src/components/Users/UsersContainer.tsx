@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
-import {follow, getUsers, setCurrentPage, setFollowingInProgress, unfollow, UserType} from '../Redux/users-reducer'
+import {followAC, getUsers, setCurrentPage, setFollowingInProgress, unfollowAC, UserType} from '../Redux/users-reducer'
 import User from './User'
 import s from './Users.module.css'
 import {Component} from 'react'
@@ -84,8 +84,8 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
 }
 
 export default connect(mapStateToProps, {
-    follow,
-    unfollow,
+    follow: followAC,
+    unfollow: unfollowAC,
     setCurrentPage,
     setFollowingInProgress,
     getUsers,

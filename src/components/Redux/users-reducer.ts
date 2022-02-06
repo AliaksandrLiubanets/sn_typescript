@@ -112,8 +112,8 @@ const usersReducer = (state = initialState, action: UsersAT): UsersStateType => 
     }
 }
 
-export const follow = (userId: number): FollowAT => ({type: FOLLOW_USER, userId})
-export const unfollow = (userId: number): UnFollowAT => ({type: UNFOLLOW_USER, userId})
+export const followAC = (userId: number): FollowAT => ({type: FOLLOW_USER, userId})
+export const unfollowAC = (userId: number): UnFollowAT => ({type: UNFOLLOW_USER, userId})
 export const setUsers = (users: Array<UserType>, count: number): SetUsersAT => ({type: SET_USERS, users, count})
 export const setCurrentPage = (currentPage: number): SetCurrentPageAT => ({type: SET_CURRENT_PAGE, currentPage})
 export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingAT => ({type: TOGGLE_IS_FETCHING, isFetching})
@@ -128,6 +128,17 @@ export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Di
             dispatch(setUsers(response.data.items, response.data.totalCount))
             dispatch(toggleIsFetching(false))
         })
+}
+
+export const unfollow = (userId: number) => (dispatch: Dispatch) => {
+
+    dispatch(setFollowingInProgress(true, userId))
+    usersAPI.unfollowUser(userId)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(unfollowAC(userId))
+            }
+            dispatch(setFollowingInProgress(false, userId))
 }
 
 export default usersReducer
