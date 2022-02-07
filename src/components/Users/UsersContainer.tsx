@@ -5,6 +5,7 @@ import User from './User'
 import s from './Users.module.css'
 import {Component} from 'react'
 import {Preloader} from '../common/Preloader/Preloader'
+import {NavLink} from 'react-router-dom'
 
 
 type PropsType = MapStatePropsType & MapDispatchPropsType
@@ -21,6 +22,10 @@ class Users extends Component<PropsType> {
     }
 
     render() {
+        if(!this.props.isAuth) {
+            <NavLink to={'/login'}/>
+        }
+
         const users = this.props.users.map(u => <User key={u.id}
                                                       id={u.id}
                                                       name={u.name}
@@ -62,6 +67,7 @@ type MapStatePropsType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: Array<number>
+    isAuth: boolean
 }
 
 type MapDispatchPropsType = {
@@ -79,6 +85,7 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
         followingInProgress: state.usersPage.followingInProgress,
+        isAuth: state.auth.isAuth,
     }
 }
 

@@ -11,6 +11,7 @@ import Users from './components/Users/UsersContainer'
 import {ProfileWithParam} from './components/Profile/ProfileWithParam'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
+import {Login} from './components/Login/Login'
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
                     <Route path="/music" element={<Music/>}/>
                     <Route path="/users" element={<Users/>}/>
                     <Route path="/settings" element={<Settings/>}/>
+                    <Route path="/login" element={<Login/>}/>
                 </Routes>
             </div>
         </div>
