@@ -117,7 +117,11 @@ export const unfollowAC = (userId: number): UnFollowAT => ({type: UNFOLLOW_USER,
 export const setUsers = (users: Array<UserType>, count: number): SetUsersAT => ({type: SET_USERS, users, count})
 export const setCurrentPage = (currentPage: number): SetCurrentPageAT => ({type: SET_CURRENT_PAGE, currentPage})
 export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingAT => ({type: TOGGLE_IS_FETCHING, isFetching})
-export const setFollowingInProgress = (isFetching: boolean, userId: number): FollowingInProgressAT => ({type: FOLLOWING_IN_PROGRESS, isFetching, userId})
+export const setFollowingInProgress = (isFetching: boolean, userId: number): FollowingInProgressAT => ({
+    type: FOLLOWING_IN_PROGRESS,
+    isFetching,
+    userId
+})
 
 
 export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
@@ -139,6 +143,6 @@ export const unfollow = (userId: number) => (dispatch: Dispatch) => {
                 dispatch(unfollowAC(userId))
             }
             dispatch(setFollowingInProgress(false, userId))
+        })
 }
-
 export default usersReducer

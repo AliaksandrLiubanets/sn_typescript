@@ -33,14 +33,15 @@ function User({name, id, status, followed, photos, location, unfollow, follow, f
                 {
                     followed
                         ? <button disabled={followingInProgress.some(num => num === id)} onClick={() => {
-                            setFollowingInProgress(true, id)
-                            usersAPI.unfollowUser(id)
-                                .then(response => {
-                                    if (response.data.resultCode === 0) {
-                                        unfollow(id)
-                                    }
-                                    setFollowingInProgress(false, id)
-                                })
+                            // setFollowingInProgress(true, id)
+                            // usersAPI.unfollowUser(id)
+                            //     .then(response => {
+                            //         if (response.data.resultCode === 0) {
+                            //             unfollow(id)
+                            //         }
+                            //         setFollowingInProgress(false, id)
+                            //     })
+                        unfollow(id)
                         }}>unfollow</button>
                         : <button disabled={followingInProgress.some(num => num === id)} onClick={() => {
                             setFollowingInProgress(true, id)
