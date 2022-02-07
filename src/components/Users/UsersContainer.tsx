@@ -5,7 +5,7 @@ import User from './User'
 import s from './Users.module.css'
 import {Component} from 'react'
 import {Preloader} from '../common/Preloader/Preloader'
-import {NavLink} from 'react-router-dom'
+import {Navigate} from 'react-router-dom'
 
 
 type PropsType = MapStatePropsType & MapDispatchPropsType
@@ -23,7 +23,7 @@ class Users extends Component<PropsType> {
 
     render() {
         if(!this.props.isAuth) {
-            <NavLink to={'/login'}/>
+            <Navigate to={'/login'}/>
         }
 
         const users = this.props.users.map(u => <User key={u.id}
