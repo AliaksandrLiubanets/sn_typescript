@@ -2,7 +2,7 @@ import React, {useEffect} from 'react'
 import axios from 'axios'
 import {RootStateType} from '../Redux/redux-store'
 import {connect} from 'react-redux'
-import {ProfileType, setUserProfile} from '../Redux/profile-reducer'
+import {ProfileType, setUserProfileAC} from '../Redux/profile-reducer'
 import {Profile} from './Profile'
 import {Dispatch} from 'redux'
 
@@ -46,7 +46,7 @@ const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {
 
 const mapDispatchToProps = (dispatch: Dispatch): TDispatchProps => {
     return {
-        setUserProfile: (profile) => dispatch(setUserProfile(profile))
+        setUserProfile: (profile) => dispatch(setUserProfileAC(profile))
     }
 }
 

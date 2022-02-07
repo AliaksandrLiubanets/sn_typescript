@@ -3,13 +3,11 @@ import {RootStateType} from '../Redux/redux-store'
 import {connect} from 'react-redux'
 import {ProfileType, setUserProfile} from '../Redux/profile-reducer'
 import {Profile} from './Profile'
-import {Dispatch} from 'redux'
-import {AuthDataType, setAuthDataAC} from '../Redux/auth-reducer'
-import {profileAPI} from '../../api/api'
+import {AuthDataType, setAuthData} from '../Redux/auth-reducer'
 
 
 type PropsType = {
-    setUserProfile: (profile: ProfileType) => void
+    setUserProfile: (userId: number) => void
     setAuthData: (data: AuthDataType) => void
     profile: ProfileType | null
     match?: { userId: string }
@@ -25,10 +23,7 @@ class ProfileContainer extends React.Component<PropsType> {
             userId = 2
         }
         if (this.props.isAuth) {
-            profileAPI.getUserProfile(userId)
-                .then(response => {
-                    this.props.setUserProfile(response.data)
-                })
+            this.props.setUserProfile(userId)
         }
 
     }
@@ -38,10 +33,10 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 }
 
-type TDispatchProps = {
-    setUserProfile: (profile: ProfileType) => void
-    setAuthData: (data: AuthDataType) => void
-}
+// type TDispatchProps = {
+//     setUserProfile: (userId: number) => void
+//     setAuthData: () => void
+// }
 
 type TOwnProps = {
     match?: any
@@ -55,11 +50,11 @@ const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): TDispatchProps => {
-    return {
-        setUserProfile: (profile) => dispatch(setUserProfile(profile)),
-        setAuthData: (data) => dispatch(setAuthDataAC(data))
-    }
-}
+// const mapDispatchToProps = (dispatch: Dispatch): TDispatchProps => {
+//     return {
+//         setUserProfile: (userId) => dispatch(setUserProfile(userId)),
+//         setAuthData: () => dispatch(setAuthData())
+//     }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer)
+export default connect(mapStateToProps, {setUserProfile, setAuthData})(ProfileContainer)
