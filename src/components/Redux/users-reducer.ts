@@ -145,4 +145,16 @@ export const unfollow = (userId: number) => (dispatch: Dispatch) => {
             dispatch(setFollowingInProgress(false, userId))
         })
 }
+
+export const follow = (userId: number) => (dispatch: Dispatch) => {
+
+    dispatch(setFollowingInProgress(true, userId))
+    usersAPI.followUser(userId)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(followAC(userId))
+            }
+            dispatch(setFollowingInProgress(false, userId))
+        })
+}
 export default usersReducer
