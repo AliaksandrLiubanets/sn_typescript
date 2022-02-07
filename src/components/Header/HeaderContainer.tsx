@@ -27,22 +27,12 @@ type MapStateProps = {
     isAuth: boolean
 }
 
-// type MapDispatchProps = {
-//     setAuthData: () => void
-// }
-
 const mapStateToProps = (state: RootStateType): MapStateProps => {
     return {
         login: state.auth.data.login,
         isAuth: state.auth.isAuth,
     }
 }
-
-// const mapDispatchToProps = (dispatch: Dispatch): MapDispatchProps => {
-//     return {
-//         setAuthData: () => dispatch(setAuthData())
-//     }
-// }
 
 export default connect(mapStateToProps, {setAuthData})(HeaderContainer)
 
