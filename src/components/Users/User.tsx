@@ -31,10 +31,10 @@ function User({name, id, status, followed, photos, location, unfollow, follow, f
                 {
                     followed
                         ? <button disabled={followingInProgress.some(num => num === id)} onClick={() => {
-                        unfollow(id)
+                            unfollow(id)
                         }}>unfollow</button>
                         : <button disabled={followingInProgress.some(num => num === id)} onClick={() => {
-                        follow(id)
+                            follow(id)
                         }}>follow</button>
                 }
             </div>

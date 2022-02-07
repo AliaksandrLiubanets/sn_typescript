@@ -1,10 +1,11 @@
 import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
-import {follow, getUsers, setCurrentPage, setFollowingInProgress, unfollow, UserType} from '../Redux/users-reducer'
+import {follow, getUsers, setCurrentPage, unfollow, UserType} from '../Redux/users-reducer'
 import User from './User'
 import s from './Users.module.css'
 import {Component} from 'react'
 import {Preloader} from '../common/Preloader/Preloader'
+
 
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
@@ -30,7 +31,6 @@ class Users extends Component<PropsType> {
                                                       follow={this.props.follow}
                                                       unfollow={this.props.unfollow}
                                                       followingInProgress={this.props.followingInProgress}
-                                                      // setFollowingInProgress={this.props.setFollowingInProgress}
         />)
         const pagesCount = Math.ceil(this.props.totalCount / this.props.pageSize)
         const pages = []
@@ -68,7 +68,6 @@ type MapDispatchPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setCurrentPage: (setCurrentPage: number) => void
-    setFollowingInProgress: (isFetching: boolean, userId: number) => void
     getUsers: (currentPage: number, pageSize: number) => void
 }
 
@@ -87,6 +86,5 @@ export default connect(mapStateToProps, {
     follow,
     unfollow,
     setCurrentPage,
-    setFollowingInProgress,
     getUsers,
 })(Users)
