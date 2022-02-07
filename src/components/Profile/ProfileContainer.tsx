@@ -25,7 +25,6 @@ class ProfileContainer extends React.Component<PropsType> {
             userId = 2
         }
         if (this.props.isAuth) {
-            // axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
             profileAPI.getUserProfile(userId)
                 .then(response => {
                     this.props.setUserProfile(response.data)

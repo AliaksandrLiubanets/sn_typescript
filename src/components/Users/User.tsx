@@ -1,6 +1,5 @@
 import s from './Users.module.css'
 import {NavLink} from 'react-router-dom'
-import {usersAPI} from '../../api/api'
 import {UserType} from '../Redux/users-reducer'
 import emptyAva from '../../assets/empty_avatar.jpg'
 import {Preloader} from '../common/Preloader/Preloader'
@@ -9,12 +8,11 @@ type UserPropsType = {
     follow: (id: number) => void
     unfollow: (id: number) => void
     followingInProgress: Array<number>
-    setFollowingInProgress: (isFetching: boolean, userId: number) => void
 }
 
 type PropsType = UserPropsType & UserType
 
-function User({name, id, status, followed, photos, location, unfollow, follow, followingInProgress, setFollowingInProgress}: PropsType) {
+function User({name, id, status, followed, photos, location, unfollow, follow, followingInProgress}: PropsType) {
 
     // const [isFetching, setIsFetching] = useState(false)
 
@@ -33,25 +31,9 @@ function User({name, id, status, followed, photos, location, unfollow, follow, f
                 {
                     followed
                         ? <button disabled={followingInProgress.some(num => num === id)} onClick={() => {
-                            // setFollowingInProgress(true, id)
-                            // usersAPI.unfollowUser(id)
-                            //     .then(response => {
-                            //         if (response.data.resultCode === 0) {
-                            //             unfollow(id)
-                            //         }
-                            //         setFollowingInProgress(false, id)
-                            //     })
                         unfollow(id)
                         }}>unfollow</button>
                         : <button disabled={followingInProgress.some(num => num === id)} onClick={() => {
-                            // setFollowingInProgress(true, id)
-                            // usersAPI.followUser(id)
-                            //     .then(response => {
-                            //         if (response.data.resultCode === 0) {
-                            //             follow(id)
-                            //         }
-                            //         setFollowingInProgress(false, id)
-                            //     })
                         follow(id)
                         }}>follow</button>
                 }

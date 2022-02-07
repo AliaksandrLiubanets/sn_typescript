@@ -1,15 +1,6 @@
 import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
-import {
-    follow,
-    followAC,
-    getUsers,
-    setCurrentPage,
-    setFollowingInProgress,
-    unfollow,
-    unfollowAC,
-    UserType
-} from '../Redux/users-reducer'
+import {follow, getUsers, setCurrentPage, setFollowingInProgress, unfollow, UserType} from '../Redux/users-reducer'
 import User from './User'
 import s from './Users.module.css'
 import {Component} from 'react'
