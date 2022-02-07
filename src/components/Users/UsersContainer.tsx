@@ -30,7 +30,7 @@ class Users extends Component<PropsType> {
                                                       follow={this.props.follow}
                                                       unfollow={this.props.unfollow}
                                                       followingInProgress={this.props.followingInProgress}
-                                                      setFollowingInProgress={this.props.setFollowingInProgress}
+                                                      // setFollowingInProgress={this.props.setFollowingInProgress}
         />)
         const pagesCount = Math.ceil(this.props.totalCount / this.props.pageSize)
         const pages = []

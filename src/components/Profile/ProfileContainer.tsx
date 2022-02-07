@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {ProfileType, setUserProfile} from '../Redux/profile-reducer'
 import {Profile} from './Profile'
 import {Dispatch} from 'redux'
-import {AuthDataType, setAuthData} from '../Redux/auth-reducer'
+import {AuthDataType, setAuthDataAC} from '../Redux/auth-reducer'
 import {profileAPI} from '../../api/api'
 
 
@@ -58,7 +58,7 @@ const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {
 const mapDispatchToProps = (dispatch: Dispatch): TDispatchProps => {
     return {
         setUserProfile: (profile) => dispatch(setUserProfile(profile)),
-        setAuthData: (data) => dispatch(setAuthData(data))
+        setAuthData: (data) => dispatch(setAuthDataAC(data))
     }
 }
 

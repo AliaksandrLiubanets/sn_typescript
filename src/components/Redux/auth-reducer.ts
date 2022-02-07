@@ -1,3 +1,5 @@
+import {Dispatch} from 'redux'
+import {authAPI} from '../../api/api'
 
 export const SET_AUTH_DATA = 'sn-typescript/Authorize/SET-AUTH-DATA'
 
@@ -30,10 +32,25 @@ const authReducer = (state: AuthStateType = initialState, action: AuthActionsTyp
     }
 }
 
-export type AuthType = ReturnType<typeof setAuthData>
+// export type AuthType = ReturnType<typeof setAuthDataAC>
+
+type AuthType = {
+    type: typeof SET_AUTH_DATA
+    data: AuthDataType
+}
 
 export type AuthActionsType = AuthType
 
-export const setAuthData = (data: AuthDataType) => ({type: SET_AUTH_DATA, data} as const)
+// export const setAuthDataAC = (data: AuthDataType) => ({type: SET_AUTH_DATA, data} as const)
+export const setAuthDataAC = (data: AuthDataType): AuthType => ({type: SET_AUTH_DATA, data})
+
+export const setAuthData = () => (dispatch: Dispatch) => {
+    authAPI.auth()
+        .then(response => {
+            if(response.data.resultCode === 0) {
+                dispatch(setAuthDataAC(response.data.data))
+            }
+        })
+}
 
 export default authReducer
