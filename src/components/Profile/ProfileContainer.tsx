@@ -5,6 +5,7 @@ import {ProfileType, setUserProfile} from '../Redux/profile-reducer'
 import {Profile} from './Profile'
 import {AuthDataType, setAuthData} from '../Redux/auth-reducer'
 import {Navigate} from 'react-router-dom'
+import {withAuthNavigate} from '../HOC/withAuthNavigate'
 
 
 type PropsType = {
@@ -62,4 +63,6 @@ const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {
 //     }
 // }
 
-export default connect(mapStateToProps, {setUserProfile, setAuthData})(ProfileContainer)
+const ProfileWithNavigateToLogin = withAuthNavigate(ProfileContainer)
+
+export default connect(mapStateToProps, {setUserProfile, setAuthData})(ProfileWithNavigateToLogin)
