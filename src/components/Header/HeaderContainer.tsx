@@ -36,3 +36,7 @@ const mapStateToProps = (state: RootStateType): MapStateProps => {
 
 export default connect(mapStateToProps, {setAuthData})(HeaderContainer)
 
+// export default compose( // ??? - Maximum update depth exceeded error
+//     withAuthNavigate,
+//     connect(mapStateToProps, {setAuthData})
+// )(HeaderContainer)

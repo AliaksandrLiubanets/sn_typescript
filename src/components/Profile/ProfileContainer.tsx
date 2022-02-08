@@ -6,6 +6,7 @@ import {Profile} from './Profile'
 import {AuthDataType, setAuthData} from '../Redux/auth-reducer'
 import {Navigate} from 'react-router-dom'
 import {withAuthNavigate} from '../HOC/withAuthNavigate'
+import {compose} from 'redux'
 
 
 type PropsType = {
@@ -63,6 +64,7 @@ const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {
 //     }
 // }
 
-const ProfileWithNavigateToLogin = withAuthNavigate(ProfileContainer)
-
-export default connect(mapStateToProps, {setUserProfile, setAuthData})(ProfileWithNavigateToLogin)
+export default compose(
+    withAuthNavigate,
+    connect(mapStateToProps, {setUserProfile, setAuthData})
+)(ProfileContainer)
