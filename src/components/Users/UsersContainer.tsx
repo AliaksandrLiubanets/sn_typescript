@@ -3,9 +3,8 @@ import {RootStateType} from '../Redux/redux-store'
 import {follow, getUsers, setCurrentPage, unfollow, UserType} from '../Redux/users-reducer'
 import User from './User'
 import s from './Users.module.css'
-import {Component} from 'react'
+import React, {Component} from 'react'
 import {Preloader} from '../common/Preloader/Preloader'
-import {Navigate} from 'react-router-dom'
 
 
 type PropsType = MapStatePropsType & MapDispatchPropsType
@@ -22,9 +21,9 @@ class Users extends Component<PropsType> {
     }
 
     render() {
-        if(!this.props.isAuth) {
-            return <Navigate to={'/login'}/>
-        }
+        // if(!this.props.isAuth) {
+        //     return <Navigate to={'/login'}/>
+        // }
 
         const users = this.props.users.map(u => <User key={u.id}
                                                       id={u.id}
@@ -88,6 +87,7 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
         isAuth: state.auth.isAuth,
     }
 }
+
 
 export default connect(mapStateToProps, {
     follow,
