@@ -27,13 +27,13 @@ function Dialogs(props: MapStatePropsType) {
 
 type MapStatePropsType = {
     dialogs: Array<DialogType>
-    isAuth: boolean
+    // isAuth: boolean
 }
 
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
         dialogs: state.dialogsPage.dialogs,
-        isAuth: state.auth.isAuth,
+        // isAuth: state.auth.isAuth,
     }
 }
 
