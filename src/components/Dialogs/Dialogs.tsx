@@ -1,9 +1,10 @@
 import s from './Dialogs.module.css'
 import {DialogsItem} from './DialogsItem'
-import {Navigate, Outlet} from 'react-router-dom'
+import {Outlet} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
 import {DialogType} from '../Redux/dialogs-reducer'
+import {withAuthNavigate} from '../HOC/withAuthNavigate'
 
 function Dialogs(props: MapStatePropsType) {
 
@@ -12,12 +13,8 @@ function Dialogs(props: MapStatePropsType) {
                                                                            id={d.id}
                                                                            ava={d.ava}/>)
 
-    // if(!props.isAuth) {
-    //     return <Navigate to={'/login'}/>
-    // }
 
     return <div className={s.dialogs__block}>
-        { !props.isAuth && <Navigate to={'/login'}/> }
         <div className={s.dialogs}>
             <h4>DIALOGS</h4>
             {dialogsItems}
@@ -40,4 +37,6 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     }
 }
 
-export const DialogsContainer = connect(mapStateToProps)(Dialogs)
+const DialogswithNavigateToLogin = withAuthNavigate(Dialogs)
+
+export const DialogsContainer = connect(mapStateToProps)(DialogswithNavigateToLogin)

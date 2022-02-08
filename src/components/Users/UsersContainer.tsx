@@ -89,11 +89,11 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     }
 }
 
-const UserWithNavigate = withAuthNavigate(Users)
+const UserWithNavigateToLogin = withAuthNavigate(Users)
 
 export default connect(mapStateToProps, {
     follow,
     unfollow,
     setCurrentPage,
     getUsers,
-})(UserWithNavigate)
+})(UserWithNavigateToLogin)
