@@ -5,6 +5,7 @@ import User from './User'
 import s from './Users.module.css'
 import React, {Component} from 'react'
 import {Preloader} from '../common/Preloader/Preloader'
+import {withAuthNavigate} from '../HOC/withAuthNavigate'
 
 
 type PropsType = MapStatePropsType & MapDispatchPropsType
@@ -88,10 +89,11 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     }
 }
 
+const UserWithNavigate = withAuthNavigate(Users)
 
 export default connect(mapStateToProps, {
     follow,
     unfollow,
     setCurrentPage,
     getUsers,
-})(Users)
+})(UserWithNavigate)
