@@ -37,6 +37,6 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     }
 }
 
-const DialogswithNavigateToLogin = withAuthNavigate(Dialogs)
+const DialogsWithNavigateToLogin = withAuthNavigate(Dialogs)
 
-export const DialogsContainer = connect(mapStateToProps)(DialogswithNavigateToLogin)
+export const DialogsContainer = connect(mapStateToProps)(DialogsWithNavigateToLogin)
