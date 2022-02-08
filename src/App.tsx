@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 import Navbar from './components/Navbar/Navbar'
-import {DialogsContainer} from './components/Dialogs/Dialogs'
+import Dialogs from './components/Dialogs/Dialogs'
 import {Route, Routes} from 'react-router-dom'
 import News from './components/News'
 import Music from './components/Music'
@@ -21,7 +21,7 @@ function App() {
             <Navbar/>
             <div className="content">
                 <Routes>
-                    <Route path="/dialogs" element={<DialogsContainer/>}>
+                    <Route path="/dialogs" element={<Dialogs/>}>
                         <Route path="/dialogs/:name"
                                element={<DialogContainer/>}/>
                     </Route>
