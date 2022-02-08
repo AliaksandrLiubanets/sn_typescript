@@ -23,7 +23,7 @@ class Users extends Component<PropsType> {
 
     render() {
         if(!this.props.isAuth) {
-            <Navigate to={'/login'}/>
+            return <Navigate to={'/login'}/>
         }
 
         const users = this.props.users.map(u => <User key={u.id}

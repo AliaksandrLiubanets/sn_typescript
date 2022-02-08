@@ -31,7 +31,7 @@ class ProfileContainer extends React.Component<PropsType> {
 
     render() {
         if(!this.props.isAuth) {
-            <Navigate to={'/login'}/>
+            return <Navigate to={'/login'}/>
         }
 
         return <Profile {...this.props}/>
