@@ -7,7 +7,8 @@ type StatusProps = {
 
 class ProfileStatus extends React.Component<StatusProps> {
     state = {
-        isEdit: false
+        isEdit: false,
+        status: this.props.status,
     }
 
     onEditMode = () => {

@@ -7,6 +7,7 @@ import {ProfileInfo} from './ProfileInfo/ProfileInfo'
 type ProfileProps = {
     profile: ProfileType | null
     status: string
+    setStatus: (status: string) => void
 }
 
 export const Profile: FC<ProfileProps> =(props) => {

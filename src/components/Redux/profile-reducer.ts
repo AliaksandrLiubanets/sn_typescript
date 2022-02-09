@@ -103,11 +103,22 @@ export const setUserProfile = (userId: number) => (dispatch: Dispatch) => {
         })
 }
 
-export const setStatus = (userId: number) => (dispatch: Dispatch) => {
+export const getStatus = (userId: number) => (dispatch: Dispatch) => {
     return profileAPI.getStatus(userId)
         .then(response => {
             dispatch(setStatusProfileAC(response.data))
         })
+}
+
+export const setStatus = (status: string) => (dispatch: Dispatch) => {
+    dispatch(setStatusProfileAC(status))
+    return profileAPI.setStatus(status)
+        // .then(response => {
+        //     if(response.data.resultCode === 0) {
+        //         dispatch(setStatusProfileAC(status))
+        //     }
+        //
+        // })
 }
 
 export default profileReducer

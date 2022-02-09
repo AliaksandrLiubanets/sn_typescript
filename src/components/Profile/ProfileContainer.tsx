@@ -1,7 +1,7 @@
 import React from 'react'
 import {RootStateType} from '../Redux/redux-store'
 import {connect} from 'react-redux'
-import {ProfileType, setStatus, setUserProfile} from '../Redux/profile-reducer'
+import {ProfileType, getStatus, setUserProfile, setStatus} from '../Redux/profile-reducer'
 import {Profile} from './Profile'
 import {AuthDataType, setAuthData} from '../Redux/auth-reducer'
 import {withAuthNavigate} from '../HOC/withAuthNavigate'
@@ -11,7 +11,8 @@ import {compose} from 'redux'
 type PropsType = {
     setUserProfile: (userId: number) => void
     setAuthData: (data: AuthDataType) => void
-    setStatus: (userId: number) => void
+    getStatus: (userId: number) => void
+    setStatus: (status: string) => void
     profile: ProfileType | null
     match?: { userId: string }
     isAuth: boolean
@@ -28,7 +29,7 @@ class ProfileContainer extends React.Component<PropsType> {
         }
         if (this.props.isAuth) {
             this.props.setUserProfile(userId)
-            this.props.setStatus(userId)
+            this.props.getStatus(userId)
         }
 
     }
@@ -65,5 +66,5 @@ const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {
 
 export default compose(
     withAuthNavigate,
-    connect(mapStateToProps, {setUserProfile, setAuthData, setStatus})
+    connect(mapStateToProps, {setUserProfile, setAuthData, setStatus, getStatus})
 )(ProfileContainer)

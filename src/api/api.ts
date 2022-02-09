@@ -15,7 +15,7 @@ type ResponseFollowUnfollowUser = {
     data: Date
 }
 
-type ResponseAuth = {
+type ResponseAuthStatus = {
     resultCode: number
     messages: string[]
     data: AuthDataType
@@ -47,7 +47,7 @@ export const usersAPI = {
 
 export const authAPI = {
     auth() {
-        return instance.get<ResponseAuth>('auth/me')
+        return instance.get<ResponseAuthStatus>('auth/me')
     }
 }
 
@@ -57,5 +57,8 @@ export const profileAPI = {
     },
     getStatus(userId: number) {
         return instance.get<string>(`profile/status/${userId}`)
+    },
+    setStatus(status: string) {
+        return instance.put<ResponseAuthStatus>(`profile/status`, {status})
     },
 }
