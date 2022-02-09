@@ -22,6 +22,6 @@ export function ProfileInfo ({profile}: ProfileInfoProps) {
         <div className={s.profileInfo_name}>
             <span>{profile.fullName}</span>
         </div>
-        <ProfileStatus />
+        <ProfileStatus status={'text status'}/>
     </div>
 }
