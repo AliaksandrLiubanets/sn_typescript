@@ -39,16 +39,18 @@ export type ProfilePageType = {
     textareaCurrentValue: string
     messagesData: Array<PostType>
     profile: ProfileType | null
+    status: string | null
 }
 
-const initialState: ProfilePageType = {
+export const initialState: ProfilePageType = {
     textareaCurrentValue: '',
     messagesData: [
         {id: v1(), message: 'hello!', likes: 3},
         {id: v1(), message: 'Hi!', likes: 5},
         {id: v1(), message: 'How is it going?!', likes: 8}
     ],
-    profile: null
+    profile: null,
+    status: null,
 }
 
 const profileReducer = (state = initialState, action: ProfilePageActionsType): ProfilePageType => {
