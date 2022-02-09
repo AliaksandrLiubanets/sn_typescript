@@ -1,29 +1,21 @@
-import profileReducer, {addCurrentValue, addPost, ProfilePageType} from '../components/Redux/profile-reducer'
+import profileReducer, {
+    addCurrentValue,
+    addPost,
+    initialState,
+    ProfilePageType
+} from '../components/Redux/profile-reducer'
 
 let state: ProfilePageType
 
 beforeEach(() => {
-    state = {
-        textareaCurrentValue: '',
-        messagesData: [
-            {id: '1', message: 'hello!', likes: 3},
-            {id: '2', message: 'Hi!', likes: 5},
-            {id: '3', message: 'How is it going?!', likes: 8}
-        ],
-        profile: null,
-    }
+    state = initialState
 })
 
 test('should add post', () => {
 
     const state2: ProfilePageType = {
+        ...initialState,
         textareaCurrentValue: 'Hello friend!',
-        messagesData: [
-            {id: '1', message: 'hello!', likes: 3},
-            {id: '2', message: 'Hi!', likes: 5},
-            {id: '3', message: 'How is it going?!', likes: 8}
-        ],
-        profile: null,
     }
 
     const action = addPost()
