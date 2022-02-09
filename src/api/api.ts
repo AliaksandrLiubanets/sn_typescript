@@ -21,8 +21,6 @@ type ResponseAuth = {
     data: AuthDataType
 }
 
-type ResponeStatus = string
-
 type ResponseUserProfile = ProfileType
 
 const instance = axios.create({
@@ -58,6 +56,6 @@ export const profileAPI = {
         return instance.get<ResponseUserProfile>(`profile/${userId}`)
     },
     getStatus(userId: number) {
-        return instance.get(`status/${userId}`)
+        return instance.get<string>(`profile/status/${userId}`)
     },
 }

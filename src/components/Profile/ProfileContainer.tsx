@@ -1,10 +1,9 @@
 import React from 'react'
 import {RootStateType} from '../Redux/redux-store'
 import {connect} from 'react-redux'
-import {ProfileType, setUserProfile} from '../Redux/profile-reducer'
+import {ProfileType, setStatus, setUserProfile} from '../Redux/profile-reducer'
 import {Profile} from './Profile'
 import {AuthDataType, setAuthData} from '../Redux/auth-reducer'
-import {Navigate} from 'react-router-dom'
 import {withAuthNavigate} from '../HOC/withAuthNavigate'
 import {compose} from 'redux'
 
@@ -12,9 +11,11 @@ import {compose} from 'redux'
 type PropsType = {
     setUserProfile: (userId: number) => void
     setAuthData: (data: AuthDataType) => void
+    setStatus: (userId: number) => void
     profile: ProfileType | null
     match?: { userId: string }
     isAuth: boolean
+    status: string
 }
 
 class ProfileContainer extends React.Component<PropsType> {
@@ -27,16 +28,13 @@ class ProfileContainer extends React.Component<PropsType> {
         }
         if (this.props.isAuth) {
             this.props.setUserProfile(userId)
+            this.props.setStatus(userId)
         }
 
     }
 
     render() {
-        if(!this.props.isAuth) {
-            return <Navigate to={'/login'}/>
-        }
-
-        return <Profile {...this.props}/>
+        return <Profile {...this.props} />
     }
 }
 
@@ -54,6 +52,7 @@ const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {
         profile: state.profilePage.profile,
         match: ownProps.match,
         isAuth: state.auth.isAuth,
+        status: state.profilePage.status,
     }
 }
 
@@ -66,5 +65,5 @@ const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {
 
 export default compose(
     withAuthNavigate,
-    connect(mapStateToProps, {setUserProfile, setAuthData})
+    connect(mapStateToProps, {setUserProfile, setAuthData, setStatus})
 )(ProfileContainer)

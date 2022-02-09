@@ -25,7 +25,7 @@ function ProContainer (props:PropsType) {
             })
     }, [])
 
-    return <Profile {...props}/>
+    return <Profile status={"I'm free"} {...props}/>
 
 }
 

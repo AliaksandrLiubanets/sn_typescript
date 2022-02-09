@@ -6,9 +6,10 @@ import ProfileStatus from '../Status/ProfileStatus'
 
 type ProfileInfoProps = {
     profile: ProfileType | null
+    status: string
 }
 
-export function ProfileInfo ({profile}: ProfileInfoProps) {
+export function ProfileInfo ({profile, status}: ProfileInfoProps) {
 
     if (!profile) {
         return <Preloader />
@@ -22,6 +23,6 @@ export function ProfileInfo ({profile}: ProfileInfoProps) {
         <div className={s.profileInfo_name}>
             <span>{profile.fullName}</span>
         </div>
-        <ProfileStatus status={'text status'}/>
+        <ProfileStatus status={status}/>
     </div>
 }
