@@ -5,6 +5,7 @@ import {profileAPI} from '../../api/api'
 export const ADD_POST = 'sn-typescript/ProfilePage/ADD-POST'
 export const ADD_CURRENT_VALUE = 'sn-typescript/ProfilePage/ADD-CURRENT-VALUE'
 export const SET_USER_PROFILE = 'sn-typescript/ProfilePage/SET-USER-PROFILE'
+export const SET_STATUS = 'sn-typescript/ProfilePage/SET-STATUS'
 
 export type PostType = {
     id: string
@@ -84,12 +85,14 @@ const profileReducer = (state = initialState, action: ProfilePageActionsType): P
 export type AddPostActionType = ReturnType<typeof addPost>
 export type AddCurrentValueActionType = ReturnType<typeof addCurrentValue>
 export type SetUserProfileActionType = ReturnType<typeof setUserProfileAC>
+export type SetStatusActionType = ReturnType<typeof setStatusProfileAC>
 
-export type ProfilePageActionsType = AddPostActionType | AddCurrentValueActionType | SetUserProfileActionType
+export type ProfilePageActionsType = AddPostActionType | AddCurrentValueActionType | SetUserProfileActionType | SetStatusActionType
 
 export const addPost = () => ({type: ADD_POST} as const)
 export const addCurrentValue = (text: string) => ({type: ADD_CURRENT_VALUE, newText: text} as const)
 export const setUserProfileAC = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const)
+export const setStatusProfileAC = (status: string) => ({type: SET_STATUS, status} as const)
 
 export const setUserProfile = (userId: number) => (dispatch: Dispatch) => {
     return profileAPI.getUserProfile(userId)
