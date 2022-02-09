@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import s from './Status.module.css'
 
 type StatusProps = {
@@ -8,7 +8,11 @@ type StatusProps = {
 
 const ProStatus = (props: StatusProps) => {
     const [editMode, setEditMode] = useState(false)
-    const [status, setStatus] = useState(props.status)
+    const [status, setStatus] = useState('')
+
+    useEffect(() => {
+        setStatus(props.status)
+    }, [props.status])
 
     const onEditMode = () => setEditMode(true)
     const offEditMode = () => {
