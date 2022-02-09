@@ -111,14 +111,14 @@ export const getStatus = (userId: number) => (dispatch: Dispatch) => {
 }
 
 export const setStatus = (status: string) => (dispatch: Dispatch) => {
-    dispatch(setStatusProfileAC(status))
+    // dispatch(setStatusProfileAC(status))
     return profileAPI.setStatus(status)
-        // .then(response => {
-        //     if(response.data.resultCode === 0) {
-        //         dispatch(setStatusProfileAC(status))
-        //     }
-        //
-        // })
+        .then(response => {
+            if(response.data.resultCode === 0) {
+                dispatch(setStatusProfileAC(status))
+            }
+
+        })
 }
 
 export default profileReducer

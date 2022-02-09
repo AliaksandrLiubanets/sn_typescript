@@ -25,6 +25,6 @@ export function ProfileInfo ({profile, status, setStatus}: ProfileInfoProps) {
         <div className={s.profileInfo_name}>
             <span>{profile.fullName}</span>
         </div>
-        <ProStatus status={status} setStatus={setStatus}/>
+        <ProfileStatus status={status} setStatus={setStatus}/>
     </div>
 }
