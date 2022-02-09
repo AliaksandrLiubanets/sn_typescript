@@ -21,6 +21,8 @@ type ResponseAuth = {
     data: AuthDataType
 }
 
+type ResponeStatus = string
+
 type ResponseUserProfile = ProfileType
 
 const instance = axios.create({
@@ -47,12 +49,12 @@ export const usersAPI = {
 
 export const authAPI = {
     auth() {
-        return instance.get<ResponseAuth>('https://social-network.samuraijs.com/api/1.0/auth/me')
+        return instance.get<ResponseAuth>('auth/me')
     }
 }
 
 export const profileAPI = {
     getUserProfile(userId: number) {
-        return instance.get<ResponseUserProfile>(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
+        return instance.get<ResponseUserProfile>(`profile/${userId}`)
     }
 }
