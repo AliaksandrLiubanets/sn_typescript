@@ -1,4 +1,17 @@
 export const Login = () => {
 
-    return <div>LOGIN</div>
+    return <div>
+        <form>
+            <div>
+                <input type="text"/>
+            </div>
+            <div>
+                <input type="password"/>
+            </div>
+            <div>
+                <input type="checkbox"/>
+                remember me
+            </div>
+        </form>
+    </div>
 }
