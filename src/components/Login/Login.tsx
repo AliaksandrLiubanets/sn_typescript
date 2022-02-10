@@ -12,6 +12,9 @@ export const Login = () => {
                 <input type="checkbox"/>
                 remember me
             </div>
+            <div>
+                <button>Log in</button>
+            </div>
         </form>
     </div>
 }
