@@ -23,7 +23,7 @@ const ProStatus = (props: StatusProps) => {
         return <div className={s.status}>
             {!editMode
                 ? <div className={s.status_span}>
-                    <span onDoubleClick={onEditMode}>{status}</span>
+                    <span onDoubleClick={onEditMode}>{status || '-----'}</span>
                 </div>
                 : <div className={s.status_input}>
                     <input onBlur={offEditMode}

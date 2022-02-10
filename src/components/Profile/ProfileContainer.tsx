@@ -24,7 +24,7 @@ class ProfileContainer extends React.Component<PropsType> {
     componentDidMount() {
         let userId = this.props.match && Number(this.props.match.userId)
         if (!userId) {
-            userId = 2
+            userId = 16602
         }
         if (this.props.isAuth) {
             this.props.setUserProfile(userId)
