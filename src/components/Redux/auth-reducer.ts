@@ -47,7 +47,9 @@ export const setAuthDataAC = (data: AuthDataType): AuthType => ({type: SET_AUTH_
 export const setAuthData = () => (dispatch: Dispatch) => {
     authAPI.auth()
         .then(response => {
+            debugger
             if(response.data.resultCode === 0) {
+                debugger
                 dispatch(setAuthDataAC(response.data.data))
             }
         })

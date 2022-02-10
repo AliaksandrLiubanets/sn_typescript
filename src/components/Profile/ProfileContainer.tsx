@@ -22,7 +22,7 @@ type PropsType = {
 class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount() {
-
+debugger
         let userId = this.props.match && Number(this.props.match.userId)
         if (!userId) {
             userId = 2
@@ -44,14 +44,10 @@ class ProfileContainer extends React.Component<PropsType> {
 //     setAuthData: () => void
 // }
 
-type TOwnProps = {
-    match?: any
-}
 
-const mapStateToProps = (state: RootStateType, ownProps: TOwnProps) => {
+const mapStateToProps = (state: RootStateType) => {
     return {
         profile: state.profilePage.profile,
-        match: ownProps.match,
         isAuth: state.auth.isAuth,
         status: state.profilePage.status,
     }

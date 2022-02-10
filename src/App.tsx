@@ -11,7 +11,7 @@ import Users from './components/Users/UsersContainer'
 import {ProfileWithParam} from './components/Profile/ProfileWithParam'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
-import {Login} from './components/Login/Login'
+import {LoginContainer} from './components/Login/LoginContainer'
 
 
 function App() {
@@ -21,17 +21,17 @@ function App() {
             <Navbar/>
             <div className="content">
                 <Routes>
+                    <Route path="/profile" element={<ProfileContainer />} />
                     <Route path="/dialogs" element={<Dialogs/>}>
                         <Route path="/dialogs/:name"
                                element={<DialogContainer/>}/>
                     </Route>
-                    <Route path="/profile" element={<ProfileContainer />} />
                     <Route path="/profile/:userId" element={<ProfileWithParam />} />
                     <Route path="/news" element={<News/>}/>
                     <Route path="/music" element={<Music/>}/>
                     <Route path="/users" element={<Users/>}/>
                     <Route path="/settings" element={<Settings/>}/>
-                    <Route path="/login" element={<Login/>}/>
+                    <Route path="/login" element={<LoginContainer/>}/>
                 </Routes>
             </div>
         </div>

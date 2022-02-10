@@ -22,4 +22,7 @@ export type AppStoreType = typeof store
 
 export type AppDispatch = typeof store.dispatch
 
-export default store
+export default store;
+
+//@ts-ignore
+window.store = store;
