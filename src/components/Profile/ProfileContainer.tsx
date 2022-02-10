@@ -22,7 +22,6 @@ type PropsType = {
 class ProfileContainer extends React.Component<PropsType> {
 
     componentDidMount() {
-debugger
         let userId = this.props.match && Number(this.props.match.userId)
         if (!userId) {
             userId = 2

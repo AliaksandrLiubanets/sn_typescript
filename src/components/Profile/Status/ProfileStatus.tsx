@@ -27,11 +27,19 @@ class ProfileStatus extends React.Component<StatusProps> {
 
     onChange = (e: ChangeEvent<HTMLInputElement>) => this.setState({status: e.currentTarget.value})
 
+    componentDidUpdate(prevProps: Readonly<StatusProps>, prevState: Readonly<{}>) {
+        if(prevProps.status !== this.props.status) {
+            this.setState({
+                status: this.props.status
+            })
+        }
+    }
+
     render() {
         return <div className={s.status}>
             {!this.state.isEdit
                 ? <div className={s.status_span}>
-                    <span onDoubleClick={this.onEditMode}>{this.props.status}</span>
+                    <span onDoubleClick={this.onEditMode}>{this.state.status || '---'}</span>
                 </div>
                 : <div className={s.status_input}>
                     <input onBlur={this.offEditMode.bind(this)}
