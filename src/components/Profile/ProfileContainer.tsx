@@ -56,13 +56,6 @@ const mapStateToProps = (state: RootStateType) => {
     }
 }
 
-// const mapDispatchToProps = (dispatch: Dispatch): TDispatchProps => {
-//     return {
-//         setUserProfile: (userId) => dispatch(setUserProfile(userId)),
-//         setAuthData: () => dispatch(setAuthData())
-//     }
-// }
-
 type MapStateToPropsType = {
     profile: ProfileType | null
     isAuth: boolean
