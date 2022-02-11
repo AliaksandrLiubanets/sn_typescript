@@ -3,7 +3,7 @@ import {RootStateType} from '../Redux/redux-store'
 import {follow, getUsers, setCurrentPage, unfollow, UserType} from '../Redux/users-reducer'
 import User from './User'
 import s from './Users.module.css'
-import React, {Component} from 'react'
+import React, {Component, ComponentType} from 'react'
 import {Preloader} from '../common/Preloader/Preloader'
 import {withAuthNavigate} from '../HOC/withAuthNavigate'
 import {compose} from 'redux'
@@ -99,7 +99,7 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
 //     getUsers,
 // })(UserWithNavigateToLogin)
 
-export default compose(
+export default compose<ComponentType>(
     withAuthNavigate,
     connect(mapStateToProps, {
         follow,
