@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {ComponentType} from 'react'
 import {RootStateType} from '../Redux/redux-store'
 import {connect} from 'react-redux'
 import {ProfileType, getStatus, setUserProfile, setStatus} from '../Redux/profile-reducer'
@@ -59,7 +59,7 @@ const mapStateToProps = (state: RootStateType) => {
 //     }
 // }
 
-export default compose(
+export default compose<ComponentType>(
     withAuthNavigate,
     connect(mapStateToProps, {setUserProfile, setAuthData, setStatus, getStatus})
 )(ProfileContainer)
