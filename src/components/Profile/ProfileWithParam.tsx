@@ -1,12 +1,12 @@
-import {useParams} from 'react-router-dom'
+import {Params, useParams} from 'react-router-dom'
 import ProfileContainer from './ProfileContainer'
 
-type PropsType = {}
+export type ParamsType =  Readonly<Params<string>>
 
-export function ProfileWithParam(props: PropsType) {
-    const match = useParams<string>()
+export function ProfileWithParam() {
+    let params = useParams()
 
-    return <ProfileContainer match={match} />
+    return <ProfileContainer params={params} />
 }
 
 

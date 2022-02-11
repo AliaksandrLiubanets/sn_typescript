@@ -2,13 +2,13 @@ import React, {useEffect, useState} from 'react'
 import s from './Status.module.css'
 
 type StatusProps = {
-    status: string
+    status: string  | null
     setStatus: (status: string) => void
 }
 
 const ProStatus = (props: StatusProps) => {
     const [editMode, setEditMode] = useState(false)
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState<string | null>('')
 
     useEffect(() => {
         setStatus(props.status)
@@ -16,7 +16,7 @@ const ProStatus = (props: StatusProps) => {
 
     const onEditMode = () => setEditMode(true)
     const offEditMode = () => {
-        props.setStatus(status)
+        status && props.setStatus(status)
         setEditMode(false)
     }
 
@@ -30,7 +30,7 @@ const ProStatus = (props: StatusProps) => {
                            onChange={(e)=> setStatus(e.currentTarget.value)}
                            type="text"
                            autoFocus={true}
-                           value={status}
+                           value={status || ""}
                     />
                 </div>
             }

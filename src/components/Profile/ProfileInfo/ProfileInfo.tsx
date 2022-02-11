@@ -7,7 +7,7 @@ import ProStatus from '../Status/ProStatus'
 
 type ProfileInfoProps = {
     profile: ProfileType | null
-    status: string
+    status: string | null
     setStatus: (status: string) => void
 }
 

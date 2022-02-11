@@ -6,7 +6,7 @@ import {ProfileInfo} from './ProfileInfo/ProfileInfo'
 
 type ProfileProps = {
     profile: ProfileType | null
-    status: string
+    status: string | null
     setStatus: (status: string) => void
 }
 
