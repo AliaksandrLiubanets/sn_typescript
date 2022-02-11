@@ -6,6 +6,7 @@ import {RootStateType} from '../Redux/redux-store'
 import {DialogType} from '../Redux/dialogs-reducer'
 import {withAuthNavigate} from '../HOC/withAuthNavigate'
 import {compose} from 'redux'
+import {ComponentType} from 'react'
 
 function Dialogs(props: MapStatePropsType) {
 
@@ -35,7 +36,7 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     }
 }
 
-export default compose(
+export default compose<ComponentType>(
     withAuthNavigate,
     connect(mapStateToProps))
 (Dialogs)
