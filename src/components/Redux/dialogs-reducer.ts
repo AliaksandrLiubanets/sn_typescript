@@ -1,5 +1,5 @@
 import {v1} from 'uuid'
-import ava_me from '../../assets/ava_me.jpg'
+import ava_me from '../../assets/ava_100px/ava_me.jpg'
 import ava_dimych from '../../assets/ava_100px/ava_dimych.jpg'
 import ava_andrew from '../../assets/ava_100px/ava_andrew.jpg'
 import ava_lenin from '../../assets/ava_100px/ava_lenin.png'
