@@ -1,6 +1,6 @@
 import axios from "axios";
 import {UserType} from '../components/Redux/users-reducer'
-import {AuthDataType} from '../components/Redux/auth-reducer'
+import {AuthDataType, LoginPayloadType} from '../components/Redux/auth-reducer'
 import {ProfileType} from '../components/Redux/profile-reducer'
 
 type ResponseGetUsers = {
@@ -19,6 +19,12 @@ type ResponseAuthStatus = {
     resultCode: number
     messages: string[]
     data: AuthDataType
+}
+
+type ResponseLogin = {
+    resultCode: number
+    messages: string[]
+    data: {userId: number} | {}
 }
 
 type ResponseUserProfile = ProfileType
@@ -46,9 +52,16 @@ export const usersAPI = {
 }
 
 export const authAPI = {
-    auth() {
+    me() {
         return instance.get<ResponseAuthStatus>('auth/me')
+    },
+    login(payload: LoginPayloadType) {
+        return instance.post<ResponseLogin>(`auth/login`, payload)
+    },
+    logout() {
+        return instance.delete<ResponseLogin>('auth/login')
     }
+
 }
 
 export const profileAPI = {

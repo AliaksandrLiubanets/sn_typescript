@@ -14,6 +14,13 @@ type AuthStateType = {
     isAuth: boolean
 }
 
+export type LoginPayloadType = {
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha: boolean
+}
+
 const initialState: AuthStateType = {
     data: {
         id: null,
@@ -32,23 +39,41 @@ const authReducer = (state: AuthStateType = initialState, action: AuthActionsTyp
     }
 }
 
-// export type AuthType = ReturnType<typeof setAuthDataAC>
+export type AuthType = ReturnType<typeof setAuthDataAC>
 
-type AuthType = {
-    type: typeof SET_AUTH_DATA
-    data: AuthDataType
-}
+// type AuthType = {
+//     type: typeof SET_AUTH_DATA
+//     data: AuthDataType
+// }
 
 export type AuthActionsType = AuthType
 
-// export const setAuthDataAC = (data: AuthDataType) => ({type: SET_AUTH_DATA, data} as const)
-export const setAuthDataAC = (data: AuthDataType): AuthType => ({type: SET_AUTH_DATA, data})
+export const setAuthDataAC = (data: AuthDataType) => ({type: SET_AUTH_DATA, data} as const)
+// export const setAuthDataAC = (data: AuthDataType): AuthType => ({type: SET_AUTH_DATA, data})
 
 export const setAuthData = () => (dispatch: Dispatch) => {
-    authAPI.auth()
+    authAPI.me()
         .then(response => {
             if(response.data.resultCode === 0) {
                 dispatch(setAuthDataAC(response.data.data))
+            }
+        })
+}
+
+export const login = (payload: LoginPayloadType) => () => {
+    authAPI.login(payload)
+        .then(response => {
+            if(response.data.resultCode === 0) {
+                setAuthData()
+            }
+        })
+}
+
+export const loginOut = () => () => {
+    authAPI.logout()
+        .then(response => {
+            if(response.data.resultCode === 0) {
+                setAuthData()
             }
         })
 }
