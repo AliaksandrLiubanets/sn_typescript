@@ -5,21 +5,12 @@ import {RootStateType} from '../Redux/redux-store'
 import {Dispatch} from 'redux'
 
 type OwnPropsType = {
-    // name: string | undefined
     name: string
 }
 
 type PropsType = OwnPropsType & MapStatePropsType & MapDispatchPropsType
 
 function AddDialogContainer(props: PropsType) {
-
-    // const setCurrentValueToState = (text: string) => {
-    //     store?.dispatch(addCurrentValueDialogAC(text))
-    // }
-    // const addDialogPost = () => {
-    //     props.name && store?.dispatch(addPostDialogAC(props.name))
-    // }
-
 
     return <AddDialogPost addDialogPost={props.addDialogPost}
                           setCurrentValue={props.setCurrentValue}
