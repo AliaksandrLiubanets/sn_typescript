@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
     sidebar: sidebarReducer,
-    me: authReducer,
+    auth: authReducer,
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunk))

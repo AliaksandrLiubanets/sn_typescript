@@ -14,7 +14,6 @@ const mapStateToProps = (state: RootStateType): MapStateProps => {
 }
 
 export function withAuthNavigate<T>(Component: ComponentType<T>) {
-    debugger
     const NavigateComponent = (props: MapStateProps) => {
         const {isAuth, ...rest} = props
         if(!isAuth) {
