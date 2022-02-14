@@ -3,6 +3,7 @@ import s from './Header.module.css'
 import React from "react";
 import sancho_ava from '../../assets/ECGP3801_1.jpg'
 import {NavLink} from 'react-router-dom'
+import {LogOut} from '../Login/LogOut'
 
 type HeaderProps = {
     login: string | null
@@ -16,10 +17,12 @@ export function Header({login, avatar, isAuth}: HeaderProps) {
         {isAuth
             ?
             <div className={s.header_block}>
-                <div>
-                    <img src={!avatar ? sancho_ava : avatar} alt={'ava'}/>
-                </div>
-                <span>{login}</span>
+                <div className={s.header__avalogin}>
+                    <div>
+                        <img src={!avatar ? sancho_ava : avatar} alt={'ava'}/>
+                    </div>
+                    <span>{login}</span></div>
+                <LogOut/>
             </div>
             :
             <div className={s.header_block}>

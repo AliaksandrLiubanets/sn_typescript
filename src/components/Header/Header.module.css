@@ -2,24 +2,33 @@
     grid-area: h;
     background-color: rgba(228, 255, 245, 0.85);
     padding: 10px;
-    border-bottom: 1px solid rgba(231, 230, 230, 0.93);;
+    border-bottom: 1px solid rgba(231, 230, 230, 0.93);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .header_block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__avalogin {
     width: 70px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.header_block span {
+.header__avalogin span {
     display: block;
     font-size: 12px;
     font-weight: 500;
     margin-top: 7px;
 }
-.header_block div {
-    height: 40px;
+.header__avalogin div {
+    height: 45px;
 }
 
 .header img {
