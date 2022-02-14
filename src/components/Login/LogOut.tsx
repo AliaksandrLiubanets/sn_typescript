@@ -10,6 +10,6 @@ export const LogOut = () => {
     const onLogout = () => dispatch(loginOut())
 
     return <div className={s.logout} onClick={onLogout}>
-        Logout
+        Log out
     </div>
 }
