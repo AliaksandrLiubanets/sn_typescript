@@ -1,6 +1,7 @@
 import {useDispatch} from 'react-redux'
 import {login, LoginPayloadType} from '../Redux/auth-reducer'
 import {Field, Form, Formik} from 'formik'
+import {Checkbox} from '../FormikFields/Checkbox'
 
 export const LoginCheckebox: React.FC<{}> = () => {
 
@@ -28,6 +29,12 @@ export const LoginCheckebox: React.FC<{}> = () => {
                             <Field type="checkbox" name="rememberMe"/>
                             remember me
                         </label>
+
+                        <Field
+                            name={'rememberMe'}
+                            type={'checkbox'}
+                            component={Checkbox}
+                        />
 
                         <button type="submit">Submit</button>
                     </Form>
