@@ -22,7 +22,9 @@ export function Header({login, avatar, isAuth}: HeaderProps) {
                         <img src={!avatar ? sancho_ava : avatar} alt={'ava'}/>
                     </div>
                     <span>{login}</span></div>
+
                 <LogOut/>
+
             </div>
             :
             <div className={s.header_block}>

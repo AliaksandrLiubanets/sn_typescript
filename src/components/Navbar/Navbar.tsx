@@ -16,6 +16,7 @@ function Navbar(props: NavbarPropsType) {
         <div><NavLink to="/music" className={({ isActive }) => (isActive ? s.active : "")}>Music</NavLink></div>
         <div><NavLink to="/users" className={({ isActive }) => (isActive ? s.active : "")}>Users</NavLink></div>
         <div><NavLink to="/settings" className={({ isActive }) => (isActive ? s.active : "")}>Settings</NavLink></div>
+        <div><NavLink to="/formik" className={({ isActive }) => (isActive ? s.active : "")}>Formik</NavLink></div>
         <FriendsContainer />
     </div>
 }

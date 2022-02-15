@@ -9,7 +9,7 @@ export const LoginFormik: React.FC<{}> = () => {
     const initialValues: LoginPayloadType = {
         email: '',
         password: '',
-        rememberMe: false,
+        rememberMe: true,
         captcha: true
     }
 
@@ -26,14 +26,14 @@ export const LoginFormik: React.FC<{}> = () => {
                 }}
             >
                 <Form>
-                    <label htmlFor="email">First Name</label>
+                    <label htmlFor="email">Email: </label>
                     <Field id="email" name="email" placeholder="e-mail"/>
 
-                    <label htmlFor="password">First Name</label>
+                    <label htmlFor="password">Password: </label>
                     <Field id="password" name="password" placeholder="password"/>
 
                     <label>
-                        <Field type="checkbox" name="rememberMe" value="rememberMe"/>
+                        <Field type="checkbox" name="rememberMe" />
                         remember me
                     </label>
 

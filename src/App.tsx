@@ -12,6 +12,7 @@ import {ProfileWithParam} from './components/Profile/ProfileWithParam'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
 import {LoginContainer} from './components/Login/LoginContainer'
+import {LoginCheckebox} from './components/Login/LoginCheckbox'
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
                     <Route path="/users" element={<Users/>}/>
                     <Route path="/settings" element={<Settings/>}/>
                     <Route path="/login" element={<LoginContainer/>}/>
+                    <Route path="/formik" element={<LoginCheckebox/>}/>
                 </Routes>
             </div>
         </div>
