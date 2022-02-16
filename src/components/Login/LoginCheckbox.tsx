@@ -31,6 +31,7 @@ export const LoginCheckebox: React.FC<{}> = () => {
                         </label>
 
                         <Field
+                            labelName={'remember'}
                             name={'rememberMe'}
                             type={'checkbox'}
                             component={Checkbox}
