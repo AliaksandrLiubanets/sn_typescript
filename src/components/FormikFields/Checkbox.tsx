@@ -1,4 +1,5 @@
 import {FC} from 'react'
+import s from './FormikFields.module.css'
 
 type CheckboxType = {
     labelName: string
@@ -13,7 +14,7 @@ export const Checkbox: FC<CheckboxType> = ({
                                                labelName
                                            }) => {
     return <div>
-        <label className="s.checkbox_label">
+        <label className={s.checkbox_label}>
             <input
                 //{...field}
                 name={name}

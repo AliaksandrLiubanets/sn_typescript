@@ -27,10 +27,10 @@ export const LoginFormik: React.FC<{}> = () => {
             >
                 <Form>
                     <label htmlFor="email">Email: </label>
-                    <Field id="email" name="email" placeholder="e-mail"/>
+                    <Field  name="email" placeholder="e-mail"/>
 
                     <label htmlFor="password">Password: </label>
-                    <Field id="password" name="password" placeholder="password"/>
+                    <Field  name="password" placeholder="password"/>
 
                     <label>
                         <Field type="checkbox" name="rememberMe" />
