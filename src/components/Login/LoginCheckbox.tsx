@@ -2,33 +2,44 @@ import {useDispatch} from 'react-redux'
 import {login, LoginPayloadType} from '../Redux/auth-reducer'
 import {Field, Form, Formik} from 'formik'
 import {Checkbox} from '../FormikFields/Checkbox'
+import {Input} from '../FormikFields/Input'
 
 export const LoginCheckebox: React.FC<{}> = () => {
 
-    type ValueType = { rememberMe: boolean }
+    const dispatch = useDispatch()
 
-    const initialValues: ValueType = {
-        rememberMe: false
+    const initialValues: LoginPayloadType = {
+        email: '',
+        password: '',
+        rememberMe: true,
+        captcha: true
     }
 
     return (
         <div>
-            <h1>Checkbox</h1>
+            <h1>LOGIN</h1>
             <Formik
                 initialValues={initialValues}
                 onSubmit={(values, actions) => {
-                    // dispatch(login(values))
-                    console.log({values})
-                    alert(JSON.stringify(values, null, 2))
-                    // actions.setSubmitting(fa lse)
+                    dispatch(login(values))
                 }}
             >
-                {/*{() => {*/}
                     <Form>
-                        <label>
-                            <Field type="checkbox" name="rememberMe"/>
-                            remember me
-                        </label>
+                        <Field
+                            labelName={'Email'}
+                            name={'email'}
+                            type={'text'}
+                            placeholder={'enter email'}
+                            component={Input}
+                        />
+
+                        <Field
+                            labelName={'Password'}
+                            name={'password'}
+                            type={'password'}
+                            placeholder={'enter password'}
+                            component={Input}
+                        />
 
                         <Field
                             labelName={'remember'}
@@ -39,7 +50,6 @@ export const LoginCheckebox: React.FC<{}> = () => {
 
                         <button type="submit">Submit</button>
                     </Form>
-                {/*}}*/}
             </Formik>
         </div>
     )
