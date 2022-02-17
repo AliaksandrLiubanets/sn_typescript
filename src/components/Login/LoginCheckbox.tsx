@@ -1,6 +1,6 @@
 import {useDispatch} from 'react-redux'
 import {login, LoginPayloadType} from '../Redux/auth-reducer'
-import {Field, Form, Formik} from 'formik'
+import {Field, Form, Formik, FormikHelpers} from 'formik'
 import {Checkbox} from '../FormikFields/Checkbox'
 import {Input} from '../FormikFields/Input'
 
@@ -17,39 +17,49 @@ export const LoginCheckebox: React.FC<{}> = () => {
 
     return (
         <div>
-            <h1>LOGIN</h1>
+            <h1>LOGIN Formik</h1>
             <Formik
                 initialValues={initialValues}
-                onSubmit={(values, actions) => {
-                    dispatch(login(values))
+                // onSubmit={(values, actions) => {
+                //     dispatch(login(values))
+                // }}
+                onSubmit={(
+                    values: LoginPayloadType,
+                    {setSubmitting}: FormikHelpers<LoginPayloadType>
+
+                ) => {
+                    console.log(values)
+                    setSubmitting(false)
+                    // dispatch(login(values))
                 }}
+
             >
-                    <Form>
-                        <Field
-                            labelName={'Email'}
-                            name={'email'}
-                            type={'text'}
-                            placeholder={'enter email'}
-                            component={Input}
-                        />
+                <Form>
+                    <Field
+                        labelName={'Email'}
+                        name={'email'}
+                        type={'text'}
+                        placeholder={'enter email'}
+                        component={Input}
+                    />
 
-                        <Field
-                            labelName={'Password'}
-                            name={'password'}
-                            type={'password'}
-                            placeholder={'enter password'}
-                            component={Input}
-                        />
+                    <Field
+                        labelName={'Password'}
+                        name={'password'}
+                        type={'password'}
+                        placeholder={'enter password'}
+                        component={Input}
+                    />
 
-                        <Field
-                            labelName={'remember'}
-                            name={'rememberMe'}
-                            type={'checkbox'}
-                            component={Checkbox}
-                        />
+                    <Field
+                        labelName={'remember'}
+                        name={'rememberMe'}
+                        type={'checkbox'}
+                        component={Checkbox}
+                    />
 
-                        <button type="submit">Submit</button>
-                    </Form>
+                    <button type="submit">Submit</button>
+                </Form>
             </Formik>
         </div>
     )

@@ -1,8 +1,6 @@
 import {useDispatch} from 'react-redux'
 import {login, LoginPayloadType} from '../Redux/auth-reducer'
 import {Field, Form, Formik} from 'formik'
-import {Checkbox} from '../FormikFields/Checkbox'
-import {Input} from '../FormikFields/Input'
 
 export const LoginFormik: React.FC<{}> = () => {
 
@@ -22,31 +20,22 @@ export const LoginFormik: React.FC<{}> = () => {
                 initialValues={initialValues}
                 onSubmit={(values, actions) => {
                     dispatch(login(values))
+                    // console.log({ values, actions });
+                    // alert(JSON.stringify(values, null, 2));
+                    // actions.setSubmitting(fa lse)
                 }}
             >
                 <Form>
-                    <Field
-                        labelName={'Email'}
-                        name={'email'}
-                        type={'text'}
-                        placeholder={'enter email'}
-                        component={Input}
-                    />
+                    <label htmlFor="email">Email: </label>
+                    <Field  name="email" placeholder="e-mail"/>
 
-                    <Field
-                        labelName={'Password'}
-                        name={'password'}
-                        type={'password'}
-                        placeholder={'enter password'}
-                        component={Input}
-                    />
+                    <label htmlFor="password">Password: </label>
+                    <Field  name="password" placeholder="password"/>
 
-                    <Field
-                        labelName={'remember'}
-                        name={'rememberMe'}
-                        type={'checkbox'}
-                        component={Checkbox}
-                    />
+                    <label>
+                        <Field type="checkbox" name="rememberMe" />
+                        remember me
+                    </label>
 
                     <button type="submit">Submit</button>
                 </Form>
