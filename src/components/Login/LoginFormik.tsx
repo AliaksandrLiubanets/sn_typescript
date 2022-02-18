@@ -1,45 +1,64 @@
+import React from 'react'
+import {useFormik} from 'formik'
+import {validate} from '../FormikFields/validation'
+import {login} from '../Redux/auth-reducer'
 import {useDispatch} from 'react-redux'
-import {login, LoginPayloadType} from '../Redux/auth-reducer'
-import {Field, Form, Formik} from 'formik'
 
-export const LoginFormik: React.FC<{}> = () => {
+export const LoginFormik = () => {
 
     const dispatch = useDispatch()
 
-    const initialValues: LoginPayloadType = {
-        email: '',
-        password: '',
-        rememberMe: true,
-        captcha: true
-    }
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: '',
+            rememberMe: false,
+            captcha: true
+        },
+        validate,
+        onSubmit: (values) => {
+            dispatch(login(values))
+        },
+    });
+    return <div>
+        <h1>LOGIN</h1>
+        <form onSubmit={formik.handleSubmit}>
+            <label htmlFor="email">email</label>
+            <input
+                id="email"
+                name="email"
+                type="text"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
+            />
+            {formik.touched.email && formik.errors.email ? (
+                <div>{formik.errors.email}</div>
+            ) : null}
 
-    return (
-        <div>
-            <h1>LOGIN</h1>
-            <Formik
-                initialValues={initialValues}
-                onSubmit={(values, actions) => {
-                    dispatch(login(values))
-                    // console.log({ values, actions });
-                    // alert(JSON.stringify(values, null, 2));
-                    // actions.setSubmitting(fa lse)
-                }}
-            >
-                <Form>
-                    <label htmlFor="email">Email: </label>
-                    <Field  name="email" placeholder="e-mail"/>
+            <label htmlFor="password">password</label>
+            <input
+                id="password"
+                name="password"
+                type="password"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+            />
+            {formik.touched.password && formik.errors.password ? (
+                <div>{formik.errors.password}</div>
+            ) : null}
 
-                    <label htmlFor="password">Password: </label>
-                    <Field  name="password" placeholder="password"/>
+            <label htmlFor="rememberMe">remember me</label>
+            <input
+                id="rememberMe"
+                name="rememberMe"
+                type="checkbox"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+            />
 
-                    <label>
-                        <Field type="checkbox" name="rememberMe" />
-                        remember me
-                    </label>
-
-                    <button type="submit">Submit</button>
-                </Form>
-            </Formik>
+            <button type="submit">Submit</button>
+        </form>
         </div>
-    )
-}
+};
