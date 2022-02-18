@@ -1,5 +1,7 @@
 import {Dispatch} from 'redux'
 import {authAPI} from '../../api/api'
+import {ThunkAction} from 'redux-thunk'
+import {RootStateType} from './redux-store'
 
 export const SET_AUTH_DATA = 'sn-typescript/Authorize/SET-AUTH-DATA'
 export const SET_IS_AUTH = 'sn-typescript/Authorize/SET-IS-AUTH'
@@ -65,12 +67,13 @@ export const setAuthData = () => (dispatch: Dispatch) => {
             }
         })
 }
+type ThunkType = ThunkAction<void, RootStateType, unknown, AuthActionsType>
 
-export const login = (payload: LoginPayloadType) => () => {
+export const login = (payload: LoginPayloadType):ThunkType => (dispatch) => {
     authAPI.login(payload)
         .then(response => {
             if(response.data.resultCode === 0) {
-                setAuthData()
+                dispatch(setAuthData())
             }
         })
 }
