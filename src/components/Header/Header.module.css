@@ -35,15 +35,3 @@
     width: 40px;
     border-radius: 50%;
 }
-
-.logout {
-    font-weight: 500;
-}
-
-.logout:hover {
-    cursor: pointer;
-}
-
-.logout:active {
-    color: red;
-}

@@ -1,0 +1,11 @@
+.logout {
+    font-weight: 500;
+}
+
+.logout:hover {
+    cursor: pointer;
+}
+
+.logout:active {
+    color: red;
+}

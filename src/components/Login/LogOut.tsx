@@ -1,6 +1,6 @@
 import {useDispatch} from 'react-redux'
 import {loginOut} from '../Redux/auth-reducer'
-import s from '../Header/Header.module.css'
+import s from './LogOut.module.css'
 
 
 export const LogOut = () => {
