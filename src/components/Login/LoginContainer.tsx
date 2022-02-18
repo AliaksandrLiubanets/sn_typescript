@@ -13,18 +13,4 @@ export const LoginContainer = () => {
     return <ProfileWithParam/>
 }
 
-// export const LoginContainer = () => {
-//
-//     const isAuth = useSelector<RootStateType, boolean>(state => state.auth.isAuth)
-//
-//     return <LoginWithIsAuth isAuth={isAuth}/>
-// }
-//
-// const LoginWithIsAuth = React.memo(({isAuth}: { isAuth: boolean }) => {
-//     if (!isAuth) {
-//         return <SignupForm />
-//     }
-//     return <ProfileWithParam/>
-// })
-
 
