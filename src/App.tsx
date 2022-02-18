@@ -12,7 +12,6 @@ import {ProfileWithParam} from './components/Profile/ProfileWithParam'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
 import {LoginContainer} from './components/Login/LoginContainer'
-import {SignupForm} from './components/FormikFields/SignupForm'
 
 
 function App() {
