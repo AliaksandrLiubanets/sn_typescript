@@ -33,7 +33,6 @@ function App() {
                     <Route path="/users" element={<Users/>}/>
                     <Route path="/settings" element={<Settings/>}/>
                     <Route path="/login" element={<LoginContainer/>}/>
-                    <Route path="/formik" element={<LoginContainer/>}/>
                 </Routes>
             </div>
         </div>
