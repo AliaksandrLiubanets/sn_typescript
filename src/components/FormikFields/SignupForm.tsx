@@ -1,12 +1,8 @@
 import React from 'react'
 import {useFormik} from 'formik'
 import {validate} from './validation'
-import {login, LoginPayloadType} from '../Redux/auth-reducer'
+import {login} from '../Redux/auth-reducer'
 import {useDispatch} from 'react-redux'
-
-type SignupFormPropsType = {
-    login?: (payload: LoginPayloadType) => void
-}
 
 export const SignupForm = () => {
 
@@ -21,7 +17,6 @@ export const SignupForm = () => {
         },
         validate,
         onSubmit: (values) => {
-            console.log(values)
             dispatch(login(values))
         },
     });
@@ -60,7 +55,6 @@ export const SignupForm = () => {
                 type="checkbox"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                // value={formik.values.rememberMe}
             />
 
             <button type="submit">Submit</button>
