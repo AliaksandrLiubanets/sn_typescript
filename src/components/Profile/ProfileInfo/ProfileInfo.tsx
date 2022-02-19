@@ -1,8 +1,6 @@
-import samurai_background from '../../../assets/samurai_background.jpg'
 import s from './ProfileInfo.module.css'
 import {ProfileType} from '../../Redux/profile-reducer'
 import {Preloader} from '../../common/Preloader/Preloader'
-import ProfileStatus from '../Status/ProfileStatus'
 import ProStatus from '../Status/ProStatus'
 
 type ProfileInfoProps = {
@@ -18,7 +16,6 @@ export function ProfileInfo ({profile, status, setStatus}: ProfileInfoProps) {
     }
 
     return <div className={s.profileInfo}>
-        <img src={samurai_background} alt="background"/>
         <div className={s.profileInfo_ava}>
             <img src={profile.photos.small } alt="ava"/>
         </div>
