@@ -2,13 +2,13 @@ import {useSelector} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
 import {ProfileWithParam} from '../Profile/ProfileWithParam'
 import React from 'react'
-import {SignupForm} from '../FormikFields/SignupForm'
+import {LoginFormik} from './LoginFormik'
 
 export const LoginContainer = () => {
     const isAuth = useSelector<RootStateType, boolean>(state => state.auth.isAuth)
 
     if (!isAuth) {
-        return <SignupForm/>
+        return <LoginFormik/>
     }
     return <ProfileWithParam/>
 }
