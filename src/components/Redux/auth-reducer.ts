@@ -1,4 +1,3 @@
-import {Dispatch} from 'redux'
 import {authAPI} from '../../api/api'
 import {ThunkAction} from 'redux-thunk'
 import {RootStateType} from './redux-store'
@@ -47,18 +46,13 @@ const authReducer = (state: AuthStateType = initialState, action: AuthActionsTyp
 export type AuthType = ReturnType<typeof setAuthDataAC>
 export type SetIsAuthType = ReturnType<typeof setIsAuthAC>
 
-// type AuthType = {
-//     type: typeof SET_AUTH_DATA
-//     data: AuthDataType
-// }
-
 export type AuthActionsType = AuthType | SetIsAuthType
 
 export const setAuthDataAC = (data: AuthDataType) => ({type: SET_AUTH_DATA, data} as const)
 export const setIsAuthAC = (isAuth: boolean) => ({type: SET_IS_AUTH, isAuth} as const)
-// export const setAuthDataAC = (data: AuthDataType): AuthType => ({type: SET_AUTH_DATA, data})
 
-export const setAuthData = () => (dispatch: Dispatch) => {
+
+export const setAuthData = (): ThunkType => (dispatch) => {
     authAPI.me()
         .then(response => {
             if(response.data.resultCode === 0) {
@@ -78,7 +72,7 @@ export const login = (payload: LoginPayloadType):ThunkType => (dispatch) => {
         })
 }
 
-export const loginOut = () => (dispatch: Dispatch) => {
+export const loginOut = (): ThunkType => (dispatch) => {
     authAPI.logout()
         .then(response => {
             if(response.data.resultCode === 0) {
