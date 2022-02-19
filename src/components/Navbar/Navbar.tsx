@@ -3,11 +3,7 @@ import {NavLink} from 'react-router-dom'
 import s from './Navbar.module.css'
 import {FriendsContainer} from './Friends'
 
-type NavbarPropsType = {
-    // friends: Array<FriendsType>
-}
-
-function Navbar(props: NavbarPropsType) {
+function Navbar() {
 
     return <div className={s.navbar}>
         <div><NavLink to="/profile" className={({ isActive }) => (isActive ? s.active : "")}>Profile</NavLink></div>
@@ -16,7 +12,6 @@ function Navbar(props: NavbarPropsType) {
         <div><NavLink to="/music" className={({ isActive }) => (isActive ? s.active : "")}>Music</NavLink></div>
         <div><NavLink to="/users" className={({ isActive }) => (isActive ? s.active : "")}>Users</NavLink></div>
         <div><NavLink to="/settings" className={({ isActive }) => (isActive ? s.active : "")}>Settings</NavLink></div>
-        <div><NavLink to="/formik" className={({ isActive }) => (isActive ? s.active : "")}>Formik</NavLink></div>
         <FriendsContainer />
     </div>
 }
