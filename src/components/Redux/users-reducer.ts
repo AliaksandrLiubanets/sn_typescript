@@ -1,5 +1,6 @@
 import {usersAPI} from '../../api/api'
-import {Dispatch} from 'redux'
+import {ThunkAction} from 'redux-thunk'
+import {RootStateType} from './redux-store'
 
 const FOLLOW_USER = 'FOLLOW-USER'
 const UNFOLLOW_USER = 'UNFOLLOW-USER'
@@ -124,8 +125,9 @@ export const setFollowingInProgress = (isFetching: boolean, userId: number): Fol
 })
 
 
-export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+type ThunkType = ThunkAction<void, RootStateType, unknown, UsersAT>
 
+export const getUsers = (currentPage: number, pageSize: number): ThunkType => (dispatch) => {
     dispatch(toggleIsFetching(true))
     usersAPI.getUsers(currentPage, pageSize)
         .then(response => {
@@ -134,8 +136,7 @@ export const getUsers = (currentPage: number, pageSize: number) => (dispatch: Di
         })
 }
 
-export const unfollow = (userId: number) => (dispatch: Dispatch) => {
-
+export const unfollow = (userId: number): ThunkType => (dispatch) => {
     dispatch(setFollowingInProgress(true, userId))
     usersAPI.unfollowUser(userId)
         .then(response => {
@@ -146,8 +147,7 @@ export const unfollow = (userId: number) => (dispatch: Dispatch) => {
         })
 }
 
-export const follow = (userId: number) => (dispatch: Dispatch) => {
-
+export const follow = (userId: number): ThunkType => (dispatch) => {
     dispatch(setFollowingInProgress(true, userId))
     usersAPI.followUser(userId)
         .then(response => {
