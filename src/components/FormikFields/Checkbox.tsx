@@ -7,17 +7,19 @@ type CheckboxType = {
     name: string
 }
 
-export const Checkbox = ({ labelName, ...props }: CheckboxType) => {
-    const [field, meta] = useField({ ...props, type: "checkbox" });
+export const Checkbox = ({labelName, ...props}: CheckboxType) => {
+    const [field, meta] = useField({...props, type: 'checkbox'})
     return (
-        <>
-            <label className={s.checkbox_label}>
-                <input {...field} {...props} type="checkbox" />
-                {labelName}
-            </label>
-            {meta.touched && meta.error ? (
-                <div className={s.error_message}>{meta.error}</div>
-            ) : null}
-        </>
-    );
-};
+        <div className={s.checkbox_block}>
+
+            <input className={s.checkbox_input}{...field} {...props} type="checkbox"/>
+
+            <label htmlFor={props.name}>{labelName}</label>
+            {
+                meta.touched && meta.error
+                    ? (<div className={s.error_message}>{meta.error}</div>)
+                    : null
+            }
+        </div>
+    )
+}

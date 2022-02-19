@@ -5,13 +5,14 @@ import {Checkbox} from '../FormikFields/Checkbox'
 import {useDispatch} from 'react-redux'
 import {login} from '../Redux/auth-reducer'
 import {validateEmail, validatePassword} from '../FormikFields/validation'
+import s from '../FormikFields/FormikFields.module.css'
 
 export const LoginFormik = () => {
 
     const dispatch = useDispatch()
 
     return (
-        <>
+        <div className={s.login_page}>
             <h1>LOGIN!</h1>
             <Formik
                 initialValues={{
@@ -25,7 +26,7 @@ export const LoginFormik = () => {
                 }}
             >
 
-                    <Form>
+                    <Form className={s.login_form}>
                         <TextInput
                             labelName="Email"
                             name="email"
@@ -48,6 +49,6 @@ export const LoginFormik = () => {
                     </Form>
 
             </Formik>
-        </>
+        </div>
     )
 }

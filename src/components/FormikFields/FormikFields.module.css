@@ -1,13 +1,52 @@
-.checkbox_label {
-    display: block;
+.login_page {
+    padding: 10px;
+}
+
+.login_form {
+
+}
+
+.input_block {
+    margin-top: 20px;
+    width: 270px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: space-between;
 }
 
 .input_style {
-
+    border-radius: 5px;
+    resize: none;
+    border: 1px solid rgba(128, 128, 128, 0);
+    padding: 5px;
+    background-color: white;
 }
 
-.input_label {
+.input_style:focus {
+    outline: none !important;
+}
 
+.input_block label {
+    display: inline-block;
+}
+
+.checkbox_input {
+    display: inline-block;
+}
+
+.checkbox_block label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.checkbox_block {
+    width: 130px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 30px;
 }
 
 .error_message {
@@ -18,7 +57,7 @@
 }
 
 .error_message:before {
-     content: "❌ ";
-     font-size: 10px;
- }
+    content: "❌ ";
+    font-size: 10px;
+}
 
