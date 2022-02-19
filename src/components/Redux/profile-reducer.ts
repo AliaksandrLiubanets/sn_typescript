@@ -1,6 +1,7 @@
 import {v1} from 'uuid'
-import {Dispatch} from 'redux'
 import {profileAPI} from '../../api/api'
+import {ThunkAction} from 'redux-thunk'
+import {RootStateType} from './redux-store'
 
 export const ADD_POST = 'sn-typescript/ProfilePage/ADD-POST'
 export const ADD_CURRENT_VALUE = 'sn-typescript/ProfilePage/ADD-CURRENT-VALUE'
@@ -96,28 +97,29 @@ export const addCurrentValue = (text: string) => ({type: ADD_CURRENT_VALUE, newT
 export const setUserProfileAC = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatusProfileAC = (status: string) => ({type: SET_STATUS, status} as const)
 
-export const setUserProfile = (userId: number) => (dispatch: Dispatch) => {
+
+type ThunkType = ThunkAction<void, RootStateType, unknown, ProfilePageActionsType>
+
+export const setUserProfile = (userId: number): ThunkType => (dispatch) => {
     return profileAPI.getUserProfile(userId)
         .then(response => {
             dispatch(setUserProfileAC(response.data))
         })
 }
 
-export const getStatus = (userId: number) => (dispatch: Dispatch) => {
+export const getStatus = (userId: number): ThunkType => (dispatch) => {
     return profileAPI.getStatus(userId)
         .then(response => {
             dispatch(setStatusProfileAC(response.data))
         })
 }
 
-export const setStatus = (status: string) => (dispatch: Dispatch) => {
-    // dispatch(setStatusProfileAC(status))
+export const setStatus = (status: string):ThunkType => (dispatch) => {
     return profileAPI.setStatus(status)
         .then(response => {
             if(response.data.resultCode === 0) {
                 dispatch(setStatusProfileAC(status))
             }
-
         })
 }
 
