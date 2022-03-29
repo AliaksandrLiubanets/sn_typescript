@@ -23,9 +23,6 @@ class Users extends Component<PropsType> {
     }
 
     render() {
-        // if(!this.props.isAuth) {
-        //     return <Navigate to={'/login'}/>
-        // }
 
         const users = this.props.users.map(u => <User key={u.id}
                                                       id={u.id}
@@ -89,15 +86,6 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
         isAuth: state.auth.isAuth,
     }
 }
-
-// const UserWithNavigateToLogin = withAuthNavigate(Users)
-//
-// export default connect(mapStateToProps, {
-//     follow,
-//     unfollow,
-//     setCurrentPage,
-//     getUsers,
-// })(UserWithNavigateToLogin)
 
 export default compose<ComponentType>(
     withAuthNavigate,
