@@ -16,7 +16,6 @@ const appReducer = (state: StateType = initialState, action: ActionsType): State
 }
 
 
-
 export const setIsInitialAC = (isInitialized: boolean) => ({type: SET_IS_INITIALIZE, isInitialized} as const)
 
 export type SetIsInitializeType = ReturnType<typeof setIsInitialAC>
