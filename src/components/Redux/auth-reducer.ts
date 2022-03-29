@@ -2,6 +2,7 @@ import {authAPI} from '../../api/api'
 import {ThunkAction} from 'redux-thunk'
 import {RootStateType} from './redux-store'
 import {SetIsInitializeType} from './app-reducer'
+import {Dispatch} from 'redux'
 
 export const SET_AUTH_DATA = 'sn-typescript/Authorize/SET-AUTH-DATA'
 export const SET_IS_AUTH = 'sn-typescript/Authorize/SET-IS-AUTH'
@@ -55,7 +56,7 @@ export const setIsAuthAC = (isAuth: boolean) => ({type: SET_IS_AUTH, isAuth} as 
 
 export type ThunkType = ThunkAction<void, RootStateType, unknown, AuthActionsType>
 
-export const getAuthData = (): ThunkType => (dispatch) => {
+export const getAuthData = () => (dispatch: Dispatch) => {
     return authAPI.me()
         .then(response => {
             if(response.data.resultCode === 0) {

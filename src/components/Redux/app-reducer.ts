@@ -28,18 +28,19 @@ export type AppActionsType = SetIsInitializeType
 export type AppThunkType = ThunkAction<void, RootStateType, unknown, ActionsType>
 type ActionsType = AuthActionsType | AppActionsType
 
-//@ts-ignore
-export const initializeApp = () => (dispatch): AppThunkType => {
+
+export const initializeApp = (): AppThunkType => (dispatch) => {
     const promise = dispatch(getAuthData())
     promise.then(() => {
         dispatch(setIsInitialAC(true))
     })
 
-
-
-
-    // dispatch(setIsInitialAC(true))
 }
+
+// export const initializeApp = (): AppThunkType => async (dispatch) => {
+//     await dispatch(getAuthData())
+//     dispatch(setIsInitialAC(true))
+// }
 
 
 export default appReducer
