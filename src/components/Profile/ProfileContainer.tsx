@@ -1,12 +1,12 @@
 import React, {ComponentType} from 'react'
 import {RootStateType} from '../Redux/redux-store'
 import {connect} from 'react-redux'
-import {ProfileType, getStatus, setUserProfile, setStatus} from '../Redux/profile-reducer'
+import {getStatus, ProfileType, setStatus, setUserProfile} from '../Redux/profile-reducer'
 import {Profile} from './Profile'
-import {AuthDataType, setAuthData} from '../Redux/auth-reducer'
+import {AuthDataType, getAuthData} from '../Redux/auth-reducer'
 import {withAuthNavigate} from '../HOC/withAuthNavigate'
 import {compose} from 'redux'
-import { Params } from 'react-router-dom'
+import {Params} from 'react-router-dom'
 import {ParamsType} from './ProfileWithParam'
 
 
@@ -65,5 +65,5 @@ type MapStateToPropsType = {
 
 export default compose<ComponentType<{ params?: ParamsType }>>(
     withAuthNavigate,
-    connect<MapStateToPropsType, TDispatchProps, { params?: ParamsType }, RootStateType>(mapStateToProps, {setUserProfile, setAuthData, setStatus, getStatus})
+    connect<MapStateToPropsType, TDispatchProps, { params?: ParamsType }, RootStateType>(mapStateToProps, {setUserProfile, setAuthData: getAuthData, setStatus, getStatus})
 )(ProfileContainer)

@@ -12,30 +12,41 @@ import {ProfileWithParam} from './components/Profile/ProfileWithParam'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
 import {LoginContainer} from './components/Login/LoginContainer'
+import {useSelector} from 'react-redux'
+import {RootStateType} from './components/Redux/redux-store'
+import {Preloader} from './components/common/Preloader/Preloader'
 
 
 function App() {
+    const isInitialize = useSelector<RootStateType, boolean>(state => state.app.isInitialized)
     return (
         <div className="App">
             <HeaderContainer/>
             <Navbar/>
             <div className="content">
-                <Routes>
-                    <Route path="/profile" element={<ProfileContainer />} />
-                    <Route path="/dialogs" element={<Dialogs/>}>
-                        <Route path="/dialogs/:name"
-                               element={<DialogContainer/>}/>
-                    </Route>
-                    <Route path="/profile/:userId" element={<ProfileWithParam />} />
-                    <Route path="/news" element={<News/>}/>
-                    <Route path="/music" element={<Music/>}/>
-                    <Route path="/users" element={<Users/>}/>
-                    <Route path="/settings" element={<Settings/>}/>
-                    <Route path="/login" element={<LoginContainer/>}/>
-                </Routes>
+                {
+                    !isInitialize
+                        ? <Preloader/>
+                        : <Routes>
+                            <Route path="/profile" element={<ProfileContainer/>}/>
+                            <Route path="/dialogs" element={<Dialogs/>}>
+                                <Route path="/dialogs/:name"
+                                       element={<DialogContainer/>}/>
+                            </Route>
+                            <Route path="/profile/:userId" element={<ProfileWithParam/>}/>
+                            <Route path="/news" element={<News/>}/>
+                            <Route path="/music" element={<Music/>}/>
+                            <Route path="/users" element={<Users/>}/>
+                            <Route path="/settings" element={<Settings/>}/>
+                            <Route path="/login" element={<LoginContainer/>}/>
+                        </Routes>
+
+                }
+
             </div>
         </div>
     )
 }
+
 
 export default App

@@ -1,6 +1,7 @@
 import {authAPI} from '../../api/api'
 import {ThunkAction} from 'redux-thunk'
 import {RootStateType} from './redux-store'
+import {setIsInitialAC, SetIsInitializeType} from './app-reducer'
 
 export const SET_AUTH_DATA = 'sn-typescript/Authorize/SET-AUTH-DATA'
 export const SET_IS_AUTH = 'sn-typescript/Authorize/SET-IS-AUTH'
@@ -46,7 +47,7 @@ const authReducer = (state: AuthStateType = initialState, action: AuthActionsTyp
 export type AuthType = ReturnType<typeof setAuthDataAC>
 export type SetIsAuthType = ReturnType<typeof setIsAuthAC>
 
-export type AuthActionsType = AuthType | SetIsAuthType
+export type AuthActionsType = AuthType | SetIsAuthType | SetIsInitializeType
 
 export const setAuthDataAC = (data: AuthDataType) => ({type: SET_AUTH_DATA, data} as const)
 export const setIsAuthAC = (isAuth: boolean) => ({type: SET_IS_AUTH, isAuth} as const)
@@ -54,7 +55,7 @@ export const setIsAuthAC = (isAuth: boolean) => ({type: SET_IS_AUTH, isAuth} as 
 
 type ThunkType = ThunkAction<void, RootStateType, unknown, AuthActionsType>
 
-export const setAuthData = (): ThunkType => (dispatch) => {
+export const getAuthData = (): ThunkType => (dispatch) => {
     authAPI.me()
         .then(response => {
             if(response.data.resultCode === 0) {
@@ -62,13 +63,16 @@ export const setAuthData = (): ThunkType => (dispatch) => {
                 dispatch(setIsAuthAC(true))
             }
         })
+        .then(() => {
+            dispatch(setIsInitialAC(true))
+        })
 }
 
 export const login = (payload: LoginPayloadType):ThunkType => (dispatch) => {
     authAPI.login(payload)
         .then(response => {
             if(response.data.resultCode === 0) {
-                dispatch(setAuthData())
+                dispatch(getAuthData())
             }
         })
 }
@@ -77,7 +81,7 @@ export const loginOut = (): ThunkType => (dispatch) => {
     authAPI.logout()
         .then(response => {
             if(response.data.resultCode === 0) {
-                setAuthData()
+                getAuthData()
                 dispatch(setIsAuthAC(false))
             }
         })

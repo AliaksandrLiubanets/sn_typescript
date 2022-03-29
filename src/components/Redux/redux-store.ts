@@ -5,6 +5,7 @@ import sidebarReducer from './sidebar-reducer'
 import usersReducer from './users-reducer'
 import authReducer from './auth-reducer'
 import thunk from 'redux-thunk'
+import appReducer from './app-reducer'
 
 const rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     usersPage: usersReducer,
     sidebar: sidebarReducer,
     auth: authReducer,
+    app: appReducer,
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
