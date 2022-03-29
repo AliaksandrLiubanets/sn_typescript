@@ -1,6 +1,5 @@
 import React from 'react'
 import {Header} from './Header'
-import {getAuthData} from '../Redux/auth-reducer'
 import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
 
@@ -8,14 +7,9 @@ type PropsType = {
     login: string | null
     avatar?: string | null
     isAuth: boolean
-    getAuthData: () => void
 }
 
 class HeaderContainer extends React.Component<PropsType> {
-
-    componentDidMount() {
-        this.props.getAuthData()
-    }
 
     render () {
         return <Header isAuth={this.props.isAuth} login={this.props.login} />
@@ -25,6 +19,7 @@ class HeaderContainer extends React.Component<PropsType> {
 type MapStateProps = {
     login: string | null
     isAuth: boolean
+
 }
 
 const mapStateToProps = (state: RootStateType): MapStateProps => {
@@ -34,7 +29,7 @@ const mapStateToProps = (state: RootStateType): MapStateProps => {
     }
 }
 
-export default connect(mapStateToProps, {getAuthData})(HeaderContainer)
+export default connect(mapStateToProps)(HeaderContainer)
 
 // export default compose( // ??? - Maximum update depth exceeded error
 //     withAuthNavigate,
