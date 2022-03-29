@@ -53,7 +53,7 @@ export const setAuthDataAC = (data: AuthDataType) => ({type: SET_AUTH_DATA, data
 export const setIsAuthAC = (isAuth: boolean) => ({type: SET_IS_AUTH, isAuth} as const)
 
 
-type ThunkType = ThunkAction<void, RootStateType, unknown, AuthActionsType>
+export type ThunkType = ThunkAction<void, RootStateType, unknown, AuthActionsType>
 
 export const getAuthData = (): ThunkType => (dispatch) => {
     authAPI.me()

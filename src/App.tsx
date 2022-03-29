@@ -51,7 +51,6 @@ class App extends React.Component<AppPropsType> {
                                 <Route path="/settings" element={<Settings/>}/>
                                 <Route path="/login" element={<LoginContainer/>}/>
                             </Routes>
-
                     }
 
                 </div>
@@ -70,4 +69,8 @@ const mapStateToProps = (state: RootStateType): MapStateType => {
     }
 }
 
-export default connect(mapStateToProps, {getAuthData})(App)
+type TDispatchProps = {
+    getAuthData: () => void
+}
+
+export default connect<MapStateType, TDispatchProps, {}, RootStateType>(mapStateToProps,  {getAuthData})(App)
