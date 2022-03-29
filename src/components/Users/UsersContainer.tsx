@@ -7,6 +7,13 @@ import React, {Component, ComponentType} from 'react'
 import {Preloader} from '../common/Preloader/Preloader'
 import {withAuthNavigate} from '../HOC/withAuthNavigate'
 import {compose} from 'redux'
+import {
+    followingInProgressSelector,
+    getCurrentPageSelector,
+    getPageSizeSelector,
+    getTotalCountSelector,
+    getUsersSelector, isAuthSelector, isFetchingSelector
+} from '../../selectors/users-selectors'
 
 
 type PropsType = MapStatePropsType & MapDispatchPropsType
@@ -77,13 +84,13 @@ type MapDispatchPropsType = {
 
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
-        users: state.usersPage.users,
-        totalCount: state.usersPage.totalCount,
-        pageSize: state.usersPage.pageSize,
-        currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching,
-        followingInProgress: state.usersPage.followingInProgress,
-        isAuth: state.auth.isAuth,
+        users: getUsersSelector(state),
+        totalCount: getTotalCountSelector(state),
+        pageSize: getPageSizeSelector(state),
+        currentPage: getCurrentPageSelector(state),
+        isFetching: isFetchingSelector(state),
+        followingInProgress: followingInProgressSelector(state),
+        isAuth: isAuthSelector(state),
     }
 }
 
