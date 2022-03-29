@@ -15,17 +15,17 @@ import {LoginContainer} from './components/Login/LoginContainer'
 import {connect} from 'react-redux'
 import {RootStateType} from './components/Redux/redux-store'
 import {Preloader} from './components/common/Preloader/Preloader'
-import {getAuthData} from './components/Redux/auth-reducer'
+import {initializeApp} from './components/Redux/app-reducer'
 
 type AppPropsType = {
     isInitialized: boolean
-    getAuthData: () => void
+    initializeApp: () => void
 }
 
 class App extends React.Component<AppPropsType> {
 
     componentDidMount() {
-        this.props.getAuthData()
+        this.props.initializeApp()
     }
 
     render() {
@@ -70,7 +70,7 @@ const mapStateToProps = (state: RootStateType): MapStateType => {
 }
 
 type TDispatchProps = {
-    getAuthData: () => void
+    initializeApp: () => void
 }
 
-export default connect<MapStateType, TDispatchProps, {}, RootStateType>(mapStateToProps,  {getAuthData})(App)
+export default connect<MapStateType, TDispatchProps, {}, RootStateType>(mapStateToProps,  {initializeApp})(App)
