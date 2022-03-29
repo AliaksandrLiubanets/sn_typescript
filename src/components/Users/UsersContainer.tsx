@@ -11,7 +11,7 @@ import {
     followingInProgressSelector,
     getCurrentPageSelector,
     getPageSizeSelector,
-    getTotalCountSelector,
+    getTotalCountSelector, getUsersNamedSinceMSelector,
     getUsersSelector, isAuthSelector, isFetchingSelector
 } from '../../selectors/users-selectors'
 
@@ -84,7 +84,8 @@ type MapDispatchPropsType = {
 
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
-        users: getUsersSelector(state),
+        // users: getUsersSelector(state),
+        users: getUsersNamedSinceMSelector(state),
         totalCount: getTotalCountSelector(state),
         pageSize: getPageSizeSelector(state),
         currentPage: getCurrentPageSelector(state),
