@@ -1,7 +1,7 @@
 import usersReducer, {
     followAC,
-    setCurrentPage, setFollowingInProgress,
-    setUsers, toggleIsFetching,
+    setCurrentPageAC, setFollowingInProgressAC,
+    setUsersAC, toggleIsFetchingAC,
     unfollowAC,
     UsersStateType
 } from '../components/Redux/users-reducer'
@@ -61,7 +61,7 @@ test("should set users and user's count", () => {
             photos: {small: '', large: ''}}
     ]
 
-    const action = setUsers(newUsersArray, 1000)
+    const action = setUsersAC(newUsersArray, 1000)
     const changedState = usersReducer(state, action)
 
     expect(changedState.users.length).toBe(2)
@@ -73,7 +73,7 @@ test("should set users and user's count", () => {
 
 test("should set current page", () => {
 
-    const action = setCurrentPage(25)
+    const action = setCurrentPageAC(25)
     const changedState = usersReducer(state, action)
 
     expect(changedState.currentPage).toBe(25)
@@ -81,7 +81,7 @@ test("should set current page", () => {
 
 test("isFetching should toggle", () => {
 
-    const action = toggleIsFetching(true)
+    const action = toggleIsFetchingAC(true)
     const changedState = usersReducer(state, action)
 
     expect(changedState.isFetching).toBe(true)
@@ -89,7 +89,7 @@ test("isFetching should toggle", () => {
 
 test("followingInProgress has element", () => {
 
-    const action = setFollowingInProgress(true, 1)
+    const action = setFollowingInProgressAC(true, 1)
     const changedState = usersReducer(state, action)
 
     expect(changedState.followingInProgress).toStrictEqual([1])
