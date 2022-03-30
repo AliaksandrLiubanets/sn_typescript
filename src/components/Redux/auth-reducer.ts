@@ -13,7 +13,7 @@ export type AuthDataType = {
     login: string | null
 }
 
-type AuthStateType = {
+export type AuthStateType = {
     data: AuthDataType
     isAuth: boolean
 }
