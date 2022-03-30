@@ -11,8 +11,10 @@ import {
     followingInProgressSelector,
     getCurrentPageSelector,
     getPageSizeSelector,
-    getTotalCountSelector, getUsersNamedSinceMSelector,
-    getUsersSelector, isAuthSelector, isFetchingSelector
+    getTotalCountSelector,
+    getUsersNamedSinceMSelector,
+    isAuthSelector,
+    isFetchingSelector
 } from '../../selectors/users-selectors'
 
 

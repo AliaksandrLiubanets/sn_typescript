@@ -1,3 +1,4 @@
+import React from 'react'
 import s from './ProfileInfo.module.css'
 import {ProfileType} from '../../Redux/profile-reducer'
 import {Preloader} from '../../common/Preloader/Preloader'
@@ -9,7 +10,7 @@ type ProfileInfoProps = {
     setStatus: (status: string) => void
 }
 
-export function ProfileInfo ({profile, status, setStatus}: ProfileInfoProps) {
+export const ProfileInfo = React.memo(({profile, status, setStatus}: ProfileInfoProps) => {
 
     if (!profile) {
         return <Preloader />
@@ -24,4 +25,4 @@ export function ProfileInfo ({profile, status, setStatus}: ProfileInfoProps) {
         </div>
         <ProStatus status={status} setStatus={setStatus}/>
     </div>
-}
+})

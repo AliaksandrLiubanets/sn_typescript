@@ -6,7 +6,7 @@ type StatusProps = {
     setStatus: (status: string) => void
 }
 
-const ProStatus = (props: StatusProps) => {
+const ProStatus = React.memo((props: StatusProps) => {
     const [editMode, setEditMode] = useState(false)
     const [status, setStatus] = useState<string | null>('')
 
@@ -35,6 +35,6 @@ const ProStatus = (props: StatusProps) => {
                 </div>
             }
         </div>
-}
+})
 
 export default ProStatus
