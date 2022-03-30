@@ -1,6 +1,6 @@
 import profileReducer, {
-    addCurrentValue,
-    addPost,
+    addCurrentValueAC,
+    addPostAC,
     initialState,
     ProfilePageType
 } from '../components/Redux/profile-reducer'
@@ -18,7 +18,7 @@ test('should add post', () => {
         textareaCurrentValue: 'Hello friend!',
     }
 
-    const action = addPost()
+    const action = addPostAC()
     const changedState2 = profileReducer(state2, action)
     const changedState = profileReducer(state, action)
 
@@ -30,7 +30,7 @@ test('should add post', () => {
 })
 test('should add current value to state', () => {
 
-    const action = addCurrentValue('Text-value')
+    const action = addCurrentValueAC('Text-value')
     const changedState = profileReducer(state, action)
 
     expect(changedState.textareaCurrentValue).toBe('Text-value')

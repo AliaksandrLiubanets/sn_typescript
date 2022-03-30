@@ -4,6 +4,7 @@ import {ThunkAction} from 'redux-thunk'
 import {RootStateType} from './redux-store'
 
 export const ADD_POST = 'sn-typescript/ProfilePage/ADD-POST'
+export const DELETE_POST = 'sn-typescript/ProfilePage/DELETE-POST'
 export const ADD_CURRENT_VALUE = 'sn-typescript/ProfilePage/ADD-CURRENT-VALUE'
 export const SET_USER_PROFILE = 'sn-typescript/ProfilePage/SET-USER-PROFILE'
 export const SET_STATUS = 'sn-typescript/ProfilePage/SET-STATUS'
@@ -14,7 +15,7 @@ export type PostType = {
     likes: number
 }
 
-type ContactsType = {
+export type ContactsType = {
     github: string
     vk: string
     facebook: string
@@ -52,10 +53,10 @@ export const initialState: ProfilePageType = {
         {id: v1(), message: 'How is it going?!', likes: 8}
     ],
     profile: null,
-    status: null,
+    status: null
 }
 
-const profileReducer = (state = initialState, action: ProfilePageActionsType): ProfilePageType => {
+export const profileReducer = (state = initialState, action: ProfilePageActionsType): ProfilePageType => {
     switch (action.type) {
         case ADD_POST:
             let newPost: PostType
@@ -68,12 +69,15 @@ const profileReducer = (state = initialState, action: ProfilePageActionsType): P
             if (newPost.message) {
                 return {
                     ...state,
-                    textareaCurrentValue: '',
                     messagesData: [...state.messagesData, newPost]
                 }
             }
-
             return state
+        case DELETE_POST:
+            return {...state,
+                messagesData: state.messagesData.filter(post => post.id !== action.postId)
+            }
+
         case ADD_CURRENT_VALUE:
             return {...state, textareaCurrentValue: action.newText}
         case SET_USER_PROFILE:
@@ -85,15 +89,22 @@ const profileReducer = (state = initialState, action: ProfilePageActionsType): P
     }
 }
 
-export type AddPostActionType = ReturnType<typeof addPost>
-export type AddCurrentValueActionType = ReturnType<typeof addCurrentValue>
+export type AddPostActionType = ReturnType<typeof addPostAC>
+export type DeletePostActionType = ReturnType<typeof deletePostAC>
+export type AddCurrentValueActionType = ReturnType<typeof addCurrentValueAC>
 export type SetUserProfileActionType = ReturnType<typeof setUserProfileAC>
 export type SetStatusActionType = ReturnType<typeof setStatusProfileAC>
 
-export type ProfilePageActionsType = AddPostActionType | AddCurrentValueActionType | SetUserProfileActionType | SetStatusActionType
+export type ProfilePageActionsType =
+    | AddPostActionType
+    | AddCurrentValueActionType
+    | SetUserProfileActionType
+    | SetStatusActionType
+    | DeletePostActionType
 
-export const addPost = () => ({type: ADD_POST} as const)
-export const addCurrentValue = (text: string) => ({type: ADD_CURRENT_VALUE, newText: text} as const)
+export const addPostAC = () => ({type: ADD_POST} as const)
+export const deletePostAC = (postId: string) => ({type: DELETE_POST, postId} as const)
+export const addCurrentValueAC = (text: string) => ({type: ADD_CURRENT_VALUE, newText: text} as const)
 export const setUserProfileAC = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const)
 export const setStatusProfileAC = (status: string) => ({type: SET_STATUS, status} as const)
 
@@ -114,10 +125,10 @@ export const getStatus = (userId: number): ThunkType => (dispatch) => {
         })
 }
 
-export const setStatus = (status: string):ThunkType => (dispatch) => {
+export const setStatus = (status: string): ThunkType => (dispatch) => {
     return profileAPI.setStatus(status)
         .then(response => {
-            if(response.data.resultCode === 0) {
+            if (response.data.resultCode === 0) {
                 dispatch(setStatusProfileAC(status))
             }
         })
