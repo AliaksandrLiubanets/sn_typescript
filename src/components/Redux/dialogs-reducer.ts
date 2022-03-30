@@ -8,6 +8,7 @@ import ava_dragunsky from '../../assets/ava_100px/ava_dragunsky.jpg'
 import ava_ostrovsky from '../../assets/ava_100px/ava_ostrovskiy.jpg'
 
 const ADD_POST_DIALOG = 'sn-typescript/DialogsPage/ADD-POST-DIALOG'
+const DELETE_POST_DIALOG = 'sn-typescript/DialogsPage/DELETE-POST-DIALOG'
 const ADD_CURRENT_VALUE_DIALOG = 'sn-typescript/DialogsPage/ADD-CURRENT-VALUE-DIALOG'
 
 export type AddPostDialogActionType = {
@@ -20,7 +21,13 @@ export type AddCurrentValueDialogActionType = {
     newText: string
 }
 
-export type DialogsPageActionsType = AddPostDialogActionType | AddCurrentValueDialogActionType
+export type DeletePostDialogActionType = {
+    type: typeof DELETE_POST_DIALOG
+    name: string
+    postId: string
+}
+
+export type DialogsPageActionsType = AddPostDialogActionType | AddCurrentValueDialogActionType | DeletePostDialogActionType
 
 export type DialogType = {
     id: string
@@ -89,7 +96,7 @@ const initialState: DialogsPageType = {
     ]
 }
 
-const dialogsReducer = (state = initialState, action: DialogsPageActionsType): DialogsPageType => {
+export const dialogsReducer = (state = initialState, action: DialogsPageActionsType): DialogsPageType => {
     switch (action.type) {
         case ADD_POST_DIALOG:
                 let newPost: MessageType
@@ -110,12 +117,18 @@ const dialogsReducer = (state = initialState, action: DialogsPageActionsType): D
 
         case ADD_CURRENT_VALUE_DIALOG:
             return {...state, textareaCurrentValue: action.newText}
+        case DELETE_POST_DIALOG:
+            return {...state,
+                messages: {...state.messages,
+                    [action.name.toLowerCase()]: state.messages[action.name.toLowerCase()].filter(mes => mes.id !== action.postId) }
+            }
         default:
             return state
     }
 }
 
 export const addPostDialogAC = (name: string): AddPostDialogActionType => ({type: ADD_POST_DIALOG, name})
+export const deletePostDialogAC = (name: string, postId: string): DeletePostDialogActionType => ({type: DELETE_POST_DIALOG, name, postId})
 export const addCurrentValueDialogAC = (text: string): AddCurrentValueDialogActionType => ({type: ADD_CURRENT_VALUE_DIALOG, newText: text})
 
 export default dialogsReducer

@@ -69,6 +69,7 @@ export const profileReducer = (state = initialState, action: ProfilePageActionsT
             if (newPost.message) {
                 return {
                     ...state,
+                    textareaCurrentValue: '',
                     messagesData: [...state.messagesData, newPost]
                 }
             }
