@@ -27,6 +27,8 @@ const authReducer = (state: AuthStateType = initialState, action: AuthActionsTyp
     }
 }
 
+export default authReducer
+
 // actions:
 export const setAuthDataAC = (data: AuthDataType) => ({type: SET_AUTH_DATA, data} as const)
 export const setIsAuthAC = (isAuth: boolean) => ({type: SET_IS_AUTH, isAuth} as const)
@@ -58,9 +60,6 @@ export const loginOut = (): ThunkType => async (dispatch) => {
     }
 }
 
-export default authReducer
-
-
 // types:
 export type AuthDataType = {
     id: string | null
@@ -83,9 +82,10 @@ export type LoginPayloadType = {
 export type AuthType = ReturnType<typeof setAuthDataAC>
 export type SetIsAuthType = ReturnType<typeof setIsAuthAC>
 
+export type ThunkType = ThunkAction<void, RootStateType, unknown, AuthActionsType>
+
 export type AuthActionsType =
     | AuthType
     | SetIsAuthType
     | SetIsInitializeType
 
-export type ThunkType = ThunkAction<void, RootStateType, unknown, AuthActionsType>
