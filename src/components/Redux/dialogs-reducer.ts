@@ -11,46 +11,6 @@ const ADD_POST_DIALOG = 'sn-typescript/DialogsPage/ADD-POST-DIALOG'
 const DELETE_POST_DIALOG = 'sn-typescript/DialogsPage/DELETE-POST-DIALOG'
 const ADD_CURRENT_VALUE_DIALOG = 'sn-typescript/DialogsPage/ADD-CURRENT-VALUE-DIALOG'
 
-export type AddPostDialogActionType = {
-    type: typeof ADD_POST_DIALOG
-    name: string
-}
-
-export type AddCurrentValueDialogActionType = {
-    type: typeof ADD_CURRENT_VALUE_DIALOG
-    newText: string
-}
-
-export type DeletePostDialogActionType = {
-    type: typeof DELETE_POST_DIALOG
-    name: string
-    postId: string
-}
-
-export type DialogsPageActionsType = AddPostDialogActionType | AddCurrentValueDialogActionType | DeletePostDialogActionType
-
-export type DialogType = {
-    id: string
-    name: string
-    ava: string
-}
-
-export type MessageType = {
-    id: string
-    message: string
-    name: string
-    ava: string
-}
-
-export type DialogsPageMessagesType = {
-    [key: string]: Array<MessageType>
-}
-
-export type DialogsPageType = {
-    textareaCurrentValue: string
-    messages: DialogsPageMessagesType
-    dialogs: Array<DialogType>
-}
 
 const initialState: DialogsPageType = {
     textareaCurrentValue: '',
@@ -127,8 +87,48 @@ export const dialogsReducer = (state = initialState, action: DialogsPageActionsT
     }
 }
 
+export default dialogsReducer
+
+// actions:
 export const addPostDialogAC = (name: string): AddPostDialogActionType => ({type: ADD_POST_DIALOG, name})
 export const deletePostDialogAC = (name: string, postId: string): DeletePostDialogActionType => ({type: DELETE_POST_DIALOG, name, postId})
 export const addCurrentValueDialogAC = (text: string): AddCurrentValueDialogActionType => ({type: ADD_CURRENT_VALUE_DIALOG, newText: text})
 
-export default dialogsReducer
+
+// types:
+export type AddPostDialogActionType = {
+    type: typeof ADD_POST_DIALOG
+    name: string
+}
+export type AddCurrentValueDialogActionType = {
+    type: typeof ADD_CURRENT_VALUE_DIALOG
+    newText: string
+}
+export type DeletePostDialogActionType = {
+    type: typeof DELETE_POST_DIALOG
+    name: string
+    postId: string
+}
+export type DialogType = {
+    id: string
+    name: string
+    ava: string
+}
+export type MessageType = {
+    id: string
+    message: string
+    name: string
+    ava: string
+}
+export type DialogsPageMessagesType = {
+    [key: string]: Array<MessageType>
+}
+export type DialogsPageType = {
+    textareaCurrentValue: string
+    messages: DialogsPageMessagesType
+    dialogs: Array<DialogType>
+}
+export type DialogsPageActionsType =
+    | AddPostDialogActionType
+    | AddCurrentValueDialogActionType
+    | DeletePostDialogActionType
