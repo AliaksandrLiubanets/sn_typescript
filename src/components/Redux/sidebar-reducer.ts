@@ -3,20 +3,6 @@ import ava_lenin from '../../assets/friends 200px/ava_lenin.png'
 import ava_olga from '../../assets/friends 200px/ava_olga.jpg'
 import ava_karina from '../../assets/friends 200px/ava_karina.jpg'
 
-export type FriendType = {
-    id: string
-    name: string
-    ava: string
-}
-
-export type SidebarType = {
-    friends: Array<FriendType>
-}
-
-type SideBarActionsType = {
-
-}
-
 const initialState: SidebarType = {
     friends: [
         {id: v1(), name: 'Lenin', ava: ava_lenin},
@@ -31,3 +17,18 @@ const sidebarReducer = (state = initialState, action: SideBarActionsType): Sideb
 }
 
 export default sidebarReducer
+
+// types:
+export type FriendType = {
+    id: string
+    name: string
+    ava: string
+}
+
+export type SidebarType = {
+    friends: Array<FriendType>
+}
+
+type SideBarActionsType = {
+
+}
