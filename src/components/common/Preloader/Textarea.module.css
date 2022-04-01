@@ -1,0 +1,8 @@
+.textarea__textarea {
+    border: 1px solid rgba(255, 254, 254, 0);
+    border-radius: 10px;
+    background-color: rgba(255, 254, 254, 0.96);
+    width: 200px;
+    padding: 5px 10px;
+    height: 20px;
+}

@@ -62,7 +62,9 @@ class Users extends Component<PropsType> {
                     </div>
                 }
             </div>
-            <div className={s.users__content}>{users}</div>
+            <div className={s.users__content}>
+                {users}
+            </div>
         </div>
     }
 }

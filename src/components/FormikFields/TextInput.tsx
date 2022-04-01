@@ -3,10 +3,10 @@ import s from './FormikFields.module.css'
 import {useField} from 'formik'
 
 type InputType = {
-    labelName: string
+    labelName?: string
     name: string
     type: string
-    placeholder: string
+    placeholder?: string
     validate: (value: string) => string | undefined
 }
 
