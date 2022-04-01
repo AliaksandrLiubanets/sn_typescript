@@ -1,6 +1,7 @@
 import {usersAPI} from '../../api/api'
 import {ThunkAction} from 'redux-thunk'
 import {RootStateType} from './redux-store'
+import {Dispatch} from 'redux'
 
 const FOLLOW_USER = 'FOLLOW-USER'
 const UNFOLLOW_USER = 'UNFOLLOW-USER'
@@ -79,19 +80,21 @@ export const getUsers = (currentPage: number, pageSize: number): ThunkType => as
 }
 
 export const unfollow = (userId: number): ThunkType => async (dispatch) => {
-    dispatch(setFollowingInProgressAC(true, userId))
-    const response = await usersAPI.unfollowUser(userId)
-    if (response.data.resultCode === 0) {
-        dispatch(unfollowAC(userId))
-    }
-    dispatch(setFollowingInProgressAC(false, userId))
+    const apiMethod = usersAPI.unfollowUser.bind(usersAPI)
+    followUnfollowFlow(userId, dispatch, apiMethod, unfollowAC)
 }
 
 export const follow = (userId: number): ThunkType => async (dispatch) => {
+    const apiMethod = usersAPI.followUser.bind(usersAPI)
+    followUnfollowFlow(userId, dispatch, apiMethod, followAC)
+}
+
+const followUnfollowFlow = async (userId: number, dispatch: Dispatch, apiMethod: any, actionCreator: any )  => {
+
     dispatch(setFollowingInProgressAC(true, userId))
-    const response = await usersAPI.followUser(userId)
+    const response = await apiMethod(userId)
     if (response.data.resultCode === 0) {
-        dispatch(followAC(userId))
+        dispatch(actionCreator(userId))
     }
     dispatch(setFollowingInProgressAC(false, userId))
 }

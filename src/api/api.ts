@@ -9,7 +9,7 @@ type ResponseGetUsers = {
     error: null | string
 }
 
-type ResponseFollowUnfollowUser = {
+export type ResponseFollowUnfollowUser = {
     resultCode: number
     messages: null | Array<string>
     data: Date
