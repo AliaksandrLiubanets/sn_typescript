@@ -12,7 +12,7 @@ type ResponseGetUsers = {
 export type ResponseFollowUnfollowUser = {
     resultCode: number
     messages: null | Array<string>
-    data: Date
+    data: {}
 }
 
 type ResponseAuthStatus = {

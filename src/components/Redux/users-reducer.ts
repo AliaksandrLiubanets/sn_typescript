@@ -1,7 +1,9 @@
-import {usersAPI} from '../../api/api'
+import {ResponseFollowUnfollowUser, usersAPI} from '../../api/api'
 import {ThunkAction} from 'redux-thunk'
 import {RootStateType} from './redux-store'
 import {Dispatch} from 'redux'
+import {updateUserInStateArray} from '../../utils/object-helpers'
+import {AxiosResponse} from 'axios'
 
 const FOLLOW_USER = 'FOLLOW-USER'
 const UNFOLLOW_USER = 'UNFOLLOW-USER'
@@ -23,14 +25,14 @@ const initialState: UsersStateType = {
 export const usersReducer = (state = initialState, action: UsersAT): UsersStateType => {
     switch (action.type) {
         case FOLLOW_USER:
-            return {
-                ...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: true} : u)
-            }
-        case UNFOLLOW_USER: {
-            return {
-                ...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: false} : u)
-            }
-        }
+            // return updateUserInArray<{followed: boolean}>(state, action, {followed: true} )
+
+        return updateUserInStateArray(state, action, 'followed', true)
+
+        case UNFOLLOW_USER:
+            // return updateUserInArray(state, action, {followed: false} )
+            return updateUserInStateArray(state, action, 'followed', false )
+
         case SET_USERS:
             return {
                 ...state,
@@ -89,10 +91,11 @@ export const follow = (userId: number): ThunkType => async (dispatch) => {
     followUnfollowFlow(userId, dispatch, apiMethod, followAC)
 }
 
-const followUnfollowFlow = async (userId: number, dispatch: Dispatch, apiMethod: any, actionCreator: any )  => {
+const followUnfollowFlow = async (userId: number, dispatch: Dispatch, apiMethod: (userId: number) => Promise<AxiosResponse<ResponseFollowUnfollowUser>>, actionCreator: (userId: number) => UsersAT )  => {
 
     dispatch(setFollowingInProgressAC(true, userId))
     const response = await apiMethod(userId)
+    debugger
     if (response.data.resultCode === 0) {
         dispatch(actionCreator(userId))
     }
@@ -123,11 +126,11 @@ export type UsersStateType = {
     isFetching: boolean
     followingInProgress: number[]
 }
-type FollowAT = {
+export type FollowAT = {
     type: typeof FOLLOW_USER
     userId: number
 }
-type UnFollowAT = {
+export type UnFollowAT = {
     type: typeof UNFOLLOW_USER
     userId: number
 }
