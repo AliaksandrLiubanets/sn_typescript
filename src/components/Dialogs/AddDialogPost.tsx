@@ -1,9 +1,11 @@
 import {ChangeEvent} from 'react'
 import s from './TextareaField.module.css'
 import ava_me from '../../assets/ava_100px/ava_me.jpg'
+import {Textarea} from '../common/Preloader/Textarea'
+import {Button} from '../common/Preloader/Button'
 
 type PropsType = {
-    textareaCurrentValue: string | undefined
+    textareaCurrentValue: string
     setCurrentValue: (text: string) => void
     addDialogPost: (name: string) => void
     name: string
@@ -22,15 +24,8 @@ function AddDialogPost(props: PropsType) {
         <div className={s.textarea__ava}>
             <img src={ava_me} alt=""/>
         </div>
-        <div>
-            <textarea className={s.textarea__textarea}
-                      onChange={setCurrentValueToState}
-                      value={props.textareaCurrentValue}>
-            </textarea>
-        </div>
-        <div className={s.textarea__button}>
-            <button onClick={addPostDialog}>Send</button>
-        </div>
+        <Textarea setCurrentText={setCurrentValueToState} value={props.textareaCurrentValue} />
+        <Button label={'Send'} onClickHandler={addPostDialog}/>
     </div>
 }
 
