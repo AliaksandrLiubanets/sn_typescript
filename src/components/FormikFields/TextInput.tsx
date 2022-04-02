@@ -1,6 +1,6 @@
 import React from 'react'
 import s from './FormikFields.module.css'
-import {useField} from 'formik'
+import {Field, useField} from 'formik'
 
 type InputType = {
     labelName?: string
@@ -18,7 +18,7 @@ export const TextInput = ({labelName, ...props}: InputType) => {
 
     return <div className={s.input_block}>
         <label htmlFor={props.name}>{labelName}</label>
-        <input className={s.input_style} {...field} {...props} />
+        <Field className={s.input_style} {...field} {...props} />
         {
             meta.touched && meta.error
             ? (<div className={s.error_message}>{meta.error}</div>)

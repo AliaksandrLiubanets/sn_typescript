@@ -16,6 +16,7 @@ import {connect} from 'react-redux'
 import {RootStateType} from './components/Redux/redux-store'
 import {Preloader} from './components/common/Preloader/Preloader'
 import {initializeApp} from './components/Redux/app-reducer'
+import {ErrorWarn} from './components/Error/ErrorWarn'
 
 type AppPropsType = {
     isInitialized: boolean
@@ -52,8 +53,8 @@ class App extends React.Component<AppPropsType> {
                                 <Route path="/login" element={<LoginContainer/>}/>
                             </Routes>
                     }
-
                 </div>
+                <ErrorWarn />
             </div>
         )
     }

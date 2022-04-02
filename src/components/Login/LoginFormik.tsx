@@ -28,18 +28,18 @@ export const LoginFormik = () => {
 
                     <Form className={s.login_form}>
                         <TextInput
-                            labelName="Email"
-                            name="email"
-                            type="email"
-                            placeholder="enter email"
+                            labelName={'Email'}
+                            name={'email'}
+                            type={'email'}
+                            placeholder={'enter email'}
                             validate={validateEmail}
                         />
 
                         <TextInput
-                            labelName="Password"
-                            name="password"
-                            type="password"
-                            placeholder="enter password"
+                            labelName={'Password'}
+                            name={'password'}
+                            type={'password'}
+                            placeholder={'enter password'}
                             validate={validatePassword}
                         />
 

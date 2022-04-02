@@ -1,7 +1,7 @@
 import {authAPI} from '../../api/api'
 import {ThunkAction} from 'redux-thunk'
 import {RootStateType} from './redux-store'
-import {SetIsInitializeType} from './app-reducer'
+import {setAppErrorMessageAC, SetAppErrorMessageType, SetIsInitializeType} from './app-reducer'
 import {Dispatch} from 'redux'
 
 export const SET_AUTH_DATA = 'sn-typescript/Authorize/SET-AUTH-DATA'
@@ -33,7 +33,6 @@ export default authReducer
 export const setAuthDataAC = (data: AuthDataType) => ({type: SET_AUTH_DATA, data} as const)
 export const setIsAuthAC = (isAuth: boolean) => ({type: SET_IS_AUTH, isAuth} as const)
 
-
 // thunks:
 export const getAuthData = () => async (dispatch: Dispatch) => {
     const response = await authAPI.me()
@@ -44,12 +43,23 @@ export const getAuthData = () => async (dispatch: Dispatch) => {
 
 }
 
-export const login = (payload: LoginPayloadType): ThunkType => async (dispatch) => {
-    const response = await authAPI.login(payload)
-    if (response.data.resultCode === 0) {
-        dispatch(getAuthData())
-    }
-
+export const login = (payload: LoginPayloadType): ThunkType => (dispatch) => {
+    return authAPI.login(payload)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(getAuthData())
+            } else {
+                if (response.data.messages.length) {
+                    const error: string = response.data.messages[0]
+                    dispatch(setAppErrorMessageAC(error))
+                    console.warn(error)
+                }
+            }
+        }).catch(err => {
+            console.warn('Some error')
+            console.log(err.message)
+            dispatch(setAppErrorMessageAC(err.message))
+        })
 }
 
 export const loginOut = (): ThunkType => async (dispatch) => {
@@ -88,4 +98,5 @@ export type AuthActionsType =
     | AuthType
     | SetIsAuthType
     | SetIsInitializeType
+    | SetAppErrorMessageType
 
