@@ -11,12 +11,12 @@ export const SET_STATUS = 'sn-typescript/ProfilePage/SET-STATUS'
 
 
 export const initialState: ProfilePageType = {
-    textareaCurrentValue: '',
     messagesData: [
         {id: v1(), message: 'hello!', likes: 3},
         {id: v1(), message: 'Hi!', likes: 5},
         {id: v1(), message: 'How is it going?!', likes: 8}
     ],
+    textareaCurrentValue: '',
     profile: null,
     status: null
 }
@@ -46,11 +46,9 @@ export const profileReducer = (state = initialState, action: ProfilePageActionsT
             }
 
         case ADD_CURRENT_VALUE:
-            return {...state, textareaCurrentValue: action.newText}
         case SET_USER_PROFILE:
-            return {...state, profile: action.profile}
         case SET_STATUS:
-            return {...state, status: action.status}
+            return {...state, ...action.payload}
         default:
             return state
     }
@@ -61,9 +59,12 @@ export default profileReducer
 // actions:
 export const addPostAC = () => ({type: ADD_POST} as const)
 export const deletePostAC = (postId: string) => ({type: DELETE_POST, postId} as const)
-export const addCurrentValueAC = (text: string) => ({type: ADD_CURRENT_VALUE, newText: text} as const)
-export const setUserProfileAC = (profile: ProfileType) => ({type: SET_USER_PROFILE, profile} as const)
-export const setStatusProfileAC = (status: string) => ({type: SET_STATUS, status} as const)
+export const addCurrentValueAC = (textareaCurrentValue: string) =>
+    ({type: ADD_CURRENT_VALUE, payload: {textareaCurrentValue}} as const)
+export const setUserProfileAC = (profile: ProfileType) =>
+    ({type: SET_USER_PROFILE, payload: {profile} } as const)
+export const setStatusProfileAC = (status: string) =>
+    ({type: SET_STATUS, payload: {status}} as const)
 
 
 // thunks:

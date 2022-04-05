@@ -38,7 +38,7 @@ test('Add current value to state', () => {
 
     const action = addCurrentValueAC('IT-kamasutra')
     const result = profileReducer(state, action)
-    const result2 = profileReducer(state, {type: ADD_CURRENT_VALUE, newText: ""})
+    const result2 = profileReducer(state, {type: ADD_CURRENT_VALUE, payload: {textareaCurrentValue: ''}})
 
     expect(result.textareaCurrentValue).toBe("IT-kamasutra")
     expect(result2.textareaCurrentValue).toBe("")
