@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
-import {follow, getUsers, setCurrentPageAC, unfollow, UserType} from '../Redux/users-reducer'
+import {follow, getUsers, unfollow, usersActions, UserType} from '../Redux/users-reducer'
 import User from './User'
 import s from './Users.module.css'
 import React, {Component, ComponentType} from 'react'
@@ -104,7 +104,7 @@ export default compose<ComponentType>(
     connect(mapStateToProps, {
         follow,
         unfollow,
-        setCurrentPage: setCurrentPageAC,
+        setCurrentPage: usersActions.setCurrentPage,
         getUsers,
     }),
 )(Users)

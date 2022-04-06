@@ -1,4 +1,4 @@
-import {addCurrentValueDialogAC, addPostDialogAC} from '../Redux/dialogs-reducer'
+import {dialogsActions} from '../Redux/dialogs-reducer'
 import AddDialogPost from './AddDialogPost'
 import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
@@ -37,10 +37,10 @@ type MapDispatchPropsType = {
 const mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         addDialogPost: (name) => {
-            dispatch(addPostDialogAC(name))
+            dispatch(dialogsActions.addPostDialog(name))
         },
         setCurrentValue: text => {
-            dispatch(addCurrentValueDialogAC(text))
+            dispatch(dialogsActions.addCurrentValueDialog(text))
         }
     }
 }

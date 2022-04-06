@@ -10,9 +10,8 @@ import ava_dragunsky from '../../assets/ava_dragunsky.jpg'
 import ava_ostrovsky from '../../assets/ava_ostrovskiy.jpg'
 import ava_me from '../../assets/ava_me.jpg'
 import ava_dimych from '../../assets/ava_dimych.jpg'
-import {AddCurrentValueActionType, AddPostActionType} from './profile-reducer'
-import {AddCurrentValueDialogActionType, AddPostDialogActionType} from './dialogs-reducer'
 import sidebarReducer from './sidebar-reducer'
+import {ActionsType} from './redux-store'
 
 
 export type DialogType = {
@@ -65,12 +64,12 @@ export type StateType = {
     sidebar: SidebarType
 }
 
-export type ActionsTypes = AddPostActionType | AddCurrentValueActionType | AddPostDialogActionType | AddCurrentValueDialogActionType
+// export type ActionsTypes = AddPostActionType | AddCurrentValueActionType | AddPostDialogActionType | AddCurrentValueDialogActionType
 
 export type StoreType = {
     state: StateType
     getState: () => StateType,
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: ActionsType) => void
 }
 
 
@@ -140,7 +139,7 @@ const store: StoreType = {
         return this.state
     },
 
-    dispatch(action: ActionsTypes) {
+    dispatch(action: ActionsType) {
 
         //this.state.profilePage = profileReducer(this.getState().profilePage, action)
         //this.state.dialogsPage = dialogsReducer(this.getState().dialogsPage, action)

@@ -20,7 +20,7 @@ const store = createStore(rootReducer, applyMiddleware(thunk))
 
 export type RootStateType = ReturnType<typeof rootReducer>
 export type InferActionTypes<T> = T extends { [keys: string]: (...args: any[]) => infer U } ? U : never
-type ActionsType = AppActionsType | AuthActionsType | DialogsActionsType | ProfileActionsType | UsersAT
+export type ActionsType = AppActionsType | AuthActionsType | DialogsActionsType | ProfileActionsType | UsersAT
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootStateType, unknown, ActionsType>
 export type AppStoreType = typeof store
 
