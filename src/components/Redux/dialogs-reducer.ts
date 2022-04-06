@@ -6,6 +6,7 @@ import ava_lenin from '../../assets/ava_100px/ava_lenin.png'
 import ava_pushkin from '../../assets/ava_100px/ava_pushkin.jpg'
 import ava_dragunsky from '../../assets/ava_100px/ava_dragunsky.jpg'
 import ava_ostrovsky from '../../assets/ava_100px/ava_ostrovskiy.jpg'
+import {InferActionTypes} from './redux-store'
 
 const ADD_POST_DIALOG = 'sn-typescript/DialogsPage/ADD-POST-DIALOG'
 const DELETE_POST_DIALOG = 'sn-typescript/DialogsPage/DELETE-POST-DIALOG'
@@ -56,7 +57,7 @@ const initialState: DialogsPageType = {
     ]
 }
 
-export const dialogsReducer = (state = initialState, action: DialogsPageActionsType): DialogsPageType => {
+export const dialogsReducer = (state = initialState, action: DialogsActionsType): DialogsPageType => {
     switch (action.type) {
         case ADD_POST_DIALOG:
                 let newPost: MessageType
@@ -90,10 +91,13 @@ export const dialogsReducer = (state = initialState, action: DialogsPageActionsT
 export default dialogsReducer
 
 // actions:
-export const addPostDialogAC = (name: string): AddPostDialogActionType => ({type: ADD_POST_DIALOG, name})
-export const deletePostDialogAC = (name: string, postId: string): DeletePostDialogActionType => ({type: DELETE_POST_DIALOG, name, postId})
-export const addCurrentValueDialogAC = (text: string): AddCurrentValueDialogActionType => ({type: ADD_CURRENT_VALUE_DIALOG, newText: text})
 
+export const dialogsActions = {
+    addPostDialog: (name: string): AddPostDialogActionType => ({type: ADD_POST_DIALOG, name}),
+    deletePostDialog: (name: string, postId: string): DeletePostDialogActionType => ({type: DELETE_POST_DIALOG, name, postId}),
+    addCurrentValueDialog: (text: string): AddCurrentValueDialogActionType => ({type: ADD_CURRENT_VALUE_DIALOG, newText: text}),
+
+}
 
 // types:
 export type AddPostDialogActionType = {
@@ -128,7 +132,4 @@ export type DialogsPageType = {
     messages: DialogsPageMessagesType
     dialogs: Array<DialogType>
 }
-export type DialogsPageActionsType =
-    | AddPostDialogActionType
-    | AddCurrentValueDialogActionType
-    | DeletePostDialogActionType
+export type DialogsActionsType = InferActionTypes<typeof dialogsActions>
