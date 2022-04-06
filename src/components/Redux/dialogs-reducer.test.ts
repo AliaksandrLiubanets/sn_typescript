@@ -6,12 +6,7 @@ import ava_lenin from '../../assets/ava_100px/ava_lenin.png'
 import ava_pushkin from '../../assets/ava_100px/ava_pushkin.jpg'
 import ava_dragunsky from '../../assets/ava_100px/ava_dragunsky.jpg'
 import ava_ostrovsky from '../../assets/ava_100px/ava_ostrovskiy.jpg'
-import dialogsReducer, {
-    addCurrentValueDialogAC,
-    addPostDialogAC,
-    deletePostDialogAC,
-    DialogsPageType
-} from './dialogs-reducer'
+import dialogsReducer, {dialogsActions, DialogsPageType} from './dialogs-reducer'
 
 let state: DialogsPageType
 let dimychDialogName: string
@@ -70,7 +65,7 @@ test('Add Dialog post', () => {
 
     const newState: DialogsPageType = {...state, textareaCurrentValue: 'Hello!'}
 
-    const action = addPostDialogAC(dimychDialogName)
+    const action = dialogsActions.addPostDialog(dimychDialogName)
     const result = dialogsReducer(newState, action)
 
     expect(result.messages['Dimych'.toLowerCase()].length).toBe(4)
@@ -81,7 +76,7 @@ test('Add Dialog post', () => {
 
 test('Add current value in Dialogs', () => {
 
-    const action = addCurrentValueDialogAC('Yo')
+    const action = dialogsActions.addCurrentValueDialog('Yo')
     const result = dialogsReducer(state, action)
 
     expect(result.textareaCurrentValue).toBe("Yo")
@@ -89,7 +84,7 @@ test('Add current value in Dialogs', () => {
 
 test('Delete Dialog post', () => {
 
-    const action = deletePostDialogAC(dimychDialogName, postId_2)
+    const action = dialogsActions.deletePostDialog(dimychDialogName, postId_2)
     const result = dialogsReducer(state, action)
 
     const user = {id: postId_1, message: 'Hello!', name: 'Dimych', ava: ava_dimych}
