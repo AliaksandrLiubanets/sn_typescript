@@ -1,9 +1,35 @@
-.preloader {
+
+.wrapper {
+    height: 150px;
+}
+
+.wrapper_h150 {
+    height: 150px;
+}
+
+.preloader
+/*.preloader_h100,*/
+/*.preloader_h150 */
+{
     height: 50px;
-    width: 20px;
+    width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.preloader_h100 {
+    height: 100px;
+}
+.preloader_h150 {
+    height: 150px;
+}
+
+
+.img {
+    height: 30px;
+    width: 30px;
 }
 
 .preloader img {
-    height: 25px;
-    width: 30px;
 }

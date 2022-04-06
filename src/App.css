@@ -1,5 +1,6 @@
 .App {
   width: 900px;
+  min-height: 700px;
   display: grid;
   margin: 0 auto;
   grid-template-columns: 200px 700px;

@@ -1,11 +1,30 @@
 .profileInfo {
     padding: 10px 0;
+    min-height: 180px;
 }
 
 .profileInfo img {
     border-radius: 2px;
     box-shadow: 0 0 2px #e81f3e;
+    height: 90px;
 }
 
-.profileInfo_ava {}
-.profileInfo_name {}
+.profileInfo_ava {
+    min-height: 90px;
+}
+
+.profileInfo_name {
+    margin-top: 5px;
+    height: 15px;
+    align-items: center;
+    display: flex;
+}
+
+.profileInfo_name span {
+    display: block;
+}
+
+.profile_preloader {
+    height: 150px;
+    width: 90px;
+}
