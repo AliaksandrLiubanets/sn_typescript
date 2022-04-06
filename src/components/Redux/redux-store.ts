@@ -3,7 +3,7 @@ import dialogsReducer from './dialogs-reducer'
 import profileReducer from './profile-reducer'
 import sidebarReducer from './sidebar-reducer'
 import usersReducer from './users-reducer'
-import authReducer from './auth-reducer'
+import authReducer, {AuthActionsType} from './auth-reducer'
 import thunk, {ThunkAction} from 'redux-thunk'
 import appReducer, {AppActionsType} from './app-reducer'
 
@@ -20,7 +20,7 @@ const store = createStore(rootReducer, applyMiddleware(thunk))
 
 export type RootStateType = ReturnType<typeof rootReducer>
 export type InferActionTypes<T> = T extends { [keys: string]: (...args: any[]) => infer U } ? U : never
-export type ActionsType = AppActionsType
+export type ActionsType = AppActionsType | AuthActionsType
 export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, RootStateType, unknown, ActionsType>
 export type AppStoreType = typeof store
 
