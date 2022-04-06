@@ -1,9 +1,9 @@
 import profileReducer, {
     ADD_CURRENT_VALUE,
-    addCurrentValueAC,
-    addPostAC, ContactsType, deletePostAC,
-    ProfilePageType, ProfileType, setStatusProfileAC,
-    setUserProfileAC
+    ContactsType,
+    profileActions,
+    ProfilePageType,
+    ProfileType
 } from './profile-reducer'
 import {v1} from 'uuid'
 
@@ -27,7 +27,7 @@ beforeEach(() => {
 
 test('Add post', () => {
 
-    const action = addPostAC()
+    const action = profileActions.addPost()
     const result = profileReducer(state, action)
 
     expect(result.messagesData.length).toBe(4)
@@ -36,7 +36,7 @@ test('Add post', () => {
 
 test('Add current value to state', () => {
 
-    const action = addCurrentValueAC('IT-kamasutra')
+    const action = profileActions.addCurrentValue('IT-kamasutra')
     const result = profileReducer(state, action)
     const result2 = profileReducer(state, {type: ADD_CURRENT_VALUE, payload: {textareaCurrentValue: ''}})
 
@@ -58,7 +58,7 @@ test('Set user profile to state', () => {
         }
     }
 
-    const action = setUserProfileAC(profile)
+    const action = profileActions.setUserProfile(profile)
     const result = profileReducer(state, action)
 
     expect(result.profile).toBeDefined()
@@ -68,7 +68,7 @@ test('Set user profile to state', () => {
 
 test('Set profile status', () => {
 
-    const action = setStatusProfileAC('alone')
+    const action = profileActions.setStatusProfile('alone')
     const result = profileReducer(state, action)
 
     expect(result.status).toBe("alone")
@@ -77,7 +77,7 @@ test('Set profile status', () => {
 
 test('Delete post', () => {
 
-    const action = deletePostAC(postId_2)
+    const action = profileActions.deletePost(postId_2)
     const result = profileReducer(state, action)
 
     expect(result.messagesData.length).toBe(2)
