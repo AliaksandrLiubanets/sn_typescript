@@ -1,13 +1,4 @@
-import usersReducer, {
-    followAC,
-    setCurrentPageAC,
-    setFollowingInProgressAC,
-    setUsersAC,
-    toggleIsFetchingAC,
-    unfollowAC,
-    UsersStateType,
-    UserType
-} from './users-reducer'
+import usersReducer, {usersActions, UsersStateType, UserType} from './users-reducer'
 
 let state: UsersStateType
 let user_1: UserType
@@ -58,7 +49,7 @@ beforeEach(() => {
 
 test('Follow user', () => {
 
-    const action = followAC(2)
+    const action = usersActions.follow(2)
     const result = usersReducer(state, action)
 
     expect(result.users.length).toBe(2)
@@ -67,7 +58,7 @@ test('Follow user', () => {
 
 test('UnFollow user', () => {
 
-    const action = unfollowAC(1)
+    const action = usersActions.unfollow(1)
     const result = usersReducer(state, action)
 
     expect(result.users.length).toBe(2)
@@ -109,7 +100,7 @@ test('Set users to state', () => {
     const usersArray: Array<UserType> = [user_3, user_4]
 
 
-    const action = setUsersAC(usersArray, 5)
+    const action = usersActions.setUsers(usersArray, 5)
     const result = usersReducer(state, action)
     const notExisingUser = result.users.find(user => user.id === user_1.id)
 
@@ -120,7 +111,7 @@ test('Set users to state', () => {
 
 test('Set current page', () => {
 
-    const action = setCurrentPageAC(10)
+    const action = usersActions.setCurrentPage(10)
     const result = usersReducer(state, action)
 
     expect(result.currentPage).toBe(10)
@@ -128,7 +119,7 @@ test('Set current page', () => {
 
 test('Set fetching toggle', () => {
 
-    const action = toggleIsFetchingAC(true)
+    const action = usersActions.toggleIsFetching(true)
     const result = usersReducer(state, action)
 
     expect(result.isFetching).toBe(true)
@@ -136,9 +127,9 @@ test('Set fetching toggle', () => {
 
 test('Set following in progress', () => {
 
-    const action1 = setFollowingInProgressAC(true, 1)
-    const action2 = setFollowingInProgressAC(true, 2)
-    const action3 = setFollowingInProgressAC(false, 2)
+    const action1 = usersActions.setFollowingInProgress(true, 1)
+    const action2 = usersActions.setFollowingInProgress(true, 2)
+    const action3 = usersActions.setFollowingInProgress(false, 2)
     const result1 = usersReducer(state, action1)
     const result2 = usersReducer(result1, action2)
     const result3 = usersReducer(result2, action3)
