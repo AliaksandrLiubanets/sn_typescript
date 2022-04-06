@@ -1,4 +1,4 @@
-import authReducer, {AuthDataType, AuthStateType, setAuthDataAC, setIsAuthAC} from './auth-reducer'
+import authReducer, {authActions, AuthDataType, AuthStateType} from './auth-reducer'
 
 let state: AuthStateType
 
@@ -21,7 +21,7 @@ test('Set authorize data to state', () => {
         login: "Bubenchik"
     }
 
-    const action = setAuthDataAC(authData)
+    const action = authActions.setAuthData(authData)
     const result = authReducer(state, action)
 
     expect(result.data).toBeDefined()
@@ -30,8 +30,8 @@ test('Set authorize data to state', () => {
 
 test('Check is user authorised', () => {
 
-    const action = setIsAuthAC(true)
-    const action2 = setIsAuthAC(false)
+    const action = authActions.setIsAuth(true)
+    const action2 = authActions.setIsAuth(false)
     const result = authReducer(state, action)
     const result2 = authReducer(state, action2)
 
