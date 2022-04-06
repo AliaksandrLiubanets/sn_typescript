@@ -1,4 +1,5 @@
-import {FollowAT, UnFollowAT, UsersStateType} from '../components/Redux/users-reducer'
+// import {FollowAT, UnFollowAT, usersActions, UsersStateType} from '../components/Redux/users-reducer'
+import { usersActions, UsersStateType} from '../components/Redux/users-reducer'
 
 export const changeUserInArray = (state: UsersStateType, isFollow: boolean, action: FollowAT | UnFollowAT) => ({
     ...state,
@@ -25,6 +26,9 @@ export const updateUserInArray = <T>(state: UsersStateType, action: FollowAT | U
             : u)
     }
 }
+
+type FollowAT = ReturnType<typeof usersActions.follow>
+type UnFollowAT = ReturnType<typeof usersActions.unfollow>
 
 type userValueType = string | boolean
 type userPropertyType =

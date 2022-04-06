@@ -15,7 +15,7 @@ const initialState: AuthStateType = {
     isAuth: false
 }
 
-const authReducer = (state: AuthStateType = initialState, action: AuthActionsType): AuthStateType => {
+const authReducer = (state: StateType = initialState, action: AuthActionsType): StateType => {
     switch (action.type) {
         case SET_AUTH_DATA:
         case SET_IS_AUTH:
@@ -88,7 +88,7 @@ export type LoginPayloadType = {
     rememberMe: boolean
     captcha: boolean
 }
-
+type StateType = typeof initialState
 export type AuthActionsType = InferActionTypes<typeof authActions>
 
 

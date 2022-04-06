@@ -20,7 +20,7 @@ export const initialState: ProfilePageType = {
     status: null
 }
 
-export const profileReducer = (state = initialState, action: ProfileActionsType): ProfilePageType => {
+export const profileReducer = (state: StateType = initialState, action: ProfileActionsType): StateType => {
     switch (action.type) {
         case ADD_POST:
             let newPost: PostType
@@ -118,5 +118,6 @@ export type ProfilePageType = {
     status: string | null
 }
 
+type StateType = typeof initialState
 export type ProfileActionsType = InferActionTypes<typeof profileActions>
 
