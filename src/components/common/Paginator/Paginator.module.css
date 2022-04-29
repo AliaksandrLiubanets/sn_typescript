@@ -1,8 +1,10 @@
 .paginatorContainer {
     display: flex;
     justify-content: center;
-    background-color: #077517;
+    /*background-color: rgba(218, 248, 253, 0.98);*/
+    /*border: 1px solid #cecccc;*/
     border-radius: 20px;
+
 }
 
 .container {
@@ -10,7 +12,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: gray;
 }
 
 @media screen and (max-width: 680px) {
@@ -43,9 +45,9 @@
 .container div button {
     cursor: pointer;
     border: none;
-    background-color: #077517;
+    background-color: rgba(218, 248, 253, 0.98);
     outline: none;
-    color: white;
+    color: gray;
     border-radius: 10%;
     min-width: 30px;
     min-height: 15px;
@@ -60,14 +62,14 @@
 
 .container div button:hover {
     font-weight: bold;
-    background-color: #4CAF50;
-    color: #faec00;
+    background-color: rgba(218, 248, 253, 0.98);
+    color: black;
 }
 
 .container div .selectedPage {
     font-weight: bold;
-    background-color: #4CAF50;
-    color: #faec00;
+    background-color: rgba(218, 248, 253, 0.98);
+    color: black;
 }
 
 .emptyAnswer {
