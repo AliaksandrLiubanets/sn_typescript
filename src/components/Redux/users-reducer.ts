@@ -73,11 +73,8 @@ export const getUsers = (currentPage: number, pageSize: number): AppThunk => asy
 
 export const setCurrentPage = (currentPage: number): AppThunk => async (dispatch, getState) => {
     const pageSize = getState().usersPage.pageSize
-    dispatch(usersActions.toggleIsFetching(true))
     dispatch(usersActions.setCurrentPage(currentPage))
-    const response = await usersAPI.getUsers(currentPage, pageSize)
-    dispatch(usersActions.setUsers(response.data.items, response.data.totalCount))
-    dispatch(usersActions.toggleIsFetching(false))
+    dispatch(getUsers(currentPage, pageSize))
 }
 
 export const unfollow = (userId: number): AppThunk => async (dispatch) => {
