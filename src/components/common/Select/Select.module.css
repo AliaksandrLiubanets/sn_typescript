@@ -4,17 +4,17 @@
 
 .select select {
     cursor: pointer;
-    margin: 2px;
+    margin: 3px;
     display: block;
-    padding: .20rem 2.5rem .20rem 1rem;
+    padding: .10rem 1.5rem .10rem .5rem;
     background: linear-gradient(to right, #077517, #469d4b, #4CAF50, #469d4b, #077517);
     border: 1px solid white;
-    border-radius: 10px;
+    border-radius: 5px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
     font-family: "Times New Roman";
-    font-size: 18px;
+    font-size: 14px;
     font-weight: bold;
     color: white;
 }

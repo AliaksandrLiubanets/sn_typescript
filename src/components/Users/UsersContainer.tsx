@@ -26,12 +26,6 @@ class Users extends Component<PropsType> {
         this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
-    // setCurrentPage(currentPage: number) {
-    //     debugger
-    //     this.props.setCurrentPage(currentPage)
-    //     this.props.getUsers(currentPage, this.props.pageSize)
-    // }
-
     render() {
 
         const users = this.props.users.map(u => <User key={u.id}
@@ -45,35 +39,19 @@ class Users extends Component<PropsType> {
                                                       unfollow={this.props.unfollow}
                                                       followingInProgress={this.props.followingInProgress}
         />)
-        // const pagesCount = Math.ceil(this.props.totalCount / this.props.pageSize)
-        // const pages = []
-        // for (let i = 1; i <= pagesCount; i++) {
-        //     pages.push(i)
-        // }
 
         return <div>
-
-            {/*<div className={s.pagination}>*/}
-                {/*{*/}
-                {/*    this.props.isFetching*/}
-                {/*        ? <div className={s.pagination__pages}><Preloader/></div>*/}
-                {/*        : <div className={s.pagination__pages}> {pages.map(p => <span key={p}*/}
-                {/*                               onClick={() => this.setCurrentPage(p)}*/}
-                {/*                               className={this.props.currentPage === p ? s.current : s.pages}>*/}
-                {/*    {p}</span>)}*/}
-                {/*    </div>*/}
-                {/*}*/}
-                <Paginator setCurrentPage={this.props.setCurrentPage} itemsTotalCount={this.props.totalCount} page={this.props.currentPage} pageSize={this.props.pageSize} />
-            {/*</div>*/}
+                <Paginator setCurrentPage={this.props.setCurrentPage}
+                           itemsTotalCount={this.props.totalCount}
+                           page={this.props.currentPage}
+                           pageSize={this.props.pageSize}
+                />
             <div className={s.users__content}>
                 {users}
             </div>
-
         </div>
     }
 }
-
-
 
 type MapStatePropsType = {
     users: Array<UserType>
@@ -95,7 +73,6 @@ type MapDispatchPropsType = {
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
         users: getUsersSelector(state),
-        // users: getUsersNamedSinceMSelector(state),
         totalCount: getTotalCountSelector(state),
         pageSize: getPageSizeSelector(state),
         currentPage: getCurrentPageSelector(state),
@@ -110,7 +87,6 @@ export default compose<ComponentType>(
     connect(mapStateToProps, {
         follow,
         unfollow,
-        // setCurrentPage: usersActions.setCurrentPage,
         setCurrentPage,
         getUsers,
     }),
