@@ -7,7 +7,7 @@ type PaginatorPropsType = {
     setCurrentPage: (page: number) => void
     itemsTotalCount: number
     page: number
-    pageCount: number
+    pageSize: number
 }
 
 const itemsPerPage = [10, 20, 30]
@@ -17,9 +17,9 @@ export const Paginator = memo(({
                                    setCurrentPage,
                                    itemsTotalCount,
                                    page,
-                                   pageCount
+                                   pageSize
                                }: PaginatorPropsType) => {
-    const pagesCount = Math.ceil(itemsTotalCount / pageCount)
+    const pagesCount = Math.ceil(itemsTotalCount / pageSize)
 
     const pages = []
     for (let i = 1; i <= pagesCount; i += 1) {
@@ -28,7 +28,7 @@ export const Paginator = memo(({
 
     const pagesForRender = getPages(pages, page, pagesCount)
 
-    const onClickPageChanged = (page: number) => {
+    const onClickSetCurrentPage = (page: number) => {
         setCurrentPage(page)
     }
 
@@ -39,11 +39,11 @@ export const Paginator = memo(({
                     <div className={s.edge}>
                         {page > 3 && pagesCount > 5 && (
                             <>
-                                <button onClick={() => onClickPageChanged(page - 1)}>
+                                <button onClick={() => onClickSetCurrentPage(page - 1)}>
                                     ◁
                                 </button>
                                 <button className={page === 1 ? s.selectedPage : ''}
-                                        onClick={() => onClickPageChanged(1)}> 1
+                                        onClick={() => onClickSetCurrentPage(1)}> 1
                                 </button>
                                 <span>...</span>
                             </>
@@ -52,7 +52,7 @@ export const Paginator = memo(({
                     <div className={s.center}>
                         {pagesForRender.map(p => (
                             <button className={page === p ? s.selectedPage : ''}
-                                    onClick={() => onClickPageChanged(p)}
+                                    onClick={() => onClickSetCurrentPage(p)}
                                     key={p}> {p} </button>))}
                     </div>
                     <div className={s.edge}>
@@ -61,10 +61,10 @@ export const Paginator = memo(({
                                 <span>...</span>
                                 <button
                                     className={page === pages.length ? s.selectedPage : ''}
-                                    onClick={() => onClickPageChanged(pages.length)}>
+                                    onClick={() => onClickSetCurrentPage(pages.length)}>
                                     {pages.length}
                                 </button>
-                                <button onClick={() => onClickPageChanged(page + 1)}>
+                                <button onClick={() => onClickSetCurrentPage(page + 1)}>
                                     ▷
                                 </button>
                             </>

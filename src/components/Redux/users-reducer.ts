@@ -69,7 +69,15 @@ export const getUsers = (currentPage: number, pageSize: number): AppThunk => asy
     const response = await usersAPI.getUsers(currentPage, pageSize)
     dispatch(usersActions.setUsers(response.data.items, response.data.totalCount))
     dispatch(usersActions.toggleIsFetching(false))
+}
 
+export const setCurrentPage = (currentPage: number): AppThunk => async (dispatch, getState) => {
+    const pageSize = getState().usersPage.pageSize
+    dispatch(usersActions.toggleIsFetching(true))
+    dispatch(usersActions.setCurrentPage(currentPage))
+    const response = await usersAPI.getUsers(currentPage, pageSize)
+    dispatch(usersActions.setUsers(response.data.items, response.data.totalCount))
+    dispatch(usersActions.toggleIsFetching(false))
 }
 
 export const unfollow = (userId: number): AppThunk => async (dispatch) => {
@@ -86,7 +94,6 @@ const followUnfollowFlow = async (userId: number, dispatch: Dispatch, apiMethod:
 
     dispatch(usersActions.setFollowingInProgress(true, userId))
     const response = await apiMethod(userId)
-    debugger
     if (response.data.resultCode === 0) {
         dispatch(actionCreator(userId))
     }
@@ -125,24 +132,7 @@ export type UnFollowAT = {
     type: typeof UNFOLLOW_USER
     userId: number
 }
-type SetUsersAT = {
-    type: typeof SET_USERS
-    users: Array<UserType>
-    count: number
-}
-type SetCurrentPageAT = {
-    type: typeof SET_CURRENT_PAGE
-    payload: {currentPage: number}
-}
-type ToggleIsFetchingAT = {
-    type: typeof TOGGLE_IS_FETCHING
-    payload: {isFetching: boolean}
-}
-type FollowingInProgressAT = {
-    type: typeof FOLLOWING_IN_PROGRESS
-    userId: number
-    isFetching: boolean
-}
+
 
 type StateType = typeof initialState
 export type UsersAT = InferActionTypes<typeof usersActions>

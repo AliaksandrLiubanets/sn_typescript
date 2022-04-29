@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
-import {follow, getUsers, unfollow, usersActions, UserType} from '../Redux/users-reducer'
+import {follow, getUsers, setCurrentPage, unfollow, UserType} from '../Redux/users-reducer'
 import User from './User'
 import s from './Users.module.css'
 import React, {Component, ComponentType} from 'react'
@@ -26,10 +26,11 @@ class Users extends Component<PropsType> {
         this.props.getUsers(this.props.currentPage, this.props.pageSize)
     }
 
-    setCurrentPage(currentPage: number) {
-        this.props.setCurrentPage(currentPage)
-        this.props.getUsers(currentPage, this.props.pageSize)
-    }
+    // setCurrentPage(currentPage: number) {
+    //     debugger
+    //     this.props.setCurrentPage(currentPage)
+    //     this.props.getUsers(currentPage, this.props.pageSize)
+    // }
 
     render() {
 
@@ -62,7 +63,7 @@ class Users extends Component<PropsType> {
                 {/*    {p}</span>)}*/}
                 {/*    </div>*/}
                 {/*}*/}
-                <Paginator setCurrentPage={this.props.setCurrentPage} itemsTotalCount={this.props.totalCount} page={this.props.currentPage} pageCount={this.props.pageSize} />
+                <Paginator setCurrentPage={this.props.setCurrentPage} itemsTotalCount={this.props.totalCount} page={this.props.currentPage} pageSize={this.props.pageSize} />
             {/*</div>*/}
             <div className={s.users__content}>
                 {users}
@@ -109,7 +110,8 @@ export default compose<ComponentType>(
     connect(mapStateToProps, {
         follow,
         unfollow,
-        setCurrentPage: usersActions.setCurrentPage,
+        // setCurrentPage: usersActions.setCurrentPage,
+        setCurrentPage,
         getUsers,
     }),
 )(Users)
