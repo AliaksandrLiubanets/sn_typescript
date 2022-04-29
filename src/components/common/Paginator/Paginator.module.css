@@ -1,0 +1,79 @@
+.paginatorContainer {
+    display: flex;
+    justify-content: center;
+    background-color: #077517;
+    border-radius: 0 0 20px 20px;
+}
+
+.container {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+
+@media screen and (max-width: 680px) {
+    .container {
+        width: 60%;
+        flex-direction: column;
+    }
+}
+
+.edge {
+    width: 80px;
+    display: flex;
+    text-align: center;
+    justify-content: flex-start;
+}
+
+.center {
+    width: 170px;
+    display: flex;
+    text-align: center;
+    justify-content: flex-start;
+}
+
+.container div span {
+    font-size: 12px;
+    line-height: 3;
+}
+
+.container div button {
+    cursor: pointer;
+    border: none;
+    background-color: #077517;
+    outline: none;
+    color: white;
+    border-radius: 20%;
+    min-width: 30px;
+    font-size: 12px;
+    margin: 0;
+}
+
+.container div button:hover {
+    font-weight: bold;
+    background-color: #4CAF50;
+    color: #faec00;
+}
+
+.container div .selectedPage {
+    font-weight: bold;
+    background-color: #4CAF50;
+    color: #faec00;
+}
+
+.emptyAnswer {
+    padding-top: 170px;
+    font-size: 22px;
+    text-align: center;
+}
+
+.show {
+    display: flex;
+    align-items: center;
+}
+
+.show span{
+    display: inline-block;
+    font-size: 16px;
+}

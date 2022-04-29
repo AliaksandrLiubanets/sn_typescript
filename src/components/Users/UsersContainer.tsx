@@ -4,7 +4,6 @@ import {follow, getUsers, unfollow, usersActions, UserType} from '../Redux/users
 import User from './User'
 import s from './Users.module.css'
 import React, {Component, ComponentType} from 'react'
-import {Preloader} from '../common/Preloader/Preloader'
 import {withAuthNavigate} from '../HOC/withAuthNavigate'
 import {compose} from 'redux'
 import {
@@ -12,10 +11,11 @@ import {
     getCurrentPageSelector,
     getPageSizeSelector,
     getTotalCountSelector,
-    getUsersNamedSinceMSelector,
+    getUsersSelector,
     isAuthSelector,
     isFetchingSelector
 } from '../../selectors/users-selectors'
+import {Paginator} from '../common/Paginator/Paginator'
 
 
 type PropsType = MapStatePropsType & MapDispatchPropsType
@@ -44,30 +44,35 @@ class Users extends Component<PropsType> {
                                                       unfollow={this.props.unfollow}
                                                       followingInProgress={this.props.followingInProgress}
         />)
-        const pagesCount = Math.ceil(this.props.totalCount / this.props.pageSize)
-        const pages = []
-        for (let i = 1; i <= pagesCount; i++) {
-            pages.push(i)
-        }
+        // const pagesCount = Math.ceil(this.props.totalCount / this.props.pageSize)
+        // const pages = []
+        // for (let i = 1; i <= pagesCount; i++) {
+        //     pages.push(i)
+        // }
 
         return <div>
-            <div className={s.pagination}>
-                {
-                    this.props.isFetching
-                        ? <div className={s.pagination__pages}><Preloader/></div>
-                        : <div className={s.pagination__pages}> {pages.map(p => <span key={p}
-                                               onClick={() => this.setCurrentPage(p)}
-                                               className={this.props.currentPage === p ? s.current : s.pages}>
-                    {p}</span>)}
-                    </div>
-                }
-            </div>
+
+            {/*<div className={s.pagination}>*/}
+                {/*{*/}
+                {/*    this.props.isFetching*/}
+                {/*        ? <div className={s.pagination__pages}><Preloader/></div>*/}
+                {/*        : <div className={s.pagination__pages}> {pages.map(p => <span key={p}*/}
+                {/*                               onClick={() => this.setCurrentPage(p)}*/}
+                {/*                               className={this.props.currentPage === p ? s.current : s.pages}>*/}
+                {/*    {p}</span>)}*/}
+                {/*    </div>*/}
+                {/*}*/}
+                <Paginator setCurrentPage={this.props.setCurrentPage} itemsTotalCount={this.props.totalCount} page={this.props.currentPage} pageCount={this.props.pageSize} />
+            {/*</div>*/}
             <div className={s.users__content}>
                 {users}
             </div>
+
         </div>
     }
 }
+
+
 
 type MapStatePropsType = {
     users: Array<UserType>
@@ -88,8 +93,8 @@ type MapDispatchPropsType = {
 
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
-        // users: getUsersSelector(state),
-        users: getUsersNamedSinceMSelector(state),
+        users: getUsersSelector(state),
+        // users: getUsersNamedSinceMSelector(state),
         totalCount: getTotalCountSelector(state),
         pageSize: getPageSizeSelector(state),
         currentPage: getCurrentPageSelector(state),
