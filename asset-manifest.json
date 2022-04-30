@@ -1,23 +1,26 @@
 {
   "files": {
-    "main.css": "/sn_typescript/static/css/main.d2c1079f.chunk.css",
-    "main.js": "/sn_typescript/static/js/main.f0bce85e.chunk.js",
-    "main.js.map": "/sn_typescript/static/js/main.f0bce85e.chunk.js.map",
-    "runtime-main.js": "/sn_typescript/static/js/runtime-main.e0bd95bf.js",
-    "runtime-main.js.map": "/sn_typescript/static/js/runtime-main.e0bd95bf.js.map",
-    "static/js/2.12dd3681.chunk.js": "/sn_typescript/static/js/2.12dd3681.chunk.js",
-    "static/js/2.12dd3681.chunk.js.map": "/sn_typescript/static/js/2.12dd3681.chunk.js.map",
-    "static/js/3.da5b29b3.chunk.js": "/sn_typescript/static/js/3.da5b29b3.chunk.js",
-    "static/js/3.da5b29b3.chunk.js.map": "/sn_typescript/static/js/3.da5b29b3.chunk.js.map",
+    "main.css": "/sn_typescript/static/css/main.c046caba.css",
+    "main.js": "/sn_typescript/static/js/main.3184cf47.js",
+    "static/media/ava_olga.jpg": "/sn_typescript/static/media/ava_olga.18ae0ecd92e180a9d3d0.jpg",
+    "static/media/ava_lenin.png": "/sn_typescript/static/media/ava_lenin.4adaa40e86ea9adfbc04.png",
+    "static/media/Bars-1s-200px.gif": "/sn_typescript/static/media/Bars-1s-200px.4b9a68359a39e493c416.gif",
+    "static/media/ava_karina.jpg": "/sn_typescript/static/media/ava_karina.250e74cc290b2c5e4f37.jpg",
+    "static/media/ava_andrew.jpg": "/sn_typescript/static/media/ava_andrew.59457deb02f1f563ff4f.jpg",
+    "static/media/ava_terminator.jpg": "/sn_typescript/static/media/ava_terminator.918015e1cae613ccfc01.jpg",
+    "static/media/ava_me.jpg": "/sn_typescript/static/media/ava_me.e8dddaf4459a9fa9b51e.jpg",
+    "static/media/ava_dimych.jpg": "/sn_typescript/static/media/ava_dimych.1198f5c921c492108705.jpg",
+    "static/media/ava_dragunsky.jpg": "/sn_typescript/static/media/ava_dragunsky.b50546f06dc97a3bb3ee.jpg",
+    "static/media/ava_pushkin.jpg": "/sn_typescript/static/media/ava_pushkin.10644adfee0d7f813dae.jpg",
+    "static/media/ava_ostrovskiy.jpg": "/sn_typescript/static/media/ava_ostrovskiy.6a4d68d30158dd58a528.jpg",
+    "static/media/samurai_ava.jpg": "/sn_typescript/static/media/samurai_ava.308d9a9ec2c1f1e40813.jpg",
+    "static/media/like.png": "/sn_typescript/static/media/like.a6670bd994ff1b33f5d5.png",
     "index.html": "/sn_typescript/index.html",
-    "static/css/main.d2c1079f.chunk.css.map": "/sn_typescript/static/css/main.d2c1079f.chunk.css.map",
-    "static/js/2.12dd3681.chunk.js.LICENSE.txt": "/sn_typescript/static/js/2.12dd3681.chunk.js.LICENSE.txt",
-    "static/media/samurai_ava.308d9a9e.jpg": "/sn_typescript/static/media/samurai_ava.308d9a9e.jpg"
+    "main.c046caba.css.map": "/sn_typescript/static/css/main.c046caba.css.map",
+    "main.3184cf47.js.map": "/sn_typescript/static/js/main.3184cf47.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.e0bd95bf.js",
-    "static/js/2.12dd3681.chunk.js",
-    "static/css/main.d2c1079f.chunk.css",
-    "static/js/main.f0bce85e.chunk.js"
+    "static/css/main.c046caba.css",
+    "static/js/main.3184cf47.js"
   ]
 }
