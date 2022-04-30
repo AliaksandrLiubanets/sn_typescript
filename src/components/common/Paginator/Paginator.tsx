@@ -1,7 +1,6 @@
 import React, {memo} from 'react'
 import {getPages} from '../../../utils/pagination-calculation'
 import s from './Paginator.module.css'
-import {Select} from '../Select/Select'
 
 type PaginatorPropsType = {
     // onChangeSetAmountOfItems: (amountOfItems: number) => void
@@ -72,10 +71,10 @@ export const Paginator = memo(({
                         )}
                     </div>
                     <div className={s.show}>
-                        <span>Show </span>
-                        <Select options={itemsPerPage} value={pageSize}
-                            // onChangeOption={onChangeSetAmountOfItems}
-                        />
+                        {/*<span>Show </span>*/}
+                        {/*<Select options={itemsPerPage} value={pageSize}*/}
+                        {/*    // onChangeOption={onChangeSetAmountOfItems}*/}
+                        {/*/>*/}
                     </div>
                 </div>
             </div>
