@@ -16,8 +16,8 @@ export const LoginFormik = () => {
             <h1>LOGIN!</h1>
             <Formik
                 initialValues={{
-                    email: '',
-                    password: '',
+                    email: 'samurai.react.js@gmail.com',
+                    password: '11111111',
                     rememberMe: false, // added for our checkbox
                     captcha: true // default value captcha
                 }}
@@ -31,7 +31,7 @@ export const LoginFormik = () => {
                             labelName={'Email'}
                             name={'email'}
                             type={'email'}
-                            placeholder={'enter email'}
+                            placeholder={'samurai.react.js@gmail.com'}
                             validate={validateEmail}
                         />
 
@@ -39,7 +39,7 @@ export const LoginFormik = () => {
                             labelName={'Password'}
                             name={'password'}
                             type={'password'}
-                            placeholder={'enter password'}
+                            placeholder={'11111111'}
                             validate={validatePassword}
                         />
 

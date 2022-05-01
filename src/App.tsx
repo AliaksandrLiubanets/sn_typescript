@@ -54,7 +54,7 @@ class App extends React.Component<AppPropsType> {
                             </Routes>
                     }
                 </div>
-                <ErrorWarn />
+                {/*<ErrorWarn />*/}
             </div>
         )
     }
