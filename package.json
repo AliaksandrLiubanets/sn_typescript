@@ -2,7 +2,7 @@
   "name": "sn_typescript",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://aliaksandrliubanets.github.io/sn_typescript/",
+  "homepage": "https://AliaksandrLiubanets.github.io/sn_typescript",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
