@@ -35,17 +35,15 @@ export const authActions = {
 
 // thunks:
 export const getAuthData = () => async (dispatch: Dispatch) => {
-    dispatch(appActions.setIsInitial(true))
     const response = await authAPI.me()
     if (response.data.resultCode === 0) {
         dispatch(authActions.setAuthData(response.data.data))
         dispatch(authActions.setIsAuth(true))
     }
-    dispatch(appActions.setIsInitial(false))
+
 }
 
 export const login = (payload: LoginPayloadType): AppThunk => (dispatch) => {
-    dispatch(appActions.setIsInitial(true))
     return authAPI.login(payload)
         .then(response => {
             if (response.data.resultCode === 0) {
@@ -62,28 +60,14 @@ export const login = (payload: LoginPayloadType): AppThunk => (dispatch) => {
             console.log(err.message)
             dispatch(appActions.setAppErrorMessage(err.message))
         })
-        .finally(() => {
-            dispatch(appActions.setIsInitial(false))
-        })
 }
 
 export const loginOut = (): AppThunk => async (dispatch) => {
-    dispatch(appActions.setIsInitial(true))
     const response = await authAPI.logout()
-    try {
-        if (response.data.resultCode === 0) {
-            dispatch(getAuthData())
-            dispatch(authActions.setIsAuth(false))
-        }
+    if (response.data.resultCode === 0) {
+        getAuthData()
+        dispatch(authActions.setIsAuth(false))
     }
-    catch (e) {
-        const error: string = response.data.messages[0]
-        dispatch(appActions.setAppErrorMessage(error))
-    }
-    finally {
-        dispatch(appActions.setIsInitial(false))
-    }
-
 }
 
 // types:
