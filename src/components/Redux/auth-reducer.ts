@@ -2,6 +2,7 @@ import {authAPI} from '../../api/api'
 import {AppThunk, InferActionTypes} from './redux-store'
 import {appActions} from './app-reducer'
 import {Dispatch} from 'redux'
+import {profileActions} from './profile-reducer'
 
 export const SET_AUTH_DATA = 'sn-typescript/Authorize/SET-AUTH-DATA'
 export const SET_IS_AUTH = 'sn-typescript/Authorize/SET-IS-AUTH'
@@ -35,10 +36,16 @@ export const authActions = {
 
 // thunks:
 export const getAuthData = () => async (dispatch: Dispatch) => {
+    dispatch(appActions.setIsInitial(true))
     const response = await authAPI.me()
+    console.log('me:', response)
     if (response.data.resultCode === 0) {
         dispatch(authActions.setAuthData(response.data.data))
         dispatch(authActions.setIsAuth(true))
+        dispatch(appActions.setIsInitial(false))
+    } else {
+        dispatch(appActions.setAppErrorMessage(response.data.messages[0]))
+        dispatch(appActions.setIsInitial(false))
     }
 
 }
@@ -65,9 +72,10 @@ export const login = (payload: LoginPayloadType): AppThunk => (dispatch) => {
 export const loginOut = (): AppThunk => async (dispatch) => {
     const response = await authAPI.logout()
     if (response.data.resultCode === 0) {
-        getAuthData()
         dispatch(authActions.setIsAuth(false))
+        dispatch(profileActions.setUserProfile(null))
     }
+
 }
 
 // types:

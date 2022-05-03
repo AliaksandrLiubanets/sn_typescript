@@ -15,18 +15,17 @@ import {LoginContainer} from './components/Login/LoginContainer'
 import {connect} from 'react-redux'
 import {RootStateType} from './components/Redux/redux-store'
 import {Preloader} from './components/common/Preloader/Preloader'
-import {initializeApp} from './components/Redux/app-reducer'
-import {ErrorWarn} from './components/Error/ErrorWarn'
+import {getAuthData} from './components/Redux/auth-reducer'
 
 type AppPropsType = {
-    isInitialized: boolean
-    initializeApp: () => void
+    isInitializing: boolean
+    getAuthData: () => void
 }
 
 class App extends React.Component<AppPropsType> {
 
     componentDidMount() {
-        this.props.initializeApp()
+        this.props.getAuthData()
     }
 
     render() {
@@ -37,7 +36,7 @@ class App extends React.Component<AppPropsType> {
                 <Navbar/>
                 <div className="content">
                     {
-                        !this.props.isInitialized
+                        this.props.isInitializing
                             ? <Preloader/>
                             : <Routes>
                                 <Route path="/profile" element={<ProfileContainer/>}/>
@@ -61,17 +60,17 @@ class App extends React.Component<AppPropsType> {
 }
 
 type MapStateType = {
-    isInitialized: boolean
+    isInitializing: boolean
 }
 
 const mapStateToProps = (state: RootStateType): MapStateType => {
     return {
-        isInitialized: state.app.isInitialized,
+        isInitializing: state.app.isInitializing,
     }
 }
 
 type TDispatchProps = {
-    initializeApp: () => void
+    getAuthData: () => void
 }
 
-export default connect<MapStateType, TDispatchProps, {}, RootStateType>(mapStateToProps,  {initializeApp})(App)
+export default connect<MapStateType, TDispatchProps, {}, RootStateType>(mapStateToProps,  {getAuthData})(App)

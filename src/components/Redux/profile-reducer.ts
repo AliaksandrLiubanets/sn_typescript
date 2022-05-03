@@ -61,7 +61,7 @@ export const profileActions = {
     deletePost: (postId: string) => ({type: DELETE_POST, postId} as const),
     addCurrentValue: (textareaCurrentValue: string) =>
         ({type: ADD_CURRENT_VALUE, payload: {textareaCurrentValue}} as const),
-    setUserProfile: (profile: ProfileType) => ({type: SET_USER_PROFILE, payload: {profile} } as const),
+    setUserProfile: (profile: ProfileType | null) => ({type: SET_USER_PROFILE, payload: {profile} } as const),
     setStatusProfile: (status: string) => ({type: SET_STATUS, payload: {status}} as const)
 }
 
@@ -74,12 +74,14 @@ export const setUserProfile = (userId: number): AppThunk => async (dispatch) => 
 
 export const getStatus = (userId: number): AppThunk => async (dispatch) => {
     const response = await profileAPI.getStatus(userId)
+    console.log('getStatus', response)
     dispatch(profileActions.setStatusProfile(response.data))
 }
 
 export const setStatus = (status: string): AppThunk => async (dispatch) => {
     const response = await profileAPI.setStatus(status)
-    if (response.data.resultCode === 0) {
+    console.log('response status:', response)
+    if (response.data.fieldsErrors.length === 0) {
         dispatch(profileActions.setStatusProfile(status))
     }
 }

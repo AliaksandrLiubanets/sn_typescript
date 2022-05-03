@@ -25,11 +25,14 @@
     height: 150px;
 }
 
-
 .img {
     height: 30px;
     width: 30px;
 }
 
 .preloader img {
+}
+
+.spinner {
+
 }

@@ -2,8 +2,8 @@ import React from 'react'
 import Posts from './Posts/Posts'
 import s from './AddPost.module.css'
 import {PostType} from '../../Redux/profile-reducer'
-import {Textarea} from '../../common/Preloader/Textarea'
-import {Button} from '../../common/Preloader/Button'
+import {Textarea} from '../../common/Textarea/Textarea'
+import {Button} from '../../common/Button/Button'
 
 type AddPostPropsType = {
     setCurrentText: (text: string) => void

@@ -3,32 +3,6 @@ import {UserType} from '../components/Redux/users-reducer'
 import {AuthDataType, LoginPayloadType} from '../components/Redux/auth-reducer'
 import {ProfileType} from '../components/Redux/profile-reducer'
 
-type ResponseGetUsers = {
-    items: Array<UserType>
-    totalCount: number
-    error: null | string
-}
-
-export type ResponseFollowUnfollowUser = {
-    resultCode: number
-    messages: null | Array<string>
-    data: {}
-}
-
-type ResponseAuthStatus = {
-    resultCode: number
-    messages: string[]
-    data: AuthDataType
-}
-
-type ResponseLogin = {
-    resultCode: number
-    messages: string[]
-    data: {userId: number} | {}
-}
-
-type ResponseUserProfile = ProfileType
-
 const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     withCredentials: true,
@@ -54,13 +28,13 @@ export const usersAPI = {
 
 export const authAPI = {
     me() {
-        return instance.get<ResponseAuthStatus>('auth/me')
+        return instance.get<ResponseAuth>('auth/me')
     },
     login(payload: LoginPayloadType) {
-        return instance.post<ResponseLogin>(`auth/login`, payload)
+        return instance.post<ResponseLoginLogOut>(`auth/login`, payload)
     },
     logout() {
-        return instance.delete<ResponseLogin>('auth/login')
+        return instance.delete<ResponseLoginLogOut>('auth/login')
     }
 
 }
@@ -73,6 +47,41 @@ export const profileAPI = {
         return instance.get<string>(`profile/status/${userId}`)
     },
     setStatus(status: string) {
-        return instance.put<ResponseAuthStatus>(`profile/status`, {status})
+        return instance.put<ResponseStatus>(`profile/status`, {status})
     },
 }
+
+type ResponseGetUsers = {
+    items: Array<UserType>
+    totalCount: number
+    error: null | string
+}
+
+export type ResponseFollowUnfollowUser = {
+    resultCode: number
+    messages: null | Array<string>
+    data: {}
+}
+
+type ResponseAuth = {
+    data: AuthDataType
+    fieldsErrors: string[]
+    messages: string[]
+    resultCode: number
+}
+
+type ResponseStatus = {
+    data: {}
+    fieldsErrors: string[]
+    messages: string[]
+    resultCode: number
+}
+
+type ResponseLoginLogOut = {
+    data: {userId: number} | {}
+    fieldsErrors: string[]
+    messages: string[]
+    resultCode: number
+}
+
+type ResponseUserProfile = ProfileType

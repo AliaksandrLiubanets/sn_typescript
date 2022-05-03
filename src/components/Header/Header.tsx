@@ -1,7 +1,7 @@
 import empty_avatar from '../../assets/empty_avatar.jpg'
+import emptyAva from '../../assets/empty_avatar.jpg'
 import s from './Header.module.css'
 import React from 'react'
-import terminator_ava from '../../assets/ava_terminator.jpg'
 import {NavLink} from 'react-router-dom'
 import {LogOut} from '../Login/LogOut'
 import {Preloader} from '../common/Preloader/Preloader'
@@ -9,19 +9,23 @@ import {Preloader} from '../common/Preloader/Preloader'
 type HeaderProps = {
     login: string | null
     avatar?: string | null
-    isAuth: boolean
-    isInitialized: boolean
+    // isAuth: boolean
+    isInitializing: boolean
 }
 
-export function Header({login, avatar, isAuth, isInitialized}: HeaderProps) {
+export function Header({login,
+                           avatar,
+                           // isAuth,
+                           isInitializing
+}: HeaderProps) {
     const HeaderBlock = () => {
         return <>
-            {isAuth
+            {!isInitializing
                 ?
                 <div className={s.header_block}>
                     <div className={s.header__avalogin}>
                         <div>
-                            <img src={!avatar ? terminator_ava : avatar} alt={'ava'}/>
+                            <img src={!avatar ? emptyAva : avatar} alt={'ava'}/>
                         </div>
                         <span>{login}</span></div>
 
@@ -42,7 +46,7 @@ export function Header({login, avatar, isAuth, isInitialized}: HeaderProps) {
 
     return <div className={s.header}>
         {
-            !isInitialized
+            isInitializing
                 ? <Preloader/>
                 : <HeaderBlock/>
         }

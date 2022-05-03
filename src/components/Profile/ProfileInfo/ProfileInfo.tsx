@@ -3,7 +3,7 @@ import s from './ProfileInfo.module.css'
 import {ProfileType} from '../../Redux/profile-reducer'
 import ProStatus from '../Status/ProStatus'
 import {ProfilePreloader} from './ProfileInfoPreloader'
-import {Preloader} from '../../common/Preloader/Preloader'
+import emptyAva from '../../../assets/empty_avatar.jpg'
 
 type ProfileInfoProps = {
     profile: ProfileType | null
@@ -22,7 +22,7 @@ export const ProfileInfo = React.memo(({profile, status, setStatus}: ProfileInfo
     return (
         <div className={s.profileInfo}>
             <div className={s.profileInfo_ava}>
-                <img src={profile.photos.small} alt="ava"/>
+                <img src={profile.photos.small ? profile.photos.small : emptyAva} alt="ava"/>
             </div>
             <div className={s.profileInfo_name}>
                 <span>{profile.fullName}</span>

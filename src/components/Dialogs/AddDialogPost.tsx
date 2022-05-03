@@ -1,8 +1,8 @@
 import {ChangeEvent} from 'react'
 import s from './TextareaField.module.css'
 import ava_me from '../../assets/ava_100px/ava_me.jpg'
-import {Textarea} from '../common/Preloader/Textarea'
-import {Button} from '../common/Preloader/Button'
+import {Textarea} from '../common/Textarea/Textarea'
+import {Button} from '../common/Button/Button'
 
 type PropsType = {
     textareaCurrentValue: string
