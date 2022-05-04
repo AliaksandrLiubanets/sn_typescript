@@ -6,7 +6,7 @@ import {RootStateType} from '../Redux/redux-store'
 type PropsType = {
     login: string | null
     avatar?: string | null
-    // isAuth: boolean
+    isAuth: boolean
     isInitializing: boolean
 }
 
@@ -14,7 +14,7 @@ class HeaderContainer extends React.Component<PropsType> {
 
     render () {
         return <Header
-            // isAuth={this.props.isAuth}
+            isAuth={this.props.isAuth}
             login={this.props.login}
             isInitializing={this.props.isInitializing}/>
     }
@@ -22,14 +22,14 @@ class HeaderContainer extends React.Component<PropsType> {
 
 type MapStateProps = {
     login: string | null
-    // isAuth: boolean
+    isAuth: boolean
     isInitializing: boolean
 }
 
 const mapStateToProps = (state: RootStateType): MapStateProps => {
     return {
         login: state.auth.data.login,
-        // isAuth: state.auth.isAuth,
+        isAuth: state.auth.isAuth,
         isInitializing: state.app.isInitializing
     }
 }

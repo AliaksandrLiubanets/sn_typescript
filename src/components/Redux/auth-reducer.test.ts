@@ -16,7 +16,7 @@ beforeEach(() => {
 test('Set authorize data to state', () => {
 
     const authData: AuthDataType = {
-        id: "1",
+        id: 1,
         email: "mail@bk.ru",
         login: "Bubenchik"
     }
@@ -25,7 +25,7 @@ test('Set authorize data to state', () => {
     const result = authReducer(state, action)
 
     expect(result.data).toBeDefined()
-    expect(result.data.id).toBe("1")
+    expect(result.data.id).toBe(1)
 })
 
 test('Check is user authorised', () => {

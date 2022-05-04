@@ -47,7 +47,6 @@ export const getAuthData = () => async (dispatch: Dispatch) => {
         dispatch(appActions.setAppErrorMessage(response.data.messages[0]))
         dispatch(appActions.setIsInitial(false))
     }
-
 }
 
 export const login = (payload: LoginPayloadType): AppThunk => (dispatch) => {
@@ -80,7 +79,7 @@ export const loginOut = (): AppThunk => async (dispatch) => {
 
 // types:
 export type AuthDataType = {
-    id: string | null
+    id: number | null
     email: string | null
     login: string | null
 }

@@ -12,9 +12,6 @@ import {initializeApp} from '../Redux/app-reducer'
 
 
 type PropsType = {
-    // setUserProfile: (userId: number) => void
-    // setAuthData: (data: AuthDataType) => void
-    // getStatus: (userId: number) => void
     initializeApp: (userId: number) => void
     setStatus: (status: string) => void
     profile: ProfileType | null
@@ -22,6 +19,7 @@ type PropsType = {
     isAuth: boolean
     status: string | null
     isInitializing: boolean
+    id: number | null
 }
 
 class ProfileContainer extends React.Component<PropsType> {
@@ -29,17 +27,14 @@ class ProfileContainer extends React.Component<PropsType> {
     componentDidMount() {
         let userId = this.props.params && this.props.params.userId && Number(this.props.params.userId)
         if (!userId) {
-            userId = 23747
+            userId = this.props.id as number
         }
         if (this.props.isAuth) {
-            // this.props.setUserProfile(userId)
-            // this.props.getStatus(userId)
             this.props.initializeApp(userId)
         }
     }
 
     render() {
-        // return <Profile {...this.props} />
         if(this.props.isInitializing) {
             return <Spinner />
         }
@@ -51,28 +46,27 @@ class ProfileContainer extends React.Component<PropsType> {
 }
 
 type TDispatchProps = {
-    // setUserProfile: (userId: number) => void
-    // setAuthData: () => void
     setStatus: (status: string) => void
     initializeApp: (userId: number) => void
-    // getStatus: (userId: number) => void
 }
 
 
-const mapStateToProps = (state: RootStateType) => {
+const mapStateToProps = (state: RootStateType): MapStateToPropsType  => {
     return {
         profile: state.profilePage.profile,
         isAuth: state.auth.isAuth,
         status: state.profilePage.status,
         isInitializing: state.app.isInitializing,
+        id: state.auth.data.id,
     }
 }
 
 type MapStateToPropsType = {
     profile: ProfileType | null
     isAuth: boolean
-    status: string | null,
-    isInitializing: boolean,
+    status: string | null
+    isInitializing: boolean
+    id: number | null
 }
 
 
