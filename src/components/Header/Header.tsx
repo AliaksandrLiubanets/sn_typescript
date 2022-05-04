@@ -3,7 +3,7 @@ import s from './Header.module.css'
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import {LogOut} from '../Login/LogOut'
-import {Preloader} from '../common/Preloader/Preloader'
+import {Spinner} from '../common/Spinner/Spinner'
 
 type HeaderProps = {
     login: string | null
@@ -12,41 +12,42 @@ type HeaderProps = {
     isInitializing: boolean
 }
 
-export function Header({login,
+export function Header({
+                           login,
                            avatar,
                            isAuth,
                            isInitializing
-}: HeaderProps) {
+                       }: HeaderProps) {
     const HeaderBlock = () => {
-        return <>
+        return <div className={s.header_block}>
             {isAuth
-                ?
-                <div className={s.header_block}>
+                ? <>
                     <div className={s.header__avalogin}>
                         <div>
                             <img src={!avatar ? empty_avatar : avatar} alt={'ava'}/>
                         </div>
-                        <span>{login}</span></div>
+                        <span>{login}</span>
+                    </div>
 
                     <LogOut/>
-
-                </div>
+                </>
                 :
-                <div className={s.header_block}>
+                <>
                     <NavLink to="/login">
                         <div>
                             <img src={empty_avatar} alt={'ava'}/>
                         </div>
-                        <span>{'Login'}</span></NavLink>
-                </div>
+                        <span>Login</span>
+                    </NavLink>
+                </>
             }
-        </>
+        </div>
     }
 
     return <div className={s.header}>
         {
             isInitializing
-                ? <Preloader/>
+                ? <Spinner/>
                 : <HeaderBlock/>
         }
 

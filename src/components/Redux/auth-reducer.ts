@@ -3,6 +3,7 @@ import {AppThunk, InferActionTypes} from './redux-store'
 import {appActions} from './app-reducer'
 import {Dispatch} from 'redux'
 import {profileActions} from './profile-reducer'
+import axios from 'axios'
 
 export const SET_AUTH_DATA = 'sn-typescript/Authorize/SET-AUTH-DATA'
 export const SET_IS_AUTH = 'sn-typescript/Authorize/SET-IS-AUTH'
@@ -35,20 +36,31 @@ export const authActions = {
 }
 
 // thunks:
-export const getAuthData = () => async (dispatch: Dispatch) => {
-    dispatch(appActions.setIsInitial(true))
-    const response = await authAPI.me()
-    if (response.data.resultCode === 0) {
-        dispatch(authActions.setAuthData(response.data.data))
-        dispatch(authActions.setIsAuth(true))
-        dispatch(appActions.setIsInitial(false))
-    } else {
-        dispatch(appActions.setAppErrorMessage(response.data.messages[0]))
-        dispatch(appActions.setIsInitial(false))
-    }
+export const getAuthData = () => (dispatch: Dispatch) => {
+    dispatch(appActions.setInitialize(true))
+        authAPI.me()
+            .then((response) => {
+            if (response.data.resultCode === 0) {
+                dispatch(authActions.setAuthData(response.data.data))
+                dispatch(authActions.setIsAuth(true))
+                dispatch(appActions.setInitialize(false))
+            } else {
+                dispatch(appActions.setAppErrorMessage(response.data.messages[0]))
+                dispatch(appActions.setInitialize(false))
+            }
+        })
+            .catch(err => {
+                if (axios.isAxiosError(err) && err.response) {
+                    dispatch(appActions.setAppErrorMessage(err.response.data.message))
+                }
+            })
+    // finally {
+    //     dispatch(appActions.setInitialize(false))
+    // }
 }
 
 export const login = (payload: LoginPayloadType): AppThunk => (dispatch) => {
+    dispatch(appActions.setInitialize(true))
     return authAPI.login(payload)
         .then(response => {
             if (response.data.resultCode === 0) {
@@ -58,13 +70,19 @@ export const login = (payload: LoginPayloadType): AppThunk => (dispatch) => {
                     const error: string = response.data.messages[0]
                     dispatch(appActions.setAppErrorMessage(error))
                     console.warn(error)
+                    //dispatch(appActions.setInitialize(false))
                 }
             }
-        }).catch(err => {
+        })
+        .catch(err => {
             console.warn('Some error')
             console.log(err.message)
             dispatch(appActions.setAppErrorMessage(err.message))
+            //dispatch(appActions.setInitialize(false))
         })
+        // .finally(() => {
+        //     dispatch(appActions.setInitialize(false))
+        // })
 }
 
 export const loginOut = (): AppThunk => async (dispatch) => {

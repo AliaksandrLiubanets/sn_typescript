@@ -14,8 +14,8 @@ import HeaderContainer from './components/Header/HeaderContainer'
 import {LoginContainer} from './components/Login/LoginContainer'
 import {connect} from 'react-redux'
 import {RootStateType} from './components/Redux/redux-store'
-import {Preloader} from './components/common/Preloader/Preloader'
 import {getAuthData} from './components/Redux/auth-reducer'
+import {Spinner} from './components/common/Spinner/Spinner'
 
 type AppPropsType = {
     isInitializing: boolean
@@ -37,7 +37,7 @@ class App extends React.Component<AppPropsType> {
                 <div className="content">
                     {
                         this.props.isInitializing
-                            ? <Preloader/>
+                            ? <Spinner/>
                             : <Routes>
                                 <Route path="/profile" element={<ProfileContainer/>}/>
                                 <Route path="/dialogs" element={<Dialogs/>}>

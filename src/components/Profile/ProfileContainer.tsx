@@ -7,7 +7,6 @@ import {withAuthNavigate} from '../HOC/withAuthNavigate'
 import {compose} from 'redux'
 import {Params} from 'react-router-dom'
 import {ParamsType} from './ProfileWithParam'
-import {Spinner} from '../common/Spinner/Spinner'
 import {initializeApp} from '../Redux/app-reducer'
 
 
@@ -35,12 +34,13 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 
     render() {
-        if(this.props.isInitializing) {
-            return <Spinner />
-        }
+        // if(this.props.isInitializing) {
+        //     return <Spinner />
+        // }
         return <Profile profile={this.props.profile}
                         status={this.props.status}
                         setStatus={this.props.setStatus}
+                        isInitializing={this.props.isInitializing}
         />
     }
 }
