@@ -35,7 +35,6 @@ export const initializeApp = (userId: number): AppThunk => (dispatch) => {
     const profile = profileAPI.getUserProfile(userId)
     Promise.all([profile, profileStatus])
         .then(result => {
-            console.log('initializeApp result: ', result)
             dispatch(profileActions.setUserProfile(result[0].data))
             dispatch(profileActions.setStatusProfile(result[1].data))
             dispatch(appActions.setIsInitial(false))

@@ -38,7 +38,6 @@ export const authActions = {
 export const getAuthData = () => async (dispatch: Dispatch) => {
     dispatch(appActions.setIsInitial(true))
     const response = await authAPI.me()
-    console.log('me:', response)
     if (response.data.resultCode === 0) {
         dispatch(authActions.setAuthData(response.data.data))
         dispatch(authActions.setIsAuth(true))
