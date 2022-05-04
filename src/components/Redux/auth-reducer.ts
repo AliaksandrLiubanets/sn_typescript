@@ -60,17 +60,18 @@ export const getAuthData = () => (dispatch: Dispatch) => {
 }
 
 export const login = (payload: LoginPayloadType): AppThunk => (dispatch) => {
-    dispatch(appActions.setInitialize(true))
+    dispatch(appActions.setIsLoading(true))
     return authAPI.login(payload)
         .then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(getAuthData())
+                dispatch(appActions.setIsLoading(false))
             } else {
                 if (response.data.messages.length) {
                     const error: string = response.data.messages[0]
                     dispatch(appActions.setAppErrorMessage(error))
                     console.warn(error)
-                    //dispatch(appActions.setInitialize(false))
+                    dispatch(appActions.setIsLoading(false))
                 }
             }
         })
@@ -78,7 +79,7 @@ export const login = (payload: LoginPayloadType): AppThunk => (dispatch) => {
             console.warn('Some error')
             console.log(err.message)
             dispatch(appActions.setAppErrorMessage(err.message))
-            //dispatch(appActions.setInitialize(false))
+            dispatch(appActions.setIsLoading(false))
         })
         // .finally(() => {
         //     dispatch(appActions.setInitialize(false))

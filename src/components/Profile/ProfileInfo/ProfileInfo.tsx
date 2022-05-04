@@ -9,12 +9,12 @@ type ProfileInfoProps = {
     profile: ProfileType | null
     status: string | null
     setStatus: (status: string) => void
-    isInitializing: boolean
+    isLoading: boolean
 }
 
-export const ProfileInfo = React.memo(({profile, status, setStatus, isInitializing}: ProfileInfoProps) => {
+export const ProfileInfo = React.memo(({profile, status, setStatus, isLoading}: ProfileInfoProps) => {
 
-    if(isInitializing) {
+    if(isLoading) {
         return <Spinner />
     }
 

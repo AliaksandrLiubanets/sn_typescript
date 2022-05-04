@@ -19,6 +19,7 @@ type PropsType = {
     status: string | null
     isInitializing: boolean
     id: number | null
+    isLoading: boolean
 }
 
 class ProfileContainer extends React.Component<PropsType> {
@@ -34,13 +35,10 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 
     render() {
-        // if(this.props.isInitializing) {
-        //     return <Spinner />
-        // }
         return <Profile profile={this.props.profile}
                         status={this.props.status}
                         setStatus={this.props.setStatus}
-                        isInitializing={this.props.isInitializing}
+                        isLoading={this.props.isLoading}
         />
     }
 }
@@ -58,6 +56,7 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsType  => {
         status: state.profilePage.status,
         isInitializing: state.app.isInitializing,
         id: state.auth.data.id,
+        isLoading: state.app.isLoading,
     }
 }
 
@@ -67,6 +66,7 @@ type MapStateToPropsType = {
     status: string | null
     isInitializing: boolean
     id: number | null
+    isLoading: boolean
 }
 
 

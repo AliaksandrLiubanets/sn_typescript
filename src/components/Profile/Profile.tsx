@@ -8,7 +8,7 @@ type ProfileProps = {
     profile: ProfileType | null
     status: string | null
     setStatus: (status: string) => void
-    isInitializing: boolean
+    isLoading: boolean
 }
 
 export const Profile: FC<ProfileProps> =(props) => {
