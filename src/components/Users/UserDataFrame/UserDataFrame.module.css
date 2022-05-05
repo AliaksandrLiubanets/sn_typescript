@@ -1,0 +1,23 @@
+.user__dataFrame {
+    border: 1px solid gray;
+    border-radius: 10px;
+    background-color: rgba(172, 252, 225, 0.2);
+}
+
+.user__dataFrame {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+    padding: 10px;
+    height: 110px;
+    width: 100%;
+    font-size: 20px;
+}
+
+.user__dataFrame__nameStatus {}
+.user__name {}
+.user__status {}
+
+.user__dataFrame__location {}
+.user__country {}
+.user__city {}

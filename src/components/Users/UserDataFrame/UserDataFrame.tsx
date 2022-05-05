@@ -1,4 +1,4 @@
-import s from '../Users.module.css'
+import f from './UserDataFrame.module.css'
 import {FC} from 'react'
 
 type UserDataFrameType = {
@@ -11,20 +11,21 @@ type UserDataFrameType = {
 }
 
 export const UserDataFrame: FC<UserDataFrameType> = ({name, status, location}) => {
-    return <div className={s.user__dataFrame}>
-        <div className={s.user__dataFrame__nameStatus}>
-            <div className={s.user__name}>
+
+    return <div className={f.user__dataFrame}>
+        <div className={f.user__dataFrame__nameStatus}>
+            <div className={f.user__name}>
                 {name}
             </div>
-            <div className={s.user__status}>
+            <div className={f.user__status}>
                 {status}
             </div>
         </div>
-        <div className={s.user__dataFrame__location}>
-            <div className={s.user__country}>
+        <div className={f.user__dataFrame__location}>
+            <div className={f.user__country}>
                 {location ? location.country : `country`}
             </div>
-            <div className={s.user__city}>
+            <div className={f.user__city}>
                 {location ? location.city : `city`}
             </div>
         </div>

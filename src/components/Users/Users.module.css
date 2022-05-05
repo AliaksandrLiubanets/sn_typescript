@@ -14,7 +14,7 @@
     height: 130px;
 }
 
-.user__avaFollowed, .user__dataFrame {
+.user__avaFollowed {
     border: 1px solid gray;
     border-radius: 10px;
     background-color: rgba(172, 252, 225, 0.2);
@@ -30,6 +30,14 @@
     position: relative;
 }
 
+.user__dataFrame__nameStatus {}
+.user__name {}
+.user__status {}
+
+.user__dataFrame__location {}
+.user__country {}
+.user__city {}
+
 .user_preloader {
     position: absolute;
     top: 50%;
@@ -38,23 +46,7 @@
 
 .user__ava {}
 
-.user__dataFrame {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 20px;
-    padding: 10px;
-    height: 110px;
-    width: 100%;
-    font-size: 20px;
-}
 
-.user__dataFrame__nameStatus {}
-.user__name {}
-.user__status {}
-
-.user__dataFrame__location {}
-.user__country {}
-.user__city {}
 
 .pages, .current {
     margin-right: 3px;
