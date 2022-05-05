@@ -1,6 +1,7 @@
 import {AppThunk, InferActionTypes} from './redux-store'
 import {profileAPI} from '../../api/api'
 import {profileActions} from './profile-reducer'
+import {handleServerNetworkError} from '../../utils/handleError'
 
 export const SET_IS_INITIALIZE = 'sn-typescript/Authorize/SET-IS-INITIALIZE'
 export const SET_IS_LOADING = 'sn-typescript/Authorize/SET-IS-LOADING'
@@ -8,7 +9,7 @@ export const SET_ERROR_MESSAGE = 'sn-typescript/Authorize/SET-ERROR-MESSAGE'
 
 const initialState = {
     isInitializing: false,
-    errorMessages: '',
+    errorMessage: '',
     isLoading: false
 }
 
@@ -29,7 +30,7 @@ export default appReducer
 export const appActions = {
     setInitialize: (isInitializing: boolean) => ({type: SET_IS_INITIALIZE, payload: {isInitializing}} as const),
     setIsLoading: (isLoading: boolean) => ({type: SET_IS_LOADING, payload: {isLoading}} as const),
-    setAppErrorMessage: (errorMessages: string) => ({type: SET_ERROR_MESSAGE, payload: {errorMessages}} as const),
+    setAppError: (errorMessage: string) => ({type: SET_ERROR_MESSAGE, payload: {errorMessage}} as const),
 }
 
 //thunks:
@@ -42,8 +43,8 @@ export const initializeApp = (userId: number): AppThunk => (dispatch) => {
             dispatch(profileActions.setUserProfile(result[0].data))
             dispatch(profileActions.setStatusProfile(result[1].data))
         })
-        .catch(err => {
-            dispatch(appActions.setAppErrorMessage(err.message))
+        .catch(e => {
+            handleServerNetworkError(dispatch, e)
         })
         .finally(() => {
             dispatch(appActions.setIsLoading(false))
@@ -52,7 +53,7 @@ export const initializeApp = (userId: number): AppThunk => (dispatch) => {
 }
 
 export const cleanErrorMessages = (): AppThunk => (dispatch) => {
-    dispatch(appActions.setAppErrorMessage(''))
+    dispatch(appActions.setAppError(''))
 }
 
 // types:

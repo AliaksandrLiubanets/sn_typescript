@@ -45,13 +45,13 @@ export const getAuthData = () => (dispatch: Dispatch) => {
                 dispatch(authActions.setIsAuth(true))
                 dispatch(appActions.setInitialize(false))
             } else {
-                dispatch(appActions.setAppErrorMessage(response.data.messages[0]))
+                dispatch(appActions.setAppError(response.data.messages[0]))
                 dispatch(appActions.setInitialize(false))
             }
         })
             .catch(err => {
                 if (axios.isAxiosError(err) && err.response) {
-                    dispatch(appActions.setAppErrorMessage(err.response.data.message))
+                    dispatch(appActions.setAppError(err.response.data.message))
                 }
             })
     // finally {
@@ -69,7 +69,7 @@ export const login = (payload: LoginPayloadType): AppThunk => (dispatch) => {
             } else {
                 if (response.data.messages.length) {
                     const error: string = response.data.messages[0]
-                    dispatch(appActions.setAppErrorMessage(error))
+                    dispatch(appActions.setAppError(error))
                     console.warn(error)
                     dispatch(appActions.setIsLoading(false))
                 }
@@ -78,7 +78,7 @@ export const login = (payload: LoginPayloadType): AppThunk => (dispatch) => {
         .catch(err => {
             console.warn('Some error')
             console.log(err.message)
-            dispatch(appActions.setAppErrorMessage(err.message))
+            dispatch(appActions.setAppError(err.message))
             dispatch(appActions.setIsLoading(false))
         })
         // .finally(() => {
