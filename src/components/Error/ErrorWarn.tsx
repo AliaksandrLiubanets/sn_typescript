@@ -8,6 +8,15 @@ export const ErrorWarn = () => {
     const dispatch = useDispatch()
 
     const cleanErrorMessage = () => dispatch(cleanErrorMessages())
+    //
+    // return <div>
+    //     {
+    //         errMessages
+    //             ? <div>{errMessages}</div>
+    //             : null
+    //     }
+    //     <button onClick={cleanErrorMessage}>CleanError</button>
+    // </div>
 
     return <div>
         {

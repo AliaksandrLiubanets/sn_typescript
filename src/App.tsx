@@ -16,6 +16,7 @@ import {connect} from 'react-redux'
 import {RootStateType} from './components/Redux/redux-store'
 import {getAuthData} from './components/Redux/auth-reducer'
 import {Spinner} from './components/common/Spinner/Spinner'
+import {ErrorWarn} from './components/Error/ErrorWarn'
 
 type AppPropsType = {
     isInitializing: boolean
@@ -53,7 +54,7 @@ class App extends React.Component<AppPropsType> {
                             </Routes>
                     }
                 </div>
-                {/*<ErrorWarn />*/}
+                <ErrorWarn />
             </div>
         )
     }

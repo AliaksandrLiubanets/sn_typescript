@@ -4,6 +4,7 @@ import {appActions} from './app-reducer'
 import {Dispatch} from 'redux'
 import {profileActions} from './profile-reducer'
 import axios from 'axios'
+import {handleServerNetworkError} from '../../utils/handleError'
 
 export const SET_AUTH_DATA = 'sn-typescript/Authorize/SET-AUTH-DATA'
 export const SET_IS_AUTH = 'sn-typescript/Authorize/SET-IS-AUTH'
@@ -43,10 +44,10 @@ export const getAuthData = () => (dispatch: Dispatch) => {
             if (response.data.resultCode === 0) {
                 dispatch(authActions.setAuthData(response.data.data))
                 dispatch(authActions.setIsAuth(true))
-                dispatch(appActions.setInitialize(false))
+                // dispatch(appActions.setInitialize(false))
             } else {
                 dispatch(appActions.setAppError(response.data.messages[0]))
-                dispatch(appActions.setInitialize(false))
+                // dispatch(appActions.setInitialize(false))
             }
         })
             .catch(err => {
@@ -54,9 +55,9 @@ export const getAuthData = () => (dispatch: Dispatch) => {
                     dispatch(appActions.setAppError(err.response.data.message))
                 }
             })
-    // finally {
-    //     dispatch(appActions.setInitialize(false))
-    // }
+            .finally(() => {
+                dispatch(appActions.setInitialize(false))
+            })
 }
 
 export const login = (payload: LoginPayloadType): AppThunk => (dispatch) => {
@@ -65,32 +66,36 @@ export const login = (payload: LoginPayloadType): AppThunk => (dispatch) => {
         .then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(getAuthData())
-                dispatch(appActions.setIsLoading(false))
             } else {
                 if (response.data.messages.length) {
                     const error: string = response.data.messages[0]
                     dispatch(appActions.setAppError(error))
-                    console.warn(error)
                     dispatch(appActions.setIsLoading(false))
                 }
             }
         })
-        .catch(err => {
-            console.warn('Some error')
-            console.log(err.message)
-            dispatch(appActions.setAppError(err.message))
+        .catch(e => {
+            handleServerNetworkError(dispatch, e as Error)
+        })
+        .finally(() => {
             dispatch(appActions.setIsLoading(false))
         })
-        // .finally(() => {
-        //     dispatch(appActions.setInitialize(false))
-        // })
 }
 
 export const loginOut = (): AppThunk => async (dispatch) => {
-    const response = await authAPI.logout()
-    if (response.data.resultCode === 0) {
-        dispatch(authActions.setIsAuth(false))
-        dispatch(profileActions.setUserProfile(null))
+    dispatch(appActions.setIsLoading(true))
+    try {
+        const response = await authAPI.logout()
+        if (response.data.resultCode === 0) {
+            dispatch(authActions.setIsAuth(false))
+            dispatch(profileActions.setUserProfile(null))
+        }
+    }
+    catch (e) {
+        handleServerNetworkError(dispatch, e as Error)
+    }
+    finally {
+        dispatch(appActions.setIsLoading(false))
     }
 
 }

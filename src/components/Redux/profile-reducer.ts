@@ -1,6 +1,8 @@
 import {v1} from 'uuid'
 import {profileAPI} from '../../api/api'
 import {AppThunk, InferActionTypes} from './redux-store'
+import {appActions} from './app-reducer'
+import {handleServerNetworkError} from '../../utils/handleError'
 
 export const ADD_POST = 'sn-typescript/ProfilePage/ADD-POST'
 export const DELETE_POST = 'sn-typescript/ProfilePage/DELETE-POST'
@@ -61,28 +63,48 @@ export const profileActions = {
     deletePost: (postId: string) => ({type: DELETE_POST, postId} as const),
     addCurrentValue: (textareaCurrentValue: string) =>
         ({type: ADD_CURRENT_VALUE, payload: {textareaCurrentValue}} as const),
-    setUserProfile: (profile: ProfileType | null) => ({type: SET_USER_PROFILE, payload: {profile} } as const),
+    setUserProfile: (profile: ProfileType | null) => ({type: SET_USER_PROFILE, payload: {profile}} as const),
     setStatusProfile: (status: string) => ({type: SET_STATUS, payload: {status}} as const)
 }
 
 // thunks:
 export const setUserProfile = (userId: number): AppThunk => async (dispatch) => {
-    const response = await profileAPI.getUserProfile(userId)
-    dispatch(profileActions.setUserProfile(response.data))
+    dispatch(appActions.setIsLoading(true))
+    try {
+        const response = await profileAPI.getUserProfile(userId)
+        dispatch(profileActions.setUserProfile(response.data))
+    } catch (e) {
+        handleServerNetworkError(dispatch, e as Error)
+    } finally {
+        dispatch(appActions.setIsLoading(false))
+    }
 
 }
 
 export const getStatus = (userId: number): AppThunk => async (dispatch) => {
-    const response = await profileAPI.getStatus(userId)
-    console.log('getStatus', response)
-    dispatch(profileActions.setStatusProfile(response.data))
+    dispatch(appActions.setIsLoading(true))
+    try {
+        const response = await profileAPI.getStatus(userId)
+        dispatch(profileActions.setStatusProfile(response.data))
+    } catch (e) {
+        handleServerNetworkError(dispatch, e as Error)
+    } finally {
+        dispatch(appActions.setIsLoading(false))
+    }
+
 }
 
 export const setStatus = (status: string): AppThunk => async (dispatch) => {
-    const response = await profileAPI.setStatus(status)
-    console.log('response status:', response)
-    if (response.data.fieldsErrors.length === 0) {
-        dispatch(profileActions.setStatusProfile(status))
+    dispatch(appActions.setIsLoading(true))
+    try {
+        const response = await profileAPI.setStatus(status)
+        if (response.data.fieldsErrors.length === 0) {
+            dispatch(profileActions.setStatusProfile(status))
+        }
+    } catch (e) {
+        handleServerNetworkError(dispatch, e as Error)
+    } finally {
+        dispatch(appActions.setIsLoading(false))
     }
 }
 

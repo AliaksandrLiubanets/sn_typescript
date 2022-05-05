@@ -3,6 +3,8 @@ import {AppThunk, InferActionTypes} from './redux-store'
 import {Dispatch} from 'redux'
 import {updateUserInStateArray} from '../../utils/object-helpers'
 import {AxiosResponse} from 'axios'
+import {appActions} from './app-reducer'
+import {handleServerNetworkError} from '../../utils/handleError'
 
 const FOLLOW_USER = 'FOLLOW-USER'
 const UNFOLLOW_USER = 'UNFOLLOW-USER'
@@ -65,28 +67,64 @@ export const usersActions = {
 
 // thunks:
 export const getUsers = (currentPage: number, pageSize: number): AppThunk => async (dispatch) => {
-    dispatch(usersActions.toggleIsFetching(true))
-    const response = await usersAPI.getUsers(currentPage, pageSize)
-    dispatch(usersActions.setUsers(response.data.items, response.data.totalCount))
-    dispatch(usersActions.toggleIsFetching(false))
+    dispatch(appActions.setIsLoading(true))
+    try {
+        const response = await usersAPI.getUsers(currentPage, pageSize)
+        dispatch(usersActions.setUsers(response.data.items, response.data.totalCount))
+    }
+    catch (e) {
+        handleServerNetworkError(dispatch, e as Error)
+    }
+    finally {
+        dispatch(appActions.setIsLoading(false))
+    }
+    // dispatch(usersActions.toggleIsFetching(false))
 }
 
 export const setCurrentPage = (currentPage: number): AppThunk => async (dispatch, getState) => {
-    const pageSize = getState().usersPage.pageSize
-    dispatch(usersActions.setCurrentPage(currentPage))
-    dispatch(getUsers(currentPage, pageSize))
+    dispatch(appActions.setIsLoading(true))
+    try {
+        const pageSize = getState().usersPage.pageSize
+        dispatch(usersActions.setCurrentPage(currentPage))
+        dispatch(getUsers(currentPage, pageSize))
+    }
+    catch (e) {
+        handleServerNetworkError(dispatch, e as Error)
+    }
+    finally {
+        dispatch(appActions.setIsLoading(false))
+    }
 }
 
 export const unfollow = (userId: number): AppThunk => async (dispatch) => {
-    const apiMethod = usersAPI.unfollowUser.bind(usersAPI)
-    followUnfollowFlow(userId, dispatch, apiMethod, usersActions.unfollow)
+    dispatch(appActions.setIsLoading(true))
+    try {
+        const apiMethod = usersAPI.unfollowUser.bind(usersAPI)
+        followUnfollowFlow(userId, dispatch, apiMethod, usersActions.unfollow)
+    }
+    catch (e) {
+        handleServerNetworkError(dispatch, e as Error)
+    }
+    finally {
+        dispatch(appActions.setIsLoading(false))
+    }
 }
 
 export const follow = (userId: number): AppThunk => async (dispatch) => {
-    const apiMethod = usersAPI.followUser.bind(usersAPI)
-    followUnfollowFlow(userId, dispatch, apiMethod, usersActions.follow)
+    dispatch(appActions.setIsLoading(true))
+    try {
+        const apiMethod = usersAPI.followUser.bind(usersAPI)
+        followUnfollowFlow(userId, dispatch, apiMethod, usersActions.follow)
+    }
+    catch (e) {
+        handleServerNetworkError(dispatch, e as Error)
+    }
+    finally {
+        dispatch(appActions.setIsLoading(false))
+    }
 }
 
+//function for follow, unfollow thunks:
 const followUnfollowFlow = async (userId: number, dispatch: Dispatch, apiMethod: (userId: number) => Promise<AxiosResponse<ResponseFollowUnfollowUser>>, actionCreator: (userId: number) => UsersAT )  => {
 
     dispatch(usersActions.setFollowingInProgress(true, userId))
