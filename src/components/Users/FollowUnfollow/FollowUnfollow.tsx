@@ -1,4 +1,4 @@
-import s from '../Users.module.css'
+import s from './FollowUnfollow.module.css'
 import {FC} from 'react'
 
 type FollowUnfollowType = {

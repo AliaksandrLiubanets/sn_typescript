@@ -2,6 +2,7 @@ import s from './Users.module.css'
 import {UserType} from '../Redux/users-reducer'
 import {Avatar} from './Avatar/Avatar'
 import {FollowUnfollow} from './FollowUnfollow/FollowUnfollow'
+import {UserDataFrame} from './UserDataFrame/UserDataFrame'
 
 type UserPropsType = {
     follow: (id: number) => void
@@ -25,24 +26,7 @@ function User({name, id, status, followed, photos, location, unfollow, follow, f
                             unfollow={unfollow}
             />
         </div>
-        <div className={s.user__dataFrame}>
-            <div className={s.user__dataFrame__nameStatus}>
-                <div className={s.user__name}>
-                    {name}
-                </div>
-                <div className={s.user__status}>
-                    {status}
-                </div>
-            </div>
-            <div className={s.user__dataFrame__location}>
-                <div className={s.user__country}>
-                    {location ? location.country : `country`}
-                </div>
-                <div className={s.user__city}>
-                    {location ? location.city : `city`}
-                </div>
-            </div>
-        </div>
+        <UserDataFrame name={name} status={status} location={location} />
     </div>
 }
 
