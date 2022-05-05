@@ -1,9 +1,9 @@
-import s from './Users.module.css'
+import s from '../Users.module.css'
 import d from './Avatar.module.css'
-import emptyAva from '../../assets/empty_avatar.jpg'
+import emptyAva from '../../../assets/empty_avatar.jpg'
 import {NavLink} from 'react-router-dom'
 import {FC} from 'react'
-import {Preloader} from '../common/Preloader/Preloader'
+import {Preloader} from '../../common/Preloader/Preloader'
 
 type AvatarPropsType = {
     id: number

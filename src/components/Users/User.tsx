@@ -1,6 +1,7 @@
 import s from './Users.module.css'
 import {UserType} from '../Redux/users-reducer'
-import {Avatar} from './Avatar'
+import {Avatar} from './Avatar/Avatar'
+import {FollowUnfollow} from './FollowUnfollow/FollowUnfollow'
 
 type UserPropsType = {
     follow: (id: number) => void
@@ -17,17 +18,12 @@ function User({name, id, status, followed, photos, location, unfollow, follow, f
     return <div className={s.user__block}>
         <div className={s.user__avaFollowed}>
             <Avatar id={id} photos={photos} followingProgress={followingProgress} />
-            <div className={s.user__followed}>
-                {
-                    followed
-                        ? <button disabled={followingProgress} onClick={() => {
-                            unfollow(id)
-                        }}>unfollow</button>
-                        : <button disabled={followingProgress} onClick={() => {
-                            follow(id)
-                        }}>follow</button>
-                }
-            </div>
+            <FollowUnfollow id={id}
+                            followingProgress={followingProgress}
+                            followed={followed}
+                            follow={follow}
+                            unfollow={unfollow}
+            />
         </div>
         <div className={s.user__dataFrame}>
             <div className={s.user__dataFrame__nameStatus}>
