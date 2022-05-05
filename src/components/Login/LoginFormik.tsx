@@ -13,7 +13,7 @@ export const LoginFormik = () => {
 
     return (
         <div className={s.login_page}>
-            <h1>LOGIN!</h1>
+            <h1>LOGIN</h1>
             <Formik
                 initialValues={{
                     email: 'samurai.react.js@gmail.com',

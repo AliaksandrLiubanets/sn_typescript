@@ -14,6 +14,13 @@
     align-items: center;
 }
 
+.header_block a {
+    text-decoration: none;
+}
+.header_block a span {
+    font-weight: 500;
+}
+
 .header__avalogin {
     width: 70px;
     display: flex;
