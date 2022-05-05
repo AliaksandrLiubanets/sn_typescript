@@ -1,6 +1,7 @@
 import React, {memo} from 'react'
 import {getPages} from '../../../utils/pagination-calculation'
 import s from './Paginator.module.css'
+import {Spinner} from '../Spinner/Spinner'
 
 type PaginatorPropsType = {
     // onChangeSetAmountOfItems: (amountOfItems: number) => void
@@ -78,6 +79,6 @@ export const Paginator = memo(({
                     </div>
                 </div>
             </div>
-            : <div className={s.emptyAnswer}>Nothing was found</div>
+            : <Spinner />
     )
 })
