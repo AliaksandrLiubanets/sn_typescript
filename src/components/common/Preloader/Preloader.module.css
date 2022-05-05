@@ -1,38 +1,21 @@
-
-.wrapper {
-    height: 150px;
-}
-
-.wrapper_h150 {
-    height: 150px;
-}
-
-.preloader
-/*.preloader_h100,*/
-/*.preloader_h150 */
-{
+.preloader {
     height: 50px;
     width: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: relative;
 }
 
-.preloader_h100 {
-    height: 100px;
-}
-.preloader_h150 {
-    height: 150px;
+.preloader__row {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    width: 70px;
+    height: 70px;
+    margin-top: -35px;
+    margin-left: -35px;
+    text-align: center;
 }
 
 .img {
     height: 30px;
     width: 30px;
-}
-
-.preloader img {
-}
-
-.spinner {
-
 }

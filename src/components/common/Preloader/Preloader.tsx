@@ -1,18 +1,12 @@
 import preloader from './Bars-1s-200px.gif'
-import {FC} from 'react'
 import s from './Preloader.module.css'
 
-type PreloaderProps = {
-    height?: 'h100' | 'h150'
-}
-
-export const Preloader:FC<PreloaderProps> = ({height}) => {
+export const Preloader = () => {
     return (
-        // <div className={s.wrapper}>
-        // <div className={s.preloader + `_${height}`}>
         <div className={s.preloader}>
-            <img className={s.img} src={preloader} alt={'img'}/>
+            <div className={s.preloader__row}>
+                <img className={s.img} src={preloader} alt={'img'}/>
+            </div>
         </div>
-    // </div>
-)
+    )
 }

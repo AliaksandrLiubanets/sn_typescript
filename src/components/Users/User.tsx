@@ -14,12 +14,13 @@ type PropsType = UserPropsType & UserType
 
 function User({name, id, status, followed, photos, location, unfollow, follow, followingInProgress}: PropsType) {
 
-    // const [isFetching, setIsFetching] = useState(false)
-
     return <div className={s.user__block}>
         <div className={s.user__avaFollowed}>
             {
-                followingInProgress.some((num) => num === id) && <div className={s.user_preloader}><Preloader/></div>
+                followingInProgress.some((num) => num === id)
+                && <div className={s.user_preloader}>
+                    <Preloader/>
+                </div>
             }
 
             <NavLink to={`/profile/${id}`}>

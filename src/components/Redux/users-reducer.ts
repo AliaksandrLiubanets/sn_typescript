@@ -78,7 +78,6 @@ export const getUsers = (currentPage: number, pageSize: number): AppThunk => asy
     finally {
         dispatch(appActions.setIsLoading(false))
     }
-    // dispatch(usersActions.toggleIsFetching(false))
 }
 
 export const setCurrentPage = (currentPage: number): AppThunk => async (dispatch, getState) => {
