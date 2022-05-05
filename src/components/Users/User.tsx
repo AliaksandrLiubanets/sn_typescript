@@ -1,8 +1,6 @@
 import s from './Users.module.css'
-import {NavLink} from 'react-router-dom'
 import {UserType} from '../Redux/users-reducer'
-import emptyAva from '../../assets/empty_avatar.jpg'
-import {Preloader} from '../common/Preloader/Preloader'
+import {Avatar} from './Avatar'
 
 type UserPropsType = {
     follow: (id: number) => void
@@ -14,27 +12,18 @@ type PropsType = UserPropsType & UserType
 
 function User({name, id, status, followed, photos, location, unfollow, follow, followingInProgress}: PropsType) {
 
+    const followingProgress: boolean = followingInProgress.some((num) => num === id)
+
     return <div className={s.user__block}>
         <div className={s.user__avaFollowed}>
-            {
-                followingInProgress.some((num) => num === id)
-                && <div className={s.user_preloader}>
-                    <Preloader/>
-                </div>
-            }
-
-            <NavLink to={`/profile/${id}`}>
-                <div className={s.user__ava}>
-                    <img src={photos.small ? photos.small : emptyAva} alt="ava"/>
-                </div>
-            </NavLink>
+            <Avatar id={id} photos={photos} followingProgress={followingProgress} />
             <div className={s.user__followed}>
                 {
                     followed
-                        ? <button disabled={followingInProgress.some(num => num === id)} onClick={() => {
+                        ? <button disabled={followingProgress} onClick={() => {
                             unfollow(id)
                         }}>unfollow</button>
-                        : <button disabled={followingInProgress.some(num => num === id)} onClick={() => {
+                        : <button disabled={followingProgress} onClick={() => {
                             follow(id)
                         }}>follow</button>
                 }

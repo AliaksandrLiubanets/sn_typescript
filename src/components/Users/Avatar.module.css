@@ -1,0 +1,14 @@
+.user__ava {
+    width: 75px;
+    height: 90px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #fca7a7;
+}
+.disable {
+    width: 75px;
+    height: 90px;
+    border-radius: 5px;
+    box-shadow: 0 0 3px #fca7a7;
+    cursor: auto;
+    opacity: 0.6;
+}
