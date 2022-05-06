@@ -1,13 +1,12 @@
 {
   "files": {
-    "main.css": "/sn_typescript/static/css/main.c046caba.css",
-    "main.js": "/sn_typescript/static/js/main.75b84d68.js",
+    "main.css": "/sn_typescript/static/css/main.0e2774bd.css",
+    "main.js": "/sn_typescript/static/js/main.68ceca3d.js",
     "static/media/ava_olga.jpg": "/sn_typescript/static/media/ava_olga.18ae0ecd92e180a9d3d0.jpg",
     "static/media/ava_lenin.png": "/sn_typescript/static/media/ava_lenin.4adaa40e86ea9adfbc04.png",
     "static/media/Bars-1s-200px.gif": "/sn_typescript/static/media/Bars-1s-200px.4b9a68359a39e493c416.gif",
     "static/media/ava_karina.jpg": "/sn_typescript/static/media/ava_karina.250e74cc290b2c5e4f37.jpg",
     "static/media/ava_andrew.jpg": "/sn_typescript/static/media/ava_andrew.59457deb02f1f563ff4f.jpg",
-    "static/media/ava_terminator.jpg": "/sn_typescript/static/media/ava_terminator.918015e1cae613ccfc01.jpg",
     "static/media/ava_me.jpg": "/sn_typescript/static/media/ava_me.e8dddaf4459a9fa9b51e.jpg",
     "static/media/ava_dimych.jpg": "/sn_typescript/static/media/ava_dimych.1198f5c921c492108705.jpg",
     "static/media/ava_dragunsky.jpg": "/sn_typescript/static/media/ava_dragunsky.b50546f06dc97a3bb3ee.jpg",
@@ -16,11 +15,11 @@
     "static/media/samurai_ava.jpg": "/sn_typescript/static/media/samurai_ava.308d9a9ec2c1f1e40813.jpg",
     "static/media/like.png": "/sn_typescript/static/media/like.a6670bd994ff1b33f5d5.png",
     "index.html": "/sn_typescript/index.html",
-    "main.c046caba.css.map": "/sn_typescript/static/css/main.c046caba.css.map",
-    "main.75b84d68.js.map": "/sn_typescript/static/js/main.75b84d68.js.map"
+    "main.0e2774bd.css.map": "/sn_typescript/static/css/main.0e2774bd.css.map",
+    "main.68ceca3d.js.map": "/sn_typescript/static/js/main.68ceca3d.js.map"
   },
   "entrypoints": [
-    "static/css/main.c046caba.css",
-    "static/js/main.75b84d68.js"
+    "static/css/main.0e2774bd.css",
+    "static/js/main.68ceca3d.js"
   ]
 }
