@@ -85,7 +85,7 @@ export const setCurrentPage = (currentPage: number): AppThunk => async (dispatch
     try {
         const pageSize = getState().usersPage.pageSize
         dispatch(usersActions.setCurrentPage(currentPage))
-        dispatch(getUsers(currentPage, pageSize))
+        await dispatch(getUsers(currentPage, pageSize))
     }
     catch (e) {
         handleServerNetworkError(dispatch, e as Error)
@@ -99,7 +99,7 @@ export const unfollow = (userId: number): AppThunk => async (dispatch) => {
     dispatch(appActions.setIsLoading(true))
     try {
         const apiMethod = usersAPI.unfollowUser.bind(usersAPI)
-        followUnfollowFlow(userId, dispatch, apiMethod, usersActions.unfollow)
+        await followUnfollowFlow(userId, dispatch, apiMethod, usersActions.unfollow)
     }
     catch (e) {
         handleServerNetworkError(dispatch, e as Error)
@@ -113,7 +113,7 @@ export const follow = (userId: number): AppThunk => async (dispatch) => {
     dispatch(appActions.setIsLoading(true))
     try {
         const apiMethod = usersAPI.followUser.bind(usersAPI)
-        followUnfollowFlow(userId, dispatch, apiMethod, usersActions.follow)
+        await followUnfollowFlow(userId, dispatch, apiMethod, usersActions.follow)
     }
     catch (e) {
         handleServerNetworkError(dispatch, e as Error)
@@ -125,11 +125,16 @@ export const follow = (userId: number): AppThunk => async (dispatch) => {
 
 //function for follow, unfollow thunks:
 const followUnfollowFlow = async (userId: number, dispatch: Dispatch, apiMethod: (userId: number) => Promise<AxiosResponse<ResponseFollowUnfollowUser>>, actionCreator: (userId: number) => UsersAT )  => {
-
     dispatch(usersActions.setFollowingInProgress(true, userId))
     const response = await apiMethod(userId)
     if (response.data.resultCode === 0) {
         dispatch(actionCreator(userId))
+    } else {
+        if (response.data.messages && response.data.messages.length) {
+            const error: string = response.data.messages[0]
+            dispatch(appActions.setAppError(error))
+            dispatch(appActions.setIsLoading(false))
+        }
     }
     dispatch(usersActions.setFollowingInProgress(false, userId))
 }

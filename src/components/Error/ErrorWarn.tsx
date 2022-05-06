@@ -9,7 +9,7 @@ export const ErrorWarn = () => {
 
     const errMessage = useSelector<RootStateType, string>(state => state.app.errorMessage)
     const dispatch = useDispatch()
-    const cleanErrorMessage = useCallback(() => dispatch(cleanErrorMessages()), [ errMessage, dispatch])
+    const cleanErrorMessage = useCallback(() => dispatch(cleanErrorMessages()), [errMessage, dispatch])
 
     useEffect(() => {
         let id = setTimeout(() => {
@@ -18,7 +18,7 @@ export const ErrorWarn = () => {
         return () => {
             clearTimeout(id)
         }
-    },[errMessage, cleanErrorMessage])
+    },[cleanErrorMessage])
 
     return (errMessage
             ? <div className={s.warning_box}>
