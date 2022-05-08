@@ -7,7 +7,6 @@ const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
     withCredentials: true,
     headers: {
-        // "API-KEY": "ec259ea8-b888-43af-83e9-f75c638bfe8f"
         'API-KEY': '39ca2954-9078-4730-9585-3162afc56d64'
     }
 })
@@ -16,25 +15,23 @@ export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10) {
         return instance.get<ResponseGetUsers>(`users?page=${currentPage}&count=${pageSize}`)
     },
-
     followUser(userId: number) {
-        return instance.post<ResponseFollowUnfollowUser>(`follow/${userId}`, {})
+        return instance.post<ResponseType<{}>>(`follow/${userId}`, {})
     },
-
     unfollowUser(userId: number) {
-        return instance.delete<ResponseFollowUnfollowUser>(`follow/${userId}`)
+        return instance.delete<ResponseType<{}>>(`follow/${userId}`)
     }
 }
 
 export const authAPI = {
     me() {
-        return instance.get<ResponseAuth>('auth/me')
+        return instance.get<ResponseType<AuthDataType>>('auth/me')
     },
     login(payload: LoginPayloadType) {
-        return instance.post<ResponseLoginLogOut>(`auth/login`, payload)
+        return instance.post<ResponseType<{userId: number} | {}>>(`auth/login`, payload)
     },
     logout() {
-        return instance.delete<ResponseLoginLogOut>('auth/login')
+        return instance.delete<ResponseType<{userId: number} | {}>>('auth/login')
     }
 
 }
@@ -47,12 +44,12 @@ export const profileAPI = {
         return instance.get<string>(`profile/status/${userId}`)
     },
     setStatus(status: string) {
-        return instance.put<ResponseStatus>(`profile/status`, {status})
+        return instance.put<ResponseType<{}>>(`profile/status`, {status})
     },
     uploadPhoto(photo: any) {
         const formData = new FormData()
         formData.append('image', photo)
-        return instance.put<ResponseUpdatePhoto>(`profile/photo`, formData, {
+        return instance.put<ResponseType<PhotosDataType>>(`profile/photo`, formData, {
                 headers: {'Content-Type': 'multipart/form-data'}
             }
         )
@@ -64,47 +61,23 @@ type ResponseGetUsers = {
     totalCount: number
     error: null | string
 }
-
 export type ResponseFollowUnfollowUser = {
+    data: {}
     resultCode: number
+    fieldsErrors: string[]
     messages: null | Array<string>
-    data: {}
 }
-
-type ResponseAuth = {
-    data: AuthDataType
-    fieldsErrors: string[]
-    messages: string[]
-    resultCode: number
-}
-
-type ResponseStatus = {
-    data: {}
-    fieldsErrors: string[]
-    messages: string[]
-    resultCode: number
-}
-
-type ResponseLoginLogOut = {
-    data: { userId: number } | {}
-    fieldsErrors: string[]
-    messages: string[]
-    resultCode: number
-}
-
 export type PhotosType = {
     small: string
     large: string
 }
-
 type PhotosDataType = {
     photos: PhotosType
 }
-
-type ResponseUpdatePhoto = {
-    data: PhotosDataType
+type ResponseType<T> = {
+    data: T
+    fieldsErrors: string[]
     resultCode: number
     messages: string[]
 }
-
 type ResponseUserProfile = ProfileType
