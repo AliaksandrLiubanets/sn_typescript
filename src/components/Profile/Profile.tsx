@@ -9,6 +9,7 @@ type ProfileProps = {
     status: string | null
     setStatus: (status: string) => void
     isLoading: boolean
+    uploadPhoto: (photo: File) => void
 }
 
 export const Profile: FC<ProfileProps> =(props) => {

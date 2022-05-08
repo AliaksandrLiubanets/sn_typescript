@@ -93,14 +93,16 @@ type ResponseLoginLogOut = {
 }
 
 export type PhotosType = {
-    photos: {
-        small: string
-        large: string
-    }
+    small: string
+    large: string
+}
+
+type PhotosDataType = {
+    photos: PhotosType
 }
 
 type ResponseUpdatePhoto = {
-    data: PhotosType
+    data: PhotosDataType
     resultCode: number
     messages: string[]
 }

@@ -1,5 +1,5 @@
 import {v1} from 'uuid'
-import {profileAPI} from '../../api/api'
+import {PhotosType, profileAPI} from '../../api/api'
 import {AppThunk, InferActionTypes} from './redux-store'
 import {appActions} from './app-reducer'
 import {handleServerNetworkError} from '../../utils/handleError'
@@ -74,7 +74,7 @@ export const profileActions = {
         ({type: ADD_CURRENT_VALUE, payload: {textareaCurrentValue}} as const),
     setUserProfile: (profile: ProfileType | null) => ({type: SET_USER_PROFILE, payload: {profile}} as const),
     setStatusProfile: (status: string) => ({type: SET_STATUS, payload: {status}} as const),
-    updateProfilePhoto: (photo: {small: string | null, large: string | null}) => ({type: UPDATE_PHOTO, photo} as const)
+    updateProfilePhoto: (photo: PhotosType) => ({type: UPDATE_PHOTO, photo} as const)
 }
 
 // thunks:

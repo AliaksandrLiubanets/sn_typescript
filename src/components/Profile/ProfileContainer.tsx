@@ -1,7 +1,7 @@
 import React, {ComponentType} from 'react'
 import {RootStateType} from '../Redux/redux-store'
 import {connect} from 'react-redux'
-import {ProfileType, setStatus} from '../Redux/profile-reducer'
+import {ProfileType, setStatus, uploadPhoto} from '../Redux/profile-reducer'
 import {Profile} from './Profile'
 import {withAuthNavigate} from '../HOC/withAuthNavigate'
 import {compose} from 'redux'
@@ -13,6 +13,7 @@ import {initializeApp} from '../Redux/app-reducer'
 type PropsType = {
     initializeApp: (userId: number) => void
     setStatus: (status: string) => void
+    uploadPhoto: (photo: File) => void
     profile: ProfileType | null
     params?:  Readonly<Params<string>>
     isAuth: boolean
@@ -49,6 +50,7 @@ class ProfileContainer extends React.Component<PropsType> {
                         status={this.props.status}
                         setStatus={this.props.setStatus}
                         isLoading={this.props.isLoading}
+                        uploadPhoto={this.props.uploadPhoto}
         />
     }
 }
@@ -56,6 +58,7 @@ class ProfileContainer extends React.Component<PropsType> {
 type TDispatchProps = {
     setStatus: (status: string) => void
     initializeApp: (userId: number) => void
+    uploadPhoto: (photo: File) => void
 }
 
 
@@ -83,5 +86,5 @@ type MapStateToPropsType = {
 export default compose<ComponentType<{ params?: ParamsType }>>(
     withAuthNavigate,
     connect<MapStateToPropsType, TDispatchProps, { params?: ParamsType }, RootStateType>(mapStateToProps,
-        {setStatus, initializeApp})
+        {setStatus, initializeApp, uploadPhoto})
 )(ProfileContainer)

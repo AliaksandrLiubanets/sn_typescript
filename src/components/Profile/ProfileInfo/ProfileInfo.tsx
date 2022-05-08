@@ -1,31 +1,30 @@
 import React, {ChangeEvent, useRef} from 'react'
 import s from './ProfileInfo.module.css'
-import {ProfileType, uploadPhoto} from '../../Redux/profile-reducer'
+import {ProfileType} from '../../Redux/profile-reducer'
 import ProStatus from '../Status/ProStatus'
 import emptyAva from '../../../assets/empty_avatar.jpg'
 import {Spinner} from '../../common/Spinner/Spinner'
-import {useDispatch} from 'react-redux'
 
 type ProfileInfoProps = {
     profile: ProfileType | null
     status: string | null
     setStatus: (status: string) => void
     isLoading: boolean
+    uploadPhoto: (photo: File) => void
 }
 
-export const ProfileInfo = React.memo(({profile, status, setStatus, isLoading}: ProfileInfoProps) => {
+export const ProfileInfo = React.memo(({profile, status, setStatus, isLoading, uploadPhoto}: ProfileInfoProps) => {
 
-    const inRef = useRef<HTMLInputElement>(null);
-    const dispatch = useDispatch()
+    const inRef = useRef<HTMLInputElement>(null)
     const ava = profile && profile.photos.small
 
-    if(isLoading) {
-        return <Spinner />
+    if (isLoading) {
+        return <Spinner/>
     }
 
     const upload = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
-            dispatch(uploadPhoto(e.target.files[0]))
+            uploadPhoto(e.target.files[0])
         }
     }
 
