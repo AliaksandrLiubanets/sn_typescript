@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 import {UserType} from '../components/Redux/users-reducer'
 import {AuthDataType, LoginPayloadType} from '../components/Redux/auth-reducer'
 import {ProfileType} from '../components/Redux/profile-reducer'
@@ -8,7 +8,7 @@ const instance = axios.create({
     withCredentials: true,
     headers: {
         // "API-KEY": "ec259ea8-b888-43af-83e9-f75c638bfe8f"
-        "API-KEY": "39ca2954-9078-4730-9585-3162afc56d64"
+        'API-KEY': '39ca2954-9078-4730-9585-3162afc56d64'
     }
 })
 
@@ -23,7 +23,7 @@ export const usersAPI = {
 
     unfollowUser(userId: number) {
         return instance.delete<ResponseFollowUnfollowUser>(`follow/${userId}`)
-    },
+    }
 }
 
 export const authAPI = {
@@ -49,6 +49,14 @@ export const profileAPI = {
     setStatus(status: string) {
         return instance.put<ResponseStatus>(`profile/status`, {status})
     },
+    uploadPhoto(photo: any) {
+        const formData = new FormData()
+        formData.append('image', photo)
+        return instance.put<ResponseUpdatePhoto>(`profile/photo`, formData, {
+                headers: {'Content-Type': 'multipart/form-data'}
+            }
+        )
+    }
 }
 
 type ResponseGetUsers = {
@@ -78,10 +86,23 @@ type ResponseStatus = {
 }
 
 type ResponseLoginLogOut = {
-    data: {userId: number} | {}
+    data: { userId: number } | {}
     fieldsErrors: string[]
     messages: string[]
     resultCode: number
+}
+
+export type PhotosType = {
+    photos: {
+        small: string
+        large: string
+    }
+}
+
+type ResponseUpdatePhoto = {
+    data: PhotosType
+    resultCode: number
+    messages: string[]
 }
 
 type ResponseUserProfile = ProfileType

@@ -7,7 +7,7 @@ import {Spinner} from '../common/Spinner/Spinner'
 
 type HeaderProps = {
     login: string | null
-    avatar?: string | null
+    avatar: string | null
     isAuth: boolean
     isInitializing: boolean
 }

@@ -24,13 +24,23 @@ type PropsType = {
 
 class ProfileContainer extends React.Component<PropsType> {
 
-    componentDidMount() {
+    refreshProfile() {
         let userId = this.props.params && this.props.params.userId && Number(this.props.params.userId)
         if (!userId) {
             userId = this.props.id as number
         }
         if (this.props.isAuth) {
             this.props.initializeApp(userId)
+        }
+    }
+    componentDidMount() {
+        this.refreshProfile()
+    }
+    componentDidUpdate(prevProps: Readonly<PropsType>) {
+        if(this.props.params && prevProps.params) {
+            if(this.props.params.userId !== prevProps.params.userId) {
+                this.refreshProfile()
+            }
         }
     }
 

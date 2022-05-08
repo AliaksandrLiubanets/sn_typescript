@@ -9,6 +9,7 @@ export const DELETE_POST = 'sn-typescript/ProfilePage/DELETE-POST'
 export const ADD_CURRENT_VALUE = 'sn-typescript/ProfilePage/ADD-CURRENT-VALUE'
 export const SET_USER_PROFILE = 'sn-typescript/ProfilePage/SET-USER-PROFILE'
 export const SET_STATUS = 'sn-typescript/ProfilePage/SET-STATUS'
+export const UPDATE_PHOTO = 'sn-typescript/ProfilePage/UPDATE-PHOTO'
 
 
 export const initialState: ProfilePageType = {
@@ -50,6 +51,14 @@ export const profileReducer = (state: StateType = initialState, action: ProfileA
         case SET_USER_PROFILE:
         case SET_STATUS:
             return {...state, ...action.payload}
+        case UPDATE_PHOTO:
+            if (state.profile) {
+                return {
+                    ...state, profile: {...state.profile, photos: action.photo}
+                }
+            }
+            return state
+
         default:
             return state
     }
@@ -64,7 +73,8 @@ export const profileActions = {
     addCurrentValue: (textareaCurrentValue: string) =>
         ({type: ADD_CURRENT_VALUE, payload: {textareaCurrentValue}} as const),
     setUserProfile: (profile: ProfileType | null) => ({type: SET_USER_PROFILE, payload: {profile}} as const),
-    setStatusProfile: (status: string) => ({type: SET_STATUS, payload: {status}} as const)
+    setStatusProfile: (status: string) => ({type: SET_STATUS, payload: {status}} as const),
+    updateProfilePhoto: (photo: {small: string | null, large: string | null}) => ({type: UPDATE_PHOTO, photo} as const)
 }
 
 // thunks:
@@ -108,6 +118,22 @@ export const setStatus = (status: string): AppThunk => async (dispatch) => {
     }
 }
 
+export const uploadPhoto = (photo: any): AppThunk => async (dispatch) => {
+    dispatch(appActions.setIsLoading(true))
+    try {
+        const response = await profileAPI.uploadPhoto(photo)
+        if (response.data.resultCode === 0) {
+            dispatch(profileActions.updateProfilePhoto(response.data.data.photos))
+        } else {
+            dispatch(appActions.setAppError(response.data.messages[0]))
+        }
+    } catch (e) {
+        handleServerNetworkError(dispatch, e as Error)
+    } finally {
+        dispatch(appActions.setIsLoading(false))
+    }
+}
+
 // actions:
 export type PostType = {
     id: string
@@ -131,8 +157,8 @@ export type ProfileType = {
     fullName: string
     contacts: ContactsType
     photos: {
-        small: string
-        large: string
+        small: string | null
+        large: string | null
     }
 }
 export type ProfilePageType = {
