@@ -40,7 +40,8 @@ export const ProfileInfo = React.memo(({
         <div className={s.profileInfo}>
             <div className={s.profileInfo_ava}>
                 {
-                    isOwner ? <>
+                    isOwner
+                        ? <>
                             <input
                                 ref={inRef}
                                 type={'file'}
@@ -53,20 +54,10 @@ export const ProfileInfo = React.memo(({
                                  alt="ava"
                             />
                         </>
-                        : <>
-                            <img
-                                // className={s.avatar}
-                                 src={ava ? ava : emptyAva}
-                                 alt="ava"
-                            />
-                        </>
+                        : <img src={ava ? ava : emptyAva}
+                               alt="ava"
+                        />
                 }
-
-                {/*<img className={s.avatar}*/}
-                {/*     onClick={() => inRef && inRef.current && inRef.current.click()}*/}
-                {/*     src={ava ? ava : emptyAva}*/}
-                {/*     alt="ava"*/}
-                {/*/>*/}
             </div>
             <div className={s.profileInfo_name}>
                 <span>{profile && profile.fullName}</span>
