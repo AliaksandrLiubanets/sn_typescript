@@ -11,9 +11,17 @@ type ProfileInfoProps = {
     setStatus: (status: string) => void
     isLoading: boolean
     uploadPhoto: (photo: File) => void
+    isOwner: boolean
 }
 
-export const ProfileInfo = React.memo(({profile, status, setStatus, isLoading, uploadPhoto}: ProfileInfoProps) => {
+export const ProfileInfo = React.memo(({
+                                           profile,
+                                           status,
+                                           setStatus,
+                                           isLoading,
+                                           uploadPhoto,
+                                           isOwner
+                                       }: ProfileInfoProps) => {
 
     const inRef = useRef<HTMLInputElement>(null)
     const ava = profile && profile.photos.small
@@ -31,17 +39,34 @@ export const ProfileInfo = React.memo(({profile, status, setStatus, isLoading, u
     return (
         <div className={s.profileInfo}>
             <div className={s.profileInfo_ava}>
-                <input
-                    ref={inRef}
-                    type={'file'}
-                    style={{display: 'none'}}
-                    onChange={upload}
-                />
-                <img className={s.avatar}
-                     onClick={() => inRef && inRef.current && inRef.current.click()}
-                     src={ava ? ava : emptyAva}
-                     alt="ava"
-                />
+                {
+                    isOwner ? <>
+                            <input
+                                ref={inRef}
+                                type={'file'}
+                                style={{display: 'none'}}
+                                onChange={upload}
+                            />
+                            <img className={s.avatar}
+                                 onClick={() => inRef && inRef.current && inRef.current.click()}
+                                 src={ava ? ava : emptyAva}
+                                 alt="ava"
+                            />
+                        </>
+                        : <>
+                            <img
+                                // className={s.avatar}
+                                 src={ava ? ava : emptyAva}
+                                 alt="ava"
+                            />
+                        </>
+                }
+
+                {/*<img className={s.avatar}*/}
+                {/*     onClick={() => inRef && inRef.current && inRef.current.click()}*/}
+                {/*     src={ava ? ava : emptyAva}*/}
+                {/*     alt="ava"*/}
+                {/*/>*/}
             </div>
             <div className={s.profileInfo_name}>
                 <span>{profile && profile.fullName}</span>

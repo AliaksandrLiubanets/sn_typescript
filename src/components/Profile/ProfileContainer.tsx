@@ -46,11 +46,18 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 
     render() {
+        let userId = this.props.params && this.props.params.userId && Number(this.props.params.userId)
+        if (!userId) {
+            userId = this.props.id as number
+        }
+        const isOwner = this.props.id === userId
+
         return <Profile profile={this.props.profile}
                         status={this.props.status}
                         setStatus={this.props.setStatus}
                         isLoading={this.props.isLoading}
                         uploadPhoto={this.props.uploadPhoto}
+                        isOwner={isOwner}
         />
     }
 }
