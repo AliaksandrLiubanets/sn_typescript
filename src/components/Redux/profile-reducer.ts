@@ -3,6 +3,7 @@ import {PhotosType, profileAPI} from '../../api/api'
 import {AppThunk, InferActionTypes} from './redux-store'
 import {appActions} from './app-reducer'
 import {handleServerNetworkError} from '../../utils/handleError'
+import {authActions} from './auth-reducer'
 
 export const ADD_POST = 'sn-typescript/ProfilePage/ADD-POST'
 export const DELETE_POST = 'sn-typescript/ProfilePage/DELETE-POST'
@@ -83,6 +84,7 @@ export const setUserProfile = (userId: number): AppThunk => async (dispatch) => 
     try {
         const response = await profileAPI.getUserProfile(userId)
         dispatch(profileActions.setUserProfile(response.data))
+        dispatch(authActions.setIAvatar(response.data.photos.small, userId))
     } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
     } finally {
@@ -118,12 +120,14 @@ export const setStatus = (status: string): AppThunk => async (dispatch) => {
     }
 }
 
-export const uploadPhoto = (photo: any): AppThunk => async (dispatch) => {
+export const uploadPhoto = (photo: any): AppThunk => async (dispatch, getState) => {
+    const userId = getState().auth.data.id
     dispatch(appActions.setIsLoading(true))
     try {
         const response = await profileAPI.uploadPhoto(photo)
         if (response.data.resultCode === 0) {
             dispatch(profileActions.updateProfilePhoto(response.data.data.photos))
+            dispatch(authActions.setIAvatar(response.data.data.photos.small, userId))
         } else {
             dispatch(appActions.setAppError(response.data.messages[0]))
         }

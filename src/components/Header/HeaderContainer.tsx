@@ -34,7 +34,7 @@ const mapStateToProps = (state: RootStateType): MapStateProps => {
         login: state.auth.data.login,
         isAuth: state.auth.isAuth,
         isInitializing: state.app.isInitializing,
-        avatar: state.profilePage.profile && state.profilePage.profile.photos.small
+        avatar: state.auth.avatar
     }
 }
 

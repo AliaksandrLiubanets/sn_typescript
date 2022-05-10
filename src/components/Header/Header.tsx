@@ -28,7 +28,6 @@ export function Header({
                         </div>
                         <span>{login}</span>
                     </div>
-
                     <LogOut/>
                 </>
                 :

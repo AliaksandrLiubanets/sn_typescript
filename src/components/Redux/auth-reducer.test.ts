@@ -9,7 +9,8 @@ beforeEach(() => {
             email: null,
             login: null
         },
-        isAuth: false
+        isAuth: false,
+        avatar: '',
     }
 })
 

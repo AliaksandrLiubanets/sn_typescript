@@ -8,6 +8,7 @@ import {handleServerNetworkError} from '../../utils/handleError'
 
 export const SET_AUTH_DATA = 'sn-typescript/Authorize/SET-AUTH-DATA'
 export const SET_IS_AUTH = 'sn-typescript/Authorize/SET-IS-AUTH'
+export const SET_AVATAR = 'sn-typescript/Authorize/SET-AVATAR'
 
 const initialState: AuthStateType = {
     data: {
@@ -15,7 +16,8 @@ const initialState: AuthStateType = {
         email: null,
         login: null
     },
-    isAuth: false
+    isAuth: false,
+    avatar: null,
 }
 
 const authReducer = (state: StateType = initialState, action: AuthActionsType): StateType => {
@@ -23,6 +25,13 @@ const authReducer = (state: StateType = initialState, action: AuthActionsType): 
         case SET_AUTH_DATA:
         case SET_IS_AUTH:
             return {...state, ...action.payload}
+        case SET_AVATAR:
+            if(state.data.id === action.payload.userId) {
+                return {...state, avatar: action.payload.avatar}
+            } else {
+                return state
+            }
+
         default:
             return state
     }
@@ -34,6 +43,7 @@ export default authReducer
 export const authActions = {
     setAuthData: (data: AuthDataType) => ({type: SET_AUTH_DATA, payload: {data}} as const),
     setIsAuth: (isAuth: boolean) => ({type: SET_IS_AUTH, payload: {isAuth}} as const),
+    setIAvatar: (avatar: string | null, userId: number | null) => ({type: SET_AVATAR, payload: {avatar, userId}} as const),
 }
 
 // thunks:
@@ -44,10 +54,8 @@ export const getAuthData = () => (dispatch: Dispatch) => {
             if (response.data.resultCode === 0) {
                 dispatch(authActions.setAuthData(response.data.data))
                 dispatch(authActions.setIsAuth(true))
-                // dispatch(appActions.setInitialize(false))
             } else {
                 dispatch(appActions.setAppError(response.data.messages[0]))
-                // dispatch(appActions.setInitialize(false))
             }
         })
             .catch(err => {
@@ -89,6 +97,7 @@ export const loginOut = (): AppThunk => async (dispatch) => {
         if (response.data.resultCode === 0) {
             dispatch(authActions.setIsAuth(false))
             dispatch(profileActions.setUserProfile(null))
+            dispatch(authActions.setIAvatar(null, null))
         }
     }
     catch (e) {
@@ -97,7 +106,6 @@ export const loginOut = (): AppThunk => async (dispatch) => {
     finally {
         dispatch(appActions.setIsLoading(false))
     }
-
 }
 
 // types:
@@ -110,6 +118,7 @@ export type AuthDataType = {
 export type AuthStateType = {
     data: AuthDataType
     isAuth: boolean
+    avatar: string | null
 }
 
 export type LoginPayloadType = {
