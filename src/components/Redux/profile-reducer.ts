@@ -120,7 +120,7 @@ export const setStatus = (status: string): AppThunk => async (dispatch) => {
     }
 }
 
-export const uploadPhoto = (photo: any): AppThunk => async (dispatch, getState) => {
+export const uploadPhoto = (photo: File): AppThunk => async (dispatch, getState) => {
     const userId = getState().auth.data.id
     dispatch(appActions.setIsLoading(true))
     try {
