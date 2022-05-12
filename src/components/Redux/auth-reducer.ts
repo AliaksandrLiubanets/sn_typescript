@@ -42,7 +42,7 @@ export default authReducer
 export const authActions = {
     setAuthData: (data: AuthDataType) => ({type: SET_AUTH_DATA, payload: {data}} as const),
     setIsAuth: (isAuth: boolean) => ({type: SET_IS_AUTH, payload: {isAuth}} as const),
-    setIAvatar: (avatar: string | null, userId: number | null) => ({
+    setAvatar: (avatar: string | null, userId: number | null) => ({
         type: SET_AVATAR,
         payload: {avatar, userId}
     } as const)
@@ -96,7 +96,7 @@ export const loginOut = (): AppThunk => async (dispatch) => {
         if (response.data.resultCode === 0) {
             dispatch(authActions.setIsAuth(false))
             dispatch(profileActions.setUserProfile(null))
-            dispatch(authActions.setIAvatar(null, null))
+            dispatch(authActions.setAvatar(null, null))
         }
     } catch (e) {
         handleServerNetworkError(dispatch, e as Error)

@@ -11,6 +11,7 @@ export const ADD_CURRENT_VALUE = 'sn-typescript/ProfilePage/ADD-CURRENT-VALUE'
 export const SET_USER_PROFILE = 'sn-typescript/ProfilePage/SET-USER-PROFILE'
 export const SET_STATUS = 'sn-typescript/ProfilePage/SET-STATUS'
 export const UPDATE_PHOTO = 'sn-typescript/ProfilePage/UPDATE-PHOTO'
+export const UPDATE_PROFILE = 'sn-typescript/ProfilePage/UPDATE-PROFILE'
 
 
 export const initialState: ProfilePageType = {
@@ -33,7 +34,6 @@ export const profileReducer = (state: StateType = initialState, action: ProfileA
                 message: state.textareaCurrentValue.trim(),
                 likes: 7
             }
-
             if (newPost.message) {
                 return {
                     ...state,
@@ -42,6 +42,7 @@ export const profileReducer = (state: StateType = initialState, action: ProfileA
                 }
             }
             return state
+
         case DELETE_POST:
             return {
                 ...state,
@@ -52,11 +53,18 @@ export const profileReducer = (state: StateType = initialState, action: ProfileA
         case SET_USER_PROFILE:
         case SET_STATUS:
             return {...state, ...action.payload}
+
         case UPDATE_PHOTO:
             if (state.profile) {
                 return {
                     ...state, profile: {...state.profile, photos: action.photo}
                 }
+            }
+            return state
+
+        case UPDATE_PROFILE:
+            if (state.profile) {
+            return {...state, profile: {...state.profile, ...action.profile}}
             }
             return state
 
@@ -75,7 +83,8 @@ export const profileActions = {
         ({type: ADD_CURRENT_VALUE, payload: {textareaCurrentValue}} as const),
     setUserProfile: (profile: ProfileType | null) => ({type: SET_USER_PROFILE, payload: {profile}} as const),
     setStatusProfile: (status: string) => ({type: SET_STATUS, payload: {status}} as const),
-    updateProfilePhoto: (photo: PhotosType) => ({type: UPDATE_PHOTO, photo} as const)
+    updateProfilePhoto: (photo: PhotosType) => ({type: UPDATE_PHOTO, photo} as const),
+    updateProfile: (profile: Omit<ProfileType, "photos">) => ({type: UPDATE_PROFILE, profile} as const),
 }
 
 // thunks:
@@ -84,7 +93,7 @@ export const setUserProfile = (userId: number): AppThunk => async (dispatch) => 
     try {
         const response = await profileAPI.getUserProfile(userId)
         dispatch(profileActions.setUserProfile(response.data))
-        dispatch(authActions.setIAvatar(response.data.photos.small, userId))
+        dispatch(authActions.setAvatar(response.data.photos.small, userId))
     } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
     } finally {
@@ -127,7 +136,23 @@ export const uploadPhoto = (photo: File): AppThunk => async (dispatch, getState)
         const response = await profileAPI.uploadPhoto(photo)
         if (response.data.resultCode === 0) {
             dispatch(profileActions.updateProfilePhoto(response.data.data.photos))
-            dispatch(authActions.setIAvatar(response.data.data.photos.small, userId))
+            dispatch(authActions.setAvatar(response.data.data.photos.small, userId))
+        } else {
+            dispatch(appActions.setAppError(response.data.messages[0]))
+        }
+    } catch (e) {
+        handleServerNetworkError(dispatch, e as Error)
+    } finally {
+        dispatch(appActions.setIsLoading(false))
+    }
+}
+
+export const updateProfile = (profile: Omit<ProfileType, "photos">): AppThunk => async (dispatch) => {
+    dispatch(appActions.setIsLoading(true))
+    try {
+        const response = await profileAPI.updateProfile(profile)
+        if (response.data.resultCode === 0) {
+            dispatch(profileActions.updateProfile(profile))
         } else {
             dispatch(appActions.setAppError(response.data.messages[0]))
         }

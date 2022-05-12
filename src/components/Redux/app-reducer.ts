@@ -43,7 +43,7 @@ export const initializeApp = (userId: number): AppThunk => (dispatch) => {
         .then(result => {
             dispatch(profileActions.setUserProfile(result[0].data))
             dispatch(profileActions.setStatusProfile(result[1].data))
-            dispatch(authActions.setIAvatar(result[0].data.photos.small, userId))
+            dispatch(authActions.setAvatar(result[0].data.photos.small, userId))
         })
         .catch(e => {
             handleServerNetworkError(dispatch, e)
