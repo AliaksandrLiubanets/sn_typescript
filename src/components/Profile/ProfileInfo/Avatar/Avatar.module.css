@@ -1,0 +1,9 @@
+.avatar_block img {
+    border-radius: 2px;
+    box-shadow: 0 0 2px #e81f3e;
+    height: 120px;
+}
+
+.avatar {
+    cursor: pointer;
+}

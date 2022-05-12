@@ -16,7 +16,7 @@ type ProfileProps = {
 export const Profile: FC<ProfileProps> =(props) => {
     return <div className={s.content}>
         <ProfileInfo {...props}/>
-        <AddPostContainer/>
+        {/*<AddPostContainer/>*/}
     </div>
 }
 
