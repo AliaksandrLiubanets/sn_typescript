@@ -1,0 +1,13 @@
+.profile {
+    padding: 0 5px;
+    border-radius: 5px;
+    display: flex;
+}
+
+.page_block {
+    background-color: rgba(218, 248, 253, 0.98);
+    box-shadow: 0 0 3px #d5d3d3;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 5px;
+}

@@ -1,0 +1,11 @@
+.name_status {
+    border-bottom: 1px solid rgba(194, 193, 193, 0.7);
+}
+
+.profileInfo_name span {
+    font-size: 24px;
+}
+
+.profileInfo_name {
+    height: 20px;
+}

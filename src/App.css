@@ -17,7 +17,6 @@
   background-color: rgba(234, 250, 252, 0.98);
   grid-template-areas:
       'd u';
-  padding: 0 10px;
 }
 
 textarea {

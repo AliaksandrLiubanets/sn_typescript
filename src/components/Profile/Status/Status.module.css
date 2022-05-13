@@ -1,6 +1,8 @@
 .status {
     height: 20px;
     padding: 2px;
+    color: #9c9c9c;
+    margin-top: 15px;
 }
 .status_span {}
 .status_input {}
