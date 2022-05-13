@@ -5,6 +5,7 @@ import {ProfileType} from '../../Redux/profile-reducer'
 import {Spinner} from '../../common/Spinner/Spinner'
 import {NameStatus} from '../NameStatus/NameStatus'
 import AddPostContainer from '../AddPost/AddPostContainer'
+import {Contacts} from '../Contacts/Contacts'
 
 type ProfileInfoProps = {
     profile: ProfileType | null
@@ -31,7 +32,7 @@ export const ProfileInfo = React.memo(({
                             status={status}
                             setStatus={setStatus}
                 />
-                <div>Contacts</div>
+                <Contacts profile={profile}/>
             </div>
             <div className={p.page_block}>
                 <AddPostContainer/>

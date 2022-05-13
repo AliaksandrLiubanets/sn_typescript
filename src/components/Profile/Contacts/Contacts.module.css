@@ -1,0 +1,17 @@
+.content {
+    margin-top: 10px;
+    display: flex;
+}
+
+.contacts {
+}
+
+.info {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    justify-content: space-between;
+    column-gap: 10em;
+}
+
+

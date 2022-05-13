@@ -4,5 +4,7 @@
     color: #9c9c9c;
     margin-top: 15px;
 }
-.status_span {}
+.status_span {
+    cursor: pointer;
+}
 .status_input {}
