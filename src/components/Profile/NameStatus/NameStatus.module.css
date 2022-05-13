@@ -1,5 +1,6 @@
 .name_status {
     border-bottom: 1px solid rgba(194, 193, 193, 0.7);
+    padding: 0 0 10px 0;
 }
 
 .profileInfo_name span {
