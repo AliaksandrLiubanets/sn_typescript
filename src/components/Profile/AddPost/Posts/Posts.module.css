@@ -10,19 +10,16 @@
 }
 
 .likesBlock {
-    /*background-color: aquamarine;*/
 }
 
 .likeImage{
     width: 13px;
     cursor: pointer;
     margin: 0 4px;
-    /*background-color: antiquewhite;*/
 }
 
 .likesCount {
     font-size: 9px;
     color: rgba(243, 223, 159, 0.88);
     font-weight: 700;
-    /*background-color: #d7d508;*/
 }

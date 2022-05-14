@@ -1,6 +1,6 @@
 .header {
     grid-area: h;
-    background-color: rgba(228, 255, 245, 0.85);
+    background-color: var(--main-bg-color);
     padding: 10px;
     border-bottom: 1px solid rgba(231, 230, 230, 0.93);
     display: flex;

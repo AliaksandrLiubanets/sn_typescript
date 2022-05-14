@@ -43,3 +43,8 @@ button:hover {
   cursor: pointer;
 }
 
+:root {
+  --border-color: #d2d2d2;
+  --main-bg-color: rgba(234, 250, 252, 1);
+  --content-bg-color: rgba(218, 248, 253, 1);
+}
