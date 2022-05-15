@@ -131,8 +131,8 @@ const followUnfollowFlow = async (userId: number, dispatch: Dispatch, apiMethod:
         dispatch(actionCreator(userId))
     } else {
         if (response.data.messages && response.data.messages.length) {
-            const error: string = response.data.messages[0]
-            dispatch(appActions.setAppError(error))
+            const errorArr: string[] = response.data.messages
+            dispatch(appActions.setAppError(errorArr))
             dispatch(appActions.setIsLoading(false))
         }
     }

@@ -57,7 +57,7 @@ export const getAuthData = (): AppThunk => async (dispatch) => {
             dispatch(authActions.setAuthData(response.data.data))
             dispatch(authActions.setIsAuth(true))
         } else {
-            dispatch(appActions.setAppError(response.data.messages[0]))
+            dispatch(appActions.setAppError(response.data.messages))
         }
     }
     catch (e) {
@@ -77,8 +77,8 @@ export const login = (payload: LoginPayloadType): AppThunk => async (dispatch) =
         if (response.data.resultCode === 0) {
             dispatch(getAuthData())
         } else if (response.data.messages.length) {
-            const error: string = response.data.messages[0]
-            dispatch(appActions.setAppError(error))
+            const errorArr: string[] = response.data.messages
+            dispatch(appActions.setAppError(errorArr))
             dispatch(appActions.setIsLoading(false))
         }
     } catch (e) {

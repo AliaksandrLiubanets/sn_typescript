@@ -1,8 +1,6 @@
 .paginatorContainer {
     display: flex;
     justify-content: center;
-    /*background-color: rgba(218, 248, 253, 0.98);*/
-    /*border: 1px solid #cecccc;*/
     border-radius: 20px;
 
 }
@@ -45,7 +43,7 @@
 .container div button {
     cursor: pointer;
     border: none;
-    background-color: rgba(218, 248, 253, 0.98);
+    background-color: var(--content-bg-color);
     outline: none;
     color: gray;
     border-radius: 10%;
@@ -62,13 +60,13 @@
 
 .container div button:hover {
     font-weight: bold;
-    background-color: rgba(218, 248, 253, 0.98);
+    background-color: var(--content-bg-color);
     color: black;
 }
 
 .container div .selectedPage {
     font-weight: bold;
-    background-color: rgba(218, 248, 253, 0.98);
+    background-color: var(--content-bg-color);
     color: black;
 }
 

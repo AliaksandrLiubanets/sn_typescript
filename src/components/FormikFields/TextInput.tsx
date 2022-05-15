@@ -5,7 +5,7 @@ import {Field, useField} from 'formik'
 type InputType = {
     labelName?: string
     name: string
-    type: string
+    type?: string
     placeholder?: string
     validate: (value: string) => string | undefined
 }

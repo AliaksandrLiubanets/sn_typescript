@@ -138,7 +138,7 @@ export const uploadPhoto = (photo: File): AppThunk => async (dispatch, getState)
             dispatch(profileActions.updateProfilePhoto(response.data.data.photos))
             dispatch(authActions.setAvatar(response.data.data.photos.small, userId))
         } else {
-            dispatch(appActions.setAppError(response.data.messages[0]))
+            dispatch(appActions.setAppError(response.data.messages))
         }
     } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
@@ -154,7 +154,7 @@ export const updateProfile = (profile: Omit<ProfileType, "photos">): AppThunk =>
         if (response.data.resultCode === 0) {
             dispatch(profileActions.updateProfile(profile))
         } else {
-            dispatch(appActions.setAppError(response.data.messages[0]))
+            dispatch(appActions.setAppError(response.data.messages))
         }
     } catch (e) {
         handleServerNetworkError(dispatch, e as Error)

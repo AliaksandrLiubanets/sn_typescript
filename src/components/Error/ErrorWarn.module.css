@@ -1,16 +1,24 @@
-.warning_box {
+.warning_block {
     position: fixed;
     bottom: 20px;
     left: 45%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    width: 400px;
+}
+
+.warning_box {
     background-color: rgba(250, 108, 108, 0.83);
     border-radius: 5px;
     color: black;
     padding: 10px 15px;
     display: flex;
     align-items: center;
-
+    justify-content: space-between;
 }
-.cross {
+
+.warning_box__cross {
     cursor: pointer;
     margin-left: 10px;
 }

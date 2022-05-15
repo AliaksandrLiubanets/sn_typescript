@@ -10,16 +10,17 @@ export const SET_ERROR_MESSAGE = 'sn-typescript/Authorize/SET-ERROR-MESSAGE'
 
 const initialState = {
     isInitializing: false,
-    errorMessage: '',
+    errorArray: [] as string[],
     isLoading: false
 }
 
 const appReducer = (state: StateType = initialState, action: AppActionsType): StateType => {
     switch (action.type) {
         case SET_IS_INITIALIZE:
-        case SET_ERROR_MESSAGE:
         case SET_IS_LOADING:
             return {...state, ...action.payload }
+        case SET_ERROR_MESSAGE:
+            return {...state, errorArray: action.errorArray }
         default:
             return state
     }
@@ -31,7 +32,7 @@ export default appReducer
 export const appActions = {
     setInitialize: (isInitializing: boolean) => ({type: SET_IS_INITIALIZE, payload: {isInitializing}} as const),
     setIsLoading: (isLoading: boolean) => ({type: SET_IS_LOADING, payload: {isLoading}} as const),
-    setAppError: (errorMessage: string) => ({type: SET_ERROR_MESSAGE, payload: {errorMessage}} as const),
+    setAppError: (errorArray: string[]) => ({type: SET_ERROR_MESSAGE, errorArray} as const),
 }
 
 //thunks:
@@ -55,7 +56,7 @@ export const initializeApp = (userId: number): AppThunk => (dispatch) => {
 }
 
 export const cleanErrorMessages = (): AppThunk => (dispatch) => {
-    dispatch(appActions.setAppError(''))
+    dispatch(appActions.setAppError([]))
 }
 
 // types:

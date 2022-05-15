@@ -5,7 +5,7 @@ import {ProfileType} from '../../Redux/profile-reducer'
 import {Spinner} from '../../common/Spinner/Spinner'
 import {NameStatus} from '../NameStatus/NameStatus'
 import AddPostContainer from '../AddPost/AddPostContainer'
-import {Contacts} from '../Contacts/Contacts'
+import {Contacts} from './Contacts/Contacts'
 
 type ProfileInfoProps = {
     profile: ProfileType | null
