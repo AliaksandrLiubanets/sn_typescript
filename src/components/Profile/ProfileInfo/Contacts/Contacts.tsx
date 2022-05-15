@@ -1,6 +1,8 @@
-import {FC} from 'react'
+import {FC, useState} from 'react'
 import s from './Contacts.module.css'
-import {ProfileType} from '../../Redux/profile-reducer'
+import {ContactsType, ProfileType} from '../../../Redux/profile-reducer'
+import {Button} from '../../../common/Button/Button'
+import {EditContacts} from './EditContacts/EditContacts'
 
 type ContactsProps = {
     profile: ProfileType | null
@@ -8,18 +10,30 @@ type ContactsProps = {
 
 export const Contacts: FC<ContactsProps> = (props) => {
 
-    let profile
+    const [isEdit, setIsEdit] = useState(false)
+
+//check is profile defined to avoid this condition in code below
+    let profile: Omit<ProfileType, "photos">
     if (props.profile) {
         profile = props.profile
     } else {
-        profile = {}
+        profile = {} as Omit<ProfileType, "photos">
     }
 
-    let contacts
+//check is contacts defined to avoid this condition in code below
+    let contacts: ContactsType
     if (profile.contacts) {
         contacts = profile.contacts
     } else {
-        contacts = {}
+        contacts = {} as ContactsType
+    }
+
+    const onEditContacts = () => {
+        setIsEdit(true)
+    }
+
+    const offEditContacts = () => {
+        setIsEdit(false)
     }
 
     return (
@@ -28,7 +42,7 @@ export const Contacts: FC<ContactsProps> = (props) => {
                 <h5>General Info</h5>
                 <div className={s.info}>
                     <div>Looking for a job: </div>
-                    <div>{profile.lookingForAJob ? profile.lookingForAJob : 'Yes'}</div>
+                    <div>{profile.lookingForAJob ? 'Yes' : 'No'}</div>
                     <div>Description: </div>
                     <div>{profile.lookingForAJobDescription ? profile.lookingForAJobDescription : 'React development'}</div>
                     <div>Full name: </div>
@@ -44,6 +58,10 @@ export const Contacts: FC<ContactsProps> = (props) => {
                     <div>{contacts.vk ? contacts.vk : 'https://vk.com/'}</div>
                 </div>
             </div>
+            <Button label={'Edit contacts'} onClickHandler={onEditContacts}/>
+            {
+                isEdit && <EditContacts profile={profile} offEditContacts={offEditContacts}/>
+            }
         </div>
     )
 }

@@ -6,6 +6,6 @@ export const handleServerNetworkError = (dispatch: Dispatch<AppActionsType>, e: 
     if (axios.isAxiosError(e)) {
         dispatch(appActions.setAppError(e.response ? e.response.data.error : e.message))
     } else {
-        dispatch(appActions.setAppError('Some error occurred'))
+        dispatch(appActions.setAppError(['Some error occurred']))
     }
 }

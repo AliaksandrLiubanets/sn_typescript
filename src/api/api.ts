@@ -47,7 +47,7 @@ export const profileAPI = {
         return instance.put<ResponseType<{}>>(`profile/status`, {status})
     },
     updateProfile(profile: Omit<ProfileType, 'photos'>) {
-        return instance.put<ResponseType<{}>>(`profile`, {profile})
+        return instance.put<ResponseType<{}>>(`profile`, profile)
     },
     uploadPhoto(photo: File) {
         const formData = new FormData()

@@ -44,3 +44,15 @@ export function validatePassword(value: string) {
     }
     return error
 }
+
+export function validateStringValue(value: string) {
+    let error
+    if (!value) {
+        error = 'Required'
+    }
+    // else if (value.length < 5 ) {
+    //     error = 'String length should be at least 5 symbols'
+    // }
+    // return error
+    return error
+}

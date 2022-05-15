@@ -88,19 +88,19 @@ export const profileActions = {
 }
 
 // thunks:
-export const setUserProfile = (userId: number): AppThunk => async (dispatch) => {
-    dispatch(appActions.setIsLoading(true))
-    try {
-        const response = await profileAPI.getUserProfile(userId)
-        dispatch(profileActions.setUserProfile(response.data))
-        dispatch(authActions.setAvatar(response.data.photos.small, userId))
-    } catch (e) {
-        handleServerNetworkError(dispatch, e as Error)
-    } finally {
-        dispatch(appActions.setIsLoading(false))
-    }
-
-}
+// export const setUserProfile = (userId: number): AppThunk => async (dispatch) => {
+//     dispatch(appActions.setIsLoading(true))
+//     try {
+//         const response = await profileAPI.getUserProfile(userId)
+//         dispatch(profileActions.setUserProfile(response.data))
+//         dispatch(authActions.setAvatar(response.data.photos.small, userId))
+//     } catch (e) {
+//         handleServerNetworkError(dispatch, e as Error)
+//     } finally {
+//         dispatch(appActions.setIsLoading(false))
+//     }
+//
+// }
 
 export const getStatus = (userId: number): AppThunk => async (dispatch) => {
     dispatch(appActions.setIsLoading(true))
@@ -181,7 +181,8 @@ export type ContactsType = {
 }
 export type ProfileType = {
     userId: number
-    lookingForAJob: string
+    aboutMe: string
+    lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
     contacts: ContactsType

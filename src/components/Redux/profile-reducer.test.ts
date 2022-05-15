@@ -48,7 +48,8 @@ test('Set user profile to state', () => {
 
     const profile: ProfileType = {
         userId: 1,
-        lookingForAJob: "I look for a job",
+        aboutMe: '',
+        lookingForAJob: false,
         lookingForAJobDescription: 'Frontend developer',
         fullName: 'Bob',
         contacts: {} as ContactsType,

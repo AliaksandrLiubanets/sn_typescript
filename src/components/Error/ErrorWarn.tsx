@@ -7,29 +7,38 @@ import s from './ErrorWarn.module.css'
 
 export const ErrorWarn = () => {
 
-    const errMessage = useSelector<RootStateType, string>(state => state.app.errorMessage)
+    const errorArray = useSelector<RootStateType, string[]>(state => state.app.errorArray)
     const dispatch = useDispatch()
-    const cleanErrorMessage = useCallback(() => dispatch(cleanErrorMessages()), [errMessage, dispatch])
+    const cleanErrorMessage = useCallback(() => dispatch(cleanErrorMessages()), [errorArray, dispatch])
 
     useEffect(() => {
         let id = setTimeout(() => {
             cleanErrorMessage()
-        }, 2500)
+        }, 3500)
         return () => {
             clearTimeout(id)
         }
-    },[cleanErrorMessage])
+    }, [cleanErrorMessage])
 
-    return (errMessage
-            ? <div className={s.warning_box}>
-                    <div>
-                        {errMessage}
-                    </div>
-                    <div className={s.cross}
-                         onClick={cleanErrorMessage}>
-                        ⮾
-                    </div>
+    const errors = errorArray.map(error => {
+        return <div className={s.warning_box}>
+            <div className={s.warning_box__error}>
+                {error}
             </div>
-            : null
+            <div className={s.warning_box__cross}
+                 onClick={cleanErrorMessage}>
+                ⮾
+            </div>
+        </div>
+    })
+
+    return (
+        <div className={s.warning_block}>
+            {
+                errorArray.length > 0
+                    ? errors
+                    : null
+            }
+        </div>
     )
 }

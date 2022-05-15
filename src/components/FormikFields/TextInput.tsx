@@ -7,7 +7,7 @@ type InputType = {
     name: string
     type?: string
     placeholder?: string
-    validate: (value: string) => string | undefined
+    validate?: (value: string) => string | undefined
 }
 
 export const TextInput = ({labelName, ...props}: InputType) => {
