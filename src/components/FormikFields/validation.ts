@@ -45,14 +45,20 @@ export function validatePassword(value: string) {
     return error
 }
 
-export function validateStringValue(value: string) {
+export function validateString(value: string) {
     let error
     if (!value) {
         error = 'Required'
     }
-    // else if (value.length < 5 ) {
-    //     error = 'String length should be at least 5 symbols'
-    // }
-    // return error
+    return error
+}
+
+export function validateUrl(value: string) {
+    let error
+    if (!value) {
+        error = 'Required'
+    } else if (!/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_.~#?&=]*)/i.test(value)) {
+        error = 'Invalid url'
+    }
     return error
 }

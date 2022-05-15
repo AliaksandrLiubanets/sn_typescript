@@ -2,7 +2,7 @@ import React, {FC} from 'react'
 import {Form, Formik} from 'formik'
 import {useDispatch} from 'react-redux'
 import {ProfileType, updateProfile} from '../../../../Redux/profile-reducer'
-import {validateStringValue} from '../../../../FormikFields/validation'
+import {validateString, validateUrl} from '../../../../FormikFields/validation'
 import {Checkbox} from '../../../../FormikFields/Checkbox'
 import {TextInput} from '../../../../FormikFields/TextInput'
 import s from './EditContacts.module.css'
@@ -12,7 +12,7 @@ type EditContactsPropsType = {
     profile: Omit<ProfileType, 'photos'>
 }
 
-export const EditContacts:FC<EditContactsPropsType> = ({offEditContacts, profile}) => {
+export const EditContacts: FC<EditContactsPropsType> = ({offEditContacts, profile}) => {
 
     const dispatch = useDispatch()
 
@@ -32,10 +32,10 @@ export const EditContacts:FC<EditContactsPropsType> = ({offEditContacts, profile
                     twitter: profile.contacts.twitter,
                     website: profile.contacts.website,
                     youtube: profile.contacts.youtube,
-                    mainLink: profile.contacts.mainLink,
+                    mainLink: profile.contacts.mainLink
                 }}
                 onSubmit={(values) => {
-                    let updatedProfile: Omit<ProfileType, "photos">
+                    let updatedProfile: Omit<ProfileType, 'photos'>
                     updatedProfile = {
                         ...profile,
                         aboutMe: values.aboutMe,
@@ -45,54 +45,49 @@ export const EditContacts:FC<EditContactsPropsType> = ({offEditContacts, profile
                             ...profile.contacts,
                             github: values.github,
                             vk: values.vk,
-                            instagram: values.instagram,
+                            instagram: values.instagram
                         }
                     }
-                    console.log(updatedProfile)
                     dispatch(updateProfile(updatedProfile as Omit<ProfileType, 'photos'>))
                     offEditContacts()
                 }}
             >
 
                 <Form className={s.edit_form}>
-                    <Checkbox name="lookingForAJob" labelName="Looking for a job"/>
-                    <TextInput
-                        labelName={'Skills'}
-                        name={'lookingForAJobDescription'}
-                        placeholder={''}
-                        validate={validateStringValue}
-                    />
-                    <TextInput
-                        labelName={'aboutMe'}
-                        name={'aboutMe'}
-                        placeholder={''}
-                        validate={validateStringValue}
-                    />
-                    <TextInput
-                        labelName={'Full name'}
-                        name={'fullName'}
-                        placeholder={''}
-                        validate={validateStringValue}
-                    />
-                    <TextInput
-                        labelName={'gitHub'}
-                        name={'github'}
-                        placeholder={''}
-                        // validate={validateStringValue}
-                    />
-                    <TextInput
-                        labelName={'vk'}
-                        name={'vk'}
-                        placeholder={''}
-                        // validate={validateStringValue}
-                    />
-                    <TextInput
-                        labelName={'instagram'}
-                        name={'instagram'}
-                        placeholder={''}
-                        // validate={validateStringValue}
-                    />
-
+                    <div className={s.edit_form__content}>
+                        <Checkbox name="lookingForAJob"
+                                  labelName="Looking for a job"/>
+                        <TextInput
+                            labelName={'Skills'}
+                            name={'lookingForAJobDescription'}
+                            placeholder={''}
+                            validate={validateString}
+                        />
+                        <TextInput
+                            labelName={'aboutMe'}
+                            name={'aboutMe'}
+                            placeholder={''}
+                            validate={validateString}
+                        />
+                        <TextInput
+                            labelName={'gitHub'}
+                            name={'github'}
+                            placeholder={''}
+                            validate={validateUrl}
+                        />
+                        <TextInput
+                            labelName={'vk'}
+                            name={'vk'}
+                            placeholder={''}
+                            validate={validateUrl}
+                        />
+                        <TextInput
+                            labelName={'instagram'}
+                            name={'instagram'}
+                            placeholder={''}
+                            validate={validateUrl}
+                        />
+                    </div>
                     <button type="submit">Submit</button>
                 </Form>
             </Formik>
