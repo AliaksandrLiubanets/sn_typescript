@@ -58,7 +58,7 @@ export const EditContacts: FC<EditContactsPropsType> = ({offEditContacts, profil
                         <Checkbox name="lookingForAJob"
                                   labelName="Looking for a job"/>
                         <TextInput
-                            labelName={'Skills'}
+                            labelName={'skills'}
                             name={'lookingForAJobDescription'}
                             placeholder={''}
                             validate={validateString}

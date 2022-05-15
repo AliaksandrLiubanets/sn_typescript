@@ -43,7 +43,7 @@ export const Contacts: FC<ContactsProps> = (props) => {
                 <div className={s.info}>
                     <div>Looking for a job: </div>
                     <div>{profile.lookingForAJob ? 'Yes' : 'No'}</div>
-                    <div>Description: </div>
+                    <div>Skills: </div>
                     <div>{profile.lookingForAJobDescription ? profile.lookingForAJobDescription : 'React development'}</div>
                     <div>Full name: </div>
                     <div>{profile.fullName ? profile.fullName : 'Zadrot'}</div>
@@ -58,7 +58,7 @@ export const Contacts: FC<ContactsProps> = (props) => {
                     <div>{contacts.vk ? contacts.vk : 'https://vk.com/'}</div>
                 </div>
             </div>
-            <Button label={'Edit contacts'} onClickHandler={onEditContacts}/>
+            <Button label={'Edit'} onClickHandler={onEditContacts}/>
             {
                 isEdit && <EditContacts profile={profile} offEditContacts={offEditContacts}/>
             }

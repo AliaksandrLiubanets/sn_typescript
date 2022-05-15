@@ -7,14 +7,16 @@
 }
 
 .contacts {
+    margin-bottom: 15px;
+}
+
+.contacts h5 {
+    margin: 10px 0;
 }
 
 .info {
-    display: flex;
-    flex-wrap: wrap;
-    row-gap: 10px;
-    justify-content: space-between;
-    column-gap: 7em;
+    display: grid;
+    grid-template-columns: 9fr 11fr;
 }
 
 
