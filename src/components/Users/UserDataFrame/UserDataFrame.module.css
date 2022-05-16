@@ -1,7 +1,7 @@
 .user__dataFrame {
     border: 1px solid gray;
     border-radius: 10px;
-    background-color: rgba(172, 252, 225, 0.2);
+    background-color: var(--main-bg-color);
 }
 
 .user__dataFrame {
