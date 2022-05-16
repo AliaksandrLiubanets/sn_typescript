@@ -14,11 +14,11 @@ export const Contacts: FC<ContactsProps> = (props) => {
     const [isEdit, setIsEdit] = useState(false)
 
 //check is profile defined to avoid this condition in code below
-    let profile: Omit<ProfileType, 'photos'>
+    let profile: Omit<ProfileType, "photos">
     if (props.profile) {
         profile = props.profile
     } else {
-        profile = {} as Omit<ProfileType, 'photos'>
+        profile = {} as Omit<ProfileType, "photos">
     }
 
 //check is contacts defined to avoid this condition in code below
@@ -42,26 +42,29 @@ export const Contacts: FC<ContactsProps> = (props) => {
             <div className={s.contacts}>
                 <h5>General Info</h5>
                 <div className={s.info}>
-                    <div>Looking for a job:</div>
+                    <div>Looking for a job: </div>
                     <div>{profile.lookingForAJob ? 'Yes' : 'No'}</div>
-                    <div>Skills:</div>
-                    <div>{profile.lookingForAJobDescription ? profile.lookingForAJobDescription : 'React development'}</div>
-                    <div>About me:</div>
-                    <div>{profile.aboutMe ? profile.aboutMe : 'Zadrot'}</div>
+                    <div>Skills: </div>
+                    <div>{profile.lookingForAJobDescription ? profile.lookingForAJobDescription : '-----'}</div>
+                    <div>name: </div>
+                    <div>{profile.fullName ? profile.fullName : '-----'}</div>
+                    <div>About me: </div>
+                    <div>{profile.aboutMe ? profile.aboutMe : '-----'}</div>
                 </div>
                 <h5>Contacts & Socials</h5>
                 <div className={s.info}>
-                    <div>Instagram:</div>
+                    <div>Instagram: </div>
                     <div>{contacts.instagram ? contacts.instagram : 'https://www.instagram.com/'}</div>
-                    <div>github:</div>
+                    <div>github: </div>
                     <div>{contacts.github ? contacts.github : 'https://github.com/'}</div>
-                    <div>vk:</div>
+                    <div>vk: </div>
                     <div>{contacts.vk ? contacts.vk : 'https://vk.com/'}</div>
                 </div>
             </div>
             {
                 props.isOwner && <Button label={'Edit'} onClickHandler={onEditContacts}/>
             }
+
             {
                 isEdit && <EditContacts profile={profile} offEditContacts={offEditContacts}/>
             }

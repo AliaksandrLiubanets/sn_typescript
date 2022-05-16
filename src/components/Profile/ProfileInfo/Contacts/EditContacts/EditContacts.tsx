@@ -41,6 +41,7 @@ export const EditContacts: FC<EditContactsPropsType> = ({offEditContacts, profil
                         aboutMe: values.aboutMe,
                         lookingForAJob: values.lookingForAJob,
                         lookingForAJobDescription: values.lookingForAJobDescription,
+                        fullName: values.fullName,
                         contacts: {
                             ...profile.contacts,
                             github: values.github,
@@ -57,6 +58,12 @@ export const EditContacts: FC<EditContactsPropsType> = ({offEditContacts, profil
                     <div className={s.edit_form__content}>
                         <Checkbox name="lookingForAJob"
                                   labelName="Looking for a job"/>
+                        <TextInput
+                            labelName={'name'}
+                            name={'fullName'}
+                            placeholder={''}
+                            validate={validateString}
+                        />
                         <TextInput
                             labelName={'skills'}
                             name={'lookingForAJobDescription'}
