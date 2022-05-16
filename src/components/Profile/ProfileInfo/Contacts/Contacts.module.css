@@ -8,6 +8,7 @@
 
 .contacts {
     margin-bottom: 15px;
+    width: 100%;
 }
 
 .contacts h5 {
@@ -16,7 +17,7 @@
 
 .info {
     display: grid;
-    grid-template-columns: 9fr 11fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 
