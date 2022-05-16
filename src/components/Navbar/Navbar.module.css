@@ -1,16 +1,7 @@
 .navbar {
     grid-area: n;
     background-color: var(--main-bg-color);
-    padding: 0 0 0 5px;
-    /*border-right: 1px solid rgba(231, 230, 230, 0.93);*/
 }
-
-/*.content {*/
-/*    background-color: var(--content-bg-color);*/
-/*    border-radius: 5px;*/
-/*    box-shadow: 0 0 3px gray;*/
-/*    padding: 10px;*/
-/*}*/
 
 .navbar div {
     margin-bottom: 5px;

@@ -7,6 +7,7 @@ import {DialogType} from '../Redux/dialogs-reducer'
 import {withAuthNavigate} from '../HOC/withAuthNavigate'
 import {compose} from 'redux'
 import {ComponentType} from 'react'
+import p from '../Profile/Profile.module.css'
 
 function Dialogs(props: MapStatePropsType) {
 
@@ -15,7 +16,7 @@ function Dialogs(props: MapStatePropsType) {
                                                                            id={d.id}
                                                                            ava={d.ava}/>)
 
-    return <div className={s.dialogs__block}>
+    return <div className={`${p.page_block} ${s.dialogs__block} `}>
         <div className={s.dialogs}>
             <h4>DIALOGS</h4>
             {dialogsItems}

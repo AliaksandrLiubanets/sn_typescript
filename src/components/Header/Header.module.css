@@ -1,6 +1,5 @@
 .header {
     grid-area: h;
-    background-color: var(--main-bg-color);
     padding: 5px;
     display: flex;
     flex-direction: column;

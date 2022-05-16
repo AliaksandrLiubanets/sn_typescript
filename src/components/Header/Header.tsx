@@ -44,14 +44,12 @@ export function Header({
         </div>
     }
 
-    return <div className={s.header}>
-        <div className={p.page_block}>
-            {
-                isInitializing
-                    ? <Spinner/>
-                    : <HeaderBlock/>
-            }
-        </div>
+    return <div className={`${p.page_block} ${s.header}`}>
+        {
+            isInitializing
+                ? <Spinner/>
+                : <HeaderBlock/>
+        }
     </div>
 }
 

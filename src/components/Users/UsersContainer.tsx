@@ -16,6 +16,7 @@ import {
     isFetchingSelector
 } from '../../selectors/users-selectors'
 import {Paginator} from '../common/Paginator/Paginator'
+import p from '../Profile/Profile.module.css'
 
 
 type PropsType = MapStatePropsType & MapDispatchPropsType
@@ -40,7 +41,7 @@ class Users extends Component<PropsType> {
                                                       followingInProgress={this.props.followingInProgress}
         />)
 
-        return <div>
+        return <div className={p.page_block}>
                 <Paginator setCurrentPage={this.props.setCurrentPage}
                            itemsTotalCount={this.props.totalCount}
                            page={this.props.currentPage}
