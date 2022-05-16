@@ -4,6 +4,7 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 import {LogOut} from '../Login/LogOut'
 import {Spinner} from '../common/Spinner/Spinner'
+import p from '../Profile/Profile.module.css'
 
 type HeaderProps = {
     login: string | null
@@ -44,12 +45,13 @@ export function Header({
     }
 
     return <div className={s.header}>
-        {
-            isInitializing
-                ? <Spinner/>
-                : <HeaderBlock/>
-        }
-
+        <div className={p.page_block}>
+            {
+                isInitializing
+                    ? <Spinner/>
+                    : <HeaderBlock/>
+            }
+        </div>
     </div>
 }
 
