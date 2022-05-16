@@ -54,7 +54,9 @@ export const EditContacts: FC<EditContactsPropsType> = ({offEditContacts, profil
                 }}
             >
 
-                <Form className={s.edit_form}>
+                <Form className={s.edit_form}
+                      onMouseLeave={() => {offEditContacts()}}
+                >
                     <div className={s.edit_form__content}>
                         <Checkbox name="lookingForAJob"
                                   labelName="Looking for a job"/>

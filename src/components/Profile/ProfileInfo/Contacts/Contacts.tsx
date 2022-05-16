@@ -46,14 +46,14 @@ export const Contacts: FC<ContactsProps> = (props) => {
                     <div>{profile.lookingForAJob ? 'Yes' : 'No'}</div>
                     <div>Skills: </div>
                     <div>{profile.lookingForAJobDescription ? profile.lookingForAJobDescription : '-----'}</div>
-                    <div>name: </div>
+                    <div>Name: </div>
                     <div>{profile.fullName ? profile.fullName : '-----'}</div>
                     <div>About me: </div>
                     <div>{profile.aboutMe ? profile.aboutMe : '-----'}</div>
                 </div>
                 <h5>Contacts & Socials</h5>
                 <div className={s.info}>
-                    <div>Instagram: </div>
+                    <div>instagram: </div>
                     <div>{contacts.instagram ? contacts.instagram : 'https://www.instagram.com/'}</div>
                     <div>github: </div>
                     <div>{contacts.github ? contacts.github : 'https://github.com/'}</div>
