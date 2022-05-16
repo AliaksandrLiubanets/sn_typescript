@@ -25,31 +25,20 @@ export const EditContacts: FC<EditContactsPropsType> = ({offEditContacts, profil
                     lookingForAJob: profile.lookingForAJob,
                     lookingForAJobDescription: profile.lookingForAJobDescription,
                     fullName: profile.fullName,
-                    github: profile.contacts.github,
-                    vk: profile.contacts.vk,
-                    facebook: profile.contacts.facebook,
-                    instagram: profile.contacts.instagram,
-                    twitter: profile.contacts.twitter,
-                    website: profile.contacts.website,
-                    youtube: profile.contacts.youtube,
-                    mainLink: profile.contacts.mainLink
+                    contacts: {
+                        github: profile.contacts.github,
+                        vk: profile.contacts.vk,
+                        facebook: profile.contacts.facebook,
+                        instagram: profile.contacts.instagram,
+                        twitter: profile.contacts.twitter,
+                        website: profile.contacts.website,
+                        youtube: profile.contacts.youtube,
+                        mainLink: profile.contacts.mainLink
+                    }
+
                 }}
                 onSubmit={(values) => {
-                    let updatedProfile: Omit<ProfileType, 'photos'>
-                    updatedProfile = {
-                        ...profile,
-                        aboutMe: values.aboutMe,
-                        lookingForAJob: values.lookingForAJob,
-                        lookingForAJobDescription: values.lookingForAJobDescription,
-                        fullName: values.fullName,
-                        contacts: {
-                            ...profile.contacts,
-                            github: values.github,
-                            vk: values.vk,
-                            instagram: values.instagram
-                        }
-                    }
-                    dispatch(updateProfile(updatedProfile as Omit<ProfileType, 'photos'>))
+                    dispatch(updateProfile(values as Omit<ProfileType, 'photos'>))
                     offEditContacts()
                 }}
             >
@@ -80,19 +69,19 @@ export const EditContacts: FC<EditContactsPropsType> = ({offEditContacts, profil
                         />
                         <TextInput
                             labelName={'gitHub'}
-                            name={'github'}
+                            name={'contacts.github'}
                             placeholder={''}
                             validate={validateUrl}
                         />
                         <TextInput
                             labelName={'vk'}
-                            name={'vk'}
+                            name={'contacts.vk'}
                             placeholder={''}
                             validate={validateUrl}
                         />
                         <TextInput
                             labelName={'instagram'}
-                            name={'instagram'}
+                            name={'contacts.instagram'}
                             placeholder={''}
                             validate={validateUrl}
                         />
