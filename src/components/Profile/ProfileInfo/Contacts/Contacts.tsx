@@ -6,6 +6,7 @@ import {EditContacts} from './EditContacts/EditContacts'
 
 type ContactsProps = {
     profile: ProfileType | null
+    isOwner: boolean
 }
 
 export const Contacts: FC<ContactsProps> = (props) => {
@@ -44,9 +45,11 @@ export const Contacts: FC<ContactsProps> = (props) => {
                     <div>Looking for a job: </div>
                     <div>{profile.lookingForAJob ? 'Yes' : 'No'}</div>
                     <div>Skills: </div>
-                    <div>{profile.lookingForAJobDescription ? profile.lookingForAJobDescription : 'React development'}</div>
-                    <div>Full name: </div>
-                    <div>{profile.fullName ? profile.fullName : 'Zadrot'}</div>
+                    <div>{profile.lookingForAJobDescription ? profile.lookingForAJobDescription : '-----'}</div>
+                    <div>name: </div>
+                    <div>{profile.fullName ? profile.fullName : '-----'}</div>
+                    <div>About me: </div>
+                    <div>{profile.aboutMe ? profile.aboutMe : '-----'}</div>
                 </div>
                 <h5>Contacts & Socials</h5>
                 <div className={s.info}>
@@ -58,7 +61,10 @@ export const Contacts: FC<ContactsProps> = (props) => {
                     <div>{contacts.vk ? contacts.vk : 'https://vk.com/'}</div>
                 </div>
             </div>
-            <Button label={'Edit'} onClickHandler={onEditContacts}/>
+            {
+                props.isOwner && <Button label={'Edit'} onClickHandler={onEditContacts}/>
+            }
+
             {
                 isEdit && <EditContacts profile={profile} offEditContacts={offEditContacts}/>
             }

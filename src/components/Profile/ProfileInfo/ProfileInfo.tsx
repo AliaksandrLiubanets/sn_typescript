@@ -12,13 +12,15 @@ type ProfileInfoProps = {
     status: string | null
     setStatus: (status: string) => void
     isLoading: boolean
+    isOwner: boolean
 }
 
 export const ProfileInfo = React.memo(({
                                            profile,
                                            status,
                                            setStatus,
-                                           isLoading
+                                           isLoading,
+                                           isOwner
                                        }: ProfileInfoProps) => {
 
     if (isLoading) {
@@ -32,7 +34,7 @@ export const ProfileInfo = React.memo(({
                             status={status}
                             setStatus={setStatus}
                 />
-                <Contacts profile={profile}/>
+                <Contacts profile={profile} isOwner={isOwner}/>
             </div>
             <div className={p.page_block}>
                 <AddPostContainer/>
