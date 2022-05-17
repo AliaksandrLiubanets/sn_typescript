@@ -16,9 +16,11 @@ export const UPDATE_PROFILE = 'sn-typescript/ProfilePage/UPDATE-PROFILE'
 
 export const initialState: ProfilePageType = {
     messagesData: [
-        {id: v1(), message: 'hello!', likes: 3},
-        {id: v1(), message: 'Hi!', likes: 5},
-        {id: v1(), message: 'How is it going?!', likes: 8}
+        {id: v1(), message: 'Hello!', likes: 3},
+        {id: v1(), message: 'I am free!', likes: 5},
+        {id: v1(), message: 'What a lovely day today!', likes: 8},
+        {id: v1(), message: "Let's play volleyball at 7pm.", likes: 4},
+        {id: v1(), message: 'Who likes React?', likes: 7},
     ],
     textareaCurrentValue: '',
     profile: null,
@@ -86,21 +88,6 @@ export const profileActions = {
     updateProfilePhoto: (photo: PhotosType) => ({type: UPDATE_PHOTO, photo} as const),
     updateProfile: (profile: Omit<ProfileType, "photos">) => ({type: UPDATE_PROFILE, profile} as const),
 }
-
-// thunks:
-// export const setUserProfile = (userId: number): AppThunk => async (dispatch) => {
-//     dispatch(appActions.setIsLoading(true))
-//     try {
-//         const response = await profileAPI.getUserProfile(userId)
-//         dispatch(profileActions.setUserProfile(response.data))
-//         dispatch(authActions.setAvatar(response.data.photos.small, userId))
-//     } catch (e) {
-//         handleServerNetworkError(dispatch, e as Error)
-//     } finally {
-//         dispatch(appActions.setIsLoading(false))
-//     }
-//
-// }
 
 export const getStatus = (userId: number): AppThunk => async (dispatch) => {
     dispatch(appActions.setIsLoading(true))

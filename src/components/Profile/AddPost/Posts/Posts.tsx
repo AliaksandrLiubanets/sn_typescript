@@ -7,6 +7,7 @@ import s from './Posts.module.css'
 type PostsPropsType = {
     post: string
     likes: number
+    avatar: string | null
 }
 
 function Posts(props: PostsPropsType) {
@@ -18,7 +19,7 @@ function Posts(props: PostsPropsType) {
     }
 
     return <div className={s.post}>
-        <img className={s.samuraiImage} src={samurai} alt={'samurai'}/>
+        <img className={s.samuraiImage} src={props.avatar ? props.avatar : samurai} alt={'avatar'}/>
         <span className={s.postSpan}>{props.post}</span>
         <div className={s.likesBlock}>
             <span><img onClick={setLikesCount} className={s.likeImage} src={likeImage} alt={'like'}/></span>

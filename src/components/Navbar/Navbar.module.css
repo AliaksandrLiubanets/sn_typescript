@@ -1,6 +1,7 @@
 .navbar {
     grid-area: n;
     background-color: var(--main-bg-color);
+    display: inline-grid;
 }
 
 .navbar div {

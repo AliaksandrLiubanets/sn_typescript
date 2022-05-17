@@ -13,12 +13,14 @@ function AddPostContainer(props: PropsType) {
                     messagesData={props.messagesData}
                     addPost={props.addPost}
                     value={props.textareaCurrentValue}
+                    avatar={props.avatar}
     />
 }
 
 type MapStatePropsType = {
     textareaCurrentValue: string
     messagesData: Array<PostType>
+    avatar: string | null
 }
 
 type MapDispatchPropsType = {
@@ -29,7 +31,8 @@ type MapDispatchPropsType = {
 const mapStatToProps = (state: RootStateType): MapStatePropsType => {
     return {
         textareaCurrentValue: state.profilePage.textareaCurrentValue,
-        messagesData: state.profilePage.messagesData
+        messagesData: state.profilePage.messagesData,
+        avatar: state.profilePage.profile && state.profilePage.profile.photos.small,
     }
 }
 
