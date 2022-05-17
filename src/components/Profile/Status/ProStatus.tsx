@@ -4,6 +4,7 @@ import s from './Status.module.css'
 type StatusProps = {
     status: string  | null
     setStatus: (status: string) => void
+    isOwner: boolean
 }
 
 const ProStatus = React.memo((props: StatusProps) => {
@@ -14,16 +15,23 @@ const ProStatus = React.memo((props: StatusProps) => {
         setStatus(props.status)
     }, [props.status])
 
-    const onEditMode = () => setEditMode(true)
+    const onEditMode = () => {
+        if(props.isOwner) {
+            setEditMode(true)
+        }
+    }
+
     const offEditMode = () => {
         status && props.setStatus(status)
         setEditMode(false)
     }
 
+    const statusStyle = props.isOwner ? `${s.status_span}` : ''
+
         return <div className={s.status}>
             {!editMode
-                ? <div className={s.status_span}>
-                    <span onClick={onEditMode}>{status || '-----'}</span>
+                ? <div className={statusStyle}>
+                    <span onClick={onEditMode}>{status || 'status'}</span>
                 </div>
                 : <div className={s.status_input}>
                     <input onBlur={offEditMode}

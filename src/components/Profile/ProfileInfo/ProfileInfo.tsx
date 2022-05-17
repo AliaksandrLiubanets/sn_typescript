@@ -33,6 +33,7 @@ export const ProfileInfo = React.memo(({
                 <NameStatus name={profile && profile.fullName}
                             status={status}
                             setStatus={setStatus}
+                            isOwner={isOwner}
                 />
                 <Contacts profile={profile} isOwner={isOwner}/>
             </div>

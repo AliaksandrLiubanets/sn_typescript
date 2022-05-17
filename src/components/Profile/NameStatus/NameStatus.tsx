@@ -6,15 +6,16 @@ type NameStatusPropsType = {
     name: string | null
     status: string | null
     setStatus: (status: string) => void
+    isOwner: boolean
 }
 
-export const NameStatus: FC<NameStatusPropsType> = ({name, status, setStatus}) => {
+export const NameStatus: FC<NameStatusPropsType> = ({name, status, setStatus, isOwner}) => {
     return (
         <div className={s.name_status}>
             <div className={s.profileInfo_name}>
                 <span>{name}</span>
             </div>
-            <ProStatus status={status} setStatus={setStatus}/>
+            <ProStatus status={status} setStatus={setStatus} isOwner={isOwner}/>
         </div>
     )
 }
