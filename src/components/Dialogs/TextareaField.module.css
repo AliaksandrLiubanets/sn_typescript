@@ -1,10 +1,10 @@
 .textarea {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     max-width: 390px;
-    padding-left: 30px;
+    padding-left: 20px;
     height: 40px;
+    column-gap: 13px;
 }
 
 .textarea__textarea {

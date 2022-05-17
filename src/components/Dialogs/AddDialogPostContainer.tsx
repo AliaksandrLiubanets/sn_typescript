@@ -28,7 +28,7 @@ type MapStatePropsType = {
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
         textareaCurrentValue: state.dialogsPage.textareaCurrentValue,
-        ava: state.profilePage.profile && state.profilePage.profile.photos.small
+        ava: state.auth.ownAvatar
     }
 }
 

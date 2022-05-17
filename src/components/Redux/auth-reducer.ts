@@ -16,7 +16,7 @@ const initialState: AuthStateType = {
         login: null
     },
     isAuth: false,
-    avatar: null
+    ownAvatar: null,
 }
 
 const authReducer = (state: StateType = initialState, action: AuthActionsType): StateType => {
@@ -26,7 +26,7 @@ const authReducer = (state: StateType = initialState, action: AuthActionsType): 
             return {...state, ...action.payload}
         case SET_AVATAR:
             if (state.data.id === action.payload.userId) {
-                return {...state, avatar: action.payload.avatar}
+                return {...state, ownAvatar: action.payload.avatar}
             } else {
                 return state
             }
@@ -115,7 +115,7 @@ export type AuthDataType = {
 export type AuthStateType = {
     data: AuthDataType
     isAuth: boolean
-    avatar: string | null
+    ownAvatar: string | null
 }
 
 export type LoginPayloadType = {

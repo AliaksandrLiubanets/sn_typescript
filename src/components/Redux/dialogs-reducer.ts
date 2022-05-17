@@ -109,6 +109,7 @@ export const dialogsActions = {
     addPostDialog: (name: string): AddPostDialogActionType => ({type: ADD_POST_DIALOG, name}),
     deletePostDialog: (name: string, postId: string): DeletePostDialogActionType => ({type: DELETE_POST_DIALOG, name, postId}),
     addCurrentValueDialog: (text: string): AddCurrentValueDialogActionType => ({type: ADD_CURRENT_VALUE_DIALOG, newText: text}),
+    setOwnerAvatar: (ava: string): setOwnerAvatarActionType => ({type: SET_OWNER_AVATAR, ava}),
 }
 
 // types:

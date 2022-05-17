@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import samurai from '../../../../assets/samurai_ava.jpg'
+import emptyAvatar from '../../../../assets/empty_avatar.jpg'
 import likeImage from '../../../../assets/like.png'
 
 import s from './Posts.module.css'
@@ -19,7 +19,7 @@ function Posts(props: PostsPropsType) {
     }
 
     return <div className={s.post}>
-        <img className={s.samuraiImage} src={props.avatar ? props.avatar : samurai} alt={'avatar'}/>
+        <img className={s.samuraiImage} src={props.avatar ? props.avatar : emptyAvatar} alt={'avatar'}/>
         <span className={s.postSpan}>{props.post}</span>
         <div className={s.likesBlock}>
             <span><img onClick={setLikesCount} className={s.likeImage} src={likeImage} alt={'like'}/></span>

@@ -10,7 +10,7 @@ beforeEach(() => {
             login: null
         },
         isAuth: false,
-        avatar: '',
+        ownAvatar: '',
     }
 })
 
