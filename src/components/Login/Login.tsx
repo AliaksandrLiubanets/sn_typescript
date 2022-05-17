@@ -7,7 +7,7 @@ export const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [isRemember, setIsRemember] = useState(false)
-    const [captcha, setCaptcha] = useState(true)
+    const [captcha, setCaptcha] = useState('')
 
     const dispatch = useDispatch()
 

@@ -1,4 +1,4 @@
-import {authAPI} from '../../api/api'
+import {authAPI, securityAPI} from '../../api/api'
 import {AppThunk, InferActionTypes} from './redux-store'
 import {appActions} from './app-reducer'
 import {profileActions} from './profile-reducer'
@@ -8,6 +8,7 @@ import {handleServerNetworkError} from '../../utils/handleError'
 export const SET_AUTH_DATA = 'sn-typescript/Authorize/SET-AUTH-DATA'
 export const SET_IS_AUTH = 'sn-typescript/Authorize/SET-IS-AUTH'
 export const SET_AVATAR = 'sn-typescript/Authorize/SET-AVATAR'
+export const SET_CAPTCHA = 'sn-typescript/Authorize/SET-CAPTCHA'
 
 const initialState: AuthStateType = {
     data: {
@@ -16,13 +17,15 @@ const initialState: AuthStateType = {
         login: null
     },
     isAuth: false,
-    ownAvatar: null,
+    captchaUrl: '',
+    ownAvatar: null
 }
 
 const authReducer = (state: StateType = initialState, action: AuthActionsType): StateType => {
     switch (action.type) {
         case SET_AUTH_DATA:
         case SET_IS_AUTH:
+        case SET_CAPTCHA:
             return {...state, ...action.payload}
         case SET_AVATAR:
             if (state.data.id === action.payload.userId) {
@@ -30,7 +33,6 @@ const authReducer = (state: StateType = initialState, action: AuthActionsType): 
             } else {
                 return state
             }
-
         default:
             return state
     }
@@ -45,7 +47,8 @@ export const authActions = {
     setAvatar: (avatar: string | null, userId: number | null) => ({
         type: SET_AVATAR,
         payload: {avatar, userId}
-    } as const)
+    } as const),
+    setCaptchaUrl: (captchaUrl: string) => ({type: SET_CAPTCHA, payload: {captchaUrl}} as const)
 }
 
 // thunks:
@@ -59,25 +62,28 @@ export const getAuthData = (): AppThunk => async (dispatch) => {
         } else {
             dispatch(appActions.setAppError(response.data.messages))
         }
-    }
-    catch (e) {
+    } catch (e) {
         if (axios.isAxiosError(e) && e.response) {
             dispatch(appActions.setAppError(e.response.data.message))
         }
-    }
-    finally {
+    } finally {
         dispatch(appActions.setInitialize(false))
     }
 }
 
 export const login = (payload: LoginPayloadType): AppThunk => async (dispatch) => {
     dispatch(appActions.setIsLoading(true))
+    dispatch(authActions.setCaptchaUrl(''))
     try {
         const response = await authAPI.login(payload)
+        const errorArr: string[] = response.data.messages
         if (response.data.resultCode === 0) {
             dispatch(getAuthData())
         } else if (response.data.messages.length) {
-            const errorArr: string[] = response.data.messages
+            if (response.data.resultCode === 10) {
+                dispatch(appActions.setAppError(errorArr))
+                dispatch(getCaptchaUrl())
+            }
             dispatch(appActions.setAppError(errorArr))
             dispatch(appActions.setIsLoading(false))
         }
@@ -105,6 +111,18 @@ export const loginOut = (): AppThunk => async (dispatch) => {
     }
 }
 
+export const getCaptchaUrl = (): AppThunk => async (dispatch) => {
+    dispatch(appActions.setIsLoading(true))
+    try {
+        const response = await securityAPI.getCaptchaUrl()
+        dispatch(authActions.setCaptchaUrl(response.data.url))
+    } catch (e) {
+        handleServerNetworkError(dispatch, e as Error)
+    } finally {
+        dispatch(appActions.setIsLoading(false))
+    }
+}
+
 // types:
 export type AuthDataType = {
     id: number | null
@@ -116,13 +134,14 @@ export type AuthStateType = {
     data: AuthDataType
     isAuth: boolean
     ownAvatar: string | null
+    captchaUrl: string
 }
 
 export type LoginPayloadType = {
     email: string
     password: string
     rememberMe: boolean
-    captcha: boolean
+    captcha: string
 }
 type StateType = typeof initialState
 export type AuthActionsType = InferActionTypes<typeof authActions>
