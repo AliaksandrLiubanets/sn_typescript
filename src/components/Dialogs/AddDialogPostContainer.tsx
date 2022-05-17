@@ -16,16 +16,19 @@ function AddDialogContainer(props: PropsType) {
                           setCurrentValue={props.setCurrentValue}
                           textareaCurrentValue={props.textareaCurrentValue}
                           name={props.name}
+                          ava={props.ava}
     />
 }
 
 type MapStatePropsType = {
     textareaCurrentValue: string
+    ava: string | null
 }
 
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
-        textareaCurrentValue: state.dialogsPage.textareaCurrentValue
+        textareaCurrentValue: state.dialogsPage.textareaCurrentValue,
+        ava: state.profilePage.profile && state.profilePage.profile.photos.small
     }
 }
 

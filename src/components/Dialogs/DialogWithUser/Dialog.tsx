@@ -10,13 +10,16 @@ import {DialogsPageMessagesType, MessageType} from '../../Redux/dialogs-reducer'
 function Dialog(props: MapStatePropsType) {
 
     const {name} = useParams<string>()
+    console.log('dialog', props.messages, name)
+    const avaNameMessage = name && props.messages[name.toLowerCase()].map((m: MessageType) => <Message key={m.id}
+                                                                                                       message={m.message}
+                                                                                                       name={m.name}
+                                                                                                       ava={m.ava}/>)
 
-    const avaNameMessage = name && props.messages[name.toLowerCase()].map((m: MessageType) => <Message key={m.id} message={m.message} name={m.name} ava={m.ava}/>)
-
-    return  <div className={s.ava_message}>
-                <div>{avaNameMessage}</div>
-                <AddDialogPostContainer name={name || ''}/>
-            </div>
+    return <div className={s.ava_message}>
+        <div>{avaNameMessage}</div>
+        <AddDialogPostContainer name={name || ''}/>
+    </div>
 }
 
 

@@ -1,5 +1,5 @@
 import {v1} from 'uuid'
-import ava_me from '../../assets/ava_100px/ava_me.jpg'
+import ava_me from '../../assets/empty_avatar.jpg'
 import ava_dimych from '../../assets/ava_100px/ava_dimych.jpg'
 import ava_andrew from '../../assets/ava_100px/ava_andrew.jpg'
 import ava_lenin from '../../assets/ava_100px/ava_lenin.png'
@@ -7,10 +7,12 @@ import ava_pushkin from '../../assets/ava_100px/ava_pushkin.jpg'
 import ava_dragunsky from '../../assets/ava_100px/ava_dragunsky.jpg'
 import ava_ostrovsky from '../../assets/ava_100px/ava_ostrovskiy.jpg'
 import {InferActionTypes} from './redux-store'
+import {profileActions, UPDATE_PHOTO} from './profile-reducer'
 
 const ADD_POST_DIALOG = 'sn-typescript/DialogsPage/ADD-POST-DIALOG'
 const DELETE_POST_DIALOG = 'sn-typescript/DialogsPage/DELETE-POST-DIALOG'
 const ADD_CURRENT_VALUE_DIALOG = 'sn-typescript/DialogsPage/ADD-CURRENT-VALUE-DIALOG'
+const SET_OWNER_AVATAR = 'sn-typescript/DialogsPage/SET-OWNER-AVATAR'
 
 
 const initialState: DialogsPageType = {
@@ -57,6 +59,7 @@ const initialState: DialogsPageType = {
     ]
 }
 
+
 export const dialogsReducer = (state = initialState, action: DialogsActionsType): DialogsPageType => {
     switch (action.type) {
         case ADD_POST_DIALOG:
@@ -83,6 +86,17 @@ export const dialogsReducer = (state = initialState, action: DialogsActionsType)
                 messages: {...state.messages,
                     [action.name.toLowerCase()]: state.messages[action.name.toLowerCase()].filter(mes => mes.id !== action.postId) }
             }
+        case UPDATE_PHOTO:
+            Object.values(state.messages).forEach(userMessages => {
+                userMessages.forEach(message => {
+                    if(message.name === 'Me') message.ava = action.photo.small
+                })
+            })
+            const stateCopy = {...state, messages: {...state.messages}}
+                Object.keys(state.messages).forEach(key => {
+                    stateCopy.messages[key] = [...state.messages[key]]
+                })
+            return stateCopy
         default:
             return state
     }
@@ -91,15 +105,17 @@ export const dialogsReducer = (state = initialState, action: DialogsActionsType)
 export default dialogsReducer
 
 // actions:
-
 export const dialogsActions = {
     addPostDialog: (name: string): AddPostDialogActionType => ({type: ADD_POST_DIALOG, name}),
     deletePostDialog: (name: string, postId: string): DeletePostDialogActionType => ({type: DELETE_POST_DIALOG, name, postId}),
     addCurrentValueDialog: (text: string): AddCurrentValueDialogActionType => ({type: ADD_CURRENT_VALUE_DIALOG, newText: text}),
-
 }
 
 // types:
+export type setOwnerAvatarActionType = {
+    type: typeof SET_OWNER_AVATAR
+    ava: string
+}
 export type AddPostDialogActionType = {
     type: typeof ADD_POST_DIALOG
     name: string
@@ -132,4 +148,4 @@ export type DialogsPageType = {
     messages: DialogsPageMessagesType
     dialogs: Array<DialogType>
 }
-export type DialogsActionsType = InferActionTypes<typeof dialogsActions>
+export type DialogsActionsType = InferActionTypes<typeof dialogsActions | Pick<typeof profileActions, 'updateProfilePhoto'>>
