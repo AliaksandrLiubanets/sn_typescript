@@ -57,7 +57,8 @@ beforeEach(() => {
             {id: v1(), name: 'Pushkin', ava: ava_pushkin},
             {id: v1(), name: 'Dragunsky', ava: ava_dragunsky},
             {id: v1(), name: 'Ostrovskiy', ava: ava_ostrovsky}
-        ]
+        ],
+        ownAvatar: null
     }
 })
 
@@ -82,14 +83,4 @@ test('Add current value in Dialogs', () => {
     expect(result.textareaCurrentValue).toBe("Yo")
 })
 
-test('Delete Dialog post', () => {
-
-    const action = dialogsActions.deletePostDialog(dimychDialogName, postId_2)
-    const result = dialogsReducer(state, action)
-
-    const user = {id: postId_1, message: 'Hello!', name: 'Dimych', ava: ava_dimych}
-
-    expect(result.messages[dimychDialogName.toLowerCase()].find(message => message.id === postId_1)).toEqual(user)
-    expect(result.messages[dimychDialogName.toLowerCase()].find(message => message.id === postId_2)).toBeUndefined()
-})
 

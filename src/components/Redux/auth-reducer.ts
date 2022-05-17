@@ -94,7 +94,6 @@ export const login = (payload: LoginPayloadType): AppThunk => async (dispatch) =
     }
 }
 
-
 export const loginOut = (): AppThunk => async (dispatch) => {
     dispatch(appActions.setIsLoading(true))
     try {

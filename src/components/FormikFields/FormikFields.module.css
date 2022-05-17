@@ -1,15 +1,11 @@
-.login_page {
-}
 
 .login_page button {
     margin-top: 15px;
 }
 
 .login_form {
-    border-radius: 5px;
-    box-shadow: 0 0 5px #cacece;
-    width: 300px;
-    padding: 10px;
+    width: 280px;
+    padding: 20px;
 }
 
 .input_block {

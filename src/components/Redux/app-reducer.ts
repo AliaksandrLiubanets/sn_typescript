@@ -3,6 +3,7 @@ import {profileAPI} from '../../api/api'
 import {profileActions} from './profile-reducer'
 import {handleServerNetworkError} from '../../utils/handleError'
 import {authActions} from './auth-reducer'
+import {setDialogsAvatar} from './dialogs-reducer'
 
 export const SET_IS_INITIALIZE = 'sn-typescript/Authorize/SET-IS-INITIALIZE'
 export const SET_IS_LOADING = 'sn-typescript/Authorize/SET-IS-LOADING'
@@ -45,6 +46,7 @@ export const initializeApp = (userId: number): AppThunk => (dispatch) => {
             dispatch(profileActions.setUserProfile(result[0].data))
             dispatch(profileActions.setStatusProfile(result[1].data))
             dispatch(authActions.setAvatar(result[0].data.photos.small, userId))
+            dispatch(setDialogsAvatar())
         })
         .catch(e => {
             handleServerNetworkError(dispatch, e)

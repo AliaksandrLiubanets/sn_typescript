@@ -27,7 +27,7 @@ export const LoginFormik = () => {
                     dispatch(login(values))
                 }}
             >
-                <Form className={p.page_block}>
+                <Form className={`${p.page_block} ${s.login_form}`}>
                     <h4>LOGIN</h4>
                     <TextInput
                         labelName={'Email'}

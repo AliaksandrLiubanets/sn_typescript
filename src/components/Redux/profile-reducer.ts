@@ -4,6 +4,7 @@ import {AppThunk, InferActionTypes} from './redux-store'
 import {appActions} from './app-reducer'
 import {handleServerNetworkError} from '../../utils/handleError'
 import {authActions} from './auth-reducer'
+import {setDialogsAvatar} from './dialogs-reducer'
 
 export const ADD_POST = 'sn-typescript/ProfilePage/ADD-POST'
 export const DELETE_POST = 'sn-typescript/ProfilePage/DELETE-POST'
@@ -124,6 +125,7 @@ export const uploadPhoto = (photo: File): AppThunk => async (dispatch, getState)
         if (response.data.resultCode === 0) {
             dispatch(profileActions.updateProfilePhoto(response.data.data.photos))
             dispatch(authActions.setAvatar(response.data.data.photos.small, userId))
+            dispatch(setDialogsAvatar())
         } else {
             dispatch(appActions.setAppError(response.data.messages))
         }
