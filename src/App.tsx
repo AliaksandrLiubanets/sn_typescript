@@ -17,6 +17,7 @@ import {RootStateType} from './components/Redux/redux-store'
 import {getAuthData} from './components/Redux/auth-reducer'
 import {Spinner} from './components/common/Spinner/Spinner'
 import {ErrorWarn} from './components/Error/ErrorWarn'
+import {Page404} from './components/Page404/Page404'
 
 type AppPropsType = {
     isInitializing: boolean
@@ -40,6 +41,7 @@ class App extends React.Component<AppPropsType> {
                         this.props.isInitializing
                             ? <Spinner/>
                             : <Routes>
+                                <Route path="/" element={<ProfileContainer/>}/>
                                 <Route path="/profile" element={<ProfileContainer/>}/>
                                 <Route path="/dialogs" element={<Dialogs/>}>
                                     <Route path="/dialogs/:name"
@@ -51,6 +53,7 @@ class App extends React.Component<AppPropsType> {
                                 <Route path="/users" element={<Users/>}/>
                                 <Route path="/settings" element={<Settings/>}/>
                                 <Route path="/login" element={<LoginContainer/>}/>
+                                <Route path="*" element={<Page404/>}/>
                             </Routes>
                     }
                 </div>
