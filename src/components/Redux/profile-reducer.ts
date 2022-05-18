@@ -107,8 +107,10 @@ export const setStatus = (status: string): AppThunk => async (dispatch) => {
     dispatch(appActions.setIsLoading(true))
     try {
         const response = await profileAPI.setStatus(status)
-        if (response.data.fieldsErrors.length === 0) {
+        if (response.data.resultCode === 0) {
             dispatch(profileActions.setStatusProfile(status))
+        } else {
+            dispatch(appActions.setAppError(response.data.messages))
         }
     } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
