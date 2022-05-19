@@ -74,9 +74,13 @@ export const getUsers = (currentPage: number,
     try {
         const response = await usersAPI.getUsers(currentPage, pageSize, searchingName, friend as boolean)
         if(response.data.items.length === 0) {
-            alert('no such users')
+            alert('No such users. Change search params')
+            const response = await usersAPI.getUsers(currentPage=1, pageSize=5, searchingName='', friend=false)
+            dispatch(usersActions.setUsers(response.data.items, response.data.totalCount))
+        } else {
+            dispatch(usersActions.setUsers(response.data.items, response.data.totalCount))
         }
-        dispatch(usersActions.setUsers(response.data.items, response.data.totalCount))
+
     } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
     } finally {
