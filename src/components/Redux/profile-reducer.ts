@@ -100,7 +100,6 @@ export const getStatus = (userId: number): AppThunk => async (dispatch) => {
     } finally {
         dispatch(appActions.setIsLoading(false))
     }
-
 }
 
 export const setStatus = (status: string): AppThunk => async (dispatch) => {

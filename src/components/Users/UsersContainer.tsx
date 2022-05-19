@@ -17,6 +17,7 @@ import {
 } from '../../selectors/users-selectors'
 import {Paginator} from '../common/Paginator/Paginator'
 import p from '../Profile/Profile.module.css'
+import {SearchUser} from './SearchUser/SearchUser'
 
 
 type PropsType = MapStatePropsType & MapDispatchPropsType
@@ -47,6 +48,9 @@ class Users extends Component<PropsType> {
                            page={this.props.currentPage}
                            pageSize={this.props.pageSize}
                 />
+            <div className={s.user_search}>
+                <SearchUser />
+            </div>
             <div className={s.users__content}>
                 {users}
             </div>

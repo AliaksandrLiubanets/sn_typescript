@@ -1,0 +1,14 @@
+.checkboxContainer {
+    display: flex;
+    align-items: center;
+    margin: 0 10px 0 0;
+}
+
+.checkbox {
+    width: 20px;
+}
+
+.spanClassName {
+    display: block;
+    margin-bottom: 5px;
+}
