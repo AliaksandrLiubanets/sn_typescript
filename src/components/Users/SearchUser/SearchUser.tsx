@@ -15,11 +15,9 @@ export const SearchUser = () => {
     const currentPage = useSelector<RootStateType, number>(state => state.usersPage.currentPage)
     const pageSize = useSelector<RootStateType, number>(state => state.usersPage.pageSize)
 
-
     const dispatch = useDispatch()
 
     const search = () => {
-        // console.log(currentPage, pageSize, name, checked)
         dispatch(getUsers(currentPage, pageSize, name, checked))
     }
 
