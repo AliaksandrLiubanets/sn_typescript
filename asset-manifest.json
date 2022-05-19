@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/sn_typescript/static/css/main.eb2078c2.css",
-    "main.js": "/sn_typescript/static/js/main.b08b9181.js",
+    "main.css": "/sn_typescript/static/css/main.55ab9748.css",
+    "main.js": "/sn_typescript/static/js/main.d5a76631.js",
     "static/media/ava_olga.jpg": "/sn_typescript/static/media/ava_olga.18ae0ecd92e180a9d3d0.jpg",
     "static/media/ava_lenin.png": "/sn_typescript/static/media/ava_lenin.4adaa40e86ea9adfbc04.png",
     "static/media/Bars-1s-200px.gif": "/sn_typescript/static/media/Bars-1s-200px.4b9a68359a39e493c416.gif",
@@ -13,11 +13,11 @@
     "static/media/ava_ostrovskiy.jpg": "/sn_typescript/static/media/ava_ostrovskiy.6a4d68d30158dd58a528.jpg",
     "static/media/like.png": "/sn_typescript/static/media/like.a6670bd994ff1b33f5d5.png",
     "index.html": "/sn_typescript/index.html",
-    "main.eb2078c2.css.map": "/sn_typescript/static/css/main.eb2078c2.css.map",
-    "main.b08b9181.js.map": "/sn_typescript/static/js/main.b08b9181.js.map"
+    "main.55ab9748.css.map": "/sn_typescript/static/css/main.55ab9748.css.map",
+    "main.d5a76631.js.map": "/sn_typescript/static/js/main.d5a76631.js.map"
   },
   "entrypoints": [
-    "static/css/main.eb2078c2.css",
-    "static/js/main.b08b9181.js"
+    "static/css/main.55ab9748.css",
+    "static/js/main.d5a76631.js"
   ]
 }
