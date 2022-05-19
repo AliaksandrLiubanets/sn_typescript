@@ -26,10 +26,10 @@ const initialState: UsersStateType = {
 export const usersReducer = (state: StateType = initialState, action: UsersAT): StateType => {
     switch (action.type) {
         case FOLLOW_USER:
-        return updateUserInStateArray(state, action, 'followed', true)
+            return updateUserInStateArray(state, action, 'followed', true)
 
         case UNFOLLOW_USER:
-            return updateUserInStateArray(state, action, 'followed', false )
+            return updateUserInStateArray(state, action, 'followed', false)
 
         case SET_USERS:
             return {
@@ -62,20 +62,24 @@ export const usersActions = {
     setCurrentPage: (currentPage: number) => ({type: SET_CURRENT_PAGE, payload: {currentPage}} as const),
     toggleIsFetching: (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, payload: {isFetching}} as const),
     setFollowingInProgress: (isFetching: boolean, userId: number) =>
-        ({ type: FOLLOWING_IN_PROGRESS, isFetching, userId } as const)
+        ({type: FOLLOWING_IN_PROGRESS, isFetching, userId} as const)
 }
 
 // thunks:
-export const getUsers = (currentPage: number, pageSize: number): AppThunk => async (dispatch) => {
+export const getUsers = (currentPage: number,
+                         pageSize: number,
+                         searchingName?: string,
+                         friend?: boolean): AppThunk => async (dispatch) => {
     dispatch(appActions.setIsLoading(true))
     try {
-        const response = await usersAPI.getUsers(currentPage, pageSize)
+        const response = await usersAPI.getUsers(currentPage, pageSize, searchingName, friend as boolean)
+        if(response.data.items.length === 0) {
+            alert('no such users')
+        }
         dispatch(usersActions.setUsers(response.data.items, response.data.totalCount))
-    }
-    catch (e) {
+    } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
-    }
-    finally {
+    } finally {
         dispatch(appActions.setIsLoading(false))
     }
 }
@@ -86,11 +90,9 @@ export const setCurrentPage = (currentPage: number): AppThunk => async (dispatch
         const pageSize = getState().usersPage.pageSize
         dispatch(usersActions.setCurrentPage(currentPage))
         await dispatch(getUsers(currentPage, pageSize))
-    }
-    catch (e) {
+    } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
-    }
-    finally {
+    } finally {
         dispatch(appActions.setIsLoading(false))
     }
 }
@@ -100,11 +102,9 @@ export const unfollow = (userId: number): AppThunk => async (dispatch) => {
     try {
         const apiMethod = usersAPI.unfollowUser.bind(usersAPI)
         await followUnfollowFlow(userId, dispatch, apiMethod, usersActions.unfollow)
-    }
-    catch (e) {
+    } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
-    }
-    finally {
+    } finally {
         dispatch(appActions.setIsLoading(false))
     }
 }
@@ -114,17 +114,15 @@ export const follow = (userId: number): AppThunk => async (dispatch) => {
     try {
         const apiMethod = usersAPI.followUser.bind(usersAPI)
         await followUnfollowFlow(userId, dispatch, apiMethod, usersActions.follow)
-    }
-    catch (e) {
+    } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
-    }
-    finally {
+    } finally {
         dispatch(appActions.setIsLoading(false))
     }
 }
 
 //function for follow, unfollow thunks:
-const followUnfollowFlow = async (userId: number, dispatch: Dispatch, apiMethod: (userId: number) => Promise<AxiosResponse<ResponseFollowUnfollowUser>>, actionCreator: (userId: number) => UsersAT )  => {
+const followUnfollowFlow = async (userId: number, dispatch: Dispatch, apiMethod: (userId: number) => Promise<AxiosResponse<ResponseFollowUnfollowUser>>, actionCreator: (userId: number) => UsersAT) => {
     dispatch(usersActions.setFollowingInProgress(true, userId))
     const response = await apiMethod(userId)
     if (response.data.resultCode === 0) {
