@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
-import {follow, getUsers, setCurrentPage, unfollow, UserType} from '../Redux/users-reducer'
+import {follow, getUsers, SearchType, setCurrentPage, unfollow, UserType} from '../Redux/users-reducer'
 import User from './User'
 import s from './Users.module.css'
 import React, {Component, ComponentType} from 'react'
@@ -13,7 +13,7 @@ import {
     getTotalCountSelector,
     getUsersSelector,
     isAuthSelector,
-    isFetchingSelector
+    isFetchingSelector, searchParams
 } from '../../selectors/users-selectors'
 import {Paginator} from '../common/Paginator/Paginator'
 import p from '../Profile/Profile.module.css'
@@ -49,7 +49,7 @@ class Users extends Component<PropsType> {
                            pageSize={this.props.pageSize}
                 />
             <div className={s.user_search}>
-                <SearchUser />
+                <SearchUser searchParams={this.props.searchParams}/>
             </div>
             <div className={s.users__content}>
                 {users}
@@ -66,6 +66,7 @@ type MapStatePropsType = {
     isFetching: boolean
     followingInProgress: Array<number>
     isAuth: boolean
+    searchParams: SearchType
 }
 
 type MapDispatchPropsType = {
@@ -84,6 +85,7 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
         isFetching: isFetchingSelector(state),
         followingInProgress: followingInProgressSelector(state),
         isAuth: isAuthSelector(state),
+        searchParams: searchParams(state),
     }
 }
 

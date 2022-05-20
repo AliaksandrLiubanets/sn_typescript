@@ -1,16 +1,18 @@
 import {InputField} from '../../common/InputField/InputField'
 import {Button} from '../../common/Button/Button'
-import {Checkbox} from '../../common/Checkbox/Checkbox'
 import s from './SearchUser.module.css'
-import {useState} from 'react'
+import {FC, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getUsers} from '../../Redux/users-reducer'
+import {getUsers, SearchType} from '../../Redux/users-reducer'
 import {RootStateType} from '../../Redux/redux-store'
 
-export const SearchUser = () => {
+type PropsType = {
+    searchParams: SearchType
+}
 
-    const [checked, setChecked] = useState<boolean>(false)
-    const [name, setName] = useState<string>('')
+export const SearchUser: FC<PropsType> = ({searchParams}) => {
+    const [checked, setChecked] = useState<boolean | null>(searchParams.friend)
+    const [name, setName] = useState<string>(searchParams.term)
 
     const currentPage = useSelector<RootStateType, number>(state => state.usersPage.currentPage)
     const pageSize = useSelector<RootStateType, number>(state => state.usersPage.pageSize)
@@ -23,7 +25,7 @@ export const SearchUser = () => {
 
     return <div className={s.search_block}>
         <InputField placeholder={'search user by name'} onChangeText={setName}/>
-        <Checkbox children={'only subscribed'} onChangeChecked={setChecked}/>
+        {/*<Checkbox children={'only subscribed'} onChangeChecked={setChecked}/>*/}
         <Button label={'Search'} onClickHandler={search}/>
     </div>
 }

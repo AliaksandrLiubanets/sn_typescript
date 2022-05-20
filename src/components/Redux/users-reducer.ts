@@ -6,12 +6,14 @@ import {AxiosResponse} from 'axios'
 import {appActions} from './app-reducer'
 import {handleServerNetworkError} from '../../utils/handleError'
 
-const FOLLOW_USER = 'FOLLOW-USER'
-const UNFOLLOW_USER = 'UNFOLLOW-USER'
-const SET_USERS = 'SET-USERS'
-const SET_CURRENT_PAGE = 'SET-CURRENT-PAGE'
-const TOGGLE_IS_FETCHING = 'TOGGLE-IS-FETCHING'
-const FOLLOWING_IN_PROGRESS = 'FOLLOWING-IN-PROGRESS'
+const FOLLOW_USER = 'sn-typescript/UsersPage/FOLLOW_USER'
+const UNFOLLOW_USER = 'sn-typescript/UsersPage/UNFOLLOW_USER'
+const SET_USERS = 'sn-typescript/UsersPage/SET_USERS'
+const SET_SEARCH_PARAMS = 'sn-typescript/UsersPage/SET_SEARCH_PARAMS'
+const SET_TOTAL_USERS_COUNT = 'sn-typescript/UsersPage/SET_TOTAL_USERS_COUNT'
+const SET_CURRENT_PAGE = 'sn-typescript/UsersPage/SET_CURRENT_PAGE'
+const TOGGLE_IS_FETCHING = 'sn-typescript/UsersPage/TOGGLE_IS_FETCHING'
+const FOLLOWING_IN_PROGRESS = 'sn-typescript/UsersPage/FOLLOWING_IN_PROGRESS'
 
 
 const initialState: UsersStateType = {
@@ -20,7 +22,12 @@ const initialState: UsersStateType = {
     pageSize: 5,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: []
+    followingInProgress: [],
+    searchParams: {
+        term: '',
+        friend: null
+    },
+
 }
 
 export const usersReducer = (state: StateType = initialState, action: UsersAT): StateType => {
@@ -32,15 +39,12 @@ export const usersReducer = (state: StateType = initialState, action: UsersAT): 
             return updateUserInStateArray(state, action, 'followed', false)
 
         case SET_USERS:
-            return {
-                ...state,
-                users: [...action.users],
-                totalCount: action.count
-            }
+            return {...state, users: [...action.users] }
+        case SET_TOTAL_USERS_COUNT:
         case SET_CURRENT_PAGE:
         case TOGGLE_IS_FETCHING:
+        case SET_SEARCH_PARAMS:
             return {...state, ...action.payload}
-
         case FOLLOWING_IN_PROGRESS:
             return {
                 ...state, followingInProgress: action.isFetching
@@ -58,7 +62,9 @@ export default usersReducer
 export const usersActions = {
     follow: (userId: number) => ({type: FOLLOW_USER, userId} as const),
     unfollow: (userId: number) => ({type: UNFOLLOW_USER, userId} as const),
-    setUsers: (users: Array<UserType>, count: number) => ({type: SET_USERS, users, count} as const),
+    setUsers: (users: Array<UserType>) => ({type: SET_USERS, users} as const),
+    setSearchParams: (searchParams: SearchType) => ({type: SET_SEARCH_PARAMS, payload: {searchParams}} as const),
+    setTotalUsersCount: (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, payload: {totalCount}} as const),
     setCurrentPage: (currentPage: number) => ({type: SET_CURRENT_PAGE, payload: {currentPage}} as const),
     toggleIsFetching: (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, payload: {isFetching}} as const),
     setFollowingInProgress: (isFetching: boolean, userId: number) =>
@@ -68,17 +74,19 @@ export const usersActions = {
 // thunks:
 export const getUsers = (currentPage: number,
                          pageSize: number,
-                         searchingName?: string,
-                         friend?: boolean): AppThunk => async (dispatch) => {
+                         searchingName: string,
+                         friend: boolean | null): AppThunk => async (dispatch) => {
     dispatch(appActions.setIsLoading(true))
     try {
-        const response = await usersAPI.getUsers(currentPage, pageSize, searchingName, friend as boolean)
+        const response = await usersAPI.getUsers(currentPage, pageSize, searchingName, friend)
         if(response.data.items.length === 0) {
-            alert('No such users. Change search params')
-            const response = await usersAPI.getUsers(currentPage=1, pageSize=5, searchingName='', friend=false)
-            dispatch(usersActions.setUsers(response.data.items, response.data.totalCount))
+            const response = await usersAPI.getUsers(currentPage, pageSize, '', null)
+            dispatch(usersActions.setUsers(response.data.items))
+            dispatch(usersActions.setTotalUsersCount(response.data.totalCount))
         } else {
-            dispatch(usersActions.setUsers(response.data.items, response.data.totalCount))
+            dispatch(usersActions.setUsers(response.data.items))
+            dispatch(usersActions.setTotalUsersCount(response.data.totalCount))
+            dispatch(usersActions.setSearchParams({term: searchingName, friend}))
         }
 
     } catch (e) {
@@ -90,10 +98,11 @@ export const getUsers = (currentPage: number,
 
 export const setCurrentPage = (currentPage: number): AppThunk => async (dispatch, getState) => {
     dispatch(appActions.setIsLoading(true))
+    const searchParams = getState().usersPage.searchParams
     try {
         const pageSize = getState().usersPage.pageSize
         dispatch(usersActions.setCurrentPage(currentPage))
-        await dispatch(getUsers(currentPage, pageSize))
+        await dispatch(getUsers(currentPage, pageSize, searchParams.term, searchParams.friend))
     } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
     } finally {
@@ -157,6 +166,11 @@ export type UserType = {
         country: string
     }
 }
+
+export type SearchType = {
+    term: string,
+    friend: null | boolean
+}
 export type UsersStateType = {
     users: Array<UserType>
     totalCount: number
@@ -164,6 +178,7 @@ export type UsersStateType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: number[]
+    searchParams: SearchType
 }
 export type FollowAT = {
     type: typeof FOLLOW_USER

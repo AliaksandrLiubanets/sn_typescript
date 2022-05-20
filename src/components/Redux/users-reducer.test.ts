@@ -42,7 +42,11 @@ beforeEach(() => {
         pageSize: 5,
         currentPage: 1,
         isFetching: false,
-        followingInProgress: []
+        followingInProgress: [],
+        searchParams: {
+            term: '',
+            friend: null
+        }
     }
 
 })
@@ -100,13 +104,21 @@ test('Set users to state', () => {
     const usersArray: Array<UserType> = [user_3, user_4]
 
 
-    const action = usersActions.setUsers(usersArray, 5)
+    const action = usersActions.setUsers(usersArray)
     const result = usersReducer(state, action)
     const notExisingUser = result.users.find(user => user.id === user_1.id)
 
     expect(result.users.length).toBe(2)
     expect(result.users[0].id).toBe(3)
     expect(notExisingUser).toBeUndefined()
+})
+
+test('Set total users count', () => {
+
+    const action = usersActions.setTotalUsersCount(1500)
+    const result = usersReducer(state, action)
+
+    expect(result.totalCount).toBe(1500)
 })
 
 test('Set current page', () => {
@@ -145,4 +157,3 @@ test('Set following in progress', () => {
     expect(result3.followingInProgress.includes(1)).toBe(true)
     expect(result3.followingInProgress.includes(2)).toBe(false)
 })
-
