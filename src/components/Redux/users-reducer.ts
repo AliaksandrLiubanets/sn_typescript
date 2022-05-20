@@ -75,14 +75,17 @@ export const usersActions = {
 export const getUsers = (currentPage: number,
                          pageSize: number,
                          searchingName: string,
-                         friend: boolean | null): AppThunk => async (dispatch) => {
+                         friend: boolean | null): AppThunk => async (dispatch, getState) => {
     dispatch(appActions.setIsLoading(true))
     try {
         const response = await usersAPI.getUsers(currentPage, pageSize, searchingName, friend)
         if(response.data.items.length === 0) {
+            alert('No users found. Change search params.')
+            const searchParams = getState().usersPage.searchParams
             const response = await usersAPI.getUsers(currentPage, pageSize, '', null)
             dispatch(usersActions.setUsers(response.data.items))
             dispatch(usersActions.setTotalUsersCount(response.data.totalCount))
+            dispatch(usersActions.setSearchParams(searchParams))
         } else {
             dispatch(usersActions.setUsers(response.data.items))
             dispatch(usersActions.setTotalUsersCount(response.data.totalCount))
