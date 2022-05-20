@@ -14,11 +14,12 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    font-family: "Times New Roman";
-    font-size: 14px;
-    font-weight: bold;
-    color: gray;
+    /*font-family: "Times New Roman";*/
+    font-size: 16px;
+    font-weight: 500;
+    color: #443d3d;
 }
+
 .select:after {
     content: "";
     display: block;
@@ -34,6 +35,7 @@
 }
 
 .option {
-    background: var(--content-bg-color);;
-    border-radius: 10px;
+    background: var(--content-bg-color);
+    border-radius: 5px;
+    color: #fc0332;
 }
