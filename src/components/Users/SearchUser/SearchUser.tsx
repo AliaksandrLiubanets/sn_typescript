@@ -16,6 +16,8 @@ const friendArray = ['all', 'subscribed', 'unsubscribed']
 export const SearchUser: FC<PropsType> = ({searchParams}) => {
 
     const reduxFriend = useSelector<RootStateType, boolean | null>(state => state.usersPage.searchParams.friend)
+    const pageSize = useSelector<RootStateType, number>(state => state.usersPage.pageSize)
+    const dispatch = useDispatch()
 
     let initialfriend: 'all' | 'subscribed' |'unsubscribed'
     if(reduxFriend === true) {
@@ -32,10 +34,6 @@ export const SearchUser: FC<PropsType> = ({searchParams}) => {
     useEffect(() => {
         setName(searchParams.term)
     }, [searchParams.term])
-
-    const pageSize = useSelector<RootStateType, number>(state => state.usersPage.pageSize)
-
-    const dispatch = useDispatch()
 
     let isFriend: boolean | null
     if(friend === 'subscribed') {

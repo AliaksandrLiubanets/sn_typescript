@@ -15,9 +15,10 @@
     -moz-appearance: none;
     appearance: none;
     /*font-family: "Times New Roman";*/
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 500;
     color: #443d3d;
+    outline: none;
 }
 
 .select:after {
