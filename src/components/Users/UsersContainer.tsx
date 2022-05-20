@@ -13,7 +13,9 @@ import {
     getTotalCountSelector,
     getUsersSelector,
     isAuthSelector,
-    isFetchingSelector, searchParams
+    isFetchingSelector,
+    isLoading,
+    searchParams
 } from '../../selectors/users-selectors'
 import {Paginator} from '../common/Paginator/Paginator'
 import p from '../Profile/Profile.module.css'
@@ -43,20 +45,25 @@ class Users extends Component<PropsType> {
                                                       followingInProgress={this.props.followingInProgress}
         />)
 
-        return <div className={p.page_block}>
+        return (
+            <div className={p.page_block}>
                 <Paginator setCurrentPage={this.props.setCurrentPage}
                            itemsTotalCount={this.props.totalCount}
                            page={this.props.currentPage}
                            pageSize={this.props.pageSize}
                 />
-            <div className={s.user_search}>
-                <SearchUser searchParams={this.props.searchParams}/>
+                <div className={s.user_search}>
+                    <SearchUser searchParams={this.props.searchParams}/>
+                </div>
+                {
+                    users.length === 0
+                        ? <NoUsersFound/>
+                        : <div className={s.users__content}>
+                            {users}
+                        </div>
+                }
             </div>
-            <NoUsersFound />
-            <div className={s.users__content}>
-                {users}
-            </div>
-        </div>
+        )
     }
 }
 
@@ -69,6 +76,7 @@ type MapStatePropsType = {
     followingInProgress: Array<number>
     isAuth: boolean
     searchParams: SearchType
+    isLoading: boolean
 }
 
 type MapDispatchPropsType = {
@@ -88,6 +96,7 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
         followingInProgress: followingInProgressSelector(state),
         isAuth: isAuthSelector(state),
         searchParams: searchParams(state),
+        isLoading: isLoading(state)
     }
 }
 
@@ -97,6 +106,6 @@ export default compose<ComponentType>(
         follow,
         unfollow,
         setCurrentPage,
-        getUsers,
-    }),
+        getUsers
+    })
 )(Users)

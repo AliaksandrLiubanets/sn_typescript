@@ -24,7 +24,8 @@ export const ProfileInfo = React.memo(({
                                        }: ProfileInfoProps) => {
 
     if (isLoading) {
-        return <Spinner/>
+      return <Spinner/>
+
     }
 
     return (

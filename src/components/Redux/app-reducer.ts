@@ -54,7 +54,6 @@ export const initializeApp = (userId: number): AppThunk => (dispatch) => {
         .finally(() => {
             dispatch(appActions.setIsLoading(false))
         })
-
 }
 
 export const cleanErrorMessages = (): AppThunk => (dispatch) => {

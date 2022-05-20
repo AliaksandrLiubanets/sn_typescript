@@ -15,3 +15,4 @@ export const isFetchingSelector = (state: RootStateType) => state.usersPage.isFe
 export const followingInProgressSelector = (state: RootStateType) => state.usersPage.followingInProgress
 export const isAuthSelector = (state: RootStateType) => state.auth.isAuth
 export const searchParams = (state: RootStateType) => state.usersPage.searchParams
+export const isLoading = (state: RootStateType) => state.app.isLoading

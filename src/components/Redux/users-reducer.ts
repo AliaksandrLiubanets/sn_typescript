@@ -26,7 +26,7 @@ const initialState: UsersStateType = {
     searchParams: {
         term: '',
         friend: null
-    },
+    }
 
 }
 
@@ -39,7 +39,7 @@ export const usersReducer = (state: StateType = initialState, action: UsersAT): 
             return updateUserInStateArray(state, action, 'followed', false)
 
         case SET_USERS:
-            return {...state, users: [...action.users] }
+            return {...state, users: [...action.users]}
         case SET_TOTAL_USERS_COUNT:
         case SET_CURRENT_PAGE:
         case TOGGLE_IS_FETCHING:
@@ -74,24 +74,14 @@ export const usersActions = {
 // thunks:
 export const getUsers = (currentPage: number,
                          pageSize: number,
-                         searchingName: string,
-                         friend: boolean | null): AppThunk => async (dispatch, getState) => {
+                         term: string,
+                         friend: boolean | null): AppThunk => async (dispatch) => {
     dispatch(appActions.setIsLoading(true))
     try {
-        const response = await usersAPI.getUsers(currentPage, pageSize, searchingName, friend)
-        if(response.data.items.length === 0) {
-            alert('No users found. Change search params.')
-            const searchParams = getState().usersPage.searchParams
-            const response = await usersAPI.getUsers(currentPage, pageSize, '', null)
-            dispatch(usersActions.setUsers(response.data.items))
-            dispatch(usersActions.setTotalUsersCount(response.data.totalCount))
-            dispatch(usersActions.setSearchParams(searchParams))
-        } else {
-            dispatch(usersActions.setUsers(response.data.items))
-            dispatch(usersActions.setTotalUsersCount(response.data.totalCount))
-            dispatch(usersActions.setSearchParams({term: searchingName, friend}))
-        }
-
+        const response = await usersAPI.getUsers(currentPage, pageSize, term, friend)
+        dispatch(usersActions.setUsers(response.data.items))
+        dispatch(usersActions.setTotalUsersCount(response.data.totalCount))
+        dispatch(usersActions.setSearchParams({term: term, friend}))
     } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
     } finally {
