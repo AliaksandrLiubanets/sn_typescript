@@ -18,6 +18,7 @@ import {
 import {Paginator} from '../common/Paginator/Paginator'
 import p from '../Profile/Profile.module.css'
 import {SearchUser} from './SearchUser/SearchUser'
+import {NoUsersFound} from './SearchUser/NoUsers/NoUsersFound'
 
 
 type PropsType = MapStatePropsType & MapDispatchPropsType
@@ -51,6 +52,7 @@ class Users extends Component<PropsType> {
             <div className={s.user_search}>
                 <SearchUser searchParams={this.props.searchParams}/>
             </div>
+            <NoUsersFound />
             <div className={s.users__content}>
                 {users}
             </div>
