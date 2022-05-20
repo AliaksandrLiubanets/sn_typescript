@@ -17,3 +17,11 @@ ReactDOM.render(
     </React.StrictMode>,
     document.getElementById('root')
 )
+// ReactDOM.render(
+//         <HashRouter>
+//             <Provider store={store}>
+//                 <App/>
+//             </Provider>
+//         </HashRouter>,
+//     document.getElementById('root')
+// )

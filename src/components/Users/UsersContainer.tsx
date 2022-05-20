@@ -21,6 +21,7 @@ import {Paginator} from '../common/Paginator/Paginator'
 import p from '../Profile/Profile.module.css'
 import {SearchUser} from './SearchUser/SearchUser'
 import {NoUsersFound} from './SearchUser/NoUsers/NoUsersFound'
+import {Spinner} from '../common/Spinner/Spinner'
 
 
 type PropsType = MapStatePropsType & MapDispatchPropsType
@@ -32,7 +33,6 @@ class Users extends Component<PropsType> {
     }
 
     render() {
-
         const users = this.props.users.map(u => <User key={u.id}
                                                       id={u.id}
                                                       name={u.name}
@@ -45,6 +45,10 @@ class Users extends Component<PropsType> {
                                                       followingInProgress={this.props.followingInProgress}
         />)
 
+        if(this.props.isLoading) {
+            return <Spinner />
+        }
+
         return (
             <div className={p.page_block}>
                 <Paginator setCurrentPage={this.props.setCurrentPage}
@@ -52,9 +56,7 @@ class Users extends Component<PropsType> {
                            page={this.props.currentPage}
                            pageSize={this.props.pageSize}
                 />
-                <div className={s.user_search}>
-                    <SearchUser searchParams={this.props.searchParams}/>
-                </div>
+                <SearchUser searchParams={this.props.searchParams}/>
                 {
                     users.length === 0
                         ? <NoUsersFound/>

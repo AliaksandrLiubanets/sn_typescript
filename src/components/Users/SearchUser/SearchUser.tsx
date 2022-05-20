@@ -1,7 +1,7 @@
 import {InputField} from '../../common/InputField/InputField'
 import {Button} from '../../common/Button/Button'
 import s from './SearchUser.module.css'
-import {FC, useState} from 'react'
+import {FC, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getUsers, SearchType} from '../../Redux/users-reducer'
 import {RootStateType} from '../../Redux/redux-store'
@@ -15,6 +15,11 @@ export const SearchUser: FC<PropsType> = ({searchParams}) => {
     const [checked, setChecked] = useState<boolean | null>(searchParams.friend)
     const [name, setName] = useState<string>(searchParams.term)
 
+    useEffect(() => {
+        setChecked(searchParams.friend)
+        setName(searchParams.term)
+    }, [searchParams.term, searchParams.friend])
+
     const pageSize = useSelector<RootStateType, number>(state => state.usersPage.pageSize)
 
     const dispatch = useDispatch()
@@ -24,8 +29,9 @@ export const SearchUser: FC<PropsType> = ({searchParams}) => {
     }
 
     return <div className={s.search_block}>
-        <InputField placeholder={'search user by name'} onChangeText={setName}/>
-        <Checkbox children={'only subscribed'} onChangeChecked={setChecked}/>
+        <InputField placeholder={'search user by name'} onChangeText={setName} value={name} onEnter={search}/>
+        <Checkbox children={'only subscribed'} onChangeChecked={setChecked}
+                  checked={checked ? checked : undefined}/>
         <Button label={'Search'} onClickHandler={search}/>
     </div>
 }
