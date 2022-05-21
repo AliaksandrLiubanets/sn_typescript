@@ -1,11 +1,11 @@
-import {InputField} from '../../common/InputField/InputField'
 import {Button} from '../../common/Button/Button'
 import s from './SearchUser.module.css'
-import {FC, useEffect, useState} from 'react'
+import React, {ChangeEvent, FC, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getUsers, SearchType} from '../../Redux/users-reducer'
 import {RootStateType} from '../../Redux/redux-store'
 import {Select} from '../../common/Select/Select'
+import {Textarea} from '../../common/Textarea/Textarea'
 
 type PropsType = {
     searchParams: SearchType
@@ -44,12 +44,12 @@ export const SearchUser: FC<PropsType> = ({searchParams}) => {
         isFriend = null
     }
 
-    const search = () => {
-        dispatch(getUsers(1, pageSize, name, isFriend))
-    }
+    const search = () => dispatch(getUsers(1, pageSize, name, isFriend))
+    const onChangeValue = (e: ChangeEvent<HTMLTextAreaElement>) => setName(e.currentTarget.value)
+    const onEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => e.key === 'Enter' && search()
 
     return <div className={s.search_block}>
-        <InputField placeholder={'search user by name'} onChangeText={setName} value={name} onEnter={search}/>
+        <Textarea placeholder={'search user by name'} onChangeValue={onChangeValue} value={name} onEnterPress={onEnter}/>
         <Select options={friendArray} onChangeOption={setFriend} value={friend}/>
         <Button label={'Search'} onClickHandler={search}/>
     </div>

@@ -23,13 +23,17 @@ function AddPost(props: AddPostPropsType) {
                                                                   likes={el.likes}
                                                                   avatar={props.avatar} />)
     const addPost = () => props.addPost()
+    const onEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => e.key === 'Enter' && props.addPost()
 
     return <div className={s.addPost}>
         <div className={s.myPosts}>
             My posts:
         </div>
         <div className={s.textarea}>
-            <Textarea setCurrentText={setCurrentTextToState} value={props.value} />
+            <Textarea onChangeValue={setCurrentTextToState}
+                      onEnterPress={onEnter}
+                      value={props.value}
+            />
             <Button label={'Add'} onClickHandler={addPost} />
         </div>
         {posts}
