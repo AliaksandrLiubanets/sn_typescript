@@ -3,7 +3,7 @@
     align-items: center;
     max-width: 390px;
     padding-left: 20px;
-    height: 40px;
+    height: 30px;
     column-gap: 13px;
 }
 
@@ -13,7 +13,8 @@
     background-color: rgba(255, 254, 254, 0.96);
     width: 240px;
     padding: 5px 10px;
-    height: 20px;
+    font-family: inherit;
+    font-size: 16px;
 }
 
 .textarea__ava img {
