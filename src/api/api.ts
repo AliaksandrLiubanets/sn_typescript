@@ -13,7 +13,7 @@ const instance = axios.create({
 
 export const usersAPI = {
     getUsers(currentPage = 1, pageSize = 10, term: string = '', friend: boolean | null = null) {
-        return instance.get<ResponseGetUsers>(`users?page=${currentPage}&count=${pageSize}&term=${term}&friend=${friend}`)
+        return instance.get<ResponseGetUsers>(`users?page=${currentPage}&count=${pageSize}&term=${term}&friend=${friend === null ? '' : friend}`)
     },
     followUser(userId: number) {
         return instance.post<ResponseType<{}>>(`follow/${userId}`, {})

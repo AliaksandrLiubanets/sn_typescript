@@ -16,21 +16,20 @@ const TOGGLE_IS_FETCHING = 'sn-typescript/UsersPage/TOGGLE_IS_FETCHING'
 const FOLLOWING_IN_PROGRESS = 'sn-typescript/UsersPage/FOLLOWING_IN_PROGRESS'
 
 
-const initialState: UsersStateType = {
-    users: [],
+const initialState = {
+    users: [] as UserType[],
     totalCount: 0,
     pageSize: 5,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: [],
+    followingInProgress: [] as number[],
     searchParams: {
         term: '',
-        friend: null
+        friend: null as null | boolean
     }
-
 }
 
-export const usersReducer = (state: StateType = initialState, action: UsersAT): StateType => {
+export const usersReducer = (state = initialState, action: UsersAT): UsersStateType => {
     switch (action.type) {
         case FOLLOW_USER:
             return updateUserInStateArray(state, action, 'followed', true)
@@ -74,14 +73,15 @@ export const usersActions = {
 // thunks:
 export const getUsers = (currentPage: number,
                          pageSize: number,
-                         term: string,
-                         friend: boolean | null): AppThunk => async (dispatch) => {
+                         filter: SearchType,
+): AppThunk => async (dispatch) => {
     dispatch(appActions.setIsLoading(true))
+    dispatch(usersActions.setSearchParams(filter))
     try {
-        const response = await usersAPI.getUsers(currentPage, pageSize, term, friend)
+        const response = await usersAPI.getUsers(currentPage, pageSize, filter.term, filter.friend)
         dispatch(usersActions.setUsers(response.data.items))
         dispatch(usersActions.setTotalUsersCount(response.data.totalCount))
-        dispatch(usersActions.setSearchParams({term: term, friend}))
+
     } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
     } finally {
@@ -91,11 +91,11 @@ export const getUsers = (currentPage: number,
 
 export const setCurrentPage = (currentPage: number): AppThunk => async (dispatch, getState) => {
     dispatch(appActions.setIsLoading(true))
-    const searchParams = getState().usersPage.searchParams
+    const filter = getState().usersPage.searchParams
     try {
         const pageSize = getState().usersPage.pageSize
         dispatch(usersActions.setCurrentPage(currentPage))
-        await dispatch(getUsers(currentPage, pageSize, searchParams.term, searchParams.friend))
+        await dispatch(getUsers(currentPage, pageSize, filter))
     } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
     } finally {
@@ -160,28 +160,6 @@ export type UserType = {
     }
 }
 
-export type SearchType = {
-    term: string,
-    friend: null | boolean
-}
-export type UsersStateType = {
-    users: Array<UserType>
-    totalCount: number
-    pageSize: number
-    currentPage: number
-    isFetching: boolean
-    followingInProgress: number[]
-    searchParams: SearchType
-}
-export type FollowAT = {
-    type: typeof FOLLOW_USER
-    userId: number
-}
-export type UnFollowAT = {
-    type: typeof UNFOLLOW_USER
-    userId: number
-}
-
-
-type StateType = typeof initialState
+export type UsersStateType = typeof initialState
+export type SearchType = typeof initialState.searchParams
 export type UsersAT = InferActionTypes<typeof usersActions>

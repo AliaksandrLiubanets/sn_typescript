@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, {FC, useEffect} from 'react'
 import {Form, Formik} from 'formik'
 import {useDispatch} from 'react-redux'
 import {ProfileType, updateProfile} from '../../../../Redux/profile-reducer'

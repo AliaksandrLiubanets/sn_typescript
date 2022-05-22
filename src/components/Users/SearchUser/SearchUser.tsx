@@ -28,29 +28,29 @@ export const SearchUser: FC<PropsType> = ({searchParams}) => {
         initialfriend = 'all'
     }
 
-    const [name, setName] = useState<string>(searchParams.term)
-    const [friend, setFriend] = useState<string>(initialfriend)
+    const [term, setTerm] = useState<string>(searchParams.term)
+    const [friendValue, setFriendValue] = useState<string>(initialfriend)
 
     useEffect(() => {
-        setName(searchParams.term)
+        setTerm(searchParams.term)
     }, [searchParams.term])
 
-    let isFriend: boolean | null
-    if(friend === 'subscribed') {
-        isFriend = true
-    } else if (friend === 'unsubscribed') {
-        isFriend = false
+    let friend: boolean | null
+    if(friendValue === 'subscribed') {
+        friend = true
+    } else if (friendValue === 'unsubscribed') {
+        friend = false
     } else {
-        isFriend = null
+        friend = null
     }
 
-    const search = () => dispatch(getUsers(1, pageSize, name, isFriend))
-    const onChangeValue = (e: ChangeEvent<HTMLTextAreaElement>) => setName(e.currentTarget.value)
+    const search = () => dispatch(getUsers(1, pageSize, {term, friend}))
+    const onChangeValue = (e: ChangeEvent<HTMLTextAreaElement>) => setTerm(e.currentTarget.value)
     const onEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => e.key === 'Enter' && search()
 
     return <div className={s.search_block}>
-        <Textarea placeholder={'search user by name'} onChangeValue={onChangeValue} value={name} onEnterPress={onEnter}/>
-        <Select options={friendArray} onChangeOption={setFriend} value={friend}/>
+        <Textarea placeholder={'search user by name'} onChangeValue={onChangeValue} value={term} onEnterPress={onEnter}/>
+        <Select options={friendArray} onChangeOption={setFriendValue} value={friendValue}/>
         <Button label={'Search'} onClickHandler={search}/>
     </div>
 }

@@ -19,9 +19,9 @@ import {
 } from '../../selectors/users-selectors'
 import {Paginator} from '../common/Paginator/Paginator'
 import p from '../Profile/Profile.module.css'
-import {SearchUser} from './SearchUser/SearchUser'
 import {NoUsersFound} from './SearchUser/NoUsers/NoUsersFound'
 import {Spinner} from '../common/Spinner/Spinner'
+import {SearchForm} from './SearchUser/SearchForm'
 
 
 type PropsType = MapStatePropsType & MapDispatchPropsType
@@ -29,7 +29,13 @@ type PropsType = MapStatePropsType & MapDispatchPropsType
 class Users extends Component<PropsType> {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize)
+        const {filter, currentPage, pageSize} = this.props
+        this.props.getUsers(currentPage, pageSize, filter)
+    }
+
+    onSearchChange(filter: SearchType) {
+        const {currentPage, pageSize} = this.props
+        this.props.getUsers(currentPage, pageSize, filter)
     }
 
     render() {
@@ -56,7 +62,8 @@ class Users extends Component<PropsType> {
                            page={this.props.currentPage}
                            pageSize={this.props.pageSize}
                 />
-                <SearchUser searchParams={this.props.searchParams}/>
+                {/*<SearchUser searchParams={this.props.searchParams}/>*/}
+                <SearchForm searchParams={this.props.filter} onSearchChange={this.onSearchChange}/>
                 {
                     users.length === 0
                         ? <NoUsersFound/>
@@ -77,7 +84,7 @@ type MapStatePropsType = {
     isFetching: boolean
     followingInProgress: Array<number>
     isAuth: boolean
-    searchParams: SearchType
+    filter: SearchType
     isLoading: boolean
 }
 
@@ -85,7 +92,7 @@ type MapDispatchPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setCurrentPage: (setCurrentPage: number) => void
-    getUsers: (currentPage: number, pageSize: number) => void
+    getUsers: (currentPage: number, pageSize: number, filter: SearchType) => void
 }
 
 const mapStateToProps = (state: RootStateType): MapStatePropsType => {
@@ -97,7 +104,7 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
         isFetching: isFetchingSelector(state),
         followingInProgress: followingInProgressSelector(state),
         isAuth: isAuthSelector(state),
-        searchParams: searchParams(state),
+        filter: searchParams(state),
         isLoading: isLoading(state)
     }
 }
