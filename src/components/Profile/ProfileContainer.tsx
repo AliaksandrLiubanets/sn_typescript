@@ -18,7 +18,6 @@ type PropsType = {
     params?:  Readonly<Params<string>>
     isAuth: boolean
     status: string | null
-    isInitializing: boolean
     id: number | null
     isLoading: boolean
 }
@@ -74,7 +73,6 @@ const mapStateToProps = (state: RootStateType): MapStateToPropsType  => {
         profile: state.profilePage.profile,
         isAuth: state.auth.isAuth,
         status: state.profilePage.status,
-        isInitializing: state.app.isInitializing,
         id: state.auth.data.id,
         isLoading: state.app.isLoading,
     }
@@ -84,7 +82,6 @@ type MapStateToPropsType = {
     profile: ProfileType | null
     isAuth: boolean
     status: string | null
-    isInitializing: boolean
     id: number | null
     isLoading: boolean
 }

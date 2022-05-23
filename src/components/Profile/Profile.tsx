@@ -18,7 +18,9 @@ export const Profile: FC<ProfileProps> = (props) => {
         <div className={s.page_block}>
             <Avatar ava={props.profile && props.profile.photos.small}
                     uploadPhoto={props.uploadPhoto}
-                    isOwner={props.isOwner}/>
+                    isOwner={props.isOwner}
+                    isLoading={props.isLoading}
+            />
         </div>
         <ProfileInfo {...props}/>
     </div>

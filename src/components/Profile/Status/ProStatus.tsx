@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import s from './Status.module.css'
 
 type StatusProps = {
-    status: string  | null
+    status: string | null
     setStatus: (status: string) => void
     isOwner: boolean
 }
@@ -16,7 +16,7 @@ const ProStatus = React.memo((props: StatusProps) => {
     }, [props.status])
 
     const onEditMode = () => {
-        if(props.isOwner) {
+        if (props.isOwner) {
             setEditMode(true)
         }
     }
@@ -28,21 +28,21 @@ const ProStatus = React.memo((props: StatusProps) => {
 
     const statusStyle = props.isOwner ? `${s.status_span}` : ''
 
-        return <div className={s.status}>
-            {!editMode
-                ? <div className={statusStyle}>
-                    <span onClick={onEditMode}>{status || 'status'}</span>
-                </div>
-                : <div className={s.status_input}>
-                    <input onBlur={offEditMode}
-                           onChange={(e)=> setStatus(e.currentTarget.value)}
-                           type="text"
-                           autoFocus={true}
-                           value={status || ""}
-                    />
-                </div>
-            }
-        </div>
+    return <div className={s.status}>
+        {!editMode
+            ? <div className={statusStyle}>
+                <span onClick={onEditMode}>{status || 'status'}</span>
+            </div>
+            : <div className={s.status_input}>
+                <input onBlur={offEditMode}
+                       onChange={(e) => setStatus(e.currentTarget.value)}
+                       type="text"
+                       autoFocus={true}
+                       value={status || ''}
+                />
+            </div>
+        }
+    </div>
 })
 
 export default ProStatus

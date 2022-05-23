@@ -20,12 +20,11 @@ export const ProfileInfo = React.memo(({
                                            status,
                                            setStatus,
                                            isLoading,
-                                           isOwner
+                                           isOwner,
                                        }: ProfileInfoProps) => {
 
     if (isLoading) {
       return <Spinner/>
-
     }
 
     return (

@@ -11,13 +11,15 @@ type HeaderProps = {
     avatar: string | null
     isAuth: boolean
     isInitializing: boolean
+    isLoading: boolean
 }
 
 export function Header({
                            login,
                            avatar,
                            isAuth,
-                           isInitializing
+                           isInitializing,
+                           isLoading
                        }: HeaderProps) {
     const HeaderBlock = () => {
         return <div className={s.header_block}>
@@ -42,6 +44,9 @@ export function Header({
                 </>
             }
         </div>
+    }
+    if (isLoading) {
+        return <Spinner/>
     }
 
     return <div className={`${p.page_block} ${s.header}`}>

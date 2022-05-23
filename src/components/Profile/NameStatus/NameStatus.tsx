@@ -15,7 +15,7 @@ export const NameStatus: FC<NameStatusPropsType> = ({name, status, setStatus, is
             <div className={s.profileInfo_name}>
                 <span>{name}</span>
             </div>
-            <ProStatus status={status} setStatus={setStatus} isOwner={isOwner}/>
+            <ProStatus status={status} setStatus={setStatus} isOwner={isOwner} />
         </div>
     )
 }

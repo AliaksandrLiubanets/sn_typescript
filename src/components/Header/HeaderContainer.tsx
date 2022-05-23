@@ -8,6 +8,7 @@ type PropsType = {
     avatar: string | null
     isAuth: boolean
     isInitializing: boolean
+    isLoading: boolean
 }
 
 class HeaderContainer extends React.Component<PropsType> {
@@ -18,6 +19,7 @@ class HeaderContainer extends React.Component<PropsType> {
             login={this.props.login}
             isInitializing={this.props.isInitializing}
             avatar={this.props.avatar}
+            isLoading={this.props.isLoading}
         />
     }
 }
@@ -27,6 +29,7 @@ type MapStateProps = {
     isAuth: boolean
     isInitializing: boolean
     avatar: string | null
+    isLoading:  boolean
 }
 
 const mapStateToProps = (state: RootStateType): MapStateProps => {
@@ -34,7 +37,8 @@ const mapStateToProps = (state: RootStateType): MapStateProps => {
         login: state.auth.data.login,
         isAuth: state.auth.isAuth,
         isInitializing: state.app.isInitializing,
-        avatar: state.auth.ownAvatar
+        avatar: state.auth.ownAvatar,
+        isLoading: state.app.isLoading,
     }
 }
 
