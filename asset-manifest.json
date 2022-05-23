@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/sn_typescript/static/css/main.9aa85d8b.css",
-    "main.js": "/sn_typescript/static/js/main.bdb8707c.js",
+    "main.css": "/sn_typescript/static/css/main.fa7ca593.css",
+    "main.js": "/sn_typescript/static/js/main.36dceafc.js",
     "static/media/ava_olga.jpg": "/sn_typescript/static/media/ava_olga.18ae0ecd92e180a9d3d0.jpg",
     "static/media/ava_lenin.png": "/sn_typescript/static/media/ava_lenin.4adaa40e86ea9adfbc04.png",
     "static/media/Bars-1s-200px.gif": "/sn_typescript/static/media/Bars-1s-200px.4b9a68359a39e493c416.gif",
@@ -13,11 +13,11 @@
     "static/media/ava_ostrovskiy.jpg": "/sn_typescript/static/media/ava_ostrovskiy.6a4d68d30158dd58a528.jpg",
     "static/media/like.png": "/sn_typescript/static/media/like.a6670bd994ff1b33f5d5.png",
     "index.html": "/sn_typescript/index.html",
-    "main.9aa85d8b.css.map": "/sn_typescript/static/css/main.9aa85d8b.css.map",
-    "main.bdb8707c.js.map": "/sn_typescript/static/js/main.bdb8707c.js.map"
+    "main.fa7ca593.css.map": "/sn_typescript/static/css/main.fa7ca593.css.map",
+    "main.36dceafc.js.map": "/sn_typescript/static/js/main.36dceafc.js.map"
   },
   "entrypoints": [
-    "static/css/main.9aa85d8b.css",
-    "static/js/main.bdb8707c.js"
+    "static/css/main.fa7ca593.css",
+    "static/js/main.36dceafc.js"
   ]
 }
