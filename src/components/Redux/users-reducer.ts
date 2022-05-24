@@ -73,7 +73,7 @@ export const usersActions = {
 // thunks:
 export const getUsers = (currentPage: number,
                          pageSize: number,
-                         filter: SearchType,
+                         filter: SearchType
 ): AppThunk => async (dispatch) => {
     dispatch(appActions.setIsLoading(true))
     dispatch(usersActions.setSearchParams(filter))

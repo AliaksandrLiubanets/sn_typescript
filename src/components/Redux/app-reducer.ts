@@ -15,7 +15,7 @@ const initialState = {
     isLoading: false
 }
 
-const appReducer = (state: StateType = initialState, action: AppActionsType): StateType => {
+const appReducer = (state: AppStateType = initialState, action: AppActionsType): AppStateType => {
     switch (action.type) {
         case SET_IS_INITIALIZE:
         case SET_IS_LOADING:
@@ -61,6 +61,6 @@ export const cleanErrorMessages = (): AppThunk => (dispatch) => {
 }
 
 // types:
-type StateType = typeof initialState
+export type AppStateType = typeof initialState
 export type AppActionsType = InferActionTypes<typeof appActions>
 

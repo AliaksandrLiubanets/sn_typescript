@@ -57,7 +57,7 @@ test('Follow user', () => {
     const result = usersReducer(state, action)
 
     expect(result.users.length).toBe(2)
-    expect(result.users[1].followed).toBe(true)
+    expect(result.users[1].followed).toBeTruthy()
 })
 
 test('UnFollow user', () => {
@@ -66,7 +66,7 @@ test('UnFollow user', () => {
     const result = usersReducer(state, action)
 
     expect(result.users.length).toBe(2)
-    expect(result.users[0].followed).toBe(false)
+    expect(result.users[0].followed).toBeFalsy()
 })
 
 test('Set users to state', () => {
