@@ -41,7 +41,6 @@ export const usersReducer = (state = initialState, action: UsersAT): UsersStateT
             return {...state, users: [...action.users]}
         case SET_TOTAL_USERS_COUNT:
         case SET_CURRENT_PAGE:
-        case TOGGLE_IS_FETCHING:
         case SET_SEARCH_PARAMS:
             return {...state, ...action.payload}
         case FOLLOWING_IN_PROGRESS:
@@ -65,7 +64,6 @@ export const usersActions = {
     setSearchParams: (searchParams: SearchType) => ({type: SET_SEARCH_PARAMS, payload: {searchParams}} as const),
     setTotalUsersCount: (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, payload: {totalCount}} as const),
     setCurrentPage: (currentPage: number) => ({type: SET_CURRENT_PAGE, payload: {currentPage}} as const),
-    toggleIsFetching: (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, payload: {isFetching}} as const),
     setFollowingInProgress: (isFetching: boolean, userId: number) =>
         ({type: FOLLOWING_IN_PROGRESS, isFetching, userId} as const)
 }
@@ -81,7 +79,6 @@ export const getUsers = (currentPage: number,
         const response = await usersAPI.getUsers(currentPage, pageSize, filter.term, filter.friend)
         dispatch(usersActions.setUsers(response.data.items))
         dispatch(usersActions.setTotalUsersCount(response.data.totalCount))
-
     } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
     } finally {

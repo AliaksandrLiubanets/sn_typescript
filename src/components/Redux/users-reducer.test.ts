@@ -129,14 +129,6 @@ test('Set current page', () => {
     expect(result.currentPage).toBe(10)
 })
 
-test('Set fetching toggle', () => {
-
-    const action = usersActions.toggleIsFetching(true)
-    const result = usersReducer(state, action)
-
-    expect(result.isFetching).toBe(true)
-})
-
 test('Set following in progress', () => {
 
     const action1 = usersActions.setFollowingInProgress(true, 1)

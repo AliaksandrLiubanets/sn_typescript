@@ -83,7 +83,7 @@ export type PhotosType = {
 type PhotosDataType = {
     photos: PhotosType
 }
-type ResponseType<T> = {
+export type ResponseType<T> = {
     data: T
     fieldsErrors: string[]
     resultCode: number
