@@ -8,10 +8,9 @@ import {getUsers, SearchType} from '../../Redux/users-reducer'
 
 type PropsType = {
     searchParams: SearchType
-    onSearchChange: (filter: SearchType) => void
 }
 
-export const SearchForm: FC<PropsType> = ({searchParams, onSearchChange}) => {
+export const SearchForm: FC<PropsType> = ({searchParams}) => {
 
     const dispatch = useDispatch()
     const pageSize = useSelector<RootStateType, number>(state => state.usersPage.pageSize)
@@ -21,12 +20,14 @@ export const SearchForm: FC<PropsType> = ({searchParams, onSearchChange}) => {
             <Formik
                 initialValues={{
                     term: searchParams.term,
-                    friend: 'null',
+                    //convert data from state - boolean | null to string:
+                    friend: searchParams.friend === true ? 'true' : (searchParams.friend === false ? 'false' : 'null'),
                 }}
                 onSubmit={(values) => {
                     let searchObj: SearchType
                     searchObj = {
                         term: values.term,
+                        //convert string to boolean | null as state type required:
                         friend: values.friend === 'true' ? true : (values.friend === 'false' ? false : null)
                     }
                     // onSearchChange(searchObj)

@@ -33,11 +33,6 @@ class Users extends Component<PropsType> {
         this.props.getUsers(currentPage, pageSize, filter)
     }
 
-    onSearchChange(filter: SearchType) {
-        const {currentPage, pageSize} = this.props
-        this.props.getUsers(currentPage, pageSize, filter)
-    }
-
     render() {
         const users = this.props.users.map(u => <User key={u.id}
                                                       id={u.id}
@@ -62,8 +57,7 @@ class Users extends Component<PropsType> {
                            page={this.props.currentPage}
                            pageSize={this.props.pageSize}
                 />
-                {/*<SearchUser searchParams={this.props.searchParams}/>*/}
-                <SearchForm searchParams={this.props.filter} onSearchChange={this.onSearchChange}/>
+                <SearchForm searchParams={this.props.filter}/>
                 {
                     users.length === 0
                         ? <NoUsersFound/>
