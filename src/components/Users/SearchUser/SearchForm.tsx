@@ -20,7 +20,7 @@ export const SearchForm: FC<PropsType> = ({searchParams}) => {
             <Formik
                 initialValues={{
                     term: searchParams.term,
-                    //convert data from state - boolean | null to string:
+                    //convert data (boolean | null) from state to string:
                     friend: searchParams.friend === true ? 'true' : (searchParams.friend === false ? 'false' : 'null'),
                 }}
                 onSubmit={(values) => {
@@ -30,7 +30,6 @@ export const SearchForm: FC<PropsType> = ({searchParams}) => {
                         //convert string to boolean | null as state type required:
                         friend: values.friend === 'true' ? true : (values.friend === 'false' ? false : null)
                     }
-                    // onSearchChange(searchObj)
                     dispatch(getUsers(1, pageSize, searchObj))
                 }}
             >

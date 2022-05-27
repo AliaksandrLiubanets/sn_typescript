@@ -27,8 +27,8 @@ export const Users = () => {
 
     const dispatch = useDispatch()
 
-    const onSetCurrentPage = () => {
-        dispatch(setCurrentPage(currentPage))
+    const onSetCurrentPage = (page: number) => {
+        dispatch(setCurrentPage(page))
     }
 
 
@@ -39,8 +39,6 @@ export const Users = () => {
                                                   followed={u.followed}
                                                   location={u.location ? u.location : undefined}
                                                   photos={u.photos}
-                                                  // follow={this.props.follow}
-                                                  // unfollow={this.props.unfollow}
                                                   followingInProgress={followingInProgress}
     />)
 

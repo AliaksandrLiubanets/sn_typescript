@@ -1,110 +1,41 @@
-import {connect} from 'react-redux'
-import {RootStateType} from '../Redux/redux-store'
-import {getUsers, SearchType, UserType} from '../Redux/users-reducer'
-import React, {Component, ComponentType} from 'react'
-import {withAuthNavigate} from '../HOC/withAuthNavigate'
-import {compose} from 'redux'
+import {useDispatch, useSelector} from 'react-redux'
+import {getUsers} from '../Redux/users-reducer'
+import React, {useEffect} from 'react'
 import {
-    followingInProgressSelector,
     getCurrentPageSelector,
     getPageSizeSelector,
     getSearchParams,
-    getTotalCountSelector,
-    getUsersSelector,
-    isAuthSelector,
-    isFetchingSelector,
-    isLoading
+    isLoadingSelector
 } from '../../selectors/users-selectors'
 import {Spinner} from '../common/Spinner/Spinner'
 import {Users} from './Users'
 
+export const UsersPage = () => {
 
-type PropsType = MapStatePropsType & MapDispatchPropsType
+    const currentPage = useSelector(getCurrentPageSelector)
+    const pageSize = useSelector(getPageSizeSelector)
+    const filter = useSelector(getSearchParams)
+    const isLoading = useSelector(isLoadingSelector)
 
-class UsersPage extends Component<PropsType> {
+    const dispatch = useDispatch()
 
-    componentDidMount() {
-        const {filter, currentPage, pageSize} = this.props
-        this.props.getUsers(currentPage, pageSize, filter)
+    useEffect(() => {
+        dispatch(getUsers(currentPage, pageSize, filter))
+    }, [])
+
+    if(isLoading) {
+        return <Spinner />
     }
 
-    render() {
-        // const users = this.props.users.map(u => <User key={u.id}
-        //                                               id={u.id}
-        //                                               name={u.name}
-        //                                               status={u.status}
-        //                                               followed={u.followed}
-        //                                               location={u.location ? u.location : undefined}
-        //                                               photos={u.photos}
-        //                                               follow={this.props.follow}
-        //                                               unfollow={this.props.unfollow}
-        //                                               followingInProgress={this.props.followingInProgress}
-        // />)
-
-        if(this.props.isLoading) {
-            return <Spinner />
-        }
-
-        return (
-            <Users />
-            // <div className={p.page_block}>
-            //     <Paginator setCurrentPage={this.props.setCurrentPage}
-            //                itemsTotalCount={this.props.totalCount}
-            //                page={this.props.currentPage}
-            //                pageSize={this.props.pageSize}
-            //     />
-            //     <SearchForm searchParams={this.props.filter}/>
-            //     {
-            //         users.length === 0
-            //             ? <NoUsersFound/>
-            //             : <div className={s.users__content}>
-            //                 {users}
-            //             </div>
-            //     }
-            // </div>
-        )
-    }
+    return <Users />
 }
 
-type MapStatePropsType = {
-    users: Array<UserType>
-    totalCount: number
-    pageSize: number
-    currentPage: number
-    isFetching: boolean
-    followingInProgress: Array<number>
-    isAuth: boolean
-    filter: SearchType
-    isLoading: boolean
-}
-
-type MapDispatchPropsType = {
-    follow: (userId: number) => void
-    unfollow: (userId: number) => void
-    setCurrentPage: (setCurrentPage: number) => void
-    getUsers: (currentPage: number, pageSize: number, filter: SearchType) => void
-}
-
-const mapStateToProps = (state: RootStateType): MapStatePropsType => {
-    return {
-        users: getUsersSelector(state),
-        totalCount: getTotalCountSelector(state),
-        pageSize: getPageSizeSelector(state),
-        currentPage: getCurrentPageSelector(state),
-        isFetching: isFetchingSelector(state),
-        followingInProgress: followingInProgressSelector(state),
-        isAuth: isAuthSelector(state),
-        filter: getSearchParams(state),
-        isLoading: isLoading(state)
-    }
-}
-
-export default compose<ComponentType>(
-    withAuthNavigate,
-    connect(mapStateToProps, {
-        // follow,
-        // unfollow,
-        // setCurrentPage,
-        getUsers
-    })
-)(UsersPage)
+// export default compose<ComponentType>(
+//     withAuthNavigate,
+//     // connect(mapStateToProps, {
+//     //     // follow,
+//     //     // unfollow,
+//     //     // setCurrentPage,
+//     //     getUsers
+//     // })
+// )(UsersPage)

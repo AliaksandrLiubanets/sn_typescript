@@ -7,7 +7,7 @@ import News from './components/News'
 import Music from './components/Music'
 import Settings from './components/Settings'
 import {DialogContainer} from './components/Dialogs/DialogWithUser/Dialog'
-import Users from './components/Users/UsersContainer'
+import {UsersPage} from './components/Users/UsersContainer'
 import {ProfileWithParam} from './components/Profile/ProfileWithParam'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
@@ -50,7 +50,7 @@ class App extends React.Component<AppPropsType> {
                                 <Route path="/profile/:userId" element={<ProfileWithParam/>}/>
                                 <Route path="/news" element={<News/>}/>
                                 <Route path="/music" element={<Music/>}/>
-                                <Route path="/users" element={<Users/>}/>
+                                <Route path="/users" element={<UsersPage/>}/>
                                 <Route path="/settings" element={<Settings/>}/>
                                 <Route path="/login" element={<LoginContainer/>}/>
                                 <Route path="*" element={<Page404/>}/>
