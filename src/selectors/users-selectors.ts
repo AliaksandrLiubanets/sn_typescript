@@ -14,5 +14,5 @@ export const getCurrentPageSelector = (state: RootStateType) => state.usersPage.
 export const isFetchingSelector = (state: RootStateType) => state.usersPage.isFetching
 export const followingInProgressSelector = (state: RootStateType) => state.usersPage.followingInProgress
 export const isAuthSelector = (state: RootStateType) => state.auth.isAuth
-export const searchParams = (state: RootStateType) => state.usersPage.searchParams
+export const getSearchParams = (state: RootStateType) => state.usersPage.searchParams
 export const isLoading = (state: RootStateType) => state.app.isLoading

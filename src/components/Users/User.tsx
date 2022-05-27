@@ -1,20 +1,22 @@
 import s from './Users.module.css'
-import {UserType} from '../Redux/users-reducer'
+import {follow, unfollow, UserType} from '../Redux/users-reducer'
 import {Avatar} from './Avatar/Avatar'
 import {FollowUnfollow} from './FollowUnfollow/FollowUnfollow'
 import {UserDataFrame} from './UserDataFrame/UserDataFrame'
+import {useDispatch} from 'react-redux'
 
 type UserPropsType = {
-    follow: (id: number) => void
-    unfollow: (id: number) => void
     followingInProgress: Array<number>
 }
 
 type PropsType = UserPropsType & UserType
 
-function User({name, id, status, followed, photos, location, unfollow, follow, followingInProgress}: PropsType) {
+function User({name, id, status, followed, photos, location, followingInProgress}: PropsType) {
 
     const followingProgress: boolean = followingInProgress.some((num) => num === id)
+    const dispatch = useDispatch()
+    const onFollow = () => dispatch(follow(id))
+    const onUnfollow = () => dispatch(unfollow(id))
 
     return <div className={s.user__block}>
         <div className={s.user__avaFollowed}>
@@ -22,8 +24,8 @@ function User({name, id, status, followed, photos, location, unfollow, follow, f
             <FollowUnfollow id={id}
                             followingProgress={followingProgress}
                             followed={followed}
-                            follow={follow}
-                            unfollow={unfollow}
+                            follow={onFollow}
+                            unfollow={onUnfollow}
             />
         </div>
         <UserDataFrame name={name} status={status} location={location} />

@@ -1,8 +1,6 @@
 import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
-import {follow, getUsers, SearchType, setCurrentPage, unfollow, UserType} from '../Redux/users-reducer'
-import User from './User'
-import s from './Users.module.css'
+import {getUsers, SearchType, UserType} from '../Redux/users-reducer'
 import React, {Component, ComponentType} from 'react'
 import {withAuthNavigate} from '../HOC/withAuthNavigate'
 import {compose} from 'redux'
@@ -10,23 +8,20 @@ import {
     followingInProgressSelector,
     getCurrentPageSelector,
     getPageSizeSelector,
+    getSearchParams,
     getTotalCountSelector,
     getUsersSelector,
     isAuthSelector,
     isFetchingSelector,
-    isLoading,
-    searchParams
+    isLoading
 } from '../../selectors/users-selectors'
-import {Paginator} from '../common/Paginator/Paginator'
-import p from '../Profile/Profile.module.css'
-import {NoUsersFound} from './SearchUser/NoUsers/NoUsersFound'
 import {Spinner} from '../common/Spinner/Spinner'
-import {SearchForm} from './SearchUser/SearchForm'
+import {Users} from './Users'
 
 
 type PropsType = MapStatePropsType & MapDispatchPropsType
 
-class Users extends Component<PropsType> {
+class UsersPage extends Component<PropsType> {
 
     componentDidMount() {
         const {filter, currentPage, pageSize} = this.props
@@ -34,38 +29,39 @@ class Users extends Component<PropsType> {
     }
 
     render() {
-        const users = this.props.users.map(u => <User key={u.id}
-                                                      id={u.id}
-                                                      name={u.name}
-                                                      status={u.status}
-                                                      followed={u.followed}
-                                                      location={u.location ? u.location : undefined}
-                                                      photos={u.photos}
-                                                      follow={this.props.follow}
-                                                      unfollow={this.props.unfollow}
-                                                      followingInProgress={this.props.followingInProgress}
-        />)
+        // const users = this.props.users.map(u => <User key={u.id}
+        //                                               id={u.id}
+        //                                               name={u.name}
+        //                                               status={u.status}
+        //                                               followed={u.followed}
+        //                                               location={u.location ? u.location : undefined}
+        //                                               photos={u.photos}
+        //                                               follow={this.props.follow}
+        //                                               unfollow={this.props.unfollow}
+        //                                               followingInProgress={this.props.followingInProgress}
+        // />)
 
         if(this.props.isLoading) {
             return <Spinner />
         }
 
         return (
-            <div className={p.page_block}>
-                <Paginator setCurrentPage={this.props.setCurrentPage}
-                           itemsTotalCount={this.props.totalCount}
-                           page={this.props.currentPage}
-                           pageSize={this.props.pageSize}
-                />
-                <SearchForm searchParams={this.props.filter}/>
-                {
-                    users.length === 0
-                        ? <NoUsersFound/>
-                        : <div className={s.users__content}>
-                            {users}
-                        </div>
-                }
-            </div>
+            <Users />
+            // <div className={p.page_block}>
+            //     <Paginator setCurrentPage={this.props.setCurrentPage}
+            //                itemsTotalCount={this.props.totalCount}
+            //                page={this.props.currentPage}
+            //                pageSize={this.props.pageSize}
+            //     />
+            //     <SearchForm searchParams={this.props.filter}/>
+            //     {
+            //         users.length === 0
+            //             ? <NoUsersFound/>
+            //             : <div className={s.users__content}>
+            //                 {users}
+            //             </div>
+            //     }
+            // </div>
         )
     }
 }
@@ -98,7 +94,7 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
         isFetching: isFetchingSelector(state),
         followingInProgress: followingInProgressSelector(state),
         isAuth: isAuthSelector(state),
-        filter: searchParams(state),
+        filter: getSearchParams(state),
         isLoading: isLoading(state)
     }
 }
@@ -106,9 +102,9 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
 export default compose<ComponentType>(
     withAuthNavigate,
     connect(mapStateToProps, {
-        follow,
-        unfollow,
-        setCurrentPage,
+        // follow,
+        // unfollow,
+        // setCurrentPage,
         getUsers
     })
-)(Users)
+)(UsersPage)
