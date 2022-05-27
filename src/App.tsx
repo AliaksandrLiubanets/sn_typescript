@@ -18,7 +18,7 @@ import {getAuthData} from './components/Redux/auth-reducer'
 import {Spinner} from './components/common/Spinner/Spinner'
 import {ErrorWarn} from './components/Error/ErrorWarn'
 import {Page404} from './components/Page404/Page404'
-import {NavigateToLogin} from './components/common/NavigateToLogin/NavigateToLogin'
+import {NavigateToLogin} from './components/common/HOC/NavigateToLogin/NavigateToLogin'
 
 type AppPropsType = {
     isInitializing: boolean
@@ -51,14 +51,17 @@ class App extends React.Component<AppPropsType> {
                                 <Route path="/profile/:userId" element={<ProfileWithParam/>}/>
                                 <Route path="/news" element={<News/>}/>
                                 <Route path="/music" element={<Music/>}/>
-                                <Route path="/users" element={<NavigateToLogin><UsersPage/></NavigateToLogin>}/>
+                                <Route path="/users" element={
+                                    <NavigateToLogin>
+                                        <UsersPage/>
+                                    </NavigateToLogin>}/>
                                 <Route path="/settings" element={<Settings/>}/>
                                 <Route path="/login" element={<LoginContainer/>}/>
                                 <Route path="*" element={<Page404/>}/>
                             </Routes>
                     }
                 </div>
-                <ErrorWarn />
+                <ErrorWarn/>
             </div>
 
         )
@@ -71,7 +74,7 @@ type MapStateType = {
 
 const mapStateToProps = (state: RootStateType): MapStateType => {
     return {
-        isInitializing: state.app.isInitializing,
+        isInitializing: state.app.isInitializing
     }
 }
 
@@ -79,4 +82,4 @@ type TDispatchProps = {
     getAuthData: () => void
 }
 
-export default connect<MapStateType, TDispatchProps, {}, RootStateType>(mapStateToProps,  {getAuthData})(App)
+export default connect<MapStateType, TDispatchProps, {}, RootStateType>(mapStateToProps, {getAuthData})(App)
