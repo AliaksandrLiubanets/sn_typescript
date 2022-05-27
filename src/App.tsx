@@ -7,7 +7,7 @@ import News from './components/News'
 import Music from './components/Music'
 import Settings from './components/Settings'
 import {DialogContainer} from './components/Dialogs/DialogWithUser/Dialog'
-import {UsersPage} from './components/Users/UsersContainer'
+import {UsersPage} from './components/Users/UsersPage'
 import {ProfileWithParam} from './components/Profile/ProfileWithParam'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
@@ -18,6 +18,7 @@ import {getAuthData} from './components/Redux/auth-reducer'
 import {Spinner} from './components/common/Spinner/Spinner'
 import {ErrorWarn} from './components/Error/ErrorWarn'
 import {Page404} from './components/Page404/Page404'
+import {NavigateToLogin} from './components/common/NavigateToLogin/NavigateToLogin'
 
 type AppPropsType = {
     isInitializing: boolean
@@ -50,7 +51,7 @@ class App extends React.Component<AppPropsType> {
                                 <Route path="/profile/:userId" element={<ProfileWithParam/>}/>
                                 <Route path="/news" element={<News/>}/>
                                 <Route path="/music" element={<Music/>}/>
-                                <Route path="/users" element={<UsersPage/>}/>
+                                <Route path="/users" element={<NavigateToLogin><UsersPage/></NavigateToLogin>}/>
                                 <Route path="/settings" element={<Settings/>}/>
                                 <Route path="/login" element={<LoginContainer/>}/>
                                 <Route path="*" element={<Page404/>}/>

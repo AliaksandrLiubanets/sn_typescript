@@ -29,13 +29,3 @@ export const UsersPage = () => {
 
     return <Users />
 }
-
-// export default compose<ComponentType>(
-//     withAuthNavigate,
-//     // connect(mapStateToProps, {
-//     //     // follow,
-//     //     // unfollow,
-//     //     // setCurrentPage,
-//     //     getUsers
-//     // })
-// )(UsersPage)
