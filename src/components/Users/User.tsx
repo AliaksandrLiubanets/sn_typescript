@@ -4,7 +4,7 @@ import {Avatar} from './Avatar/Avatar'
 import {FollowUnfollow} from './FollowUnfollow/FollowUnfollow'
 import {UserDataFrame} from './UserDataFrame/UserDataFrame'
 import {useDispatch} from 'react-redux'
-import React from 'react'
+import React, {useCallback} from 'react'
 
 type UserPropsType = {
     followingInProgress: Array<number>
@@ -16,8 +16,8 @@ export const User = React.memo(({name, id, status, followed, photos, location, f
 
     const followingProgress: boolean = followingInProgress.some((num) => num === id)
     const dispatch = useDispatch()
-    const onFollow = () => dispatch(follow(id))
-    const onUnfollow = () => dispatch(unfollow(id))
+    const onFollow = useCallback(() => dispatch(follow(id)),[dispatch])
+    const onUnfollow = useCallback(() => dispatch(unfollow(id)), [dispatch])
 
     return <div className={s.user__block}>
         <div className={s.user__avaFollowed}>

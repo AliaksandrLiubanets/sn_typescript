@@ -1,5 +1,5 @@
 import f from './UserDataFrame.module.css'
-import {FC} from 'react'
+import React, {FC} from 'react'
 
 type UserDataFrameType = {
     name: string
@@ -10,7 +10,7 @@ type UserDataFrameType = {
     }
 }
 
-export const UserDataFrame: FC<UserDataFrameType> = ({name, status, location}) => {
+export const UserDataFrame: FC<UserDataFrameType> = React.memo(({name, status, location}) => {
 
     return <div className={f.user__dataFrame}>
         <div className={f.user__dataFrame__nameStatus}>
@@ -30,4 +30,4 @@ export const UserDataFrame: FC<UserDataFrameType> = ({name, status, location}) =
             </div>
         </div>
     </div>
-}
+})

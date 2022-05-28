@@ -1,5 +1,5 @@
 import s from './FollowUnfollow.module.css'
-import {FC} from 'react'
+import React, {FC} from 'react'
 
 type FollowUnfollowType = {
     id: number
@@ -9,7 +9,7 @@ type FollowUnfollowType = {
     unfollow: (id: number) => void
 }
 
-export const FollowUnfollow: FC<FollowUnfollowType> = ({id, followed, followingProgress, follow, unfollow}) => {
+export const FollowUnfollow: FC<FollowUnfollowType> = React.memo(({id, followed, followingProgress, follow, unfollow}) => {
     return <div className={s.user__followed}>
         {
             followed
@@ -21,4 +21,4 @@ export const FollowUnfollow: FC<FollowUnfollowType> = ({id, followed, followingP
                 }}>follow</button>
         }
     </div>
-}
+})
