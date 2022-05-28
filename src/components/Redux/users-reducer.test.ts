@@ -47,6 +47,7 @@ beforeEach(() => {
             term: '',
             friend: null
         },
+        isSearchToggle: false
     }
 
 })

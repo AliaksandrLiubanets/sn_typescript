@@ -14,8 +14,6 @@ type PropsType = UserPropsType & UserType
 
 export const User = React.memo(({name, id, status, followed, photos, location, followingInProgress}: PropsType) => {
 
-    console.log('User')
-
     const followingProgress: boolean = followingInProgress.some((num) => num === id)
     const dispatch = useDispatch()
     const onFollow = () => dispatch(follow(id))

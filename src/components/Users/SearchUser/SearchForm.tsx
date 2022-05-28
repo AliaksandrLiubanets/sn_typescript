@@ -8,10 +8,12 @@ import {SearchType, searchUsers} from '../../Redux/users-reducer'
 
 type PropsType = {
     searchParams: SearchType
-    setIsOnSearchClick: (isOnSearchClick: boolean) => void
+    setSearchToggle: (isOnSearchClick: boolean) => void
 }
 
-export const SearchForm: FC<PropsType> = ({searchParams, setIsOnSearchClick}) => {
+export const SearchForm: FC<PropsType> = ({searchParams, setSearchToggle}) => {
+
+    console.log('SearchForm')
 
     const dispatch = useDispatch()
     const pageSize = useSelector<RootStateType, number>(state => state.usersPage.pageSize)
@@ -31,7 +33,7 @@ export const SearchForm: FC<PropsType> = ({searchParams, setIsOnSearchClick}) =>
                         //convert string to boolean | null as state type required:
                         friend: values.friend === 'true' ? true : (values.friend === 'false' ? false : null)
                     }
-                    setIsOnSearchClick(true)
+                    setSearchToggle(true)
                     dispatch(searchUsers(1, pageSize, searchObj))
                 }}
             >
