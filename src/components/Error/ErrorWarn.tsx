@@ -21,7 +21,7 @@ export const ErrorWarn = () => {
     }, [cleanErrorMessage])
 
     const errors = errorArray.map(error => {
-        return <div className={s.warning_box}>
+        return <div key={error} className={s.warning_box}>
             <div className={s.warning_box__error}>
                 {error}
             </div>

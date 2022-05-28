@@ -31,7 +31,6 @@ export const Users = () => {
         dispatch(setCurrentPage(page))
     }
 
-
     const usersArr = users.map(u => <User key={u.id}
                                                   id={u.id}
                                                   name={u.name}
