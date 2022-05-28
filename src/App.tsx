@@ -28,7 +28,6 @@ type AppPropsType = {
 class App extends React.Component<AppPropsType> {
 
     componentDidMount() {
-        console.log('componentDidMount in App getAuthData()')
         this.props.getAuthData()
     }
 
