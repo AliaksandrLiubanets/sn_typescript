@@ -1,15 +1,12 @@
 import s from './Dialogs.module.css'
 import {DialogsItem} from './DialogsItem'
 import {Outlet} from 'react-router-dom'
-import {connect, useSelector} from 'react-redux'
-import {RootStateType} from '../Redux/redux-store'
+import {useSelector} from 'react-redux'
 import {DialogType} from '../Redux/dialogs-reducer'
-import {compose} from 'redux'
-import {ComponentType} from 'react'
 import p from '../Profile/Profile.module.css'
 import {getDialogs} from '../../selectors/users-selectors'
 
-function Dialogs() {
+export const Dialogs = () => {
 
     const dialogs = useSelector(getDialogs)
 
@@ -29,18 +26,4 @@ function Dialogs() {
     </div>
 }
 
-type MapStatePropsType = {
-    dialogs: Array<DialogType>
-}
-
-const mapStateToProps = (state: RootStateType): MapStatePropsType => {
-    return {
-        dialogs: state.dialogsPage.dialogs,
-    }
-}
-
-export default compose<ComponentType>(
-    // withAuthNavigate,
-    connect(mapStateToProps))
-(Dialogs)
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import './App.css'
 import Navbar from './components/Navbar/Navbar'
-import Dialogs from './components/Dialogs/Dialogs'
+import {Dialogs} from './components/Dialogs/Dialogs'
 import {Route, Routes} from 'react-router-dom'
 import News from './components/News'
 import Music from './components/Music'
