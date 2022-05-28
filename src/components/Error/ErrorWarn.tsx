@@ -14,7 +14,7 @@ export const ErrorWarn = () => {
     useEffect(() => {
         let id = setTimeout(() => {
             cleanErrorMessage()
-        }, 3500)
+        }, 4500)
         return () => {
             clearTimeout(id)
         }
