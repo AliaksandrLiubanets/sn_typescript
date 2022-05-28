@@ -1,16 +1,19 @@
 import s from './Dialogs.module.css'
 import {DialogsItem} from './DialogsItem'
 import {Outlet} from 'react-router-dom'
-import {connect} from 'react-redux'
+import {connect, useSelector} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
 import {DialogType} from '../Redux/dialogs-reducer'
 import {compose} from 'redux'
 import {ComponentType} from 'react'
 import p from '../Profile/Profile.module.css'
+import {getDialogs} from '../../selectors/users-selectors'
 
-function Dialogs(props: MapStatePropsType) {
+function Dialogs() {
 
-    const dialogsItems = props.dialogs.map((d: DialogType) => <DialogsItem key={d.id}
+    const dialogs = useSelector(getDialogs)
+
+    const dialogsItems = dialogs.map((d: DialogType) => <DialogsItem key={d.id}
                                                                            name={d.name}
                                                                            id={d.id}
                                                                            ava={d.ava}/>)

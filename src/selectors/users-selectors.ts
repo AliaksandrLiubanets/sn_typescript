@@ -17,3 +17,5 @@ export const isAuthSelector = (state: RootStateType) => state.auth.isAuth
 export const getSearchParams = (state: RootStateType) => state.usersPage.searchParams
 export const getIsSearchToggle = (state: RootStateType) => state.usersPage.isSearchToggle
 export const isLoadingSelector = (state: RootStateType) => state.app.isLoading
+
+export const getDialogs = (state: RootStateType) => state.dialogsPage.dialogs

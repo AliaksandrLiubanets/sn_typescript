@@ -33,7 +33,6 @@ class App extends React.Component<AppPropsType> {
     }
 
     render() {
-
         return (
             <div className="App">
                 <HeaderContainer/>
