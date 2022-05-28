@@ -8,9 +8,8 @@ type DialogsItemType = {
     ava: string
 }
 
-export function DialogsItem(props: DialogsItemType) {
+export const DialogsItem = React.memo((props: DialogsItemType) => {
     let path = `/dialogs/${props.name}`
-
 
     return <div className={s.dialog_user}>
         <NavLink to={path} className={({ isActive }) => (isActive ? s.active : "")}>
@@ -18,4 +17,4 @@ export function DialogsItem(props: DialogsItemType) {
             <div>{props.name}</div>
         </NavLink>
     </div>
-}
+})
