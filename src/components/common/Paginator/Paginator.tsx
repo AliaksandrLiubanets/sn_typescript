@@ -31,7 +31,6 @@ export const Paginator = memo(({
     const onClickSetCurrentPage = (page: number) => {
         setCurrentPage(page)
     }
-    console.log('Paginator')
 
     return (
         <div className={s.paginatorContainer}>

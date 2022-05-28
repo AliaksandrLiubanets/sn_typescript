@@ -13,8 +13,6 @@ type PropsType = {
 
 export const SearchForm: FC<PropsType> = ({searchParams, setSearchToggle}) => {
 
-    console.log('SearchForm')
-
     const dispatch = useDispatch()
     const pageSize = useSelector<RootStateType, number>(state => state.usersPage.pageSize)
 
