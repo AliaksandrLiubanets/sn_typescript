@@ -4,6 +4,7 @@ import {Avatar} from './Avatar/Avatar'
 import {FollowUnfollow} from './FollowUnfollow/FollowUnfollow'
 import {UserDataFrame} from './UserDataFrame/UserDataFrame'
 import {useDispatch} from 'react-redux'
+import React from 'react'
 
 type UserPropsType = {
     followingInProgress: Array<number>
@@ -11,7 +12,9 @@ type UserPropsType = {
 
 type PropsType = UserPropsType & UserType
 
-function User({name, id, status, followed, photos, location, followingInProgress}: PropsType) {
+export const User = React.memo(({name, id, status, followed, photos, location, followingInProgress}: PropsType) => {
+
+    console.log('User')
 
     const followingProgress: boolean = followingInProgress.some((num) => num === id)
     const dispatch = useDispatch()
@@ -30,6 +33,4 @@ function User({name, id, status, followed, photos, location, followingInProgress
         </div>
         <UserDataFrame name={name} status={status} location={location} />
     </div>
-}
-
-export default User
+})

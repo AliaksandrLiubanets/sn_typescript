@@ -2,7 +2,7 @@ import {Button} from '../../common/Button/Button'
 import s from './SearchUser.module.css'
 import React, {ChangeEvent, FC, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getUsers, SearchType} from '../../Redux/users-reducer'
+import {SearchType, searchUsers} from '../../Redux/users-reducer'
 import {RootStateType} from '../../Redux/redux-store'
 import {Select} from '../../common/Select/Select'
 import {Textarea} from '../../common/Textarea/Textarea'
@@ -44,7 +44,7 @@ export const SearchUser: FC<PropsType> = ({searchParams}) => {
         friend = null
     }
 
-    const search = () => dispatch(getUsers(1, pageSize, {term, friend}))
+    const search = () => dispatch(searchUsers(1, pageSize, {term, friend}))
     const onChangeValue = (e: ChangeEvent<HTMLTextAreaElement>) => setTerm(e.currentTarget.value)
     const onEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => e.key === 'Enter' && search()
 

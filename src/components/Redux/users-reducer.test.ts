@@ -46,7 +46,7 @@ beforeEach(() => {
         searchParams: {
             term: '',
             friend: null
-        }
+        },
     }
 
 })

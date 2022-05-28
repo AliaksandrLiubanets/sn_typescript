@@ -4,13 +4,14 @@ import s from './SearchForm.module.css'
 import {Field, Form, Formik} from 'formik'
 import {TextInput} from '../../FormikFields/TextInput'
 import React, {FC} from 'react'
-import {getUsers, SearchType} from '../../Redux/users-reducer'
+import {SearchType, searchUsers} from '../../Redux/users-reducer'
 
 type PropsType = {
     searchParams: SearchType
+    setIsOnSearchClick: (isOnSearchClick: boolean) => void
 }
 
-export const SearchForm: FC<PropsType> = ({searchParams}) => {
+export const SearchForm: FC<PropsType> = ({searchParams, setIsOnSearchClick}) => {
 
     const dispatch = useDispatch()
     const pageSize = useSelector<RootStateType, number>(state => state.usersPage.pageSize)
@@ -30,7 +31,8 @@ export const SearchForm: FC<PropsType> = ({searchParams}) => {
                         //convert string to boolean | null as state type required:
                         friend: values.friend === 'true' ? true : (values.friend === 'false' ? false : null)
                     }
-                    dispatch(getUsers(1, pageSize, searchObj))
+                    setIsOnSearchClick(true)
+                    dispatch(searchUsers(1, pageSize, searchObj))
                 }}
             >
                 <Form className={s.search_block}>

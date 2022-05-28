@@ -17,7 +17,7 @@ import {getAuthData} from './components/Redux/auth-reducer'
 import {Spinner} from './components/common/Spinner/Spinner'
 import {ErrorWarn} from './components/Error/ErrorWarn'
 import {Page404} from './components/Page404/Page404'
-import {NavigateToLogin} from './components/common/HOC/NavigateToLogin/NavigateToLogin'
+import {NavigateToLogin} from './components/common/HOC/NavigateToLogin'
 import {Login} from './components/Login/Login'
 
 type AppPropsType = {
@@ -28,7 +28,7 @@ type AppPropsType = {
 class App extends React.Component<AppPropsType> {
 
     componentDidMount() {
-        console.log('getAuthData')
+        console.log('componentDidMount in App getAuthData()')
         this.props.getAuthData()
     }
 

@@ -12,9 +12,7 @@ const SET_USERS = 'sn-typescript/UsersPage/SET_USERS'
 const SET_SEARCH_PARAMS = 'sn-typescript/UsersPage/SET_SEARCH_PARAMS'
 const SET_TOTAL_USERS_COUNT = 'sn-typescript/UsersPage/SET_TOTAL_USERS_COUNT'
 const SET_CURRENT_PAGE = 'sn-typescript/UsersPage/SET_CURRENT_PAGE'
-const TOGGLE_IS_FETCHING = 'sn-typescript/UsersPage/TOGGLE_IS_FETCHING'
 const FOLLOWING_IN_PROGRESS = 'sn-typescript/UsersPage/FOLLOWING_IN_PROGRESS'
-
 
 const initialState = {
     users: [] as UserType[],
@@ -26,7 +24,7 @@ const initialState = {
     searchParams: {
         term: '',
         friend: null as null | boolean
-    }
+    },
 }
 
 export const usersReducer = (state = initialState, action: UsersAT): UsersStateType => {
@@ -65,11 +63,28 @@ export const usersActions = {
     setTotalUsersCount: (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, payload: {totalCount}} as const),
     setCurrentPage: (currentPage: number) => ({type: SET_CURRENT_PAGE, payload: {currentPage}} as const),
     setFollowingInProgress: (isFetching: boolean, userId: number) =>
-        ({type: FOLLOWING_IN_PROGRESS, isFetching, userId} as const)
+        ({type: FOLLOWING_IN_PROGRESS, isFetching, userId} as const),
 }
 
 // thunks:
 export const getUsers = (currentPage: number,
+                         pageSize: number,
+                         // filter: SearchType
+): AppThunk => async (dispatch) => {
+    dispatch(appActions.setIsLoading(true))
+    // dispatch(usersActions.setSearchParams(filter))
+    try {
+        const response = await usersAPI.getUsers(currentPage, pageSize)
+        dispatch(usersActions.setUsers(response.data.items))
+        dispatch(usersActions.setTotalUsersCount(response.data.totalCount))
+    } catch (e) {
+        handleServerNetworkError(dispatch, e as Error)
+    } finally {
+        dispatch(appActions.setIsLoading(false))
+    }
+}
+
+export const searchUsers = (currentPage: number,
                          pageSize: number,
                          filter: SearchType
 ): AppThunk => async (dispatch) => {
@@ -92,7 +107,7 @@ export const setCurrentPage = (currentPage: number): AppThunk => async (dispatch
     try {
         const pageSize = getState().usersPage.pageSize
         dispatch(usersActions.setCurrentPage(currentPage))
-        await dispatch(getUsers(currentPage, pageSize, filter))
+        await usersAPI.getUsers(currentPage, pageSize, filter.term, filter.friend)
     } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
     } finally {

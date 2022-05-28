@@ -1,5 +1,5 @@
-import User from './User'
-import React from 'react'
+import {User} from './User'
+import React, {FC} from 'react'
 import p from '../Profile/Profile.module.css'
 import {Paginator} from '../common/Paginator/Paginator'
 import {SearchForm} from './SearchUser/SearchForm'
@@ -16,7 +16,12 @@ import {
 } from '../../selectors/users-selectors'
 import {setCurrentPage} from '../Redux/users-reducer'
 
-export const Users = () => {
+type UsersProps = {
+    isOnSearchClick: boolean
+    setIsOnSearchClick: (isOnSearchClick: boolean) => void
+}
+
+export const Users: FC<UsersProps> = ({isOnSearchClick, setIsOnSearchClick}) => {
 
     const users = useSelector(getUsersSelector)
     const totalCount = useSelector(getTotalCountSelector)
@@ -48,9 +53,9 @@ export const Users = () => {
                      page={currentPage}
                      pageSize={pageSize}
           />
-          <SearchForm searchParams={filter}/>
+          <SearchForm searchParams={filter} setIsOnSearchClick={setIsOnSearchClick}/>
           {
-              usersArr.length === 0
+              isOnSearchClick && usersArr.length === 0
                   ? <NoUsersFound/>
                   : <div className={s.users__content}>
                       {usersArr}
