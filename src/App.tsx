@@ -11,7 +11,6 @@ import {UsersPage} from './components/Users/UsersPage'
 import {ProfileWithParam} from './components/Profile/ProfileWithParam'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import HeaderContainer from './components/Header/HeaderContainer'
-import {LoginContainer} from './components/Login/LoginContainer'
 import {connect} from 'react-redux'
 import {RootStateType} from './components/Redux/redux-store'
 import {getAuthData} from './components/Redux/auth-reducer'
@@ -19,6 +18,7 @@ import {Spinner} from './components/common/Spinner/Spinner'
 import {ErrorWarn} from './components/Error/ErrorWarn'
 import {Page404} from './components/Page404/Page404'
 import {NavigateToLogin} from './components/common/HOC/NavigateToLogin/NavigateToLogin'
+import {Login} from './components/Login/Login'
 
 type AppPropsType = {
     isInitializing: boolean
@@ -28,6 +28,7 @@ type AppPropsType = {
 class App extends React.Component<AppPropsType> {
 
     componentDidMount() {
+        console.log('getAuthData')
         this.props.getAuthData()
     }
 
@@ -43,8 +44,14 @@ class App extends React.Component<AppPropsType> {
                             ? <Spinner/>
                             : <Routes>
                                 <Route path="/" element={<ProfileContainer/>}/>
-                                <Route path="/profile" element={<ProfileContainer/>}/>
-                                <Route path="/dialogs" element={<Dialogs/>}>
+                                <Route path="/profile" element={
+                                    <NavigateToLogin>
+                                        <ProfileContainer/>
+                                    </NavigateToLogin>}/>
+                                <Route path="/dialogs" element={
+                                    <NavigateToLogin>
+                                        <Dialogs/>
+                                    </NavigateToLogin>}>
                                     <Route path="/dialogs/:name"
                                            element={<DialogContainer/>}/>
                                 </Route>
@@ -56,7 +63,7 @@ class App extends React.Component<AppPropsType> {
                                         <UsersPage/>
                                     </NavigateToLogin>}/>
                                 <Route path="/settings" element={<Settings/>}/>
-                                <Route path="/login" element={<LoginContainer/>}/>
+                                <Route path="/login" element={<Login/>}/>
                                 <Route path="*" element={<Page404/>}/>
                             </Routes>
                     }

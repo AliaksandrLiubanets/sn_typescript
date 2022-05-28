@@ -4,7 +4,6 @@ import {Outlet} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {RootStateType} from '../Redux/redux-store'
 import {DialogType} from '../Redux/dialogs-reducer'
-import {withAuthNavigate} from '../HOC/withAuthNavigate'
 import {compose} from 'redux'
 import {ComponentType} from 'react'
 import p from '../Profile/Profile.module.css'
@@ -38,7 +37,7 @@ const mapStateToProps = (state: RootStateType): MapStatePropsType => {
 }
 
 export default compose<ComponentType>(
-    withAuthNavigate,
+    // withAuthNavigate,
     connect(mapStateToProps))
 (Dialogs)
 

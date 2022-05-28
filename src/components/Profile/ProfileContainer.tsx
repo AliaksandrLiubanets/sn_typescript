@@ -1,21 +1,19 @@
 import React, {ComponentType} from 'react'
 import {RootStateType} from '../Redux/redux-store'
 import {connect} from 'react-redux'
-import {ProfileType, setStatus, uploadPhoto} from '../Redux/profile-reducer'
+import {getProfileData, ProfileType, setStatus, uploadPhoto} from '../Redux/profile-reducer'
 import {Profile} from './Profile'
-import {withAuthNavigate} from '../HOC/withAuthNavigate'
 import {compose} from 'redux'
 import {Params} from 'react-router-dom'
 import {ParamsType} from './ProfileWithParam'
-import {initializeApp} from '../Redux/app-reducer'
 
 
 type PropsType = {
-    initializeApp: (userId: number) => void
+    getProfileData: (userId: number) => void
     setStatus: (status: string) => void
     uploadPhoto: (photo: File) => void
     profile: ProfileType | null
-    params?:  Readonly<Params<string>>
+    params?: Readonly<Params<string>>
     isAuth: boolean
     status: string | null
     id: number | null
@@ -30,19 +28,23 @@ class ProfileContainer extends React.Component<PropsType> {
             userId = this.props.id as number
         }
         if (this.props.isAuth) {
-            this.props.initializeApp(userId)
+            this.props.getProfileData(userId)
         }
     }
+
     componentDidMount() {
+        console.log('componentDidMount - profile')
         this.refreshProfile()
     }
-    componentDidUpdate(prevProps: Readonly<PropsType>) {
-        if(this.props.params && prevProps.params) {
-            if(this.props.params.userId !== prevProps.params.userId) {
-                this.refreshProfile()
-            }
-        }
-    }
+
+    // componentDidUpdate(prevProps: Readonly<PropsType>) {
+    //     console.log('componentDidUpdate - profile')
+    //     if(this.props.params && prevProps.params) {
+    //         if(this.props.params.userId !== prevProps.params.userId) {
+    //             this.refreshProfile()
+    //         }
+    //     }
+    // }
 
     render() {
         let userId = this.props.params && this.props.params.userId && Number(this.props.params.userId)
@@ -63,18 +65,18 @@ class ProfileContainer extends React.Component<PropsType> {
 
 type TDispatchProps = {
     setStatus: (status: string) => void
-    initializeApp: (userId: number) => void
+    getProfileData: (userId: number) => void
     uploadPhoto: (photo: File) => void
 }
 
 
-const mapStateToProps = (state: RootStateType): MapStateToPropsType  => {
+const mapStateToProps = (state: RootStateType): MapStateToPropsType => {
     return {
         profile: state.profilePage.profile,
         isAuth: state.auth.isAuth,
         status: state.profilePage.status,
         id: state.auth.data.id,
-        isLoading: state.app.isLoading,
+        isLoading: state.app.isLoading
     }
 }
 
@@ -88,7 +90,7 @@ type MapStateToPropsType = {
 
 
 export default compose<ComponentType<{ params?: ParamsType }>>(
-    withAuthNavigate,
+    // withAuthNavigate,
     connect<MapStateToPropsType, TDispatchProps, { params?: ParamsType }, RootStateType>(mapStateToProps,
-        {setStatus, initializeApp, uploadPhoto})
+        {setStatus, getProfileData, uploadPhoto})
 )(ProfileContainer)

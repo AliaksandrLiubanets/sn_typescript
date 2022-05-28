@@ -90,6 +90,26 @@ export const profileActions = {
     updateProfile: (profile: Omit<ProfileType, "photos">) => ({type: UPDATE_PROFILE, profile} as const),
 }
 
+//thunks:
+export const getProfileData = (userId: number): AppThunk => (dispatch) => {
+    dispatch(appActions.setIsLoading(true))
+    const profileStatus = profileAPI.getStatus(userId)
+    const profile = profileAPI.getUserProfile(userId)
+    Promise.all([profile, profileStatus])
+        .then(result => {
+            dispatch(profileActions.setUserProfile(result[0].data))
+            dispatch(profileActions.setStatusProfile(result[1].data))
+            dispatch(authActions.setAvatar(result[0].data.photos.small, userId))
+            dispatch(setDialogsAvatar())
+        })
+        .catch(e => {
+            handleServerNetworkError(dispatch, e)
+        })
+        .finally(() => {
+            dispatch(appActions.setIsLoading(false))
+        })
+}
+
 export const getStatus = (userId: number): AppThunk => async (dispatch) => {
     dispatch(appActions.setIsLoading(true))
     try {
