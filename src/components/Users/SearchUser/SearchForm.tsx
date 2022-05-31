@@ -19,10 +19,12 @@ export const SearchForm: FC<PropsType> = ({searchParams, setSearchToggle}) => {
     return (
         <div>
             <Formik
+                // enableReinitialize={true}
                 initialValues={{
                     term: searchParams.term,
                     //convert data (boolean | null) from state to string:
-                    friend: searchParams.friend === true ? 'true' : (searchParams.friend === false ? 'false' : 'null'),
+                    // friend: searchParams.friend === true ? 'true' : (searchParams.friend === false ? 'false' : 'null'),
+                    friend: 'null',
                 }}
                 onSubmit={(values) => {
                     let searchObj: SearchType

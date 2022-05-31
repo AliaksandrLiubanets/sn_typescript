@@ -33,7 +33,6 @@ class ProfileContainer extends React.Component<PropsType> {
     }
 
     componentDidMount() {
-        console.log('componentDidMount - profile')
         this.refreshProfile()
     }
 

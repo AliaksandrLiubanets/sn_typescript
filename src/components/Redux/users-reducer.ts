@@ -101,6 +101,7 @@ export const searchUsers = (currentPage: number,
         handleServerNetworkError(dispatch, e as Error)
     } finally {
         dispatch(appActions.setIsLoading(false))
+        dispatch(usersActions.setSearchToggle(true))
     }
 }
 
