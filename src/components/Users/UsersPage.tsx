@@ -1,15 +1,16 @@
 import {useDispatch, useSelector} from 'react-redux'
-import {getUsers, SearchType, searchUsers, usersActions} from '../Redux/users-reducer'
+import {searchUsers, usersActions} from '../Redux/users-reducer'
 import React, {useCallback, useEffect} from 'react'
 import {
     getCurrentPageSelector,
     getIsSearchToggle,
-    getPageSizeSelector, getSearchParams,
+    getPageSizeSelector,
+    getSearchParams,
     isLoadingSelector
 } from '../../selectors/users-selectors'
 import {Spinner} from '../common/Spinner/Spinner'
 import {Users} from './Users'
-import {useNavigate, createSearchParams, useLocation} from 'react-router-dom'
+import {useLocation, useNavigate} from 'react-router-dom'
 
 
 export const UsersPage = React.memo(() => {
@@ -58,14 +59,12 @@ export const UsersPage = React.memo(() => {
         }
     }, [])
 
-    const url = 'http://localhost:3000/sn_typescript#/users?term=den&friend=true&page=1'
-
-    // useEffect(() => {
-    //     navigate({
-    //         pathname: '/users',
-    //         search: `?term=${filter.term}&friend=${filter.friend}&page=${currentPage}`
-    //     })
-    // }, [filter, currentPage])
+    useEffect(() => {
+        navigate({
+            pathname: '/users',
+            search: `?term=${filter.term}&friend=${filter.friend}&page=${currentPage}`
+        })
+    }, [filter, currentPage])
 
     if (!isSearchToggle || isLoading) {
         return <Spinner/>
