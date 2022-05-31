@@ -27,16 +27,16 @@ export const UsersPage = React.memo(() => {
     const navigate = useNavigate()
     const location = useLocation()
 
+    const queryString = require('query-string')
+
     useEffect(() => {
-        debugger
-        const queryString = require('query-string');
-        const parsed: parsedUsersUrlType = queryString.parse(location.search)
+        const parsed: QueryType = queryString.parse(location.search)
 
         let actualPage = currentPage
         let actualFilter = filter
 
-        if(parsed.page) actualPage = Number(parsed.page)
-        if(!!parsed.term) actualFilter = {...actualFilter, term: parsed.term}
+        if (parsed.page) actualPage = Number(parsed.page)
+        if (!!parsed.term) actualFilter = {...actualFilter, term: parsed.term}
 
         let friend: boolean | null
         switch (parsed.friend) {
@@ -46,10 +46,11 @@ export const UsersPage = React.memo(() => {
             case 'false':
                 friend = false
                 break
-            default: friend = null
+            default:
+                friend = null
         }
-        if(!!parsed.friend) actualFilter = {...actualFilter,
-            // friend: parsed.friend === 'true' ? true : (parsed.friend === 'false' ? false : null)
+        if (!!parsed.friend) actualFilter = {
+            ...actualFilter,
             friend: friend
         }
 
@@ -57,12 +58,17 @@ export const UsersPage = React.memo(() => {
         return () => {
             setSearchToggle(false)
         }
-    }, [])
+    }, [dispatch])
 
     useEffect(() => {
+        const query: QueryType = {}
+        if (!!filter.term) query.term = filter.term
+        if (!!filter.friend) query.friend = String(filter.friend)
+        if (currentPage !== 1) query.page = String(currentPage)
+
         navigate({
             pathname: '/users',
-            search: `?term=${filter.term}&friend=${filter.friend}&page=${currentPage}`
+            search: queryString.stringify(query)
         })
     }, [filter, currentPage])
 
@@ -73,7 +79,7 @@ export const UsersPage = React.memo(() => {
     return <Users isSearchToggle={isSearchToggle} setSearchToggle={setSearchToggle}/>
 })
 
-type parsedUsersUrlType = {
+type QueryType = {
     term?: string
     friend?: string
     page?: string
