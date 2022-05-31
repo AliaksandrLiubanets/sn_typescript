@@ -23,8 +23,7 @@ export const SearchForm: FC<PropsType> = ({searchParams, setSearchToggle}) => {
                 initialValues={{
                     term: searchParams.term,
                     //convert data (boolean | null) from state to string:
-                    // friend: searchParams.friend === true ? 'true' : (searchParams.friend === false ? 'false' : 'null'),
-                    friend: 'null',
+                    friend: String(searchParams.friend),
                 }}
                 onSubmit={(values) => {
                     let searchObj: SearchType
