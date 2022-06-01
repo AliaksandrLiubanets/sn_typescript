@@ -57,9 +57,9 @@ class App extends React.Component<AppPropsType> {
                                 <Route path="/news" element={<News/>}/>
                                 <Route path="/music" element={<Music/>}/>
                                 <Route path="/users" element={
-                                    // <NavigateToLogin>
+                                    <NavigateToLogin>
                                         <UsersPage/>
-                                    // </NavigateToLogin>
+                                    </NavigateToLogin>
                                 }/>
                                 <Route path="/settings" element={<Settings/>}/>
                                 <Route path="/login" element={<Login/>}/>

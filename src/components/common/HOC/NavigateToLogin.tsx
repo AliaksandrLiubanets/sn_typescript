@@ -5,6 +5,7 @@ import {isAuthSelector} from '../../../selectors/users-selectors'
 
 export const NavigateToLogin: FC = ({children}) => {
     const location = useLocation()
+    console.log('NavigateToLogin: ', location)
     const isAuth = useSelector(isAuthSelector)
 
     if (!isAuth) {

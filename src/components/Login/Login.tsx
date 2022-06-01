@@ -7,8 +7,11 @@ import {useLocation, Navigate} from 'react-router-dom'
 export const Login = () => {
     const isAuth = useSelector<RootStateType, boolean>(state => state.auth.isAuth)
     const location: Location = useLocation()
+    console.log('Login:', location)
     const state = location.state as StateType
-    const fromPage = state.from.pathname || '/'
+    console.log('state in Login: ', state)
+    const fromPage = `${state.from.pathname}${state.from.search}` || '/'
+    console.log('fromPage in Login: ', fromPage)
 
     if(!isAuth) {
         return <LoginFormik/>
