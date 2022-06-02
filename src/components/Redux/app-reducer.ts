@@ -1,8 +1,8 @@
 import {AppThunk, InferActionTypes} from './redux-store'
 
-export const SET_IS_INITIALIZE = 'sn-typescript/Authorize/SET-IS-INITIALIZE'
-export const SET_IS_LOADING = 'sn-typescript/Authorize/SET-IS-LOADING'
-export const SET_ERROR_MESSAGE = 'sn-typescript/Authorize/SET-ERROR-MESSAGE'
+export const SET_IS_INITIALIZE = 'sn-typescript/App/SET-IS-INITIALIZE'
+export const SET_IS_LOADING = 'sn-typescript/App/SET-IS-LOADING'
+export const SET_ERROR_MESSAGE = 'sn-typescript/App/SET-ERROR-MESSAGE'
 
 const initialState = {
     isInitializing: false,
