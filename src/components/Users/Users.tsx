@@ -6,7 +6,7 @@ import {SearchForm} from './SearchUser/SearchForm'
 import {NoUsersFound} from './SearchUser/NoUsers/NoUsersFound'
 import s from './Users.module.css'
 import {useDispatch, useSelector} from 'react-redux'
-import {getSearchParams, usersSelector} from '../../selectors/users-selectors'
+import {usersSelector} from '../../selectors/users-selectors'
 import {setCurrentPage} from '../Redux/users-reducer'
 
 type UsersProps = {
@@ -16,8 +16,7 @@ type UsersProps = {
 
 export const Users: FC<UsersProps> = React.memo(({isSearchToggle, setSearchToggle}) => {
 
-    const {users, totalCount, currentPage, pageSize, followingInProgress} = useSelector(usersSelector)
-    const filter = useSelector(getSearchParams)
+    const {users, filter, totalCount, currentPage, pageSize, followingInProgress} = useSelector(usersSelector)
 
     const dispatch = useDispatch()
 

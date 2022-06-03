@@ -1,16 +1,15 @@
 import {useDispatch, useSelector} from 'react-redux'
 import {searchUsers, usersActions} from '../Redux/users-reducer'
 import React, {useCallback, useEffect} from 'react'
-import {appSelector, getSearchParams, usersSelector} from '../../selectors/users-selectors'
+import {appSelector, usersSelector} from '../../selectors/users-selectors'
 import {Spinner} from '../common/Spinner/Spinner'
 import {Users} from './Users'
 import {useNavigate, useSearchParams} from 'react-router-dom'
 
 
 export const UsersPage = React.memo(() => {
-    const {currentPage, pageSize, isSearchToggle} = useSelector(usersSelector)
+    const {filter, currentPage, pageSize, isSearchToggle} = useSelector(usersSelector)
     const {isLoading} = useSelector(appSelector)
-    const filter = useSelector(getSearchParams)
 
     const navigate = useNavigate()
     const dispatch = useDispatch()
@@ -42,30 +41,6 @@ export const UsersPage = React.memo(() => {
             ...actualFilter,
             friend: friend
         }
-        // const parsed: QueryType = queryString.parse(location.search)
-        // console.log('location UsersPage useEffect: ', location)
-        //
-        // let actualPage = currentPage
-        // let actualFilter = filter
-        //
-        // if (parsed.page) actualPage = Number(parsed.page)
-        // if (!!parsed.term) actualFilter = {...actualFilter, term: parsed.term}
-        //
-        // let friend: boolean | null
-        // switch (parsed.friend) {
-        //     case 'true':
-        //         friend = true
-        //         break
-        //     case 'false':
-        //         friend = false
-        //         break
-        //     default:
-        //         friend = null
-        // }
-        // if (!!parsed.friend) actualFilter = {
-        //     ...actualFilter,
-        //     friend: friend
-        // }
 
         dispatch(searchUsers(actualPage, pageSize, actualFilter))
         return () => {
