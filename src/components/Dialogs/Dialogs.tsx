@@ -4,11 +4,11 @@ import {Outlet} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {DialogType} from '../Redux/dialogs-reducer'
 import p from '../Profile/Profile.module.css'
-import {getDialogs} from '../../selectors/users-selectors'
+import {dialogsSelector} from '../../selectors/users-selectors'
 
 export const Dialogs = () => {
 
-    const dialogs = useSelector(getDialogs)
+    const {dialogs} = useSelector(dialogsSelector)
 
     const dialogsItems = dialogs.map((d: DialogType) => <DialogsItem key={d.id}
                                                                            name={d.name}

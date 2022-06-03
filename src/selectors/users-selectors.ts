@@ -8,19 +8,10 @@ export const getUsersNamedSinceMSelector = createSelector(getUsersSelector,
         users => users.filter((user: UserType) =>  user.name[0] === 'M')
 )
 
-export const getTotalCountSelector = (state: RootStateType) => state.usersPage.totalCount
-export const getPageSizeSelector = (state: RootStateType) => state.usersPage.pageSize
-export const getCurrentPageSelector = (state: RootStateType) => state.usersPage.currentPage
-export const isFetchingSelector = (state: RootStateType) => state.usersPage.isFetching
-export const followingInProgressSelector = (state: RootStateType) => state.usersPage.followingInProgress
-export const getSearchParams = (state: RootStateType) => state.usersPage.filter
-export const getIsSearchToggle = (state: RootStateType) => state.usersPage.isSearchToggle
 export const usersSelector = (state: RootStateType) => state.usersPage
 
-export const isAuthSelector = (state: RootStateType) => state.auth.isAuth
 export const authSelector = (state: RootStateType) => state.auth
 
-export const isLoadingSelector = (state: RootStateType) => state.app.isLoading
 export const appSelector = (state: RootStateType) => state.app
 
-export const getDialogs = (state: RootStateType) => state.dialogsPage.dialogs
+export const dialogsSelector = (state: RootStateType) => state.dialogsPage
