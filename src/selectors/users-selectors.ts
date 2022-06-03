@@ -9,9 +9,6 @@ export const getUsersNamedSinceMSelector = createSelector(getUsersSelector,
 )
 
 export const usersSelector = (state: RootStateType) => state.usersPage
-
 export const authSelector = (state: RootStateType) => state.auth
-
 export const appSelector = (state: RootStateType) => state.app
-
 export const dialogsSelector = (state: RootStateType) => state.dialogsPage
