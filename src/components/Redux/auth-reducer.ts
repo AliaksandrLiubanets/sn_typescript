@@ -84,7 +84,7 @@ export const login = (payload: LoginPayloadType): AppThunk => async (dispatch) =
             if(authData.data.resultCode === 0) {
                 dispatch(authActions.setAuthData(authData.data.data))
                 dispatch(authActions.setIsAuth(true))
-                const profile = await profileAPI.getUserProfile(authData.data.data.id as number)
+                const profile = await profileAPI.getUserProfile(authData.data.data.id as number) // get photo for Header and Dialog
                 dispatch(authActions.setAvatar(profile.data.photos.small, authData.data.data.id))
                 dispatch(dialogsActions.setOwnerAvatar(profile.data.photos.small as string))
             }
