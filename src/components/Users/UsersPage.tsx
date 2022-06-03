@@ -1,37 +1,25 @@
 import {useDispatch, useSelector} from 'react-redux'
 import {searchUsers, usersActions} from '../Redux/users-reducer'
 import React, {useCallback, useEffect} from 'react'
-import {
-    getCurrentPageSelector,
-    getIsSearchToggle,
-    getPageSizeSelector,
-    getSearchParams,
-    isLoadingSelector
-} from '../../selectors/users-selectors'
+import {appSelector, getSearchParams, usersSelector} from '../../selectors/users-selectors'
 import {Spinner} from '../common/Spinner/Spinner'
 import {Users} from './Users'
-import {useLocation, useNavigate, useSearchParams} from 'react-router-dom'
+import {useNavigate, useSearchParams} from 'react-router-dom'
 
 
 export const UsersPage = React.memo(() => {
-
-    const currentPage = useSelector(getCurrentPageSelector)
-    const pageSize = useSelector(getPageSizeSelector)
-    const isLoading = useSelector(isLoadingSelector)
-    const isSearchToggle = useSelector(getIsSearchToggle)
+    const {currentPage, pageSize, isSearchToggle} = useSelector(usersSelector)
+    const {isLoading} = useSelector(appSelector)
     const filter = useSelector(getSearchParams)
 
+    const navigate = useNavigate()
     const dispatch = useDispatch()
-    const setSearchToggle = useCallback((toggle: boolean) => dispatch(usersActions.setSearchToggle(toggle)), [dispatch])
 
-    // const navigate = useNavigate()
-    // const location = useLocation()
+    const setSearchToggle = useCallback((toggle: boolean) => dispatch(usersActions.setSearchToggle(toggle)), [dispatch])
 
     const [searchParams, setSearchParams] = useSearchParams({})
 
-    // const queryString = require('query-string')
     useEffect(() => {
-
         const parsed: QueryType = Object.fromEntries(searchParams)
         let actualPage = currentPage
         let actualFilter = filter
@@ -87,6 +75,7 @@ export const UsersPage = React.memo(() => {
 
     useEffect(() => {
         let query: QueryType = {}
+
         if (!!filter.term) query.term = filter.term
         if(filter.friend === null) {
             query = {...query}
@@ -96,11 +85,14 @@ export const UsersPage = React.memo(() => {
 
         if (currentPage !== 1) query.page = String(currentPage)
 
-        // navigate({
-        //     pathname: '/users',
-        //     search: queryString.stringify(query)
-        // })
+        const queryString = require('query-string')
+
+        navigate({
+            pathname: '/users',
+            search: queryString.stringify(query)
+        })
         setSearchParams(query)
+
     }, [filter, currentPage])
 
     if (!isSearchToggle || isLoading) {
