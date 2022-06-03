@@ -5,7 +5,7 @@ export const SET_IS_LOADING = 'sn-typescript/App/SET-IS-LOADING'
 export const SET_ERROR_MESSAGE = 'sn-typescript/App/SET-ERROR-MESSAGE'
 
 const initialState = {
-    isInitializing: false,
+    isInitializing: true,
     errorArray: [] as string[],
     isLoading: false
 }
