@@ -3,9 +3,9 @@ import s from './SearchUser.module.css'
 import React, {ChangeEvent, FC, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {SearchType, searchUsers} from '../../Redux/users-reducer'
-import {RootStateType} from '../../Redux/redux-store'
 import {Select} from '../../common/Select/Select'
 import {Textarea} from '../../common/Textarea/Textarea'
+import {usersSelector} from '../../../selectors/users-selectors'
 
 type PropsType = {
     searchParams: SearchType
@@ -15,8 +15,8 @@ const friendArray = ['all', 'subscribed', 'unsubscribed']
 
 export const SearchUser: FC<PropsType> = ({searchParams}) => {
 
-    const reduxFriend = useSelector<RootStateType, boolean | null>(state => state.usersPage.filter.friend)
-    const pageSize = useSelector<RootStateType, number>(state => state.usersPage.pageSize)
+    const reduxFriend = useSelector(usersSelector).searchParams.friend
+    const {pageSize} = useSelector(usersSelector)
     const dispatch = useDispatch()
 
     let initialfriend: 'all' | 'subscribed' |'unsubscribed'
