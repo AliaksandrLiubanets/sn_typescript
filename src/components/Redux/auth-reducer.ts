@@ -1,9 +1,10 @@
-import {authAPI, securityAPI} from '../../api/api'
+import {authAPI, profileAPI, securityAPI} from '../../api/api'
 import {AppThunk, InferActionTypes} from './redux-store'
 import {appActions} from './app-reducer'
 import {profileActions} from './profile-reducer'
 import axios from 'axios'
 import {handleServerNetworkError} from '../../utils/handleError'
+import {dialogsActions} from './dialogs-reducer'
 
 export const SET_AUTH_DATA = 'sn-typescript/Authorize/SET-AUTH-DATA'
 export const SET_IS_AUTH = 'sn-typescript/Authorize/SET-IS-AUTH'
@@ -78,7 +79,15 @@ export const login = (payload: LoginPayloadType): AppThunk => async (dispatch) =
         const response = await authAPI.login(payload)
         const errorArr: string[] = response.data.messages
         if (response.data.resultCode === 0) {
-            dispatch(getAuthData())
+            // dispatch(getAuthData())
+            const authData = await authAPI.me()
+            if(authData.data.resultCode === 0) {
+                dispatch(authActions.setAuthData(authData.data.data))
+                dispatch(authActions.setIsAuth(true))
+                const profile = await profileAPI.getUserProfile(authData.data.data.id as number)
+                dispatch(authActions.setAvatar(profile.data.photos.small, authData.data.data.id))
+                dispatch(dialogsActions.setOwnerAvatar(profile.data.photos.small as string))
+            }
         } else if (response.data.messages.length) {
             if (response.data.resultCode === 10) {
                 dispatch(appActions.setAppError(errorArr))
