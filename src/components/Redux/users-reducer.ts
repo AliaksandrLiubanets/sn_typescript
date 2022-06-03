@@ -22,7 +22,7 @@ const initialState = {
     currentPage: 1,
     isFetching: false,
     followingInProgress: [] as number[],
-    searchParams: {
+    filter: {
         term: '',
         friend: null as null | boolean
     },
@@ -62,7 +62,7 @@ export const usersActions = {
     follow: (userId: number) => ({type: FOLLOW_USER, userId} as const),
     unfollow: (userId: number) => ({type: UNFOLLOW_USER, userId} as const),
     setUsers: (users: Array<UserType>) => ({type: SET_USERS, users} as const),
-    setSearchParams: (searchParams: SearchType) => ({type: SET_SEARCH_PARAMS, payload: {searchParams}} as const),
+    setSearchParams: (filter: SearchType) => ({type: SET_SEARCH_PARAMS, payload: {filter}} as const),
     setTotalUsersCount: (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, payload: {totalCount}} as const),
     setCurrentPage: (currentPage: number) => ({type: SET_CURRENT_PAGE, payload: {currentPage}} as const),
     setFollowingInProgress: (isFetching: boolean, userId: number) =>
@@ -107,7 +107,7 @@ export const searchUsers = (currentPage: number,
 
 export const setCurrentPage = (currentPage: number): AppThunk => async (dispatch, getState) => {
     dispatch(appActions.setIsLoading(true))
-    const filter = getState().usersPage.searchParams
+    const filter = getState().usersPage.filter
     try {
         const pageSize = getState().usersPage.pageSize
         dispatch(usersActions.setCurrentPage(currentPage))
@@ -172,5 +172,5 @@ export type UserType = {
 }
 
 export type UsersStateType = typeof initialState
-export type SearchType = typeof initialState.searchParams
+export type SearchType = typeof initialState.filter
 export type UsersAT = InferActionTypes<typeof usersActions>

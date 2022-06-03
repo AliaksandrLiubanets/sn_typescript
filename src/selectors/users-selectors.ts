@@ -13,7 +13,7 @@ export const getPageSizeSelector = (state: RootStateType) => state.usersPage.pag
 export const getCurrentPageSelector = (state: RootStateType) => state.usersPage.currentPage
 export const isFetchingSelector = (state: RootStateType) => state.usersPage.isFetching
 export const followingInProgressSelector = (state: RootStateType) => state.usersPage.followingInProgress
-export const getSearchParams = (state: RootStateType) => state.usersPage.searchParams
+export const getSearchParams = (state: RootStateType) => state.usersPage.filter
 export const getIsSearchToggle = (state: RootStateType) => state.usersPage.isSearchToggle
 export const usersSelector = (state: RootStateType) => state.usersPage
 
