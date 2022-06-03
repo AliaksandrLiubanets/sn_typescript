@@ -111,7 +111,9 @@ export const setCurrentPage = (currentPage: number): AppThunk => async (dispatch
     try {
         const pageSize = getState().usersPage.pageSize
         dispatch(usersActions.setCurrentPage(currentPage))
-        await usersAPI.getUsers(currentPage, pageSize, filter.term, filter.friend)
+        const response = await usersAPI.getUsers(currentPage, pageSize, filter.term, filter.friend)
+        dispatch(usersActions.setUsers(response.data.items))
+        dispatch(usersActions.setTotalUsersCount(response.data.totalCount))
     } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
     } finally {
@@ -120,26 +122,20 @@ export const setCurrentPage = (currentPage: number): AppThunk => async (dispatch
 }
 
 export const unfollow = (userId: number): AppThunk => async (dispatch) => {
-    dispatch(appActions.setIsLoading(true))
     try {
         const apiMethod = usersAPI.unfollowUser.bind(usersAPI)
         await followUnfollowFlow(userId, dispatch, apiMethod, usersActions.unfollow)
     } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
-    } finally {
-        dispatch(appActions.setIsLoading(false))
     }
 }
 
 export const follow = (userId: number): AppThunk => async (dispatch) => {
-    dispatch(appActions.setIsLoading(true))
     try {
         const apiMethod = usersAPI.followUser.bind(usersAPI)
         await followUnfollowFlow(userId, dispatch, apiMethod, usersActions.follow)
     } catch (e) {
         handleServerNetworkError(dispatch, e as Error)
-    } finally {
-        dispatch(appActions.setIsLoading(false))
     }
 }
 
@@ -153,7 +149,6 @@ const followUnfollowFlow = async (userId: number, dispatch: Dispatch, apiMethod:
         if (response.data.messages && response.data.messages.length) {
             const errorArr: string[] = response.data.messages
             dispatch(appActions.setAppError(errorArr))
-            dispatch(appActions.setIsLoading(false))
         }
     }
     dispatch(usersActions.setFollowingInProgress(false, userId))
