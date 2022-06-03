@@ -1,45 +1,17 @@
-import React from 'react'
+import React, {FC} from 'react'
 import {Header} from './Header'
-import {connect} from 'react-redux'
-import {RootStateType} from '../Redux/redux-store'
+import {useSelector} from 'react-redux'
+import {appSelector, authSelector} from '../../selectors/users-selectors'
 
-type PropsType = {
-    login: string | null
-    avatar: string | null
-    isAuth: boolean
-    isInitializing: boolean
-    isLoading: boolean
-}
+export const HeaderContainer: FC = () => {
+    const {data, isAuth, ownAvatar} = useSelector(authSelector)
+    const {isLoading, isInitializing} = useSelector(appSelector)
 
-class HeaderContainer extends React.Component<PropsType> {
-
-    render () {
         return <Header
-            isAuth={this.props.isAuth}
-            login={this.props.login}
-            isInitializing={this.props.isInitializing}
-            avatar={this.props.avatar}
-            isLoading={this.props.isLoading}
+            isAuth={isAuth}
+            login={data.login}
+            isInitializing={isInitializing}
+            avatar={ownAvatar}
+            isLoading={isLoading}
         />
-    }
 }
-
-type MapStateProps = {
-    login: string | null
-    isAuth: boolean
-    isInitializing: boolean
-    avatar: string | null
-    isLoading:  boolean
-}
-
-const mapStateToProps = (state: RootStateType): MapStateProps => {
-    return {
-        login: state.auth.data.login,
-        isAuth: state.auth.isAuth,
-        isInitializing: state.app.isInitializing,
-        avatar: state.auth.ownAvatar,
-        isLoading: state.app.isLoading,
-    }
-}
-
-export default connect<MapStateProps, {}, {}, RootStateType>(mapStateToProps)(HeaderContainer)
