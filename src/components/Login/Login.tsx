@@ -1,17 +1,14 @@
 import {useSelector} from 'react-redux'
-import {RootStateType} from '../Redux/redux-store'
 import {LoginFormik} from './LoginFormik'
 import React from 'react'
-import {useLocation, Navigate} from 'react-router-dom'
+import {Navigate, useLocation} from 'react-router-dom'
+import {authSelector} from '../../selectors/users-selectors'
 
 export const Login = () => {
-    const isAuth = useSelector<RootStateType, boolean>(state => state.auth.isAuth)
+    const {isAuth} = useSelector(authSelector)
     const location: Location = useLocation()
-    console.log('Login:', location)
     const state = location.state as StateType
-    console.log('state in Login: ', state)
     const fromPage = `${state.from.pathname}${state.from.search}` || '/'
-    console.log('fromPage in Login: ', fromPage)
 
     if(!isAuth) {
         return <LoginFormik/>
