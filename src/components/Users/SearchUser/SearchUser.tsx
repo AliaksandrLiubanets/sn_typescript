@@ -15,7 +15,7 @@ const friendArray = ['all', 'subscribed', 'unsubscribed']
 
 export const SearchUser: FC<PropsType> = ({searchParams}) => {
 
-    const reduxFriend = useSelector<RootStateType, boolean | null>(state => state.usersPage.searchParams.friend)
+    const reduxFriend = useSelector<RootStateType, boolean | null>(state => state.usersPage.filter.friend)
     const pageSize = useSelector<RootStateType, number>(state => state.usersPage.pageSize)
     const dispatch = useDispatch()
 
