@@ -10,7 +10,6 @@ import {DialogContainer} from './components/Dialogs/DialogWithUser/Dialog'
 import {UsersPage} from './components/Users/UsersPage'
 import {ProfileWithParam} from './components/Profile/ProfileWithParam'
 import ProfileContainer from './components/Profile/ProfileContainer'
-import {HeaderContainer} from './components/Header/HeaderContainer'
 import {connect} from 'react-redux'
 import {RootStateType} from './components/Redux/redux-store'
 import {getAuthData} from './components/Redux/auth-reducer'
@@ -19,6 +18,7 @@ import {ErrorWarn} from './components/Error/ErrorWarn'
 import {Page404} from './components/Page404/Page404'
 import {NavigateToLogin} from './components/common/HOC/NavigateToLogin'
 import {Login} from './components/Login/Login'
+import {Header} from './components/Header/Header'
 
 type AppPropsType = {
     isInitializing: boolean
@@ -34,7 +34,7 @@ class App extends React.Component<AppPropsType> {
     render() {
         return (
             <div className="App">
-                <HeaderContainer/>
+                <Header/>
                 <Navbar/>
                 <div className="content">
                     {
