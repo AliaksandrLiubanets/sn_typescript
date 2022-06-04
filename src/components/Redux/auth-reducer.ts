@@ -59,6 +59,9 @@ export const getAuthData = (): AppThunk => async (dispatch) => {
         const response = await authAPI.me()
         if (response.data.resultCode === 0) {
             dispatch(authActions.setAuthData(response.data.data))
+            const profile = await profileAPI.getUserProfile(response.data.data.id as number)  // get photo
+            dispatch(authActions.setAvatar(profile.data.photos.small, response.data.data.id)) // for Header
+            dispatch(dialogsActions.setOwnerAvatar(profile.data.photos.small as string))      // and for Dialogs
             dispatch(authActions.setIsAuth(true))
         } else {
             dispatch(appActions.setAppError(response.data.messages))
@@ -79,14 +82,13 @@ export const login = (payload: LoginPayloadType): AppThunk => async (dispatch) =
         const response = await authAPI.login(payload)
         const errorArr: string[] = response.data.messages
         if (response.data.resultCode === 0) {
-            // dispatch(getAuthData())
-            const authData = await authAPI.me()
+            const authData = await authAPI.me()  // We need user Id for get user profile request
             if(authData.data.resultCode === 0) {
                 dispatch(authActions.setAuthData(authData.data.data))
                 dispatch(authActions.setIsAuth(true))
-                const profile = await profileAPI.getUserProfile(authData.data.data.id as number) // get photo for Header and Dialog
-                dispatch(authActions.setAvatar(profile.data.photos.small, authData.data.data.id))
-                dispatch(dialogsActions.setOwnerAvatar(profile.data.photos.small as string))
+                const profile = await profileAPI.getUserProfile(authData.data.data.id as number)  // get photo
+                dispatch(authActions.setAvatar(profile.data.photos.small, authData.data.data.id)) // for Header
+                dispatch(dialogsActions.setOwnerAvatar(profile.data.photos.small as string))      // and for Dialogs
             }
         } else if (response.data.messages.length) {
             if (response.data.resultCode === 10) {

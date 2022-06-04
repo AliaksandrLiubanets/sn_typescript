@@ -8,7 +8,8 @@ export const getUsersNamedSinceMSelector = createSelector(getUsersSelector,
         users => users.filter((user: UserType) =>  user.name[0] === 'M')
 )
 
-export const usersSelector = (state: RootStateType) => state.usersPage
 export const authSelector = (state: RootStateType) => state.auth
 export const appSelector = (state: RootStateType) => state.app
+export const usersSelector = (state: RootStateType) => state.usersPage
 export const dialogsSelector = (state: RootStateType) => state.dialogsPage
+
