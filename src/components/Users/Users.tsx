@@ -11,15 +11,12 @@ import {setCurrentPage} from '../Redux/users-reducer'
 
 type UsersProps = {
     isSearchToggle: boolean
-    setSearchToggle: (isOnSearchClick: boolean) => void
 }
 
-export const Users: FC<UsersProps> = React.memo(({isSearchToggle, setSearchToggle}) => {
+export const Users: FC<UsersProps> = React.memo(({isSearchToggle}) => {
 
     const {users, filter, totalCount, currentPage, pageSize, followingInProgress} = useSelector(usersSelector)
-
     const dispatch = useDispatch()
-
     const onSetCurrentPage = useCallback((page: number) => dispatch(setCurrentPage(page)), [dispatch])
 
     const usersArr = users.map(u => <User key={u.id}
@@ -39,7 +36,7 @@ export const Users: FC<UsersProps> = React.memo(({isSearchToggle, setSearchToggl
                      page={currentPage}
                      pageSize={pageSize}
           />
-          <SearchForm searchParams={filter} setSearchToggle={setSearchToggle}/>
+          <SearchForm searchParams={filter} />
           {
               isSearchToggle && usersArr.length === 0
                   ? <NoUsersFound/>

@@ -10,7 +10,6 @@ import {useNavigate, useSearchParams} from 'react-router-dom'
 export const UsersPage = React.memo(() => {
     const {filter, currentPage, pageSize, isSearchToggle} = useSelector(usersSelector)
     const {isLoading} = useSelector(appSelector)
-
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
@@ -74,7 +73,7 @@ export const UsersPage = React.memo(() => {
         return <Spinner/>
     }
 
-    return <Users isSearchToggle={isSearchToggle} setSearchToggle={setSearchToggle}/>
+    return <Users isSearchToggle={isSearchToggle} />
 })
 
 type QueryType = {
