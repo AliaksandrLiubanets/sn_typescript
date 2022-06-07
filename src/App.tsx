@@ -20,6 +20,7 @@ import {NavigateToLogin} from './components/common/HOC/NavigateToLogin'
 import {Login} from './components/Login/Login'
 import {Header} from './components/Header/Header'
 import 'antd/dist/antd.css'
+import {PATH} from './enums/path'
 
 type AppPropsType = {
     isInitializing: boolean
@@ -43,27 +44,27 @@ class App extends React.Component<AppPropsType> {
                             ? <Spinner/>
                             : <Routes>
                                 <Route path="/" element={<ProfileContainer/>}/>
-                                <Route path="/profile" element={
+                                <Route path={PATH.PROFILE} element={
                                     <NavigateToLogin>
                                         <ProfileContainer/>
                                     </NavigateToLogin>}/>
-                                <Route path="/dialogs" element={
+                                <Route path={PATH.DIALOGS_LIST} element={
                                     <NavigateToLogin>
                                         <Dialogs/>
                                     </NavigateToLogin>}>
-                                    <Route path="/dialogs/:name"
+                                    <Route path={PATH.DIALOG}
                                            element={<DialogContainer/>}/>
                                 </Route>
-                                <Route path="/profile/:userId" element={<ProfileWithParam/>}/>
-                                <Route path="/news" element={<News/>}/>
-                                <Route path="/music" element={<Music/>}/>
-                                <Route path="/users" element={
+                                <Route path={PATH.USER_PROFILE} element={<ProfileWithParam/>}/>
+                                <Route path={PATH.NEWS} element={<News/>}/>
+                                <Route path={PATH.MUSIC} element={<Music/>}/>
+                                <Route path={PATH.USERS} element={
                                     <NavigateToLogin>
                                         <UsersPage/>
                                     </NavigateToLogin>
                                 }/>
-                                <Route path="/settings" element={<Settings/>}/>
-                                <Route path="/login" element={<Login/>}/>
+                                <Route path={PATH.SETTINGS} element={<Settings/>}/>
+                                <Route path={PATH.LOGIN} element={<Login/>}/>
                                 <Route path="*" element={<Page404/>}/>
                             </Routes>
                     }

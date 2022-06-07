@@ -4,6 +4,7 @@ import emptyAva from '../../../assets/empty_avatar.jpg'
 import {NavLink} from 'react-router-dom'
 import React, {FC} from 'react'
 import {Preloader} from '../../common/Preloader/Preloader'
+import {PATH} from '../../../enums/path'
 
 type AvatarPropsType = {
     id: number
@@ -19,7 +20,7 @@ export const Avatar: FC<AvatarPropsType> = React.memo(({id, photos, followingPro
     const avaStyle: string = followingProgress ? `${d.disable}` : `${d.user__ava}`
 
     return <>
-        <NavLink to={followingProgress ? '#' : `/profile/${id}`}>
+        <NavLink to={followingProgress ? '#' : `${PATH.PROFILE}/${id}`}>
             <div>
                 <img className={avaStyle} src={photos.small ? photos.small : emptyAva} alt="ava"/>
             </div>
