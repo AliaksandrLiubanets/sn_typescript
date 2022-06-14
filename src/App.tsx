@@ -19,7 +19,6 @@ import {Page404} from './components/Page404/Page404'
 import {NavigateToLogin} from './components/common/HOC/NavigateToLogin'
 import {Login} from './components/Login/Login'
 import {Header} from './components/Header/Header'
-import 'antd/dist/antd.css'
 import {PATH} from './enums/path'
 
 type AppPropsType = {
