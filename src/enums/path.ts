@@ -8,4 +8,5 @@ export enum PATH {
     USERS = '/users',
     SETTINGS = '/settings',
     LOGIN = '/login',
+    CHAT = '/chat',
 }

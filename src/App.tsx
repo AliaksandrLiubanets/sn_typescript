@@ -20,6 +20,7 @@ import {NavigateToLogin} from './components/common/HOC/NavigateToLogin'
 import {Login} from './components/Login/Login'
 import {Header} from './components/Header/Header'
 import {PATH} from './enums/path'
+import {Chat} from './components/Chat/Chat'
 
 type AppPropsType = {
     isInitializing: boolean
@@ -64,6 +65,7 @@ class App extends React.Component<AppPropsType> {
                                 }/>
                                 <Route path={PATH.SETTINGS} element={<Settings/>}/>
                                 <Route path={PATH.LOGIN} element={<Login/>}/>
+                                <Route path={PATH.CHAT} element={<Chat/>}/>
                                 <Route path="*" element={<Page404/>}/>
                             </Routes>
                     }
