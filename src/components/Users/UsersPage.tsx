@@ -7,7 +7,7 @@ import {Users} from './Users'
 import {useNavigate, useSearchParams} from 'react-router-dom'
 
 
-export const UsersPage = React.memo(() => {
+const UsersPage = React.memo(() => {
     const {filter, currentPage, pageSize, isSearchToggle} = useSelector(usersSelector)
     const {isLoading} = useSelector(appSelector)
     const navigate = useNavigate()
@@ -75,6 +75,8 @@ export const UsersPage = React.memo(() => {
 
     return <Users isSearchToggle={isSearchToggle} />
 })
+
+export default UsersPage
 
 type QueryType = {
     term?: string

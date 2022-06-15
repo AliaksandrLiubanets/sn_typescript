@@ -7,7 +7,7 @@ import p from '../Profile/Profile.module.css'
 import {appSelector, dialogsSelector} from '../../selectors/users-selectors'
 import {Spinner} from '../common/Spinner/Spinner'
 
-export const Dialogs = () => {
+const Dialogs = () => {
 
     const {dialogs} = useSelector(dialogsSelector)
     const {isLoading} = useSelector(appSelector)
@@ -35,5 +35,7 @@ export const Dialogs = () => {
 
     </>
 }
+
+export default Dialogs
 
 

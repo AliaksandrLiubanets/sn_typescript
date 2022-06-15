@@ -1,13 +1,11 @@
-import React from 'react'
+import React, {lazy, Suspense} from 'react'
 import './App.css'
 import Navbar from './components/Navbar/Navbar'
-import {Dialogs} from './components/Dialogs/Dialogs'
 import {Route, Routes} from 'react-router-dom'
 import News from './components/News'
 import Music from './components/Music'
 import Settings from './components/Settings'
 import {DialogContainer} from './components/Dialogs/DialogWithUser/Dialog'
-import {UsersPage} from './components/Users/UsersPage'
 import {ProfileWithParam} from './components/Profile/ProfileWithParam'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import {connect} from 'react-redux'
@@ -20,7 +18,10 @@ import {NavigateToLogin} from './components/common/HOC/NavigateToLogin'
 import {Login} from './components/Login/Login'
 import {Header} from './components/Header/Header'
 import {PATH} from './enums/path'
-import {Chat} from './components/Chat/Chat'
+
+const Chat = lazy(() => import('./components/Chat/Chat'))
+const UsersPage = lazy(() => import('./components/Users/UsersPage'))
+const Dialogs = lazy(() => import('./components/Dialogs/Dialogs'))
 
 type AppPropsType = {
     isInitializing: boolean
@@ -50,7 +51,9 @@ class App extends React.Component<AppPropsType> {
                                     </NavigateToLogin>}/>
                                 <Route path={PATH.DIALOGS_LIST} element={
                                     <NavigateToLogin>
-                                        <Dialogs/>
+                                        <Suspense fallback={<div>Loading...</div>}>
+                                            <Dialogs/>
+                                        </Suspense>
                                     </NavigateToLogin>}>
                                     <Route path={PATH.DIALOG}
                                            element={<DialogContainer/>}/>
@@ -60,12 +63,16 @@ class App extends React.Component<AppPropsType> {
                                 <Route path={PATH.MUSIC} element={<Music/>}/>
                                 <Route path={PATH.USERS} element={
                                     <NavigateToLogin>
-                                        <UsersPage/>
+                                        <Suspense fallback={<div>Loading...</div>}>
+                                            <UsersPage/>
+                                        </Suspense>
                                     </NavigateToLogin>
                                 }/>
                                 <Route path={PATH.SETTINGS} element={<Settings/>}/>
                                 <Route path={PATH.LOGIN} element={<Login/>}/>
-                                <Route path={PATH.CHAT} element={<Chat/>}/>
+                                <Route path={PATH.CHAT} element={<Suspense fallback={<div>Loading...</div>}>
+                                    <Chat/>
+                                </Suspense>}/>
                                 <Route path="*" element={<Page404/>}/>
                             </Routes>
                     }
