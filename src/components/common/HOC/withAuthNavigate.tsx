@@ -1,6 +1,6 @@
 import React, {ComponentType} from 'react'
 import {Navigate} from 'react-router-dom'
-import {RootStateType} from '../Redux/redux-store'
+import {RootStateType} from '../../Redux/redux-store'
 import {connect} from 'react-redux'
 
 type MapStateProps = {

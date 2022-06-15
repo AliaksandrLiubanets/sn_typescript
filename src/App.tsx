@@ -18,7 +18,7 @@ import {NavigateToLogin} from './components/common/HOC/NavigateToLogin'
 import {Login} from './components/Login/Login'
 import {Header} from './components/Header/Header'
 import {PATH} from './enums/path'
-import {withSuspense} from './components/HOC/withSuspense'
+import {withSuspense} from './components/common/HOC/withSuspense'
 
 const Chat = lazy(() => import('./components/Chat/Chat'))
 const UsersPage = lazy(() => import('./components/Users/UsersPage'))
@@ -78,7 +78,6 @@ class App extends React.Component<AppPropsType> {
                 </div>
                 <ErrorWarn/>
             </div>
-
         )
     }
 }
