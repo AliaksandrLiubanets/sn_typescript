@@ -1,4 +1,4 @@
-import React, {lazy, Suspense} from 'react'
+import React, {lazy} from 'react'
 import './App.css'
 import Navbar from './components/Navbar/Navbar'
 import {Route, Routes} from 'react-router-dom'
@@ -18,10 +18,15 @@ import {NavigateToLogin} from './components/common/HOC/NavigateToLogin'
 import {Login} from './components/Login/Login'
 import {Header} from './components/Header/Header'
 import {PATH} from './enums/path'
+import {withSuspense} from './components/HOC/withSuspense'
 
 const Chat = lazy(() => import('./components/Chat/Chat'))
 const UsersPage = lazy(() => import('./components/Users/UsersPage'))
 const Dialogs = lazy(() => import('./components/Dialogs/Dialogs'))
+
+const ChatSuspensed = withSuspense(Chat)
+const UsersPageSuspensed = withSuspense(UsersPage)
+const DialogsSuspensed = withSuspense(Dialogs)
 
 type AppPropsType = {
     isInitializing: boolean
@@ -51,9 +56,7 @@ class App extends React.Component<AppPropsType> {
                                     </NavigateToLogin>}/>
                                 <Route path={PATH.DIALOGS_LIST} element={
                                     <NavigateToLogin>
-                                        <Suspense fallback={<div>Loading...</div>}>
-                                            <Dialogs/>
-                                        </Suspense>
+                                        <DialogsSuspensed />
                                     </NavigateToLogin>}>
                                     <Route path={PATH.DIALOG}
                                            element={<DialogContainer/>}/>
@@ -63,16 +66,12 @@ class App extends React.Component<AppPropsType> {
                                 <Route path={PATH.MUSIC} element={<Music/>}/>
                                 <Route path={PATH.USERS} element={
                                     <NavigateToLogin>
-                                        <Suspense fallback={<div>Loading...</div>}>
-                                            <UsersPage/>
-                                        </Suspense>
+                                        <UsersPageSuspensed/>
                                     </NavigateToLogin>
                                 }/>
                                 <Route path={PATH.SETTINGS} element={<Settings/>}/>
                                 <Route path={PATH.LOGIN} element={<Login/>}/>
-                                <Route path={PATH.CHAT} element={<Suspense fallback={<div>Loading...</div>}>
-                                    <Chat/>
-                                </Suspense>}/>
+                                <Route path={PATH.CHAT} element={<ChatSuspensed/>}/>
                                 <Route path="*" element={<Page404/>}/>
                             </Routes>
                     }
