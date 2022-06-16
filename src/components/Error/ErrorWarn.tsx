@@ -31,6 +31,8 @@ export const ErrorWarn = () => {
             </div>
         </div>
     })
+    console.log('errorArray.length:', errorArray.length)
+    console.log('errorArray[0]: ', errorArray[0])
 
     return (
         <div className={s.warning_block}>

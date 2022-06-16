@@ -20,11 +20,11 @@ import {Header} from './components/Header/Header'
 import {PATH} from './enums/path'
 import {withSuspense} from './components/common/HOC/withSuspense'
 
-const Chat = lazy(() => import('./components/Chat/Chat'))
+const ChatPage = lazy(() => import('./components/Chat/ChatPage'))
 const UsersPage = lazy(() => import('./components/Users/UsersPage'))
 const Dialogs = lazy(() => import('./components/Dialogs/Dialogs'))
 
-const ChatSuspensed = withSuspense(Chat)
+const ChatSuspensed = withSuspense(ChatPage)
 const UsersPageSuspensed = withSuspense(UsersPage)
 const DialogsSuspensed = withSuspense(Dialogs)
 

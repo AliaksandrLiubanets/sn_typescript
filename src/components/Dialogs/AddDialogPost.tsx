@@ -12,7 +12,7 @@ type PropsType = {
     ava: string | null
 }
 
-function AddDialogPost(props: PropsType) {
+export function AddDialogPost(props: PropsType) {
 
     const setCurrentValueToState = (e: ChangeEvent<HTMLTextAreaElement>) => props.setCurrentValue(e.currentTarget.value)
     const addPostDialog = () => props.addDialogPost(props.name)
