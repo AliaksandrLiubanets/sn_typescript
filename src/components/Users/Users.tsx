@@ -6,7 +6,7 @@ import {SearchForm} from './SearchUser/SearchForm'
 import {NoUsersFound} from './SearchUser/NoUsers/NoUsersFound'
 import s from './Users.module.css'
 import {useDispatch, useSelector} from 'react-redux'
-import {usersSelector} from '../../selectors/users-selectors'
+import {usersSelector} from '../../selectors/selectors'
 import {setCurrentPage} from '../Redux/users-reducer'
 
 type UsersProps = {

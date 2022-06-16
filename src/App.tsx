@@ -5,7 +5,7 @@ import {Route, Routes} from 'react-router-dom'
 import News from './components/News'
 import Music from './components/Music'
 import Settings from './components/Settings'
-import {DialogContainer} from './components/Dialogs/DialogWithUser/Dialog'
+import {Dialog} from './components/Dialogs/DialogWithUser/Dialog'
 import {ProfileWithParam} from './components/Profile/ProfileWithParam'
 import ProfileContainer from './components/Profile/ProfileContainer'
 import {connect} from 'react-redux'
@@ -59,7 +59,7 @@ class App extends React.Component<AppPropsType> {
                                         <DialogsSuspensed />
                                     </NavigateToLogin>}>
                                     <Route path={PATH.DIALOG}
-                                           element={<DialogContainer/>}/>
+                                           element={<Dialog/>}/>
                                 </Route>
                                 <Route path={PATH.USER_PROFILE} element={<ProfileWithParam/>}/>
                                 <Route path={PATH.NEWS} element={<News/>}/>

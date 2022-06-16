@@ -2,7 +2,7 @@ import {useSelector} from 'react-redux'
 import {LoginFormik} from './LoginFormik'
 import React from 'react'
 import {Navigate, useLocation} from 'react-router-dom'
-import {appSelector, authSelector} from '../../selectors/users-selectors'
+import {appSelector, authSelector} from '../../selectors/selectors'
 import {Spinner} from '../common/Spinner/Spinner'
 
 export const Login = () => {

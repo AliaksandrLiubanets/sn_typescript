@@ -20,7 +20,7 @@ const Chat: FC = () => {
 
 export const Messages: FC = () => {
     const messages = [1,2,3,4,5,6,7,8]
-    return <div>
+    return <div className={s.messages}>
         { messages.map((m: any) => <Message key={m} />) }
     </div>
 }

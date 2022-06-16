@@ -4,7 +4,7 @@ import {Outlet} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {DialogType} from '../Redux/dialogs-reducer'
 import p from '../Profile/Profile.module.css'
-import {appSelector, dialogsSelector} from '../../selectors/users-selectors'
+import {appSelector, dialogsSelector} from '../../selectors/selectors'
 import {Spinner} from '../common/Spinner/Spinner'
 
 const Dialogs = () => {

@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from 'react-redux'
 import {searchUsers, usersActions} from '../Redux/users-reducer'
 import React, {useCallback, useEffect} from 'react'
-import {appSelector, usersSelector} from '../../selectors/users-selectors'
+import {appSelector, usersSelector} from '../../selectors/selectors'
 import {Spinner} from '../common/Spinner/Spinner'
 import {Users} from './Users'
 import {useNavigate, useSearchParams} from 'react-router-dom'

@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {SearchType, searchUsers} from '../../Redux/users-reducer'
 import {Select} from '../../common/Select/Select'
 import {Textarea} from '../../common/Textarea/Textarea'
-import {usersSelector} from '../../../selectors/users-selectors'
+import {usersSelector} from '../../../selectors/selectors'
 
 type PropsType = {
     searchParams: SearchType

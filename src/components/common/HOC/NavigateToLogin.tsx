@@ -1,7 +1,7 @@
 import {Navigate, useLocation} from 'react-router-dom'
 import {FC} from 'react'
 import {useSelector} from 'react-redux'
-import {appSelector, authSelector} from '../../../selectors/users-selectors'
+import {appSelector, authSelector} from '../../../selectors/selectors'
 import {Spinner} from '../Spinner/Spinner'
 
 export const NavigateToLogin: FC = ({children}) => {

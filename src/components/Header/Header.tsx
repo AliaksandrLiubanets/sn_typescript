@@ -6,7 +6,7 @@ import {LogOut} from '../Login/LogOut'
 import {Spinner} from '../common/Spinner/Spinner'
 import p from '../Profile/Profile.module.css'
 import {useSelector} from 'react-redux'
-import {appSelector, authSelector} from '../../selectors/users-selectors'
+import {appSelector, authSelector} from '../../selectors/selectors'
 
 export function Header() {
     const {isInitializing} = useSelector(appSelector)
