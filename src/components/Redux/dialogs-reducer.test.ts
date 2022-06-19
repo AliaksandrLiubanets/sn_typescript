@@ -20,43 +20,43 @@ beforeEach(() => {
         textareaCurrentValue: '',
         messages: {
             dimych: [
-                {id: postId_1, message: 'Hello!', name: 'Dimych', ava: ava_dimych},
-                {id: postId_2, message: 'How is your profile on LinkedIn?', name: 'Me', ava: ava_me},
-                {id: postId_3, message: 'One more request!', name: 'Dimych', ava: ava_dimych}
+                {id: postId_1, text: 'Hello!', author: 'Dimych', url: ava_dimych},
+                {id: postId_2, text: 'How is your profile on LinkedIn?', author: 'Me', url: ava_me},
+                {id: postId_3, text: 'One more request!', author: 'Dimych', url: ava_dimych}
             ],
             andrew: [
-                {id: v1(), message: 'Hi, Andrew!', name: 'Me', ava: ava_me},
-                {id: v1(), message: 'Hi! Do you have a wife?', name: 'Andrew', ava: ava_andrew},
-                {id: v1(), message: 'Yes!', name: 'Me', ava: ava_me}
+                {id: v1(), text: 'Hi, Andrew!', author: 'Me', url: ava_me},
+                {id: v1(), text: 'Hi! Do you have a wife?', author: 'Andrew', url: ava_andrew},
+                {id: v1(), text: 'Yes!', author: 'Me', url: ava_me}
             ],
             lenin: [
-                {id: v1(), message: 'Good morning, mr. Lenin!', name: 'Me', ava: ava_me},
-                {id: v1(), message: 'Hi proletariy?', name: 'Lenin', ava: ava_lenin},
-                {id: v1(), message: 'Do you glad that made october revolution?', name: 'Me', ava: ava_me}
+                {id: v1(), text: 'Good morning, mr. Lenin!', author: 'Me', url: ava_me},
+                {id: v1(), text: 'Hi proletariy?', author: 'Lenin', url: ava_lenin},
+                {id: v1(), text: 'Do you glad that made october revolution?', author: 'Me', url: ava_me}
             ],
             pushkin: [
-                {id: v1(), message: 'Hello, my dear friend', name: 'Pushkin', ava: ava_pushkin},
-                {id: v1(), message: 'Good evening, Aleksandr Sergeevich!', name: 'Me', ava: ava_me},
-                {id: v1(), message: 'Old man and old woman lived for a long time on the shore of the blue sea... Do you remember this fairy tale? ', name: 'Pushkin', ava: ava_pushkin}
+                {id: v1(), text: 'Hello, my dear friend', author: 'Pushkin', url: ava_pushkin},
+                {id: v1(), text: 'Good evening, Aleksandr Sergeevich!', author: 'Me', url: ava_me},
+                {id: v1(), text: 'Old man and old woman lived for a long time on the shore of the blue sea... Do you remember this fairy tale? ', author: 'Pushkin', url: ava_pushkin}
             ],
             dragunsky: [
-                {id: v1(), message: 'Hi, Sasha!', name: 'Dragunsky', ava: ava_dragunsky},
-                {id: v1(), message: 'How is your profile on LinkedIn?', name: 'Me', ava: ava_me},
-                {id: v1(), message: 'What is the most funny story of "Deniskiny rasskazy"?', name: 'Dragunsky', ava: ava_dragunsky}
+                {id: v1(), text: 'Hi, Sasha!', author: 'Dragunsky', url: ava_dragunsky},
+                {id: v1(), text: 'How is your profile on LinkedIn?', author: 'Me', url: ava_me},
+                {id: v1(), text: 'What is the most funny story of "Deniskiny rasskazy"?', author: 'Dragunsky', url: ava_dragunsky}
             ],
             ostrovskiy: [
-                {id: v1(), message: 'What\'s your dimychDialogName!', name: 'Ostrovskiy', ava: ava_ostrovsky},
-                {id: v1(), message: 'Aleksander', name: 'Me', ava: ava_me},
-                {id: v1(), message: 'So, how do you think? How can steel be hardened?', name: 'Ostrovskiy', ava: ava_ostrovsky}
+                {id: v1(), text: 'What\'s your dimychDialogName!', author: 'Ostrovskiy', url: ava_ostrovsky},
+                {id: v1(), text: 'Aleksander', author: 'Me', url: ava_me},
+                {id: v1(), text: 'So, how do you think? How can steel be hardened?', author: 'Ostrovskiy', url: ava_ostrovsky}
             ]
         },
         dialogs: [
-            {id: v1(), name: 'Dimych', ava: ava_dimych},
-            {id: v1(), name: 'Andrew', ava: ava_andrew},
-            {id: v1(), name: 'Lenin', ava: ava_lenin},
-            {id: v1(), name: 'Pushkin', ava: ava_pushkin},
-            {id: v1(), name: 'Dragunsky', ava: ava_dragunsky},
-            {id: v1(), name: 'Ostrovskiy', ava: ava_ostrovsky}
+            {id: v1(), author: 'Dimych', url: ava_dimych},
+            {id: v1(), author: 'Andrew', url: ava_andrew},
+            {id: v1(), author: 'Lenin', url: ava_lenin},
+            {id: v1(), author: 'Pushkin', url: ava_pushkin},
+            {id: v1(), author: 'Dragunsky', url: ava_dragunsky},
+            {id: v1(), author: 'Ostrovskiy', url: ava_ostrovsky}
         ],
         ownAvatar: null
     }
@@ -70,14 +70,14 @@ test('Add Dialog post', () => {
     const result = dialogsReducer(newState, action)
 
     expect(result.messages['Dimych'.toLowerCase()].length).toBe(4)
-    expect(result.messages['Dimych'.toLowerCase()][3].message).toBe("Hello!")
+    expect(result.messages['Dimych'.toLowerCase()][3].text).toBe("Hello!")
     expect(result.textareaCurrentValue).toBe("")
 
 })
 
 test('Add current value in Dialogs', () => {
 
-    const action = dialogsActions.addCurrentValueDialog('Yo')
+    const action = dialogsActions.setCurrentValueDialog('Yo')
     const result = dialogsReducer(state, action)
 
     expect(result.textareaCurrentValue).toBe("Yo")

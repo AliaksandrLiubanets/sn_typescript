@@ -11,7 +11,7 @@ import {profileActions} from './profile-reducer'
 
 const ADD_POST_DIALOG = 'sn-typescript/DialogsPage/ADD-POST-DIALOG'
 const DELETE_POST_DIALOG = 'sn-typescript/DialogsPage/DELETE-POST-DIALOG'
-const ADD_CURRENT_VALUE_DIALOG = 'sn-typescript/DialogsPage/ADD-CURRENT-VALUE-DIALOG'
+const SET_CURRENT_VALUE_DIALOG = 'sn-typescript/DialogsPage/ADD-CURRENT-VALUE-DIALOG'
 const SET_OWNER_AVATAR = 'sn-typescript/DialogsPage/SET-OWNER-AVATAR'
 
 
@@ -19,58 +19,58 @@ const initialState: DialogsPageType = {
     textareaCurrentValue: '',
     messages: {
         dimych: [
-            {id: v1(), message: 'Hello!', name: 'Dimych', ava: ava_dimych},
-            {id: v1(), message: 'How is your profile on LinkedIn?', name: 'Me', ava: ava_me},
-            {id: v1(), message: 'One more request!', name: 'Dimych', ava: ava_dimych}
+            {id: v1(), text: 'Hello!', author: 'Dimych', url: ava_dimych},
+            {id: v1(), text: 'How is your profile on LinkedIn?', author: 'Me', url: ava_me},
+            {id: v1(), text: 'One more request!', author: 'Dimych', url: ava_dimych}
         ],
         andrew: [
-            {id: v1(), message: 'Hi, Andrew!', name: 'Me', ava: ava_me},
-            {id: v1(), message: 'Hi! Do you have a wife?', name: 'Andrew', ava: ava_andrew},
-            {id: v1(), message: 'Yes!', name: 'Me', ava: ava_me}
+            {id: v1(), text: 'Hi, Andrew!', author: 'Me', url: ava_me},
+            {id: v1(), text: 'Hi! Do you have a wife?', author: 'Andrew', url: ava_andrew},
+            {id: v1(), text: 'Yes!', author: 'Me', url: ava_me}
         ],
         lenin: [
-            {id: v1(), message: 'Good morning, mr. Lenin!', name: 'Me', ava: ava_me},
-            {id: v1(), message: 'Hi proletariy?', name: 'Lenin', ava: ava_lenin},
-            {id: v1(), message: 'Do you glad that made october revolution?', name: 'Me', ava: ava_me}
+            {id: v1(), text: 'Good morning, mr. Lenin!', author: 'Me', url: ava_me},
+            {id: v1(), text: 'Hi proletariy?', author: 'Lenin', url: ava_lenin},
+            {id: v1(), text: 'Do you glad that made october revolution?', author: 'Me', url: ava_me}
         ],
         pushkin: [
-            {id: v1(), message: 'Hello, my dear friend', name: 'Pushkin', ava: ava_pushkin},
-            {id: v1(), message: 'Good evening, Aleksandr Sergeevich!', name: 'Me', ava: ava_me},
+            {id: v1(), text: 'Hello, my dear friend', author: 'Pushkin', url: ava_pushkin},
+            {id: v1(), text: 'Good evening, Aleksandr Sergeevich!', author: 'Me', url: ava_me},
             {
                 id: v1(),
-                message: 'Old man and old woman lived for a long time on the shore of the blue sea... Do you remember this fairy tale? ',
-                name: 'Pushkin',
-                ava: ava_pushkin
+                text: 'Old man and old woman lived for a long time on the shore of the blue sea... Do you remember this fairy tale? ',
+                author: 'Pushkin',
+                url: ava_pushkin
             }
         ],
         dragunsky: [
-            {id: v1(), message: 'Hi, Sasha!', name: 'Dragunsky', ava: ava_dragunsky},
-            {id: v1(), message: 'How is your profile on LinkedIn?', name: 'Me', ava: ava_me},
+            {id: v1(), text: 'Hi, Sasha!', author: 'Dragunsky', url: ava_dragunsky},
+            {id: v1(), text: 'How is your profile on LinkedIn?', author: 'Me', url: ava_me},
             {
                 id: v1(),
-                message: 'What is the most funny story of "Deniskiny rasskazy"?',
-                name: 'Dragunsky',
-                ava: ava_dragunsky
+                text: 'What is the most funny story of "Deniskiny rasskazy"?',
+                author: 'Dragunsky',
+                url: ava_dragunsky
             }
         ],
         ostrovskiy: [
-            {id: v1(), message: 'What\'s your name!', name: 'Ostrovskiy', ava: ava_ostrovsky},
-            {id: v1(), message: 'Aleksander', name: 'Me', ava: ava_me},
+            {id: v1(), text: 'What\'s your name!', author: 'Ostrovskiy', url: ava_ostrovsky},
+            {id: v1(), text: 'Aleksander', author: 'Me', url: ava_me},
             {
                 id: v1(),
-                message: 'So, how do you think? How can steel be hardened?',
-                name: 'Ostrovskiy',
-                ava: ava_ostrovsky
+                text: 'So, how do you think? How can steel be hardened?',
+                author: 'Ostrovskiy',
+                url: ava_ostrovsky
             }
         ]
     },
     dialogs: [
-        {id: v1(), name: 'Dimych', ava: ava_dimych},
-        {id: v1(), name: 'Andrew', ava: ava_andrew},
-        {id: v1(), name: 'Lenin', ava: ava_lenin},
-        {id: v1(), name: 'Pushkin', ava: ava_pushkin},
-        {id: v1(), name: 'Dragunsky', ava: ava_dragunsky},
-        {id: v1(), name: 'Ostrovskiy', ava: ava_ostrovsky}
+        {id: v1(), author: 'Dimych', url: ava_dimych},
+        {id: v1(), author: 'Andrew', url: ava_andrew},
+        {id: v1(), author: 'Lenin', url: ava_lenin},
+        {id: v1(), author: 'Pushkin', url: ava_pushkin},
+        {id: v1(), author: 'Dragunsky', url: ava_dragunsky},
+        {id: v1(), author: 'Ostrovskiy', url: ava_ostrovsky}
     ],
     ownAvatar: null
 }
@@ -81,11 +81,11 @@ export const dialogsReducer = (state = initialState, action: DialogsActionsType)
             let newPost: MessageType
             newPost = {
                 id: v1(),
-                message: state.textareaCurrentValue.trim(),
-                name: 'Me',
-                ava: state.ownAvatar as string
+                text: state.textareaCurrentValue.trim(),
+                author: 'Me',
+                url: state.ownAvatar as string
             }
-            if (newPost.message) {
+            if (newPost.text) {
                 return {
                     ...state,
                     textareaCurrentValue: '',
@@ -96,12 +96,12 @@ export const dialogsReducer = (state = initialState, action: DialogsActionsType)
                 }
             }
             return state
-        case ADD_CURRENT_VALUE_DIALOG:
+        case SET_CURRENT_VALUE_DIALOG:
             return {...state, textareaCurrentValue: action.newText}
         case SET_OWNER_AVATAR:
             let valuesArr: Array<MessageType[]> = Object.values(state.messages)
             valuesArr.forEach((arr: MessageType[]) => arr.forEach((m: MessageType) => {
-                    if (m.name === 'Me') m.ava = action.ava
+                    if (m.author === 'Me') m.url = action.ava
                 }
             ))
             const stateCopy = {...state, ownAvatar: action.ava, messages: {...state.messages}}
@@ -119,13 +119,12 @@ export default dialogsReducer
 // actions:
 export const dialogsActions = {
     addPostDialog: (name: string): AddPostDialogActionType => ({type: ADD_POST_DIALOG, name}),
-    addCurrentValueDialog: (text: string): AddCurrentValueDialogActionType => ({
-        type: ADD_CURRENT_VALUE_DIALOG,
+    setCurrentValueDialog: (text: string): AddCurrentValueDialogActionType => ({
+        type: SET_CURRENT_VALUE_DIALOG,
         newText: text
     }),
     setOwnerAvatar: (ava: string): setOwnerAvatarActionType => ({type: SET_OWNER_AVATAR, ava})
 }
-
 
 export const setDialogsAvatar = (): AppThunk => async (dispatch, getState) => {
     const avatar = getState().auth.ownAvatar as string
@@ -142,7 +141,7 @@ export type AddPostDialogActionType = {
     name: string
 }
 export type AddCurrentValueDialogActionType = {
-    type: typeof ADD_CURRENT_VALUE_DIALOG
+    type: typeof SET_CURRENT_VALUE_DIALOG
     newText: string
 }
 export type DeletePostDialogActionType = {
@@ -152,14 +151,14 @@ export type DeletePostDialogActionType = {
 }
 export type DialogType = {
     id: string
-    name: string
-    ava: string
+    author: string
+    url: string
 }
 export type MessageType = {
     id: string
-    message: string
-    name: string
-    ava: string
+    text: string
+    author: string
+    url: string
 }
 export type DialogsPageMessagesType = {
     [key: string]: Array<MessageType>

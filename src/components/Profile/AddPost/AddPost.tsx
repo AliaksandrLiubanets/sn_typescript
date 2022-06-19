@@ -1,6 +1,6 @@
 import React from 'react'
 import Posts from './Posts/Posts'
-import s from './AddPost.module.css'
+import s from '../../Dialogs/TextareaField.module.css'
 import {PostType} from '../../Redux/profile-reducer'
 import {Textarea} from '../../common/Textarea/Textarea'
 import {Button} from '../../common/Button/Button'

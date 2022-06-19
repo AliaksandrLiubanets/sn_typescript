@@ -25,19 +25,25 @@ export const Messages: FC = () => {
     </div>
 }
 
+export type MessageType = {
+    url: string
+    author: string
+    text: string
+}
+
 export const Message: FC = () => {
-    const message = {
+    const message: MessageType = {
         url: emptyAvatar,
         author: 'Alex',
         text: 'Hey!'
     }
     return <div className={s.message_block}>
         <div className={s.ava_name_message}>
-            <MessageAvatar ava={message.url}/>
-            <MessageAuthor name={message.author}/>
+            <MessageAvatar url={message.url}/>
+            <MessageAuthor author={message.author}/>
         </div>
         <div className={s.angle}></div>
-        <MessageText message={message.text} />
+        <MessageText text={message.text} />
     </div>
 }
 export const AddMessage: FC = () => {

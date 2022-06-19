@@ -2,11 +2,11 @@ import s from './Message.module.css'
 import {FC} from 'react'
 
 type PropsType = {
-    name: string
+    author: string
 }
 
-export const MessageAuthor: FC<PropsType> = ({name}) => {
+export const MessageAuthor: FC<PropsType> = ({author}) => {
     return <div className={s.message_block__name}>
-        {name}
+        {author}
     </div>
 }

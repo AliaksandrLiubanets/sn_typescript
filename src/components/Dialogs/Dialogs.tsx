@@ -12,11 +12,10 @@ const Dialogs = () => {
     const {dialogs} = useSelector(dialogsSelector)
     const {isLoading} = useSelector(appSelector)
 
-
     const dialogsItems = dialogs.map((d: DialogType) => <DialogsItem key={d.id}
-                                                                     name={d.name}
+                                                                     name={d.author}
                                                                      id={d.id}
-                                                                     ava={d.ava}/>)
+                                                                     ava={d.url}/>)
 
     return <>
         {

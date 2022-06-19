@@ -3,20 +3,19 @@ import {FC} from 'react'
 import {MessageAvatar} from '../../common/Message/MessageAvatar'
 import {MessageAuthor} from '../../common/Message/MessageAuthor'
 import {MessageText} from '../../common/Message/MessageText'
+import {MessageType} from '../../Redux/dialogs-reducer'
 
 type MessagePropsType = {
-    message: string
-    name: string
-    ava: string
+    message: MessageType
 }
 
-export const MessageField: FC<MessagePropsType> = (props) => {
+export const Message: FC<MessagePropsType> = ({message}) => {
     return <div className={s.message_block}>
         <div className={s.ava_name}>
-            <MessageAvatar ava={props.ava}/>
-            <MessageAuthor name={props.name}/>
+            <MessageAvatar url={message.url}/>
+            <MessageAuthor author={message.author}/>
         </div>
         <div className={s.angle}></div>
-        <MessageText message={props.message}/>
+        <MessageText text={message.text}/>
     </div>
 }

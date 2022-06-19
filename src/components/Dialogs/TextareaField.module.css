@@ -2,9 +2,11 @@
     display: flex;
     align-items: center;
     max-width: 390px;
-    padding-left: 20px;
-    height: 30px;
     column-gap: 13px;
+}
+
+.left__padding {
+    padding-left: 20px
 }
 
 .textarea__textarea {
