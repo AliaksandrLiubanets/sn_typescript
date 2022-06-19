@@ -11,11 +11,14 @@ type PropsType = {
     url: string | null
     author?: string
     onEnter?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void
+    padding?: boolean
 }
 
 export function AddMessage(props: PropsType) {
 
-    return <div className={`${s.textarea} ${s.left__padding}`}>
+    const textarea_style = `${s.textarea} ${props.padding ? s.left__padding : ''}`
+
+    return <div className={textarea_style}>
         <div className={s.textarea__ava}>
             <img src={props.url ? props.url : emptyAvatar} alt=""/>
         </div>

@@ -1,11 +1,13 @@
 import React from 'react'
 import s from './ProfileInfo.module.css'
 import p from '../../Profile/Profile.module.css'
-import {ProfileType} from '../../Redux/profile-reducer'
+import {profileActions, ProfileType} from '../../Redux/profile-reducer'
 import {Spinner} from '../../common/Spinner/Spinner'
 import {NameStatus} from '../NameStatus/NameStatus'
-import AddPostContainer from '../AddPost/AddPostContainer'
 import {Contacts} from './Contacts/Contacts'
+import {AddPost} from '../AddPost/AddPost'
+import {useDispatch, useSelector} from 'react-redux'
+import {profileSelector} from '../../../selectors/selectors'
 
 type ProfileInfoProps = {
     profile: ProfileType | null
@@ -23,6 +25,12 @@ export const ProfileInfo = React.memo(({
                                            isOwner,
                                        }: ProfileInfoProps) => {
 
+    const dispatch = useDispatch()
+    const {textareaCurrentValue, messagesData } = useSelector(profileSelector)
+    const setCurrentText = (text: string) => dispatch(profileActions.addCurrentValue(text))
+    const addMessage = () => dispatch(profileActions.addPost())
+
+
     if (isLoading) {
       return <Spinner/>
     }
@@ -38,7 +46,12 @@ export const ProfileInfo = React.memo(({
                 <Contacts profile={profile} isOwner={isOwner}/>
             </div>
             <div className={p.page_block}>
-                <AddPostContainer/>
+                <AddPost setCurrentText={setCurrentText}
+                         messagesData={messagesData}
+                         addPost={addMessage}
+                         value={textareaCurrentValue}
+                         avatar={profile ? profile.photos.small : ''}
+                />
             </div>
         </div>
     )

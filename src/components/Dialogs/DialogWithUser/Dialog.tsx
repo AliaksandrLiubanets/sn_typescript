@@ -28,6 +28,7 @@ export const Dialog: FC = () => {
                     author={name}
                     url={ownAvatar}
                     onEnter={onEnter}
+                    padding
         />
     </div>
 }

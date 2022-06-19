@@ -41,7 +41,7 @@ export const profileReducer = (state: StateType = initialState, action: ProfileA
                 return {
                     ...state,
                     textareaCurrentValue: '',
-                    messagesData: [...state.messagesData, newPost]
+                    messagesData: [newPost, ...state.messagesData]
                 }
             }
             return state

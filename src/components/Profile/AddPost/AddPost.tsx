@@ -2,8 +2,8 @@ import React from 'react'
 import Posts from './Posts/Posts'
 import s from '../../Dialogs/TextareaField.module.css'
 import {PostType} from '../../Redux/profile-reducer'
-import {Textarea} from '../../common/Textarea/Textarea'
-import {Button} from '../../common/Button/Button'
+import {Messages} from '../../common/Message/Messages'
+import AddMessage from '../../Dialogs/AddMessage'
 
 type AddPostPropsType = {
     setCurrentText: (text: string) => void
@@ -13,7 +13,7 @@ type AddPostPropsType = {
     avatar: string | null
 }
 
-function AddPost(props: AddPostPropsType) {
+export const AddPost = (props: AddPostPropsType) => {
 
     const setCurrentTextToState = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         props.setCurrentText(e.currentTarget.value)
@@ -21,7 +21,7 @@ function AddPost(props: AddPostPropsType) {
     const posts = props.messagesData.map((el: PostType) => <Posts key={el.id}
                                                                   post={el.message}
                                                                   likes={el.likes}
-                                                                  avatar={props.avatar} />)
+                                                                  avatar={props.avatar}/>)
     const addPost = () => props.addPost()
     const onEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => e.key === 'Enter' && props.addPost()
 
@@ -29,15 +29,12 @@ function AddPost(props: AddPostPropsType) {
         <div className={s.myPosts}>
             My posts:
         </div>
-        <div className={s.textarea}>
-            <Textarea onChangeValue={setCurrentTextToState}
-                      onEnterPress={onEnter}
-                      value={props.value}
-            />
-            <Button label={'Add'} onClickHandler={addPost} />
-        </div>
-        {posts}
+        <AddMessage addMessage={addPost}
+                    url={props.avatar}
+                    setCurrentValue={setCurrentTextToState}
+                    text={props.value}
+                    onEnter={onEnter}
+        />
+        <Messages message={posts}/>
     </div>
 }
-
-export default AddPost
