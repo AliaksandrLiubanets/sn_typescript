@@ -62,9 +62,19 @@ export const Message: FC<MessageType> = ({message}) => {
 
 
 export const AddMessage: FC = () => {
+    const [message, setMessage] = useState('')
+
+    const onMessageHandler = () => {
+        if(!message) {
+            return
+        }
+        wsChannel.send(message)
+        setMessage('')
+    }
+
     return <div>
-        <textarea></textarea>
-        <button>Submit</button>
+        <textarea value={message} onChange={(e) => setMessage(e.currentTarget.value)}></textarea>
+        <button onClick={onMessageHandler}>Submit</button>
     </div>
 }
 
