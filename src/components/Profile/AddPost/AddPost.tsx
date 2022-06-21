@@ -3,7 +3,7 @@ import Posts from './Posts/Posts'
 import s from '../../Dialogs/TextareaField.module.css'
 import {PostType} from '../../Redux/profile-reducer'
 import {Messages} from '../../common/Message/Messages'
-import AddMessage from '../../Dialogs/AddMessage'
+import {AddMessage} from '../../Dialogs/AddMessage'
 
 type AddPostPropsType = {
     setCurrentText: (text: string) => void

@@ -6,7 +6,7 @@ import {Message} from '../MessageField/Message'
 import React, {ChangeEvent, FC} from 'react'
 import {dialogsSelector} from '../../../selectors/selectors'
 import {Messages} from '../../common/Message/Messages'
-import AddMessage from '../AddMessage'
+import {AddMessage} from '../AddMessage'
 
 export const Dialog: FC = () => {
     const dispatch = useDispatch()

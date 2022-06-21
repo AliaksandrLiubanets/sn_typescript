@@ -14,9 +14,9 @@ type PropsType = {
     padding?: boolean
 }
 
-export function AddMessage(props: PropsType) {
+export const AddMessage = (props: PropsType) => {
 
-    const textarea_style = `${s.textarea} ${props.padding ? s.left__padding : ''}`
+    const textarea_style = `${s.textarea} ${props.padding && s.left__padding}`
 
     return <div className={textarea_style}>
         <div className={s.textarea__ava}>
@@ -26,5 +26,3 @@ export function AddMessage(props: PropsType) {
         <Button label={'Send'} onClickHandler={props.addMessage}/>
     </div>
 }
-
-export default AddMessage
