@@ -17,6 +17,7 @@ const ChatPage: FC = () => {
 const Chat: FC = () => {
 
     const dispatch = useDispatch()
+    const {status} = useSelector(chatSelector)
 
     useEffect(() => {
         dispatch(startMessagesListening())
@@ -26,8 +27,13 @@ const Chat: FC = () => {
     }, [])
 
     return <div>
-        <Messages />
-        <AddMessage />
+        {status === 'error' ? <div>Some error occured. Please refresh page</div> :
+            <>
+                <Messages/>
+                <AddMessage/>
+            </>
+        }
+
     </div>
 }
 
