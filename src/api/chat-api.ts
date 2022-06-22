@@ -21,6 +21,15 @@ function createChannel() {
 }
 
 export const chatAPI = {
+    start() {
+        createChannel()
+    },
+    stop() {
+        subscribers = []
+        ws?.removeEventListener('close', closeHandler)
+        ws?.removeEventListener('message', messageHandler)
+        ws?.close()
+    },
     subscribe(callback: SubscriberType) {
         subscribers.push(callback)
         return () => {

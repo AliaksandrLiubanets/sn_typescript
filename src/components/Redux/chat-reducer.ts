@@ -40,6 +40,7 @@ let _newMessageHandler: ((messages: ChatMessageType[]) => void) | null = null
 }
 
 export const startMessagesListening = (): AppThunk => async (dispatch) => {
+    chatAPI.start()
     chatAPI.subscribe(newMessageHandlerCreator(dispatch))
 }
 export const stopMessagesListening = (): AppThunk => async (dispatch) => {
