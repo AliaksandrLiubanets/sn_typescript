@@ -1,6 +1,7 @@
 import {follow, usersActions} from './users-reducer'
-import {ResponseType, usersAPI} from '../../api/api'
 import {appActions} from './app-reducer'
+import {usersAPI} from '../../api/users-api'
+import {ResponseType} from '../../api/auth-api'
 
 jest.mock('../../api/api')
 const userAPIMock = usersAPI as jest.Mocked<typeof usersAPI>
@@ -28,5 +29,4 @@ test('follow thunk success', async () => {
     expect(dispatchMock).toHaveBeenNthCalledWith(2, usersActions.setFollowingInProgress(true, 1))
     // expect(dispatchMock).toHaveBeenNthCalledWith(3, usersActions.setFollowingInProgress(true, 1))
     // expect(dispatchMock).toHaveBeenNthCalledWith(3, usersActions.follow( 1))
-
 })

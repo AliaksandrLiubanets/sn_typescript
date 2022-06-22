@@ -1,10 +1,10 @@
 import {v1} from 'uuid'
-import {PhotosType, profileAPI} from '../../api/api'
 import {AppThunk, InferActionTypes} from './redux-store'
 import {appActions} from './app-reducer'
 import {handleServerNetworkError} from '../../utils/handleError'
 import {authActions} from './auth-reducer'
 import {setDialogsAvatar} from './dialogs-reducer'
+import {PhotosType, profileAPI} from '../../api/profile-api'
 
 export const ADD_POST = 'sn-typescript/ProfilePage/ADD-POST'
 export const DELETE_POST = 'sn-typescript/ProfilePage/DELETE-POST'

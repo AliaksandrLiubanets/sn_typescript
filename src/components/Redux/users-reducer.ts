@@ -1,10 +1,10 @@
-import {ResponseFollowUnfollowUser, usersAPI} from '../../api/api'
 import {AppThunk, InferActionTypes} from './redux-store'
 import {Dispatch} from 'redux'
 import {updateUserInStateArray} from '../../utils/object-helpers'
 import {AxiosResponse} from 'axios'
 import {appActions} from './app-reducer'
 import {handleServerNetworkError} from '../../utils/handleError'
+import {usersAPI} from '../../api/users-api'
 
 const FOLLOW_USER = 'sn-typescript/UsersPage/FOLLOW_USER'
 const UNFOLLOW_USER = 'sn-typescript/UsersPage/UNFOLLOW_USER'
@@ -169,6 +169,12 @@ export type UserType = {
         city: string
         country: string
     }
+}
+export type ResponseFollowUnfollowUser = {
+    data: {}
+    resultCode: number
+    fieldsErrors: string[]
+    messages: null | Array<string>
 }
 
 export type UsersStateType = typeof initialState

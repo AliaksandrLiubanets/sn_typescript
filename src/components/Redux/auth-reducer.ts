@@ -1,10 +1,12 @@
-import {authAPI, profileAPI, securityAPI} from '../../api/api'
 import {AppThunk, InferActionTypes} from './redux-store'
 import {appActions} from './app-reducer'
 import {profileActions} from './profile-reducer'
 import axios from 'axios'
 import {handleServerNetworkError} from '../../utils/handleError'
 import {dialogsActions} from './dialogs-reducer'
+import {authAPI} from '../../api/auth-api'
+import {profileAPI} from '../../api/profile-api'
+import {securityAPI} from '../../api/security-api'
 
 export const SET_AUTH_DATA = 'sn-typescript/Authorize/SET-AUTH-DATA'
 export const SET_IS_AUTH = 'sn-typescript/Authorize/SET-IS-AUTH'
