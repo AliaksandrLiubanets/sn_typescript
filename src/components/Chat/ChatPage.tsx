@@ -64,9 +64,9 @@ export const Message: FC<MessageType> = ({message}) => {
 
 export const AddMessage: FC = () => {
     const [message, setMessage] = useState('')
-    const [readyStatus, setReadyStatus] = useState<'pending' | 'ready'>('pending')
 
     const dispatch = useDispatch()
+    const {status} = useSelector(chatSelector)
 
     const sendMessageHandler = () => {
         if (!message) {
@@ -78,7 +78,7 @@ export const AddMessage: FC = () => {
 
     return <div>
         <textarea value={message} onChange={(e) => setMessage(e.currentTarget.value)}></textarea>
-        <button disabled={false} onClick={sendMessageHandler}>Submit</button>
+        <button disabled={status !== 'ready'} onClick={sendMessageHandler}>Submit</button>
     </div>
 }
 

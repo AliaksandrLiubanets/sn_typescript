@@ -4,15 +4,19 @@ import {Dispatch} from 'redux'
 
 
 export const MESSAGES_RECEIVED = 'sn-typescript/Chat/MESSAGES_RECEIVED'
+export const STATUS_CHANGED = 'sn-typescript/Chat/STATUS_CHANGED'
 
 const initialState = {
-    messages: [] as ChatMessageType[]
+    messages: [] as ChatMessageType[],
+    status: 'pending' as StatusType
 }
 
 const chatReducer = (state: StateType = initialState, action: ChatActionsType): StateType => {
     switch (action.type) {
         case MESSAGES_RECEIVED:
             return {...state, messages: [...state.messages, ...action.payload.messages]}
+        case STATUS_CHANGED:
+            return {...state, status: action.payload.status}
         default:
             return state
     }
@@ -23,6 +27,7 @@ export default chatReducer
 // actions:
 export const chatActions = {
     messagesReceived: (messages: ChatMessageType[]) => ({type: MESSAGES_RECEIVED, payload: {messages}} as const),
+    statusChanged: (status: StatusType) => ({type: STATUS_CHANGED, payload: {status}} as const),
 }
 
 // thunks:
@@ -51,7 +56,7 @@ export const sendMessage = (message: string): AppThunk => async () => {
 }
 
 // types:
-
+type StatusType = 'pending' | 'ready'
 type StateType = typeof initialState
 export type ChatActionsType = InferActionTypes<typeof chatActions>
 
