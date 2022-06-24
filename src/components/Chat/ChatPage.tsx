@@ -3,6 +3,7 @@ import {ChatMessageAPIType} from '../../api/chat-api'
 import {useDispatch, useSelector} from 'react-redux'
 import {sendMessage, startMessagesListening, stopMessagesListening} from '../Redux/chat-reducer'
 import {chatSelector} from '../../selectors/selectors'
+import p from '../Profile/Profile.module.css'
 
 const ChatPage: FC = () => {
     return <div>
@@ -52,9 +53,10 @@ export const Messages: FC = () => {
         if(isAutoScroll) {
             messagesAnchorRef.current?.scrollIntoView({behavior: 'smooth'})
         }
-    }, [messages])
+    }, [messages, isAutoScroll])
 
-    return <div style={{'height': '400px', 'overflowY': 'auto'}} onScroll={scrollHandler}>
+    return <div style={{'height': '400px', 'overflowY': 'auto'}}
+                className={p.page_block} onScroll={scrollHandler}>
         {messages.map((m) => <Message message={m} key={m.id}/>)}
         <div ref={messagesAnchorRef}></div>
     </div>
