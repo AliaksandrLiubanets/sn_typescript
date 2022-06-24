@@ -97,7 +97,7 @@ export const AddMessage: FC = () => {
         setMessage('')
     }
 
-    return <div>
+    return <div className={p.page_block}>
         <textarea value={message} onChange={(e) => setMessage(e.currentTarget.value)}></textarea>
         <button disabled={status !== 'ready'} onClick={sendMessageHandler}>Submit</button>
     </div>
