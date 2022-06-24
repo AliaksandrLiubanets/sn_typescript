@@ -1,6 +1,7 @@
 import {AppThunk, InferActionTypes} from './redux-store'
-import {chatAPI, ChatMessageType, StatusType} from '../../api/chat-api'
+import {chatAPI, ChatMessageAPIType, StatusType} from '../../api/chat-api'
 import {Dispatch} from 'redux'
+import {v1} from 'uuid'
 
 
 export const MESSAGES_RECEIVED = 'sn-typescript/Chat/MESSAGES_RECEIVED'
@@ -14,7 +15,10 @@ const initialState = {
 const chatReducer = (state: StateType = initialState, action: ChatActionsType): StateType => {
     switch (action.type) {
         case MESSAGES_RECEIVED:
-            return {...state, messages: [...state.messages, ...action.payload.messages]}
+            return {...state, messages: [...state.messages, ...action.payload.messages]
+                    .map(m => ({...m, id: v1()}) )
+                    .filter((m, index, array) => index >= array.length - 10) // leave only last 10 messages in chat
+            }
         case STATUS_CHANGED:
             return {...state, status: action.payload.status}
         default:
@@ -26,13 +30,13 @@ export default chatReducer
 
 // actions:
 export const chatActions = {
-    messagesReceived: (messages: ChatMessageType[]) => ({type: MESSAGES_RECEIVED, payload: {messages}} as const),
+    messagesReceived: (messages: ChatMessageAPIType[]) => ({type: MESSAGES_RECEIVED, payload: {messages}} as const),
     statusChanged: (status: StatusType) => ({type: STATUS_CHANGED, payload: {status}} as const),
 }
 
 // thunks:
 
-let _newMessageHandler: ((messages: ChatMessageType[]) => void) | null = null
+let _newMessageHandler: ((messages: ChatMessageAPIType[]) => void) | null = null
  const newMessageHandlerCreator = (dispatch: Dispatch) => {
     if(_newMessageHandler === null) {
         _newMessageHandler = (messages) => {
@@ -68,6 +72,7 @@ export const sendMessage = (message: string): AppThunk => async () => {
 }
 
 // types:
+type ChatMessageType = ChatMessageAPIType & {id: string}
 
 type StateType = typeof initialState
 export type ChatActionsType = InferActionTypes<typeof chatActions>
