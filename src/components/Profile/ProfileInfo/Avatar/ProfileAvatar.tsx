@@ -10,7 +10,7 @@ type AvatarProps = {
     isLoading: boolean
 }
 
-export const Avatar = React.memo(({
+export const ProfileAvatar = React.memo(({
                                       ava,
                                       uploadPhoto,
                                       isOwner,

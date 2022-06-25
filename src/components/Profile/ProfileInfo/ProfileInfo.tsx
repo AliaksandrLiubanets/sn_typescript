@@ -26,9 +26,8 @@ export const ProfileInfo = React.memo(({
                                        }: ProfileInfoProps) => {
 
     const dispatch = useDispatch()
-    const {textareaCurrentValue, messagesData } = useSelector(profileSelector)
-    const setCurrentText = (text: string) => dispatch(profileActions.addCurrentValue(text))
-    const addMessage = () => dispatch(profileActions.addPost())
+    const {messagesData } = useSelector(profileSelector)
+    const addMessage = (message: string) => dispatch(profileActions.addPost(message))
 
 
     if (isLoading) {
@@ -46,10 +45,9 @@ export const ProfileInfo = React.memo(({
                 <Contacts profile={profile} isOwner={isOwner}/>
             </div>
             <div className={p.page_block}>
-                <AddPost setCurrentText={setCurrentText}
+                <AddPost
                          messagesData={messagesData}
                          addPost={addMessage}
-                         value={textareaCurrentValue}
                          avatar={profile ? profile.photos.small : ''}
                 />
             </div>

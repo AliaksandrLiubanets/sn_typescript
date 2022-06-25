@@ -2,7 +2,7 @@ import React, {FC} from 'react'
 import s from './Profile.module.css'
 import {ProfileType} from '../Redux/profile-reducer'
 import {ProfileInfo} from './ProfileInfo/ProfileInfo'
-import {Avatar} from './ProfileInfo/Avatar/Avatar'
+import {ProfileAvatar} from './ProfileInfo/Avatar/ProfileAvatar'
 
 type ProfileProps = {
     profile: ProfileType | null
@@ -16,10 +16,10 @@ type ProfileProps = {
 export const Profile: FC<ProfileProps> = (props) => {
     return <div className={s.profile}>
         <div className={s.page_block}>
-            <Avatar ava={props.profile && props.profile.photos.small}
-                    uploadPhoto={props.uploadPhoto}
-                    isOwner={props.isOwner}
-                    isLoading={props.isLoading}
+            <ProfileAvatar ava={props.profile && props.profile.photos.small}
+                           uploadPhoto={props.uploadPhoto}
+                           isOwner={props.isOwner}
+                           isLoading={props.isLoading}
             />
         </div>
         <ProfileInfo {...props}/>
