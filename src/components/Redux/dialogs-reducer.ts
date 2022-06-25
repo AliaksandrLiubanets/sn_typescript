@@ -14,9 +14,7 @@ const DELETE_POST_DIALOG = 'sn-typescript/DialogsPage/DELETE-POST-DIALOG'
 const SET_CURRENT_VALUE_DIALOG = 'sn-typescript/DialogsPage/ADD-CURRENT-VALUE-DIALOG'
 const SET_OWNER_AVATAR = 'sn-typescript/DialogsPage/SET-OWNER-AVATAR'
 
-
 const initialState: DialogsPageType = {
-    textareaCurrentValue: '',
     messages: {
         dimych: [
             {id: v1(), text: 'Hello!', author: 'Dimych', url: ava_dimych},
@@ -81,23 +79,20 @@ export const dialogsReducer = (state = initialState, action: DialogsActionsType)
             let newPost: MessageType
             newPost = {
                 id: v1(),
-                text: state.textareaCurrentValue.trim(),
+                text: action.text.trim(),
                 author: 'Me',
                 url: state.ownAvatar as string
             }
             if (newPost.text) {
                 return {
                     ...state,
-                    textareaCurrentValue: '',
                     messages: {
                         ...state.messages,
-                        [action.name.toLowerCase()]: [...state.messages[action.name.toLowerCase()], newPost]
+                        [action.name ? action.name.toLowerCase() : '']: [...state.messages[action.name ? action.name.toLowerCase() : ''], newPost]
                     }
                 }
             }
             return state
-        case SET_CURRENT_VALUE_DIALOG:
-            return {...state, textareaCurrentValue: action.newText}
         case SET_OWNER_AVATAR:
             let valuesArr: Array<MessageType[]> = Object.values(state.messages)
             valuesArr.forEach((arr: MessageType[]) => arr.forEach((m: MessageType) => {
@@ -118,12 +113,12 @@ export default dialogsReducer
 
 // actions:
 export const dialogsActions = {
-    addPostDialog: (name: string): AddPostDialogActionType => ({type: ADD_POST_DIALOG, name}),
-    setCurrentValueDialog: (text: string): AddCurrentValueDialogActionType => ({
+    addDialogMessage: (text: string, name?: string): AddDialogMessageAT => ({type: ADD_POST_DIALOG, text, name}),
+    setCurrentValueDialog: (text: string): AddCurrentValueDialogAT => ({
         type: SET_CURRENT_VALUE_DIALOG,
         newText: text
     }),
-    setOwnerAvatar: (ava: string): setOwnerAvatarActionType => ({type: SET_OWNER_AVATAR, ava})
+    setOwnerAvatar: (ava: string): setOwnerAvatarAT => ({type: SET_OWNER_AVATAR, ava})
 }
 
 export const setDialogsAvatar = (): AppThunk => async (dispatch, getState) => {
@@ -132,15 +127,16 @@ export const setDialogsAvatar = (): AppThunk => async (dispatch, getState) => {
 }
 
 // types:
-export type setOwnerAvatarActionType = {
+export type setOwnerAvatarAT = {
     type: typeof SET_OWNER_AVATAR
     ava: string
 }
-export type AddPostDialogActionType = {
+export type AddDialogMessageAT = {
     type: typeof ADD_POST_DIALOG
-    name: string
+    name?: string
+    text: string
 }
-export type AddCurrentValueDialogActionType = {
+export type AddCurrentValueDialogAT = {
     type: typeof SET_CURRENT_VALUE_DIALOG
     newText: string
 }
@@ -164,7 +160,6 @@ export type DialogsPageMessagesType = {
     [key: string]: Array<MessageType>
 }
 export type DialogsPageType = {
-    textareaCurrentValue: string
     messages: DialogsPageMessagesType
     dialogs: Array<DialogType>
     ownAvatar: string | null
