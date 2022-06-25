@@ -27,11 +27,11 @@ beforeEach(() => {
 
 test('Add post', () => {
 
-    const action = profileActions.addPost()
+    const action = profileActions.addPost('hey')
     const result = profileReducer(state, action)
 
     expect(result.messagesData.length).toBe(4)
-    expect(result.messagesData[3].message).toBe('message')
+    expect(result.messagesData[0].message).toBe('hey')
 })
 
 test('Add current value to state', () => {
