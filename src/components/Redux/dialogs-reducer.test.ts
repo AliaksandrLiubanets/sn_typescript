@@ -66,7 +66,7 @@ test('Add Dialog post', () => {
 
     const newState: DialogsPageType = {...state, textareaCurrentValue: 'Hello!'}
 
-    const action = dialogsActions.addPostDialog(dimychDialogName)
+    const action = dialogsActions.addDialogMessage(dimychDialogName)
     const result = dialogsReducer(newState, action)
 
     expect(result.messages['Dimych'.toLowerCase()].length).toBe(4)
