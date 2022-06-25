@@ -6,24 +6,19 @@ import {Messages} from '../../common/Message/Messages'
 import {AddMessage} from '../../Dialogs/AddMessage'
 
 type AddPostPropsType = {
-    setCurrentText: (text: string) => void
     messagesData: Array<PostType>
-    addPost: () => void
-    value: string
+    addPost: (message: string) => void
     avatar: string | null
 }
 
 export const AddPost = (props: AddPostPropsType) => {
 
-    const setCurrentTextToState = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        props.setCurrentText(e.currentTarget.value)
-    }
     const posts = props.messagesData.map((el: PostType) => <Posts key={el.id}
                                                                   post={el.message}
                                                                   likes={el.likes}
                                                                   avatar={props.avatar}/>)
-    const addPost = () => props.addPost()
-    const onEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => e.key === 'Enter' && props.addPost()
+    const addPost = (message: string) => props.addPost(message)
+    // const onEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => e.key === 'Enter' && props.addPost()
 
     return <div className={s.addPost}>
         <div className={s.myPosts}>
@@ -31,9 +26,7 @@ export const AddPost = (props: AddPostPropsType) => {
         </div>
         <AddMessage addMessage={addPost}
                     url={props.avatar}
-                    setCurrentValue={setCurrentTextToState}
-                    text={props.value}
-                    onEnter={onEnter}
+                    // onEnter={onEnter}
         />
         <Messages message={posts}/>
     </div>
