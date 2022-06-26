@@ -2,12 +2,13 @@ import React, {FC, useEffect, useRef, useState} from 'react'
 import {ChatMessageAPIType} from '../../api/chat-api'
 import {useDispatch, useSelector} from 'react-redux'
 import {sendMessage, startMessagesListening, stopMessagesListening} from '../Redux/chat-reducer'
-import {chatSelector} from '../../selectors/selectors'
+import {authSelector, chatSelector} from '../../selectors/selectors'
 import p from '../Profile/Profile.module.css'
 import s from '../common/Message/Message.module.css'
 import {MessageAuthor} from '../common/Message/MessageAuthor'
 import {MessageText} from '../common/Message/MessageText'
 import {MessageAvatar} from '../common/Message/MessageAvatar'
+import {AddMessage} from '../Dialogs/AddMessage'
 
 const ChatPage: FC = () => {
     return <div>
@@ -19,6 +20,11 @@ const Chat: FC = () => {
 
     const dispatch = useDispatch()
     const {status} = useSelector(chatSelector)
+    const {ownAvatar} = useSelector(authSelector)
+
+    const sendMessageHandler = (message: string) => {
+        dispatch(sendMessage(message))
+    }
 
     useEffect(() => {
         dispatch(startMessagesListening())
@@ -29,10 +35,14 @@ const Chat: FC = () => {
 
     return <div>
         {status === 'error' ? <div>Some error occured. Please refresh page</div> :
-            <>
+            <div className={p.page_block}>
                 <Messages/>
-                <AddMessage/>
-            </>
+                <AddMessage addMessage={sendMessageHandler}
+                            url={ownAvatar}
+                            disabled={status !== 'ready'}
+                            padding={true}
+                />
+            </div>
         }
     </div>
 }
@@ -60,7 +70,7 @@ export const Messages: FC = () => {
     }, [messages, isAutoScroll])
 
     return <div style={{'height': '400px', 'overflowY': 'auto'}}
-                className={p.page_block} onScroll={scrollHandler}>
+                onScroll={scrollHandler}>
         {messages.map((m) => <Message message={m} key={m.id}/>)}
         <div ref={messagesAnchorRef}></div>
     </div>
@@ -69,12 +79,6 @@ export const Messages: FC = () => {
 type MessageType = { message: ChatMessageAPIType }
 
 export const Message: FC<MessageType> = React.memo(({message}) => {
-    // return <div>
-    //     <img src={message.photo} style={{width: '30px'}} alt={'avatar'}/><b>{message.userName}</b>
-    //     <br/>
-    //     {message.message}
-    //     <hr/>
-    // </div>
 
     return <div className={s.message_block}>
         <div className={s.ava_name_message}>
@@ -85,26 +89,5 @@ export const Message: FC<MessageType> = React.memo(({message}) => {
         <MessageText text={message.message}/>
     </div>
 })
-
-
-export const AddMessage: FC = () => {
-    const [message, setMessage] = useState('')
-
-    const dispatch = useDispatch()
-    const {status} = useSelector(chatSelector)
-
-    const sendMessageHandler = () => {
-        if (!message) {
-            return
-        }
-        dispatch(sendMessage(message))
-        setMessage('')
-    }
-
-    return <div className={p.page_block}>
-        <textarea value={message} onChange={(e) => setMessage(e.currentTarget.value)}></textarea>
-        <button disabled={status !== 'ready'} onClick={sendMessageHandler}>Submit</button>
-    </div>
-}
 
 export default ChatPage
