@@ -71,12 +71,5 @@ test('Add Dialog post', () => {
 
 })
 
-test('Add current value in Dialogs', () => {
-
-    const action = dialogsActions.setCurrentValueDialog('Yo')
-    const result = dialogsReducer(state, action)
-
-    expect(result.textareaCurrentValue).toBe("Yo")
-})
 
 
