@@ -1,7 +1,11 @@
 {
   "files": {
-    "main.css": "/sn_typescript/static/css/main.8525632b.css",
-    "main.js": "/sn_typescript/static/js/main.460778f4.js",
+    "main.css": "/sn_typescript/static/css/main.44f59c80.css",
+    "main.js": "/sn_typescript/static/js/main.360d7245.js",
+    "static/js/432.d9f5dce2.chunk.js": "/sn_typescript/static/js/432.d9f5dce2.chunk.js",
+    "static/css/587.b7dbeb1d.chunk.css": "/sn_typescript/static/css/587.b7dbeb1d.chunk.css",
+    "static/js/587.9f95fb6a.chunk.js": "/sn_typescript/static/js/587.9f95fb6a.chunk.js",
+    "static/js/473.61951a54.chunk.js": "/sn_typescript/static/js/473.61951a54.chunk.js",
     "static/media/ava_olga.jpg": "/sn_typescript/static/media/ava_olga.18ae0ecd92e180a9d3d0.jpg",
     "static/media/ava_lenin.png": "/sn_typescript/static/media/ava_lenin.4adaa40e86ea9adfbc04.png",
     "static/media/Bars-1s-200px.gif": "/sn_typescript/static/media/Bars-1s-200px.4b9a68359a39e493c416.gif",
@@ -13,11 +17,15 @@
     "static/media/ava_ostrovskiy.jpg": "/sn_typescript/static/media/ava_ostrovskiy.6a4d68d30158dd58a528.jpg",
     "static/media/like.png": "/sn_typescript/static/media/like.a6670bd994ff1b33f5d5.png",
     "index.html": "/sn_typescript/index.html",
-    "main.8525632b.css.map": "/sn_typescript/static/css/main.8525632b.css.map",
-    "main.460778f4.js.map": "/sn_typescript/static/js/main.460778f4.js.map"
+    "main.44f59c80.css.map": "/sn_typescript/static/css/main.44f59c80.css.map",
+    "main.360d7245.js.map": "/sn_typescript/static/js/main.360d7245.js.map",
+    "432.d9f5dce2.chunk.js.map": "/sn_typescript/static/js/432.d9f5dce2.chunk.js.map",
+    "587.b7dbeb1d.chunk.css.map": "/sn_typescript/static/css/587.b7dbeb1d.chunk.css.map",
+    "587.9f95fb6a.chunk.js.map": "/sn_typescript/static/js/587.9f95fb6a.chunk.js.map",
+    "473.61951a54.chunk.js.map": "/sn_typescript/static/js/473.61951a54.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.8525632b.css",
-    "static/js/main.460778f4.js"
+    "static/css/main.44f59c80.css",
+    "static/js/main.360d7245.js"
   ]
 }
