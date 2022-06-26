@@ -17,7 +17,6 @@ const postId_3 = v1()
 beforeEach(() => {
     dimychDialogName = 'Dimych'
     state = {
-        textareaCurrentValue: '',
         messages: {
             dimych: [
                 {id: postId_1, text: 'Hello!', author: 'Dimych', url: ava_dimych},
@@ -64,14 +63,11 @@ beforeEach(() => {
 
 test('Add Dialog post', () => {
 
-    const newState: DialogsPageType = {...state, textareaCurrentValue: 'Hello!'}
-
-    const action = dialogsActions.addDialogMessage(dimychDialogName)
-    const result = dialogsReducer(newState, action)
+    const action = dialogsActions.addDialogMessage('Hello!', dimychDialogName)
+    const result = dialogsReducer(state, action)
 
     expect(result.messages['Dimych'.toLowerCase()].length).toBe(4)
     expect(result.messages['Dimych'.toLowerCase()][3].text).toBe("Hello!")
-    expect(result.textareaCurrentValue).toBe("")
 
 })
 
