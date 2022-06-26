@@ -5,8 +5,8 @@
     column-gap: 13px;
 }
 
-.left__padding {
-    padding-left: 20px
+.padding {
+    padding: 20px
 }
 
 .textarea__textarea {
@@ -19,7 +19,7 @@
     font-size: 16px;
 }
 
-.textarea__ava img {
+.message_post_ava img {
     width: 30px;
     border-radius: 50%;
 }
