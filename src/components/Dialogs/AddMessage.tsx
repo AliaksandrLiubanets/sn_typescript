@@ -16,7 +16,7 @@ type PropsType = {
 export const AddMessage = (props: PropsType) => {
     const [message, setMessage] = useState('')
 
-    const textarea_style = `${s.textarea} ${props.padding && s.left__padding}`
+    const textarea_style = `${s.textarea} ${props.padding && s.padding}`
     const disabaled = props.disabled ? props.disabled : false
 
     return <div className={textarea_style}>
