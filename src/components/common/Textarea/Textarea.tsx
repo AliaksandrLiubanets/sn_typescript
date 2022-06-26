@@ -1,15 +1,15 @@
-import React, {FC} from 'react'
+import React, {ChangeEvent, FC} from 'react'
 import s from './Textarea.module.css'
 
 type TextareaProps = Partial<HTMLTextAreaElement> & {
-    onChangeValue?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+    setMessage: (value: string) => void
     onEnterPress?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void
 
 }
 
-export const Textarea: FC<TextareaProps> = ({onChangeValue, ...props}) => {
+export const Textarea: FC<TextareaProps> = ({setMessage, ...props}) => {
 
-
+const onChangeValue = (e: ChangeEvent<HTMLTextAreaElement>) => setMessage(e.currentTarget.value)
 
     return  <div>
                 <textarea className={s.textarea__textarea}
