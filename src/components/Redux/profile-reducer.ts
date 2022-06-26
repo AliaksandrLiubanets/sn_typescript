@@ -14,7 +14,6 @@ export const SET_STATUS = 'sn-typescript/ProfilePage/SET-STATUS'
 export const UPDATE_PHOTO = 'sn-typescript/ProfilePage/UPDATE-PHOTO'
 export const UPDATE_PROFILE = 'sn-typescript/ProfilePage/UPDATE-PROFILE'
 
-
 export const initialState: ProfilePageType = {
     messagesData: [
         {id: v1(), message: 'Hello!', likes: 3},
@@ -23,7 +22,6 @@ export const initialState: ProfilePageType = {
         {id: v1(), message: "Let's play volleyball at 7pm.", likes: 4},
         {id: v1(), message: 'Who likes React?', likes: 7},
     ],
-    textareaCurrentValue: '',
     profile: null,
     status: null
 }
@@ -34,13 +32,12 @@ export const profileReducer = (state: StateType = initialState, action: ProfileA
             let newPost: PostType
             newPost = {
                 id: v1(),
-                message: state.textareaCurrentValue.trim(),
+                message: action.payload.message.trim(),
                 likes: 7
             }
             if (newPost.message) {
                 return {
                     ...state,
-                    textareaCurrentValue: '',
                     messagesData: [newPost, ...state.messagesData]
                 }
             }
@@ -52,7 +49,6 @@ export const profileReducer = (state: StateType = initialState, action: ProfileA
                 messagesData: state.messagesData.filter(post => post.id !== action.postId)
             }
 
-        case ADD_CURRENT_VALUE:
         case SET_USER_PROFILE:
         case SET_STATUS:
             return {...state, ...action.payload}
@@ -80,10 +76,8 @@ export default profileReducer
 
 // actions:
 export const profileActions = {
-    addPost: () => ({type: ADD_POST} as const),
+    addPost: (message: string) => ({type: ADD_POST, payload: {message}} as const),
     deletePost: (postId: string) => ({type: DELETE_POST, postId} as const),
-    addCurrentValue: (textareaCurrentValue: string) =>
-        ({type: ADD_CURRENT_VALUE, payload: {textareaCurrentValue}} as const),
     setUserProfile: (profile: ProfileType | null) => ({type: SET_USER_PROFILE, payload: {profile}} as const),
     setStatusProfile: (status: string) => ({type: SET_STATUS, payload: {status}} as const),
     updateProfilePhoto: (photo: PhotosType) => ({type: UPDATE_PHOTO, photo} as const),
@@ -202,7 +196,6 @@ export type ProfileType = {
     }
 }
 export type ProfilePageType = {
-    textareaCurrentValue: string
     messagesData: Array<PostType>
     profile: ProfileType | null
     status: string | null
