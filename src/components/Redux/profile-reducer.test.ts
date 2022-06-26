@@ -1,5 +1,4 @@
 import profileReducer, {
-    ADD_CURRENT_VALUE,
     ContactsType,
     profileActions,
     ProfilePageType,
@@ -14,7 +13,6 @@ const postId_3 = v1()
 
 beforeEach(() => {
     state = {
-        textareaCurrentValue: 'message',
         messagesData: [
             {id: postId_1, message: 'hello!', likes: 3},
             {id: postId_2, message: 'Hi!', likes: 5},
@@ -32,16 +30,6 @@ test('Add post', () => {
 
     expect(result.messagesData.length).toBe(4)
     expect(result.messagesData[0].message).toBe('hey')
-})
-
-test('Add current value to state', () => {
-
-    const action = profileActions.addCurrentValue('IT-kamasutra')
-    const result = profileReducer(state, action)
-    const result2 = profileReducer(state, {type: ADD_CURRENT_VALUE, payload: {textareaCurrentValue: ''}})
-
-    expect(result.textareaCurrentValue).toBe("IT-kamasutra")
-    expect(result2.textareaCurrentValue).toBe("")
 })
 
 test('Set user profile to state', () => {
