@@ -1,6 +1,6 @@
 import {Button} from '../../common/Button/Button'
 import s from './SearchUser.module.css'
-import React, {ChangeEvent, FC, useEffect, useState} from 'react'
+import React, {FC, useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {SearchType, searchUsers} from '../../Redux/users-reducer'
 import {Select} from '../../common/Select/Select'
@@ -45,12 +45,12 @@ export const SearchUser: FC<PropsType> = ({searchParams}) => {
     }
 
     const search = () => dispatch(searchUsers(1, pageSize, {term, friend}))
-    const onChangeValue = (e: ChangeEvent<HTMLTextAreaElement>) => setTerm(e.currentTarget.value)
+    const setMessage = (value: string) => setTerm(value)
     const onEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => e.key === 'Enter' && search()
 
     return <div className={s.search_block}>
-        <Textarea placeholder={'search user by name'} onChangeValue={onChangeValue} value={term} onEnterPress={onEnter}/>
+        <Textarea placeholder={'search user by name'} setMessage={setMessage} value={term} onEnterPress={onEnter}/>
         <Select options={friendArray} onChangeOption={setFriendValue} value={friendValue}/>
-        <Button label={'Search'} onClickHandler={search}/>
+        <Button label={'Search'} onClickSubmit={search}/>
     </div>
 }
