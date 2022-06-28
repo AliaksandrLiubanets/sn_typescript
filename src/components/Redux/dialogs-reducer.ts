@@ -17,48 +17,48 @@ const SET_OWNER_AVATAR = 'sn-typescript/DialogsPage/SET-OWNER-AVATAR'
 const initialState: DialogsPageType = {
     messages: {
         dimych: [
-            {id: v1(), text: 'Hello!', author: 'Dimych', url: ava_dimych},
-            {id: v1(), text: 'How is your profile on LinkedIn?', author: 'Me', url: ava_me},
-            {id: v1(), text: 'One more request!', author: 'Dimych', url: ava_dimych}
+            {userId: 2, message: 'Hello!', userName: 'Dimych', photo: ava_dimych},
+            {userId: 1, message: 'How is your profile on LinkedIn?', userName: 'Me', photo: ava_me},
+            {userId: 1, message: 'One more request!', userName: 'Dimych', photo: ava_dimych}
         ],
         andrew: [
-            {id: v1(), text: 'Hi, Andrew!', author: 'Me', url: ava_me},
-            {id: v1(), text: 'Hi! Do you have a wife?', author: 'Andrew', url: ava_andrew},
-            {id: v1(), text: 'Yes!', author: 'Me', url: ava_me}
+            {userId: 1, message: 'Hi, Andrew!', userName: 'Me', photo: ava_me},
+            {userId: 3, message: 'Hi! Do you have a wife?', userName: 'Andrew', photo: ava_andrew},
+            {userId: 1, message: 'Yes!', userName: 'Me', photo: ava_me}
         ],
         lenin: [
-            {id: v1(), text: 'Good morning, mr. Lenin!', author: 'Me', url: ava_me},
-            {id: v1(), text: 'Hi proletariy?', author: 'Lenin', url: ava_lenin},
-            {id: v1(), text: 'Do you glad that made october revolution?', author: 'Me', url: ava_me}
+            {userId: 1, message: 'Good morning, mr. Lenin!', userName: 'Me', photo: ava_me},
+            {userId: 4, message: 'Hi proletariy?', userName: 'Lenin', photo: ava_lenin},
+            {userId: 1, message: 'Do you glad that made october revolution?', userName: 'Me', photo: ava_me}
         ],
         pushkin: [
-            {id: v1(), text: 'Hello, my dear friend', author: 'Pushkin', url: ava_pushkin},
-            {id: v1(), text: 'Good evening, Aleksandr Sergeevich!', author: 'Me', url: ava_me},
+            {userId: 5, message: 'Hello, my dear friend', userName: 'Pushkin', photo: ava_pushkin},
+            {userId: 1, message: 'Good evening, Aleksandr Sergeevich!', userName: 'Me', photo: ava_me},
             {
-                id: v1(),
-                text: 'Old man and old woman lived for a long time on the shore of the blue sea... Do you remember this fairy tale? ',
-                author: 'Pushkin',
-                url: ava_pushkin
+                userId: 5,
+                message: 'Old man and old woman lived for a long time on the shore of the blue sea... Do you remember this fairy tale? ',
+                userName: 'Pushkin',
+                photo: ava_pushkin
             }
         ],
         dragunsky: [
-            {id: v1(), text: 'Hi, Sasha!', author: 'Dragunsky', url: ava_dragunsky},
-            {id: v1(), text: 'How is your profile on LinkedIn?', author: 'Me', url: ava_me},
+            {userId: 6, message: 'Hi, Sasha!', userName: 'Dragunsky', photo: ava_dragunsky},
+            {userId: 1, message: 'How is your profile on LinkedIn?', userName: 'Me', photo: ava_me},
             {
-                id: v1(),
-                text: 'What is the most funny story of "Deniskiny rasskazy"?',
-                author: 'Dragunsky',
-                url: ava_dragunsky
+                userId: 6,
+                message: 'What is the most funny story of "Deniskiny rasskazy"?',
+                userName: 'Dragunsky',
+                photo: ava_dragunsky
             }
         ],
         ostrovskiy: [
-            {id: v1(), text: 'What\'s your name!', author: 'Ostrovskiy', url: ava_ostrovsky},
-            {id: v1(), text: 'Aleksander', author: 'Me', url: ava_me},
+            {userId: 7, message: 'What\'s your name!', userName: 'Ostrovskiy', photo: ava_ostrovsky},
+            {userId: 1, message: 'Aleksander', userName: 'Me', photo: ava_me},
             {
-                id: v1(),
-                text: 'So, how do you think? How can steel be hardened?',
-                author: 'Ostrovskiy',
-                url: ava_ostrovsky
+                userId: 7,
+                message: 'So, how do you think? How can steel be hardened?',
+                userName: 'Ostrovskiy',
+                photo: ava_ostrovsky
             }
         ]
     },
@@ -78,12 +78,12 @@ export const dialogsReducer = (state = initialState, action: DialogsActionsType)
         case ADD_POST_DIALOG:
             let newPost: MessageType
             newPost = {
-                id: v1(),
-                text: action.text.trim(),
-                author: 'Me',
-                url: state.ownAvatar as string
+                userId: 9,
+                message: action.text.trim(),
+                userName: 'Me',
+                photo: state.ownAvatar as string
             }
-            if (newPost.text) {
+            if (newPost.message) {
                 return {
                     ...state,
                     messages: {
@@ -96,7 +96,7 @@ export const dialogsReducer = (state = initialState, action: DialogsActionsType)
         case SET_OWNER_AVATAR:
             let valuesArr: Array<MessageType[]> = Object.values(state.messages)
             valuesArr.forEach((arr: MessageType[]) => arr.forEach((m: MessageType) => {
-                    if (m.author === 'Me') m.url = action.ava
+                    if (m.userName === 'Me') m.photo = action.ava
                 }
             ))
             const stateCopy = {...state, ownAvatar: action.ava, messages: {...state.messages}}
@@ -151,10 +151,10 @@ export type DialogType = {
     url: string
 }
 export type MessageType = {
-    id: string
-    text: string
-    author: string
-    url: string
+    userId: number
+    message: string
+    userName: string
+    photo: string
 }
 export type DialogsPageMessagesType = {
     [key: string]: Array<MessageType>
