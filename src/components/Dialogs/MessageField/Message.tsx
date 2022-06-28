@@ -16,7 +16,6 @@ export const Message: FC<MessageType> = React.memo(({message}) => {
             <MessageAvatar url={message.photo}/>
             <MessageAuthor author={message.userName}/>
         </div>
-
         <MessageText text={message.message}/>
     </div>
 })
