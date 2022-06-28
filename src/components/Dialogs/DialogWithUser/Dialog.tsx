@@ -1,12 +1,13 @@
 import s from '../Dialogs.module.css'
 import {useParams} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import {dialogsActions, MessageType} from '../../Redux/dialogs-reducer'
+import {dialogsActions} from '../../Redux/dialogs-reducer'
 import {Message} from '../MessageField/Message'
 import React, {FC} from 'react'
 import {dialogsSelector} from '../../../selectors/selectors'
 import {Messages} from '../../common/Message/Messages'
 import {AddMessage} from '../AddMessage'
+import {ChatMessageAPIType} from '../../../api/chat-api'
 
 export const Dialog: FC = () => {
     const dispatch = useDispatch()
@@ -14,7 +15,7 @@ export const Dialog: FC = () => {
     const {name} = useParams<string>()
     const addDialogPost = (text: string) => dispatch(dialogsActions.addDialogMessage(text, name ? name : ''))
     // const onEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>, text: string) => e.key === 'Enter' && addDialogPost(text)
-    const avaNameMessage = name && messages[name.toLowerCase()].map((m: MessageType) => <Message key={m.id}
+    const avaNameMessage = name && messages[name.toLowerCase()].map((m: ChatMessageAPIType) => <Message key={m.userId}
                                                                                                  message={m}
     />)
 
