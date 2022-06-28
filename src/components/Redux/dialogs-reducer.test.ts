@@ -10,43 +10,55 @@ import dialogsReducer, {dialogsActions, DialogsPageType} from './dialogs-reducer
 
 let state: DialogsPageType
 let dimychDialogName: string
-const postId_1 = v1()
-const postId_2 = v1()
-const postId_3 = v1()
 
 beforeEach(() => {
     dimychDialogName = 'Dimych'
     state = {
         messages: {
             dimych: [
-                {id: postId_1, text: 'Hello!', author: 'Dimych', url: ava_dimych},
-                {id: postId_2, text: 'How is your profile on LinkedIn?', author: 'Me', url: ava_me},
-                {id: postId_3, text: 'One more request!', author: 'Dimych', url: ava_dimych}
+                {userId: 2, message: 'Hello!', userName: 'Dimych', photo: ava_dimych},
+                {userId: 1, message: 'How is your profile on LinkedIn?', userName: 'Me', photo: ava_me},
+                {userId: 1, message: 'One more request!', userName: 'Dimych', photo: ava_dimych}
             ],
             andrew: [
-                {id: v1(), text: 'Hi, Andrew!', author: 'Me', url: ava_me},
-                {id: v1(), text: 'Hi! Do you have a wife?', author: 'Andrew', url: ava_andrew},
-                {id: v1(), text: 'Yes!', author: 'Me', url: ava_me}
+                {userId: 1, message: 'Hi, Andrew!', userName: 'Me', photo: ava_me},
+                {userId: 3, message: 'Hi! Do you have a wife?', userName: 'Andrew', photo: ava_andrew},
+                {userId: 1, message: 'Yes!', userName: 'Me', photo: ava_me}
             ],
             lenin: [
-                {id: v1(), text: 'Good morning, mr. Lenin!', author: 'Me', url: ava_me},
-                {id: v1(), text: 'Hi proletariy?', author: 'Lenin', url: ava_lenin},
-                {id: v1(), text: 'Do you glad that made october revolution?', author: 'Me', url: ava_me}
+                {userId: 1, message: 'Good morning, mr. Lenin!', userName: 'Me', photo: ava_me},
+                {userId: 4, message: 'Hi proletariy?', userName: 'Lenin', photo: ava_lenin},
+                {userId: 1, message: 'Do you glad that made october revolution?', userName: 'Me', photo: ava_me}
             ],
             pushkin: [
-                {id: v1(), text: 'Hello, my dear friend', author: 'Pushkin', url: ava_pushkin},
-                {id: v1(), text: 'Good evening, Aleksandr Sergeevich!', author: 'Me', url: ava_me},
-                {id: v1(), text: 'Old man and old woman lived for a long time on the shore of the blue sea... Do you remember this fairy tale? ', author: 'Pushkin', url: ava_pushkin}
+                {userId: 5, message: 'Hello, my dear friend', userName: 'Pushkin', photo: ava_pushkin},
+                {userId: 1, message: 'Good evening, Aleksandr Sergeevich!', userName: 'Me', photo: ava_me},
+                {
+                    userId: 5,
+                    message: 'Old man and old woman lived for a long time on the shore of the blue sea... Do you remember this fairy tale? ',
+                    userName: 'Pushkin',
+                    photo: ava_pushkin
+                }
             ],
             dragunsky: [
-                {id: v1(), text: 'Hi, Sasha!', author: 'Dragunsky', url: ava_dragunsky},
-                {id: v1(), text: 'How is your profile on LinkedIn?', author: 'Me', url: ava_me},
-                {id: v1(), text: 'What is the most funny story of "Deniskiny rasskazy"?', author: 'Dragunsky', url: ava_dragunsky}
+                {userId: 6, message: 'Hi, Sasha!', userName: 'Dragunsky', photo: ava_dragunsky},
+                {userId: 1, message: 'How is your profile on LinkedIn?', userName: 'Me', photo: ava_me},
+                {
+                    userId: 6,
+                    message: 'What is the most funny story of "Deniskiny rasskazy"?',
+                    userName: 'Dragunsky',
+                    photo: ava_dragunsky
+                }
             ],
             ostrovskiy: [
-                {id: v1(), text: 'What\'s your dimychDialogName!', author: 'Ostrovskiy', url: ava_ostrovsky},
-                {id: v1(), text: 'Aleksander', author: 'Me', url: ava_me},
-                {id: v1(), text: 'So, how do you think? How can steel be hardened?', author: 'Ostrovskiy', url: ava_ostrovsky}
+                {userId: 7, message: 'What\'s your name!', userName: 'Ostrovskiy', photo: ava_ostrovsky},
+                {userId: 1, message: 'Aleksander', userName: 'Me', photo: ava_me},
+                {
+                    userId: 7,
+                    message: 'So, how do you think? How can steel be hardened?',
+                    userName: 'Ostrovskiy',
+                    photo: ava_ostrovsky
+                }
             ]
         },
         dialogs: [
@@ -67,7 +79,7 @@ test('Add Dialog post', () => {
     const result = dialogsReducer(state, action)
 
     expect(result.messages['Dimych'.toLowerCase()].length).toBe(4)
-    expect(result.messages['Dimych'.toLowerCase()][3].text).toBe("Hello!")
+    expect(result.messages['Dimych'.toLowerCase()][3].message).toBe("Hello!")
 
 })
 
