@@ -1,14 +1,10 @@
 import React, {FC, useEffect, useRef, useState} from 'react'
-import {ChatMessageAPIType} from '../../api/chat-api'
 import {useDispatch, useSelector} from 'react-redux'
 import {sendMessage, startMessagesListening, stopMessagesListening} from '../Redux/chat-reducer'
 import {authSelector, chatSelector} from '../../selectors/selectors'
 import p from '../Profile/Profile.module.css'
-import s from '../common/Message/Message.module.css'
-import {MessageAuthor} from '../common/Message/MessageAuthor'
-import {MessageText} from '../common/Message/MessageText'
-import {MessageAvatar} from '../common/Message/MessageAvatar'
 import {AddMessage} from '../Dialogs/AddMessage'
+import {Message} from '../Dialogs/MessageField/Message'
 
 const ChatPage: FC = () => {
     return <div>
@@ -75,19 +71,5 @@ export const Messages: FC = () => {
         <div ref={messagesAnchorRef}></div>
     </div>
 }
-
-type MessageType = { message: ChatMessageAPIType }
-
-export const Message: FC<MessageType> = React.memo(({message}) => {
-
-    return <div className={s.message_block}>
-        <div className={s.ava_name_message}>
-            <MessageAvatar url={message.photo}/>
-            <MessageAuthor author={message.userName}/>
-        </div>
-        <div className={s.angle}></div>
-        <MessageText text={message.message}/>
-    </div>
-})
 
 export default ChatPage
