@@ -1,10 +1,16 @@
 .message_block {
     display: grid;
     align-items: end;
-    grid-template-columns: 1fr 15px 8fr;
+    grid-template-columns: 2fr 15px 8fr;
     grid-template-areas:
         'a angle m';
     padding: 10px;
+}
+.block {
+    display: flex;
+    align-items: flex-end;
+    width: 300px;
+    height: 100%;
 }
 
 .angle {
