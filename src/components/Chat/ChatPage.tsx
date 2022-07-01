@@ -12,7 +12,7 @@ const ChatPage: FC = () => {
     </div>
 }
 
-const Chat: FC = () => {
+const Chat: FC = React.memo(() => {
 
     const dispatch = useDispatch()
     const {status} = useSelector(chatSelector)
@@ -27,7 +27,7 @@ const Chat: FC = () => {
         return () => {
             dispatch(stopMessagesListening())
         }
-    }, [])
+    }, [dispatch])
 
     return <div>
         {status === 'error' ? <div>Some error occured. Please refresh page</div> :
@@ -41,9 +41,9 @@ const Chat: FC = () => {
             </div>
         }
     </div>
-}
+})
 
-export const Messages: FC = () => {
+export const Messages: FC = React.memo(() => {
 
     const {messages} = useSelector(chatSelector)
     const messagesAnchorRef = useRef<HTMLDivElement>(null)
@@ -70,6 +70,6 @@ export const Messages: FC = () => {
         {messages.map((m) => <Message message={m} key={m.id}/>)}
         <div ref={messagesAnchorRef}></div>
     </div>
-}
+})
 
 export default ChatPage
