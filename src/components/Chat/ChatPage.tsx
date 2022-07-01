@@ -37,6 +37,7 @@ const Chat: FC = React.memo(() => {
                             url={ownAvatar}
                             disabled={status !== 'ready'}
                             padding={true}
+                            isOnEnterPress
                 />
             </div>
         }
