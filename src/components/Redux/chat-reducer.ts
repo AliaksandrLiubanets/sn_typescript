@@ -17,7 +17,7 @@ const chatReducer = (state: StateType = initialState, action: ChatActionsType): 
         case MESSAGES_RECEIVED:
             return {...state, messages: [...state.messages, ...action.payload.messages]
                     .map(m => ({...m, id: v1()}) )
-                    .filter((m, index, array) => index >= array.length - 10) // leave only last 10 messages in chat
+                    .filter((m, index, array) => index >= array.length - 100) // leave only last 100 messages in chat
             }
         case STATUS_CHANGED:
             return {...state, status: action.payload.status}
@@ -72,7 +72,7 @@ export const sendMessage = (message: string): AppThunk => async () => {
 }
 
 // types:
-type ChatMessageType = ChatMessageAPIType & {id: string}
+export type ChatMessageType = ChatMessageAPIType & {id: string}
 
 type StateType = typeof initialState
 export type ChatActionsType = InferActionTypes<typeof chatActions>
