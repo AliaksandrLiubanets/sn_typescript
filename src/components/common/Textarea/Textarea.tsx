@@ -3,20 +3,28 @@ import s from './Textarea.module.css'
 
 type TextareaProps = Partial<HTMLTextAreaElement> & {
     setMessage: (value: string) => void
-    onEnterPress?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void
-
+    addMessage?: (message: string) => void
+    isOnEnterPress?: boolean
 }
 
 export const Textarea: FC<TextareaProps> = ({setMessage, ...props}) => {
 
-const onChangeValue = (e: ChangeEvent<HTMLTextAreaElement>) => setMessage(e.currentTarget.value)
+    const onChangeValue = (e: ChangeEvent<HTMLTextAreaElement>) => setMessage(e.currentTarget.value)
+    const onEnterPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === 'Enter') {
+            if (props.isOnEnterPress && props.value) {
+                props.addMessage && props.addMessage(props.value)
+            }
+            setMessage('')
+        }
+    }
 
-    return  <div>
+    return <div>
                 <textarea className={s.textarea__textarea}
                           onChange={onChangeValue}
                           value={props.value}
                           placeholder={props.placeholder}
-                          onKeyPress={props.onEnterPress}
+                          onKeyPress={onEnterPress}
                 >
                 </textarea>
     </div>
