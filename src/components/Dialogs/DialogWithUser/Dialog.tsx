@@ -14,17 +14,16 @@ export const Dialog: FC = () => {
     const {messages, ownAvatar} = useSelector(dialogsSelector)
     const {name} = useParams<string>()
     const addDialogPost = (text: string) => dispatch(dialogsActions.addDialogMessage(text, name ? name : ''))
-    // const onEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>, text: string) => e.key === 'Enter' && addDialogPost(text)
     const avaNameMessage = name && messages[name.toLowerCase()].map((m: ChatMessageAPIType) => <Message key={m.userId}
                                                                                                  message={m}
     />)
 
     return <div className={s.ava_message}>
-        <Messages message={avaNameMessage}/>
+        <Messages messages={avaNameMessage}/>
         <AddMessage addMessage={addDialogPost}
                     author={name}
                     url={ownAvatar}
-                    // onEnter={onEnter}
+                    isOnEnterPress
                     padding
         />
     </div>
