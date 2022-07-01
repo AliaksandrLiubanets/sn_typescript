@@ -18,7 +18,6 @@ export const AddPost = (props: AddPostPropsType) => {
                                                                   likes={el.likes}
                                                                   avatar={props.avatar}/>)
     const addPost = (message: string) => props.addPost(message)
-    // const onEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => e.key === 'Enter' && props.addPost()
 
     return <div className={s.addPost}>
         <div className={s.myPosts}>
@@ -26,8 +25,8 @@ export const AddPost = (props: AddPostPropsType) => {
         </div>
         <AddMessage addMessage={addPost}
                     url={props.avatar}
-                    // onEnter={onEnter}
+                    isOnEnterPress
         />
-        <Messages message={posts}/>
+        <Messages messages={posts}/>
     </div>
 }
