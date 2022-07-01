@@ -46,10 +46,9 @@ export const SearchUser: FC<PropsType> = ({searchParams}) => {
 
     const search = () => dispatch(searchUsers(1, pageSize, {term, friend}))
     const setMessage = (value: string) => setTerm(value)
-    const onEnter = (e: React.KeyboardEvent<HTMLTextAreaElement>) => e.key === 'Enter' && search()
 
     return <div className={s.search_block}>
-        <Textarea placeholder={'search user by name'} setMessage={setMessage} value={term} onEnterPress={onEnter}/>
+        <Textarea placeholder={'search user by name'} setMessage={setMessage} value={term} isOnEnterPress={true} addMessage={search}/>
         <Select options={friendArray} onChangeOption={setFriendValue} value={friendValue}/>
         <Button label={'Search'} onClickSubmit={search}/>
     </div>
