@@ -8,7 +8,7 @@ type PropsType = {
     addMessage: (message: string) => void
     url: string | null
     author?: string
-    onEnter?: (e: React.KeyboardEvent<HTMLTextAreaElement>) => void
+    isOnEnterPress?: boolean
     padding?: boolean
     disabled?: boolean
 }
@@ -23,7 +23,8 @@ export const AddMessage = (props: PropsType) => {
         <Avatar url={props.url}/>
         <Textarea setMessage={setMessage}
                   value={message}
-                  onEnterPress={props.onEnter && props.onEnter}
+                  isOnEnterPress={props.isOnEnterPress}
+                  addMessage={props.addMessage}
         />
         <Button disabled={disabaled}
                 label={'Send'}
