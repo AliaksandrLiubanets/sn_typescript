@@ -19,6 +19,9 @@ const Chat: FC = React.memo(() => {
     const {ownAvatar} = useSelector(authSelector)
 
     const sendMessageHandler = (message: string) => {
+        if (message === '\n' || message === '') {
+            return
+        }
         dispatch(sendMessage(message))
     }
 
