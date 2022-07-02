@@ -7,21 +7,21 @@ import store from './components/Redux/redux-store'
 import {Provider} from 'react-redux'
 
 
-ReactDOM.render(
-    <React.StrictMode>
-        <HashRouter>
-            <Provider store={store}>
-                <App/>
-            </Provider>
-        </HashRouter>
-    </React.StrictMode>,
-    document.getElementById('root')
-)
 // ReactDOM.render(
+//     <React.StrictMode>
 //         <HashRouter>
 //             <Provider store={store}>
 //                 <App/>
 //             </Provider>
-//         </HashRouter>,
+//         </HashRouter>
+//     </React.StrictMode>,
 //     document.getElementById('root')
 // )
+ReactDOM.render(
+        <HashRouter>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </HashRouter>,
+    document.getElementById('root')
+)
