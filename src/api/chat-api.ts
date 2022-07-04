@@ -15,9 +15,11 @@ const messageHandler = (e: MessageEvent) => {
     const newMessages = JSON.parse(e.data)
     subscribers['messages-received'].forEach(s => s(newMessages))
 }
+
 const openHandler = () => {
     notifySubscribersAboutStatus('ready')
 }
+
 const errorHandler = () => {
     notifySubscribersAboutStatus('error')
     console.error('REFRESH PAGE')

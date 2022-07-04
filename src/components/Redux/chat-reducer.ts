@@ -43,7 +43,6 @@ let _newMessageHandler: ((messages: ChatMessageAPIType[]) => void) | null = null
             dispatch(chatActions.messagesReceived(messages))
         }
     }
-
     return _newMessageHandler
 }
 
@@ -54,7 +53,6 @@ let _statusChangedHandler: ((status: StatusType) => void) | null = null
             dispatch(chatActions.statusChanged(status))
         }
     }
-
     return _statusChangedHandler
 }
 

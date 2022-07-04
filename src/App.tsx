@@ -56,7 +56,7 @@ class App extends React.Component<AppPropsType> {
                                     </NavigateToLogin>}/>
                                 <Route path={PATH.DIALOGS_LIST} element={
                                     <NavigateToLogin>
-                                        <DialogsSuspensed />
+                                        <DialogsSuspensed/>
                                     </NavigateToLogin>}>
                                     <Route path={PATH.DIALOG}
                                            element={<Dialog/>}/>
@@ -71,7 +71,11 @@ class App extends React.Component<AppPropsType> {
                                 }/>
                                 <Route path={PATH.SETTINGS} element={<Settings/>}/>
                                 <Route path={PATH.LOGIN} element={<Login/>}/>
-                                <Route path={PATH.CHAT} element={<ChatSuspensed/>}/>
+                                <Route path={PATH.CHAT} element={
+                                    <NavigateToLogin>
+                                        <ChatSuspensed/>
+                                    </NavigateToLogin>}
+                                />
                                 <Route path="*" element={<Page404/>}/>
                             </Routes>
                     }
