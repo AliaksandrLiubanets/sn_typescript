@@ -15,7 +15,7 @@ const initialState = {
 const chatReducer = (state: StateType = initialState, action: ChatActionsType): StateType => {
     switch (action.type) {
         case MESSAGES_RECEIVED:
-            return {...state, messages: [...state.messages, ...action.payload.messages]
+            return {...state, messages: [...action.payload.messages]
                     .map(m => ({...m, id: v1()}) )
                     .filter((m, index, array) => index >= array.length - 100) // leave only last 100 messages in chat
             }
