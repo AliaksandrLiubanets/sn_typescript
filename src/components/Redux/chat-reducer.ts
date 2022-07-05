@@ -18,15 +18,11 @@ const chatReducer = (state: StateType = initialState, action: ChatActionsType): 
         case MESSAGES_RECEIVED:
             if (action.payload.messages.length === 1) {
                 return {
-                    ...state, messages: [...state.messages, ...action.payload.messages]
-                        .map(m => ({...m, id: v1()}))
-                        .filter((m, index, array) => index >= array.length - 100) // leave only last 100 messages in chat
+                    ...state, messages: addPayloadMessages([...state.messages, ...action.payload.messages])
                 }
             }
             return {
-                ...state, messages: action.payload.messages
-                    .map(m => ({...m, id: v1()}))
-                    .filter((m, index, array) => index >= array.length - 100) // leave only last 100 messages in chat
+                ...state, messages: addPayloadMessages(action.payload.messages)
             }
         case STATUS_CHANGED:
             return {...state, status: action.payload.status}
@@ -36,6 +32,12 @@ const chatReducer = (state: StateType = initialState, action: ChatActionsType): 
 }
 
 export default chatReducer
+
+const addPayloadMessages = (array: ChatMessageAPIType[]) => {
+    return array
+        .map(m => ({...m, id: v1()}))
+        .filter((m, index, array) => index >= array.length - 100) // leave only last 100 messages in chat
+}
 
 // actions:
 export const chatActions = {
