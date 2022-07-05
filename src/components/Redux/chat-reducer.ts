@@ -6,7 +6,6 @@ import {v1} from 'uuid'
 
 export const MESSAGES_RECEIVED = 'sn-typescript/Chat/MESSAGES_RECEIVED'
 export const STATUS_CHANGED = 'sn-typescript/Chat/STATUS_CHANGED'
-export const MESSAGES_ADDED = 'sn-typescript/Chat/MESSAGES_ADDED'
 
 const initialState = {
     messages: [] as ChatMessageType[],
